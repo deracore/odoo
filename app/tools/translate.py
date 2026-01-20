@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 # When using quotation marks in translation strings, please use curly quotes (“”)
 # instead of straight quotes (""). On Linux, the keyboard shortcuts are:

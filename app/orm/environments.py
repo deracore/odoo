@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 """The DERACore API module defines DERACore Environments.
 """

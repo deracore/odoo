@@ -488,7 +488,7 @@ const ALLOWED_GLOBAL_KEYS = [
     "L", // Leaflet
     "lamejs", // LameJS
     "luxon", // Luxon
-    "app", // Odoo global object
+    "app", // DERAcore global object
     "owl", // Owl
     "pdfjsLib", // PDF JS
     "Popper", // Popper

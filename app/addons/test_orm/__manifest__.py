@@ -17,6 +17,6 @@
             'test_orm/static/tests/tours/x2many.js',
         ],
     },
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

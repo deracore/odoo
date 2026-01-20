@@ -12,6 +12,6 @@ supposed to do
         'security/ir.model.access.csv',
         'views/menu.xml',
     ],
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

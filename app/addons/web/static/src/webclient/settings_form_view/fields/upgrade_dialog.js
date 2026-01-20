@@ -17,7 +17,7 @@ export class UpgradeDialog extends Component {
             [["share", "=", false]],
         ]);
         window.open(
-            "https://www.app.com/app-enterprise/upgrade?num_users=" + usersCount,
+            "https://www.odoo.com/app-enterprise/upgrade?num_users=" + usersCount,
             "_blank"
         );
         this.props.close();

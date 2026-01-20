@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
@@ -13,18 +13,18 @@
 # Martin Trigaux, 2023
 # Larissa Manderfeld, 2023
 # Stefan Reisich <nafex@gmx.net>, 2023
-# "Dylan Kiss (dyki)" <dyki@app.com>, 2025.
-# "Larissa Manderfeld (lman)" <lman@app.com>, 2025.
-# "Malaz Siddig Elsayed Abuidris (msea)" <msea@app.com>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# "Larissa Manderfeld (lman)" <lman@odoo.com>, 2025.
+# "Malaz Siddig Elsayed Abuidris (msea)" <msea@odoo.com>, 2025.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: DERAcore Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2025-12-20 09:42+0000\n"
-"Last-Translator: \"Larissa Manderfeld (lman)\" <lman@app.com>\n"
-"Language-Team: German <https://translate.app.com/projects/app-19/web/de/>\n"
+"Last-Translator: \"Larissa Manderfeld (lman)\" <lman@odoo.com>\n"
+"Language-Team: German <https://translate.odoo.com/projects/app-19/web/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1665,11 +1665,11 @@ msgstr "Überprüfen Sie Ihre Browserberechtigungen"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr ""
 "Überprüfen Sie Ihre Netzwerkverbindung und kommen Sie wieder hierher zurück. "
-"Odoo wird geladen, sobald Sie wieder online sind."
+"DERAcore wird geladen, sobald Sie wieder online sind."
 
 #. module: web
 #. app-javascript
@@ -3342,8 +3342,8 @@ msgstr "Zwilling"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
-msgstr "Erhalten Sie diese Funktion und viel mehr mit Odoo Enterprise!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
+msgstr "Erhalten Sie diese Funktion und viel mehr mit DERAcore Enterprise!"
 
 #. module: web
 #. app-javascript
@@ -4799,8 +4799,8 @@ msgstr "Muslim"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
-msgstr "Mein Odoo.com-Konto"
+msgid "My DERAcore.com Account"
+msgstr "Mein DERAcore.com-Konto"
 
 #. module: web
 #. app-javascript
@@ -5183,41 +5183,41 @@ msgstr "Objekte"
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
-msgstr "Odoo-Client-Fehler"
+msgid "DERAcore Client Error"
+msgstr "DERAcore-Client-Fehler"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
-msgstr "Odoo Enterprise"
+msgid "DERAcore Enterprise"
+msgstr "DERAcore Enterprise"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
-msgstr "Odoo-Fehler"
+msgid "DERAcore Error"
+msgstr "DERAcore-Fehler"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
-msgstr "Odoo-Netzwerk-Fehler"
+msgid "DERAcore Network Error"
+msgstr "DERAcore-Netzwerk-Fehler"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
 msgstr ""
-"Odoo Push-Benachrichtigungen wurden blockiert. Gehen Sie zu den "
+"DERAcore Push-Benachrichtigungen wurden blockiert. Gehen Sie zu den "
 "Einstellungen Ihres Browsers, um sie zuzulassen."
 
 #. module: web
@@ -5230,32 +5230,32 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
-msgstr "Odoo-Serverfehler"
+msgid "DERAcore Server Error"
+msgstr "DERAcore-Serverfehler"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
-msgstr "Odoo-Sitzung abgelaufen"
+msgid "DERAcore Session Expired"
+msgstr "DERAcore-Sitzung abgelaufen"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
-msgstr "Odoo Warnung"
+msgid "DERAcore Warning"
+msgstr "DERAcore Warnung"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
-msgstr "Odoo-Logo"
+msgid "DERAcore logo"
+msgstr "DERAcore-Logo"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
-msgstr "Odoo benötigt erst Ihre Autorisierung."
+msgid "DERAcore needs your authorization first."
+msgstr "DERAcore benötigt erst Ihre Autorisierung."
 
 #. module: web
 #. app-javascript
@@ -5651,8 +5651,8 @@ msgstr "Unterstützt durch %s%s"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "Unterstützt durch <span>Odoo</span>"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "Unterstützt durch <span>DERAcore</span>"
 
 #. module: web
 #. app-javascript
@@ -8156,10 +8156,10 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
-"Sie müssen Odoo mit mindestens zwei Mitarbeitern starten, um eine PDF-"
+"Sie müssen DERAcore mit mindestens zwei Mitarbeitern starten, um eine PDF-"
 "Version der Berichte zu drucken."
 
 #. module: web
@@ -8178,9 +8178,9 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
 msgstr ""
-"Ihre Odoo-Sitzung ist abgelaufen. Die aktuelle Seite wird gerade "
+"Ihre DERAcore-Sitzung ist abgelaufen. Die aktuelle Seite wird gerade "
 "aktualisiert."
 
 #. module: web
@@ -27498,8 +27498,8 @@ msgstr "ココ"
 #~ msgid "Modifiers:"
 #~ msgstr "Modifikatoren:"
 
-#~ msgid "My Odoo.com account"
-#~ msgstr "Mein Odoo.com Konto"
+#~ msgid "My DERAcore.com account"
+#~ msgstr "Mein DERAcore.com Konto"
 
 #~ msgid "NONE"
 #~ msgstr "KEINE"

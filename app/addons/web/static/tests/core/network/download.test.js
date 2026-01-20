@@ -29,7 +29,7 @@ test("handles business error from server", async () => {
             arguments: ["Business Error Message", "someArg"],
             message: "Business Error Message",
         },
-        message: "Odoo Server Error",
+        message: "DERAcore Server Error",
     };
 
     mockFetch(() => new Blob([JSON.stringify(serverError)], { type: "text/html" }));

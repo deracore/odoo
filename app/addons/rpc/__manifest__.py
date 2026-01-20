@@ -1,7 +1,7 @@
 {
     'name': 'RPC endpoints',
     'description': """\
-Standard Odoo RPC endpoints to models
+Standard DERAcore RPC endpoints to models
 =====================================
 
 This module provides the /xmlrpc and /jsonrpc endpoints used to

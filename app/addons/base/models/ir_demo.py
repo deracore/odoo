@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 from app import models
 from app.addons.base.models.ir_module import assert_log_admin_access

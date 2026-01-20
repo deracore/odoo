@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 r"""\
 DERACore HTTP layer / WSGI application
 
@@ -258,7 +258,7 @@ No CSRF validation token provided for path %r
 
 DERACore URLs are CSRF-protected by default (when accessed with unsafe
 HTTP methods). See
-https://www.app.com/documentation/master/developer/reference/addons/http.html#csrf
+https://www.odoo.com/documentation/master/developer/reference/addons/http.html#csrf
 for more details.
 
 * if this endpoint is accessed through DERACore via py-QWeb form, embed a CSRF
@@ -1318,7 +1318,7 @@ class GeoIP(collections.abc.Mapping):
     .. code-block:
 
         >>> GeoIP('127.0.0.1').country.iso_code
-        >>> app_ip = socket.gethostbyname('app.com')
+        >>> app_ip = socket.gethostbyname('odoo.com')
         >>> GeoIP(app_ip).country.iso_code
         'FR'
     """

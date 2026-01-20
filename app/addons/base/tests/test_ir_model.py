@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from psycopg2 import IntegrityError
 from psycopg2.errors import NotNullViolation

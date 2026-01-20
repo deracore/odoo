@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 from app import Command
 from app.exceptions import ValidationError
 from app.tests.common import TransactionCase

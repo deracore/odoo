@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from contextlib import contextmanager
 from unittest.mock import patch
@@ -60,7 +60,7 @@ class TestPartner(TransactionCaseWithUserDemo):
     def test_archive_internal_partners(self):
         test_partner = self.env['res.partner'].create({'name':'test partner'})
         test_user = self.env['res.users'].create({
-                                'login': 'test@app.com',
+                                'login': 'test@odoo.com',
                                 'partner_id': test_partner.id,
                                 })
         # Cannot archive the partner

@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 from datetime import date, datetime, timedelta
 from app.tests.common import tagged, TransactionCase, freeze_time
 

@@ -10,6 +10,6 @@
         'demo_data.xml',
     ],
     'installable': True,
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

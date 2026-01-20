@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 from app.tests import Form, TransactionCase
 from app.addons.base.tests.common import HttpCaseWithUserDemo

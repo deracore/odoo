@@ -61,7 +61,7 @@ class InteractionService {
         if (!this.owlApp) {
             const { App } = app.loader.modules.get("@app/owl");
             const appConfig = {
-                name: "Odoo Website",
+                name: "DERAcore Website",
                 getTemplate,
                 env: this.env,
                 dev: this.env.debug,

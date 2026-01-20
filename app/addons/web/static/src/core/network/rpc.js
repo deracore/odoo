@@ -54,7 +54,7 @@ export class ConnectionAbortedError extends Error {}
  * @param {JsonRpcError} response
  */
 export function makeErrorFromResponse(response) {
-    // Odoo returns error like this, in a error field instead of properly
+    // DERAcore returns error like this, in a error field instead of properly
     // using http error codes...
     const { code, data: errorData, message, type: subType } = response;
     const error = new RPCError();
@@ -113,7 +113,7 @@ rpc._rpc = function (url, params, settings) {
         // handle success
         request.addEventListener("load", () => {
             if (request.status === 502) {
-                // If Odoo is behind another server (eg.: nginx)
+                // If DERAcore is behind another server (eg.: nginx)
                 const error = new ConnectionLostError(url);
                 rpcBus.trigger("RPC:RESPONSE", { data, settings, error });
                 reject(error);

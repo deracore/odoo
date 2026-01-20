@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
@@ -8,17 +8,17 @@
 # Martin Trigaux, 2023
 # Jolien De Paepe, 2023
 # Erwin van der Ploeg <erwin@odooexperts.nl>, 2023, 2025.
-# "Dylan Kiss (dyki)" <dyki@app.com>, 2025.
-# Bren Driesen <brdri@app.com>, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# Bren Driesen <brdri@odoo.com>, 2025, 2026.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: DERAcore Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2026-01-13 15:35+0000\n"
-"Last-Translator: Bren Driesen <brdri@app.com>\n"
-"Language-Team: Dutch <https://translate.app.com/projects/app-19/web/nl/>\n"
+"Last-Translator: Bren Driesen <brdri@odoo.com>\n"
+"Language-Team: Dutch <https://translate.odoo.com/projects/app-19/web/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1657,10 +1657,10 @@ msgstr "Controleer de rechten van je browser"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr ""
-"Controleer je netwerkverbinding en kom terug. Odoo wordt geladen zodra je "
+"Controleer je netwerkverbinding en kom terug. DERAcore wordt geladen zodra je "
 "terug online bent."
 
 #. module: web
@@ -3333,8 +3333,8 @@ msgstr "Tweelingen"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
-msgstr "Krijg deze optie en veel meer met Odoo Enterprise!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
+msgstr "Krijg deze optie en veel meer met DERAcore Enterprise!"
 
 #. module: web
 #. app-javascript
@@ -4789,8 +4789,8 @@ msgstr "Moslim"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
-msgstr "Mijn Odoo.com-account"
+msgid "My DERAcore.com Account"
+msgstr "Mijn DERAcore.com-account"
 
 #. module: web
 #. app-javascript
@@ -5172,41 +5172,41 @@ msgstr "Objecten"
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
-msgstr "Odoo cliënt fout"
+msgid "DERAcore Client Error"
+msgstr "DERAcore cliënt fout"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
-msgstr "Odoo Enterprise"
+msgid "DERAcore Enterprise"
+msgstr "DERAcore Enterprise"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
-msgstr "Odoo fout"
+msgid "DERAcore Error"
+msgstr "DERAcore fout"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
-msgstr "Odoo-netwerkfout"
+msgid "DERAcore Network Error"
+msgstr "DERAcore-netwerkfout"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
 msgstr ""
-"Odoo Pushmeldingen zijn geblokkeerd. Ga naar je browserinstellingen om ze "
+"DERAcore Pushmeldingen zijn geblokkeerd. Ga naar je browserinstellingen om ze "
 "toe te staan."
 
 #. module: web
@@ -5219,32 +5219,32 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
-msgstr "Odoo-serverfout"
+msgid "DERAcore Server Error"
+msgstr "DERAcore-serverfout"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
-msgstr "Odoo sessie verlopen"
+msgid "DERAcore Session Expired"
+msgstr "DERAcore sessie verlopen"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
-msgstr "Odoo foutmelding"
+msgid "DERAcore Warning"
+msgstr "DERAcore foutmelding"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
-msgstr "Logo Odoo"
+msgid "DERAcore logo"
+msgstr "Logo DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
-msgstr "Odoo heeft eerst je autorisatie nodig."
+msgid "DERAcore needs your authorization first."
+msgstr "DERAcore heeft eerst je autorisatie nodig."
 
 #. module: web
 #. app-javascript
@@ -5637,8 +5637,8 @@ msgstr "Aangeboden door %s%s"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "Aangeboden door <span>Odoo</span>"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "Aangeboden door <span>DERAcore</span>"
 
 #. module: web
 #. app-javascript
@@ -8131,10 +8131,10 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
-"Je moet Odoo starten met minimaal twee werkers om een PDF versie van de "
+"Je moet DERAcore starten met minimaal twee werkers om een PDF versie van de "
 "rapportages te kunnen afdrukken."
 
 #. module: web
@@ -8153,9 +8153,9 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
 msgstr ""
-"Je Odoo-sessie is verlopen. De huidige pagina wordt binnenkort vernieuwd."
+"Je DERAcore-sessie is verlopen. De huidige pagina wordt binnenkort vernieuwd."
 
 #. module: web
 #. app-javascript
@@ -9250,7 +9250,7 @@ msgstr "schoonheid"
 #. app-javascript
 #: code:addons/web/static/src/core/ui/block_ui.js:0
 msgid "because it's loading..."
-msgstr "omdat Odoo aan het laden is..."
+msgstr "omdat DERAcore aan het laden is..."
 
 #. module: web
 #. app-javascript
@@ -16162,7 +16162,7 @@ msgstr "eiland"
 #. app-javascript
 #: code:addons/web/static/src/core/ui/block_ui.js:0
 msgid "it's still loading..."
-msgstr "Odoo is nog aan het laden..."
+msgstr "DERAcore is nog aan het laden..."
 
 #. module: web
 #. app-javascript
@@ -27466,8 +27466,8 @@ msgstr "ココ"
 #~ msgid "Modifiers:"
 #~ msgstr "Modificatoren:"
 
-#~ msgid "My Odoo.com account"
-#~ msgstr "Mijn Odoo.com account"
+#~ msgid "My DERAcore.com account"
+#~ msgstr "Mijn DERAcore.com account"
 
 #~ msgid "NONE"
 #~ msgstr "GEEN"
@@ -27631,7 +27631,7 @@ msgstr "ココ"
 
 #~ msgid "Take a minute to get a coffee,<br />because it's loading..."
 #~ msgstr ""
-#~ "Neem een minuutje om koffie te halen,<br />want Odoo is aan het laden..."
+#~ "Neem een minuutje om koffie te halen,<br />want DERAcore is aan het laden..."
 
 #~ msgid "The field is empty, there's nothing to save."
 #~ msgstr "Het veld is leeg. Er is niets om op te slaan."
@@ -27753,7 +27753,7 @@ msgstr "ココ"
 #~ msgid ""
 #~ "You may not believe it,<br />but the application is actually loading..."
 #~ msgstr ""
-#~ "Je zou het haast niet geloven,<br />maar Odoo is wel degelijk aan het "
+#~ "Je zou het haast niet geloven,<br />maar DERAcore is wel degelijk aan het "
 #~ "laden..."
 
 #~ msgid "You need to be able to edit parent first to add property tags"

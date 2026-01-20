@@ -119,7 +119,7 @@
             </div>
 
             <script>
-                // Get data from Odoo template
+                // Get data from DERAcore template
                 const rawData = JSON.parse(atob('<t t-esc="memory_graph"/>'));
 
                 // --- UTILITY FUNCTIONS ---

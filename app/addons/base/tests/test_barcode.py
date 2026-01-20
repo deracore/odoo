@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from app.tests.common import TransactionCase
 from app.tools.barcode import check_barcode_encoding, get_barcode_check_digit

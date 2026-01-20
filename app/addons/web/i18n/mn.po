@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
@@ -20,12 +20,12 @@
 # Bayarkhuu Bataa <bbayarkhuu@gmail.com>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: DERAcore Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2025-11-24 12:08+0000\n"
 "Last-Translator: Bayarkhuu Bataa <bbayarkhuu@gmail.com>\n"
-"Language-Team: Mongolian <https://translate.app.com/projects/app-19/web/mn/"
+"Language-Team: Mongolian <https://translate.odoo.com/projects/app-19/web/mn/"
 ">\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
@@ -1612,7 +1612,7 @@ msgstr ""
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr ""
 
@@ -3253,8 +3253,8 @@ msgstr ""
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
-msgstr "Энэ болон бусад олон боломжийг Odoo Enterprise танд олгох болно!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
+msgstr "Энэ болон бусад олон боломжийг DERAcore Enterprise танд олгох болно!"
 
 #. module: web
 #. app-javascript
@@ -4667,7 +4667,7 @@ msgstr ""
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
+msgid "My DERAcore.com Account"
 msgstr ""
 
 #. module: web
@@ -5048,38 +5048,38 @@ msgstr ""
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
-msgstr "Odoo клиент алдаа"
+msgid "DERAcore Client Error"
+msgstr "DERAcore клиент алдаа"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
+msgid "DERAcore Enterprise"
 msgstr ""
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
-msgstr "Odoo алдаа"
+msgid "DERAcore Error"
+msgstr "DERAcore алдаа"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
+msgid "DERAcore Network Error"
 msgstr ""
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
 msgstr ""
 
@@ -5093,31 +5093,31 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
-msgstr "Odoo серверийн алдаа"
+msgid "DERAcore Server Error"
+msgstr "DERAcore серверийн алдаа"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
-msgstr "Odoo сэшн хуучирсан"
+msgid "DERAcore Session Expired"
+msgstr "DERAcore сэшн хуучирсан"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
-msgstr "Odoo анхааруулга"
+msgid "DERAcore Warning"
+msgstr "DERAcore анхааруулга"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
+msgid "DERAcore logo"
 msgstr ""
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
+msgid "DERAcore needs your authorization first."
 msgstr ""
 
 #. module: web
@@ -5491,8 +5491,8 @@ msgstr ""
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "Дэмжсэн <span>Odoo</span>"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "Дэмжсэн <span>DERAcore</span>"
 
 #. module: web
 #. app-javascript
@@ -7928,10 +7928,10 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
-"Та Odoo хамгийн багадаа хоёр worker-той ажиллуулсан нөхцөлд pdf хувилбарын "
+"Та DERAcore хамгийн багадаа хоёр worker-той ажиллуулсан нөхцөлд pdf хувилбарын "
 "тайлан боловсруулах боломжтой болно."
 
 #. module: web
@@ -7947,9 +7947,9 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
 msgstr ""
-"Таны Odoo сэшний хугацаа дууссан байна. Энэ хуудас дахин ачааллах гэж байна."
+"Таны DERAcore сэшний хугацаа дууссан байна. Энэ хуудас дахин ачааллах гэж байна."
 
 #. module: web
 #. app-javascript
@@ -27079,8 +27079,8 @@ msgstr ""
 #~ msgid "Modifiers:"
 #~ msgstr "Засварлагч:"
 
-#~ msgid "My Odoo.com account"
-#~ msgstr "Миний Odoo.com данс"
+#~ msgid "My DERAcore.com account"
+#~ msgstr "Миний DERAcore.com данс"
 
 #~ msgid "NONE"
 #~ msgstr "ХООСОН"

@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 import json
 import logging
@@ -144,7 +144,7 @@ class ReportController(http.Controller):
             se = http.serialize_exception(e)
             error = {
                 'code': 0,
-                'message': "Odoo Server Error",
+                'message': "DERAcore Server Error",
                 'data': se
             }
             res = request.make_response(html_escape(json.dumps(error)))

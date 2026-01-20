@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
@@ -24,18 +24,18 @@
 # Ivan Espinola, 2023
 # Arnau Ros, 2023
 # Óscar Fonseca <tecnico@extreme-micro.com>, 2023
-# "Dylan Kiss (dyki)" <dyki@app.com>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025.
 # Miriam Amatller Tura <sine2soft@gmail.com>, 2025.
-# "Noemi Pla Garcia (nopl)" <nopl@app.com>, 2025.
+# "Noemi Pla Garcia (nopl)" <nopl@odoo.com>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: DERAcore Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2025-12-22 15:51+0000\n"
-"Last-Translator: \"Noemi Pla Garcia (nopl)\" <nopl@app.com>\n"
-"Language-Team: Catalan <https://translate.app.com/projects/app-19/web/ca/"
+"Last-Translator: \"Noemi Pla Garcia (nopl)\" <nopl@odoo.com>\n"
+"Language-Team: Catalan <https://translate.odoo.com/projects/app-19/web/ca/"
 ">\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -1648,10 +1648,10 @@ msgstr ""
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr ""
-"Comprova la teva connexó d'internet i torna. Odoo carregarà tan bon punt "
+"Comprova la teva connexó d'internet i torna. DERAcore carregarà tan bon punt "
 "estiguis en línia"
 
 #. module: web
@@ -3300,8 +3300,8 @@ msgstr "Gemini"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
-msgstr "Aconsegueixi aquesta característica i molt més amb Odoo Enterprise!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
+msgstr "Aconsegueixi aquesta característica i molt més amb DERAcore Enterprise!"
 
 #. module: web
 #. app-javascript
@@ -4723,7 +4723,7 @@ msgstr "Musulmà"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
+msgid "My DERAcore.com Account"
 msgstr ""
 
 #. module: web
@@ -5104,41 +5104,41 @@ msgstr "Objectes"
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
-msgstr "Error de client Odoo"
+msgid "DERAcore Client Error"
+msgstr "Error de client DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
-msgstr "Odoo Enterprise"
+msgid "DERAcore Enterprise"
+msgstr "DERAcore Enterprise"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
-msgstr "Error d'Odoo"
+msgid "DERAcore Error"
+msgstr "Error d'DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
-msgstr "Error de xarxa Odoo"
+msgid "DERAcore Network Error"
+msgstr "Error de xarxa DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
 msgstr ""
-"S' han bloquejat les notificacions Odoo Push. Aneu a la configuració del "
+"S' han bloquejat les notificacions DERAcore Push. Aneu a la configuració del "
 "navegador per a permetre'ls."
 
 #. module: web
@@ -5151,32 +5151,32 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
-msgstr "Error del servidor Odoo"
+msgid "DERAcore Server Error"
+msgstr "Error del servidor DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
-msgstr "La sessió d'Odoo ha caducat"
+msgid "DERAcore Session Expired"
+msgstr "La sessió d'DERAcore ha caducat"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
-msgstr "Alerta d'Odoo"
+msgid "DERAcore Warning"
+msgstr "Alerta d'DERAcore"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
-msgstr "Logo Odoo"
+msgid "DERAcore logo"
+msgstr "Logo DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
-msgstr "L'Odoo primer necessita la teva autorització."
+msgid "DERAcore needs your authorization first."
+msgstr "L'DERAcore primer necessita la teva autorització."
 
 #. module: web
 #. app-javascript
@@ -5559,8 +5559,8 @@ msgstr "Powered by %s%s"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "Recolzat per <span>Odoo</span>"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "Recolzat per <span>DERAcore</span>"
 
 #. module: web
 #. app-javascript
@@ -8010,10 +8010,10 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
-"Necessites iniciar Odoo amb un mínim de dos workers per imprimir la versió "
+"Necessites iniciar DERAcore amb un mínim de dos workers per imprimir la versió "
 "pdf dels informes."
 
 #. module: web
@@ -8029,9 +8029,9 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
 msgstr ""
-"La vostra sessió Odoo ha caducat. La pàgina actual està a punt de ser "
+"La vostra sessió DERAcore ha caducat. La pàgina actual està a punt de ser "
 "refrescada."
 
 #. module: web
@@ -27303,8 +27303,8 @@ msgstr "ココ"
 #~ msgid "Modifiers:"
 #~ msgstr "Modificadors:"
 
-#~ msgid "My Odoo.com account"
-#~ msgstr "El meu compte Odoo.com"
+#~ msgid "My DERAcore.com account"
+#~ msgstr "El meu compte DERAcore.com"
 
 #~ msgid "NONE"
 #~ msgstr "CAP"

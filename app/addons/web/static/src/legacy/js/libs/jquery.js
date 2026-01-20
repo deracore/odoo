@@ -13,7 +13,7 @@ $.extend($.expr[':'], {
 // jQuery functions extensions
 $.fn.extend({
     /**
-     * Makes DOM elements bounce the way Odoo decided it.
+     * Makes DOM elements bounce the way DERAcore decided it.
      *
      * @param {string} [extraClass]
      */

@@ -9,6 +9,6 @@
     'depends': ['web'],
 
     'data': ['ir.model.access.csv'],
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from app.addons.base.models.ir_config_parameter import _default_parameters
 from app.exceptions import ValidationError

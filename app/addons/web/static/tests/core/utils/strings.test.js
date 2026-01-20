@@ -23,14 +23,14 @@ describe.current.tags("headless");
 
 test("escape", () => {
     expect(escape("<a>this is a link</a>")).toBe("&lt;a&gt;this is a link&lt;/a&gt;");
-    expect(escape(`<a href="https://www.app.com">app<a>`)).toBe(
-        `&lt;a href=&quot;https://www.app.com&quot;&gt;app&lt;a&gt;`
+    expect(escape(`<a href="https://www.odoo.com">app<a>`)).toBe(
+        `&lt;a href=&quot;https://www.odoo.com&quot;&gt;app&lt;a&gt;`
     );
-    expect(escape(`<a href='https://www.app.com'>app<a>`)).toBe(
-        `&lt;a href=&#x27;https://www.app.com&#x27;&gt;app&lt;a&gt;`
+    expect(escape(`<a href='https://www.odoo.com'>app<a>`)).toBe(
+        `&lt;a href=&#x27;https://www.odoo.com&#x27;&gt;app&lt;a&gt;`
     );
-    expect(escape("<a href='https://www.app.com'>Odoo`s website<a>")).toBe(
-        `&lt;a href=&#x27;https://www.app.com&#x27;&gt;Odoo&#x60;s website&lt;a&gt;`
+    expect(escape("<a href='https://www.odoo.com'>DERAcore`s website<a>")).toBe(
+        `&lt;a href=&#x27;https://www.odoo.com&#x27;&gt;DERAcore&#x60;s website&lt;a&gt;`
     );
 });
 
@@ -130,10 +130,10 @@ test("isEmail", () => {
     expect(isEmail("")).toBe(false);
     expect(isEmail("test")).toBe(false);
     expect(isEmail("test@app")).toBe(false);
-    expect(isEmail("test@app@app.com")).toBe(false);
-    expect(isEmail("te st@app.com")).toBe(false);
+    expect(isEmail("test@app@odoo.com")).toBe(false);
+    expect(isEmail("te st@odoo.com")).toBe(false);
 
-    expect(isEmail("test@app.com")).toBe(true);
+    expect(isEmail("test@odoo.com")).toBe(true);
 });
 
 test("isNumeric", () => {

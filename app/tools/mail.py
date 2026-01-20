@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import base64
 import collections
@@ -1004,8 +1004,8 @@ def encapsulate_email(old_email, new_email):
 
     e.g.
     * Old From: "Admin" <admin@gmail.com>
-    * New From: notifications@app.com
-    * Output: "Admin" <notifications@app.com>
+    * New From: notifications@odoo.com
+    * Output: "Admin" <notifications@odoo.com>
     """
     old_email_split = getaddresses([old_email])
     if not old_email_split or not old_email_split[0]:

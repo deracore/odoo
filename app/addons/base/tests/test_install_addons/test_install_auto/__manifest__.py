@@ -9,6 +9,6 @@
     ],
     'installable': True,
     'auto_install': True,
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

@@ -1,23 +1,23 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
 # Translators:
-# Wil Odoo, 2025
+# Wil DERAcore, 2025
 # Pak Wai Ho, 2025
 # Tony Ng, 2025
 #
-# "Dylan Kiss (dyki)" <dyki@app.com>, 2025.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025.
-# "Tony Ng (ngto)" <ngto@app.com>, 2026.
+# "Tony Ng (ngto)" <ngto@odoo.com>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~18.3\n"
+"Project-Id-Version: DERAcore Server saas~18.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2026-01-14 11:38+0000\n"
-"Last-Translator: \"Tony Ng (ngto)\" <ngto@app.com>\n"
-"Language-Team: Chinese (Traditional Han script) <https://translate.app.com/"
+"Last-Translator: \"Tony Ng (ngto)\" <ngto@odoo.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://translate.odoo.com/"
 "projects/app-19/web/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -1628,7 +1628,7 @@ msgstr "請檢查你的瀏覽器權限"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr "檢查你的網絡連接，然後返回此處。一旦恢復網絡連接，Odoo將立即載入。"
 
@@ -3276,7 +3276,7 @@ msgstr "雙子座"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
 msgstr "通過Odoo企業版獲得該功能及其他更多！"
 
 #. module: web
@@ -4699,8 +4699,8 @@ msgstr "穆斯林 / 伊斯蘭教徒"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
-msgstr "我的 Odoo.com 帳戶"
+msgid "My DERAcore.com Account"
+msgstr "我的 DERAcore.com 帳戶"
 
 #. module: web
 #. app-javascript
@@ -5080,40 +5080,40 @@ msgstr "物件"
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
+msgid "DERAcore Client Error"
 msgstr "Odoo客戶端錯誤"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
-msgstr "Odoo 企業版"
+msgid "DERAcore Enterprise"
+msgstr "DERAcore 企業版"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
+msgid "DERAcore Error"
 msgstr "Odoo錯誤"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
-msgstr "Odoo 網絡錯誤"
+msgid "DERAcore Network Error"
+msgstr "DERAcore 網絡錯誤"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
-msgstr "Odoo 推送通知已被阻止。轉到您的瀏覽器設置以允許它們。"
+msgstr "DERAcore 推送通知已被阻止。轉到您的瀏覽器設置以允許它們。"
 
 #. module: web
 #. app-javascript
@@ -5125,32 +5125,32 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
-msgstr "Odoo 伺服器錯誤"
+msgid "DERAcore Server Error"
+msgstr "DERAcore 伺服器錯誤"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
+msgid "DERAcore Session Expired"
 msgstr "操作時段過期"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
+msgid "DERAcore Warning"
 msgstr "Odoo警告"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
-msgstr "Odoo 標誌"
+msgid "DERAcore logo"
+msgstr "DERAcore 標誌"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
-msgstr "Odoo 首先需要你的授權。"
+msgid "DERAcore needs your authorization first."
+msgstr "DERAcore 首先需要你的授權。"
 
 #. module: web
 #. app-javascript
@@ -5527,8 +5527,8 @@ msgstr "由 %s%s 驅動"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "由 <span>Odoo</span> 驅動"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "由 <span>DERAcore</span> 驅動"
 
 #. module: web
 #. app-javascript
@@ -7976,7 +7976,7 @@ msgstr "開啟動態佔位符選擇器之前，需要先選擇一個模型。"
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr "您需要至少使用兩個工人來啟動Odoo以列印報表的pdf版本。"
 
@@ -7995,8 +7995,8 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
-msgstr "你的 Odoo 操作時段已過期。本頁面即將自動重新載入。"
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
+msgstr "你的 DERAcore 操作時段已過期。本頁面即將自動重新載入。"
 
 #. module: web
 #. app-javascript

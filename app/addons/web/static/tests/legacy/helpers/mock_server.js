@@ -130,7 +130,7 @@ export function makeServerError({
 } = {}) {
     return makeErrorFromResponse({
         code: code || 0,
-        message: message || "Odoo Server Error",
+        message: message || "DERAcore Server Error",
         data: {
             name: errorName || `app.exceptions.${type || "UserError"}`,
             debug: "traceback",

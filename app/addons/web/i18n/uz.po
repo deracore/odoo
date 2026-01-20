@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # 	* web
 #
@@ -12,7 +12,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: DERAcore Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2025-10-08 18:39+0000\n"
@@ -1845,11 +1845,11 @@ msgstr "Brauzer ruxsatlarini tekshiring"
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 #, fuzzy
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr ""
 "Tarmoq ulanishingizni tekshiring va bu yerga qayting. Onlayn bo‘lishingiz "
-"bilan Odoo yuklanadi."
+"bilan DERAcore yuklanadi."
 
 #. module: web
 #. app-javascript
@@ -3773,9 +3773,9 @@ msgstr "Egizaklar"
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
 #, fuzzy
-msgid "Get this feature and much more with Odoo Enterprise!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
 msgstr ""
-"Bu xususiyat va boshqa ko‘p imkoniyatlardan Odoo Enterprise bilan "
+"Bu xususiyat va boshqa ko‘p imkoniyatlardan DERAcore Enterprise bilan "
 "foydalaning!"
 
 #. module: web
@@ -5444,8 +5444,8 @@ msgstr "Musulmon"
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
 #, fuzzy
-msgid "My Odoo.com Account"
-msgstr "Mening Odoo.com hisobim"
+msgid "My DERAcore.com Account"
+msgstr "Mening DERAcore.com hisobim"
 
 #. module: web
 #. app-javascript
@@ -5885,46 +5885,46 @@ msgstr "Obyektlar"
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
 #, fuzzy
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, fuzzy
-msgid "Odoo Client Error"
-msgstr "Odoo mijoz xatosi"
+msgid "DERAcore Client Error"
+msgstr "DERAcore mijoz xatosi"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
 #, fuzzy
-msgid "Odoo Enterprise"
-msgstr "Odoo Enterprise"
+msgid "DERAcore Enterprise"
+msgstr "DERAcore Enterprise"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, fuzzy
-msgid "Odoo Error"
-msgstr "Odoo xatosi"
+msgid "DERAcore Error"
+msgstr "DERAcore xatosi"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, fuzzy
-msgid "Odoo Network Error"
-msgstr "Odoo tarmoq xatosi"
+msgid "DERAcore Network Error"
+msgstr "DERAcore tarmoq xatosi"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 #, fuzzy
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
 msgstr ""
-"Odoo Push bildirishnomalari bloklangan. Ularga ruxsat berish uchun "
+"DERAcore Push bildirishnomalari bloklangan. Ularga ruxsat berish uchun "
 "brauzeringiz sozlamalariga o‘ting."
 
 #. module: web
@@ -5939,36 +5939,36 @@ msgstr "Odoo S.A."
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, fuzzy
-msgid "Odoo Server Error"
-msgstr "Odoo server xatosi"
+msgid "DERAcore Server Error"
+msgstr "DERAcore server xatosi"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
 #, fuzzy
-msgid "Odoo Session Expired"
-msgstr "Odoo seansi muddati tugadi"
+msgid "DERAcore Session Expired"
+msgstr "DERAcore seansi muddati tugadi"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
 #, fuzzy
-msgid "Odoo Warning"
-msgstr "Odoo ogohlantirishi"
+msgid "DERAcore Warning"
+msgstr "DERAcore ogohlantirishi"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 #, fuzzy
-msgid "Odoo logo"
-msgstr "Odoo logotipi"
+msgid "DERAcore logo"
+msgstr "DERAcore logotipi"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
 #, fuzzy
-msgid "Odoo needs your authorization first."
-msgstr "Odoo sizning ruxsatingizni talab qiladi."
+msgid "DERAcore needs your authorization first."
+msgstr "DERAcore sizning ruxsatingizni talab qiladi."
 
 #. module: web
 #. app-javascript
@@ -6412,8 +6412,8 @@ msgstr "%s%s yordamida ishlaydi"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
 #, fuzzy
-msgid "Powered by <span>Odoo</span>"
-msgstr "<span>Odoo</span> yordamida ishlaydi"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "<span>DERAcore</span> yordamida ishlaydi"
 
 #. module: web
 #. app-javascript
@@ -9291,10 +9291,10 @@ msgstr ""
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 #, fuzzy
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
-"Hisobotlarning PDF versiyasini chop etish uchun Odoo‘ni kamida ikkita ishchi "
+"Hisobotlarning PDF versiyasini chop etish uchun DERAcore‘ni kamida ikkita ishchi "
 "bilan ishga tushirishingiz lozim."
 
 #. module: web
@@ -9315,8 +9315,8 @@ msgstr ""
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
 #, fuzzy
-msgid "Your Odoo session expired. The current page is about to be refreshed."
-msgstr "Odoo seansiningiz muddati tugadi. Joriy sahifa hozir yangilanadi."
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
+msgstr "DERAcore seansiningiz muddati tugadi. Joriy sahifa hozir yangilanadi."
 
 #. module: web
 #. app-javascript

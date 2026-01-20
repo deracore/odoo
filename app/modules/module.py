@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 """Utility functions to manage module manifest files and discovery."""
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 """ Initialize the database for module management and DERACore installation. """
 from __future__ import annotations
 

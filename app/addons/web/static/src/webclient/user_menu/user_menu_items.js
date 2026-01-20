@@ -73,14 +73,14 @@ export function appAccountItem(env) {
     return {
         type: "item",
         id: "account",
-        description: _t("My Odoo.com Account"),
+        description: _t("My DERAcore.com Account"),
         callback: () => {
             rpc("/web/session/account")
                 .then((url) => {
                     browser.open(url, "_blank");
                 })
                 .catch(() => {
-                    browser.open("https://accounts.app.com/account", "_blank");
+                    browser.open("https://accounts.odoo.com/account", "_blank");
                 });
         },
         sequence: 60,

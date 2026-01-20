@@ -9063,7 +9063,7 @@ test(`form view is not broken if save operation fails`, async () => {
     await contains(`.o_form_button_save`).click();
     await animationFrame();
     expect(`.o_dialog`).toHaveCount(1);
-    expect.verifyErrors(["RPC_ERROR: Odoo Server Error"]);
+    expect.verifyErrors(["RPC_ERROR: DERAcore Server Error"]);
     expect.verifySteps(["web_save"]); // write on save (it fails, does not trigger a read)
 
     await contains(`.o_dialog .modal-footer .btn-primary`).click();
@@ -9181,7 +9181,7 @@ test("Redirect Warning full feature: additional context, action_id, leaving whil
     expect.verifySteps(["web_save"]);
 
     await waitFor(".o_error_dialog");
-    expect.verifyErrors(["RPC_ERROR: Odoo Server Error"]);
+    expect.verifyErrors(["RPC_ERROR: DERAcore Server Error"]);
 
     expect(".o_error_dialog .btn-primary").toHaveCount(1);
     expect(".o_error_dialog .btn-secondary").toHaveCount(1);
@@ -9948,7 +9948,7 @@ test(`keep editing after call_button fail`, async () => {
     };
     await contains(`button.child_ids`).click();
     expect.verifySteps(["web_save"]);
-    expect.verifyErrors(["RPC_ERROR: Odoo Server Error"]);
+    expect.verifyErrors(["RPC_ERROR: DERAcore Server Error"]);
 
     await contains(`.o_form_view .o_field_one2many .o_data_row .o_data_cell:eq(1)`).click();
     await contains(`.o_field_many2one[name="product_id"] input`).click();
@@ -10477,7 +10477,7 @@ test("resequence list lines when previous resequencing crashed", async () => {
                     expect.step("resequence onChange crash");
                     throw makeErrorFromResponse({
                         code: 200,
-                        message: "Odoo Server Error",
+                        message: "DERAcore Server Error",
                         data: {
                             name: `app.exceptions.${"UserError"}`,
                             debug: "traceback",
@@ -11432,7 +11432,7 @@ test(`setting : boolean field`, async () => {
     expect(`.o_doc_link`).toHaveCount(1);
     expect(`.o_doc_link`).toHaveAttribute(
         "href",
-        "https://www.app.com/documentation/1.0/applications/technical/web/settings/this_is_a_test.html"
+        "https://www.odoo.com/documentation/1.0/applications/technical/web/settings/this_is_a_test.html"
     );
     expect(`.btn-link[name='buttonName']`).toHaveCount(1);
 });

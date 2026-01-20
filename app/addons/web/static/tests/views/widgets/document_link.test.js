@@ -108,7 +108,7 @@ test("documentation_link: relative path", async () => {
     });
     expect(".o_doc_link").toHaveAttribute(
         "href",
-        "https://www.app.com/documentation/1.0/applications/technical/web/settings/this_is_a_test.html"
+        "https://www.odoo.com/documentation/1.0/applications/technical/web/settings/this_is_a_test.html"
     );
 });
 
@@ -119,10 +119,10 @@ test("documentation_link: absolute path (http)", async () => {
         arch: /* xml */ `
             <form>
                 <field name="bar"/>
-                <widget name="documentation_link" path="http://www.app.com/"/>
+                <widget name="documentation_link" path="http://www.odoo.com/"/>
             </form>`,
     });
-    expect(".o_doc_link").toHaveAttribute("href", "http://www.app.com/");
+    expect(".o_doc_link").toHaveAttribute("href", "http://www.odoo.com/");
 });
 
 test("documentation_link: absolute path (https)", async () => {
@@ -132,9 +132,9 @@ test("documentation_link: absolute path (https)", async () => {
         arch: /* xml */ `
         <form>
             <field name="bar"/>
-            <widget name="documentation_link" path="https://www.app.com/"/>
+            <widget name="documentation_link" path="https://www.odoo.com/"/>
         </form>`,
     });
 
-    expect(".o_doc_link").toHaveAttribute("href", "https://www.app.com/");
+    expect(".o_doc_link").toHaveAttribute("href", "https://www.odoo.com/");
 });

@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 import base64
 import datetime
@@ -151,7 +151,7 @@ class IrMail_Server(models.Model):
     from_filter = fields.Char(
         "FROM Filtering",
         help='Comma-separated list of addresses or domains for which this server can be used.\n'
-             'e.g.: "notification@app.com" or "app.com"')
+             'e.g.: "notification@odoo.com" or "odoo.com"')
     smtp_host = fields.Char(string='SMTP Server', help="Hostname or IP of SMTP server")
     smtp_port = fields.Integer(string='SMTP Port', default=25, help="SMTP Port. Usually 465 for SSL, and 25 or 587 for other cases.")
     smtp_authentication = fields.Selection([
@@ -289,7 +289,7 @@ class IrMail_Server(models.Model):
         return email_from
 
     def _get_test_email_to(self):
-        return "noreply@app.com"
+        return "noreply@odoo.com"
 
     def test_smtp_connection(self, autodetect_max_email_size=False):
         """Test the connection and if autodetect_max_email_size, set auto-detected max email size.

@@ -1530,7 +1530,7 @@ export class Matcher {
      *  // Partial equality can be performed on nested objects
      *  expect({
      *      company: {
-     *          name: "Odoo",
+     *          name: "DERAcore",
      *          location: "Belgium",
      *      },
      *      employees: new Set([
@@ -1540,7 +1540,7 @@ export class Matcher {
      *          },
      *      ]),
      *  }).toMatchObject({
-     *      company: { name: "Odoo" }
+     *      company: { name: "DERAcore" }
      *      employees: new Set([{ age: 28 }]),
      *  });
      * @example

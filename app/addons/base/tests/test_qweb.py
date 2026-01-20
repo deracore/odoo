@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import markupsafe
 
@@ -650,7 +650,7 @@ class TestQWebNS(TransactionCase):
             'type': 'qweb',
             'arch': """
                 <t t-name="base.dummy">
-                    <Invoice xmlns:od="http://app.com/od">
+                    <Invoice xmlns:od="http://odoo.com/od">
                         <od:name t-att-test="'a' + 1"/>
                     </Invoice>
                 </t>

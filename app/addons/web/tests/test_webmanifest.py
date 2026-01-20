@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 from app.addons.base.tests.common import HttpCaseWithUserDemo
 from app.tests.common import tagged
@@ -20,7 +20,7 @@ class WebManifestRoutesTest(HttpCaseWithUserDemo):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.headers["Content-Type"], "application/manifest+json")
         data = response.json()
-        self.assertEqual(data["name"], "Odoo")
+        self.assertEqual(data["name"], "DERAcore")
         self.assertEqual(data["scope"], "/app")
         self.assertEqual(data["start_url"], "/app")
         self.assertEqual(data["display"], "standalone")
@@ -46,7 +46,7 @@ class WebManifestRoutesTest(HttpCaseWithUserDemo):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.headers["Content-Type"], "application/manifest+json")
         data = response.json()
-        self.assertEqual(data["name"], "Odoo")
+        self.assertEqual(data["name"], "DERAcore")
         self.assertEqual(data["scope"], "/app")
         self.assertEqual(data["start_url"], "/app")
         self.assertEqual(data["display"], "standalone")

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name': 'test-uninstall',
     'version': '0.1',
@@ -8,6 +8,6 @@
     'depends': ['base'],
     'data': ['ir.model.access.csv'],
     'installable': True,
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

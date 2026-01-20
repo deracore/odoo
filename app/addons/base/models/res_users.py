@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 from __future__ import annotations
 
 import binascii
@@ -1266,7 +1266,7 @@ class ResUsers(models.Model):
                     "and *might* be a proxy. If your DERACore is behind a proxy, "
                     "it may be mis-configured. Check that you are running "
                     "DERACore in Proxy Mode and that the proxy is properly configured, see "
-                    "https://www.app.com/documentation/latest/administration/install/deploy.html#https for details.",
+                    "https://www.odoo.com/documentation/latest/administration/install/deploy.html#https for details.",
                     source
                 )
             raise AccessDenied(_("Too many login failures, please wait a bit before trying again."))

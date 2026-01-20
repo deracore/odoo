@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 import csv
 import datetime
 import functools
@@ -534,7 +534,7 @@ class ExportFormat(object):
         return f"{model_description} ({base})"
 
     def from_data(self, fields, columns_headers, rows):
-        """ Conversion method from Odoo's export data to whatever the
+        """ Conversion method from DERAcore's export data to whatever the
         current export class outputs
 
         :params list fields: a list of fields to export
@@ -636,7 +636,7 @@ class CSVExport(ExportFormat, http.Controller):
             _logger.exception("Exception during request handling.")
             payload = json.dumps({
                 'code': 0,
-                'message': "Odoo Server Error",
+                'message': "DERAcore Server Error",
                 'data': http.serialize_exception(exc)
             })
             raise InternalServerError(payload) from exc
@@ -684,7 +684,7 @@ class ExcelExport(ExportFormat, http.Controller):
             _logger.exception("Exception during request handling.")
             payload = json.dumps({
                 'code': 0,
-                'message': "Odoo Server Error",
+                'message': "DERAcore Server Error",
                 'data': http.serialize_exception(exc)
             })
             raise InternalServerError(payload) from exc

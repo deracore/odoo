@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 
 {
@@ -94,6 +94,6 @@ The kernel of DERACore, needed for all installation.
     'installable': True,
     'auto_install': True,
     'post_init_hook': 'post_init',
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

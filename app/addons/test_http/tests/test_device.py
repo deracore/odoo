@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 from datetime import datetime
 from freezegun import freeze_time
@@ -41,7 +41,7 @@ class TestDevice(TestHttpBase):
                 **headers,
                 'Host': '',
                 'X-Forwarded-For': ip,
-                'X-Forwarded-Host': 'app.com',
+                'X-Forwarded-Host': 'odoo.com',
                 'X-Forwarded-Proto': 'https'
             }
         with freeze_time(time), \

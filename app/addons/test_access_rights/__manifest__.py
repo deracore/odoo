@@ -8,6 +8,6 @@
         'security.xml',
         'data.xml',
     ],
-    'author': 'DERACore S.A.',
+    'author': 'Odoo S.A.',
     'license': 'LGPL-3',
 }

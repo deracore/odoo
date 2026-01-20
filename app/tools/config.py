@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import collections
 import configparser as ConfigParser
@@ -212,7 +212,7 @@ class configmanager:
         parser.add_option(FileOnlyOption(dest='import_file_timeout', type='int', my_default=3, file_exportable=False))
         parser.add_option(FileOnlyOption(dest='import_url_regex', my_default=r"^(?:http|https)://", file_exportable=False))
         parser.add_option(FileOnlyOption(dest='proxy_access_token', my_default='', file_exportable=False))
-        parser.add_option(FileOnlyOption(dest='publisher_warranty_url', my_default='http://services.app.com/publisher-warranty/', file_exportable=False))
+        parser.add_option(FileOnlyOption(dest='publisher_warranty_url', my_default='http://services.odoo.com/publisher-warranty/', file_exportable=False))
         parser.add_option(FileOnlyOption(dest='reportgz', action='store_true', my_default=False))
         parser.add_option(FileOnlyOption(dest='websocket_keep_alive_timeout', type='int', my_default=3600))
         parser.add_option(FileOnlyOption(dest='websocket_rate_limit_burst', type='int', my_default=10))

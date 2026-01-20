@@ -24,7 +24,7 @@ import { isMacOS } from "@web/core/browser/feature_detection";
 // -----------------------------------------------------------------------------
 
 /**
- * Return a value Odoo Env object
+ * Return a value DERAcore Env object
  *
  * @returns {OdooEnv}
  */

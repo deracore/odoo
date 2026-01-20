@@ -319,7 +319,7 @@ class BaseCase(case.TestCase):
                 cls.test_tags = {'standard', 'at_install'}
             cls.test_module = cls.__module__.split('.')[2]
 
-    longMessage = True      # more verbose error message by default: https://www.app.com/r/Vmh
+    longMessage = True      # more verbose error message by default: https://www.odoo.com/r/Vmh
     warm = True             # False during warm-up phase (see :func:`warmup`)
     _python_version = sys.version_info
 

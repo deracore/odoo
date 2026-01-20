@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
@@ -11,16 +11,16 @@
 # Andy Yiu, 2023
 # Ryoko Tsuda <ryoko@quartile.co>, 2023, 2025.
 # Martin Trigaux, 2023
-# "Dylan Kiss (dyki)" <dyki@app.com>, 2025.
-# "Junko Augias (juau)" <juau@app.com>, 2025, 2026.
+# "Dylan Kiss (dyki)" <dyki@odoo.com>, 2025.
+# "Junko Augias (juau)" <juau@odoo.com>, 2025, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: DERAcore Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2026-01-16 11:53+0000\n"
-"Last-Translator: \"Junko Augias (juau)\" <juau@app.com>\n"
-"Language-Team: Japanese <https://translate.app.com/projects/app-19/web/ja/>"
+"Last-Translator: \"Junko Augias (juau)\" <juau@odoo.com>\n"
+"Language-Team: Japanese <https://translate.odoo.com/projects/app-19/web/ja/>"
 "\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -1656,7 +1656,7 @@ msgstr "ブラウザの権限を確認して下さい。"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
 msgstr ""
 "ネットワーク接続を確認し、ここに戻ってきて下さい。オンラインに戻るとすぐに"
@@ -3321,7 +3321,7 @@ msgstr "双子座"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
+msgid "Get this feature and much more with DERAcore Enterprise!"
 msgstr "Odoo企業版では、この機能やその他多数の機能がご利用いただけます。"
 
 #. module: web
@@ -4765,8 +4765,8 @@ msgstr "イスラム"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
-msgstr "Odoo.comアカウント"
+msgid "My DERAcore.com Account"
+msgstr "DERAcore.comアカウント"
 
 #. module: web
 #. app-javascript
@@ -5148,38 +5148,38 @@ msgstr "オブジェクト"
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
+msgid "DERAcore Client Error"
 msgstr "Odooクライアントエラー"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
+msgid "DERAcore Enterprise"
 msgstr "Odoo企業版"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
+msgid "DERAcore Error"
 msgstr "Odooエラー"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
+msgid "DERAcore Network Error"
 msgstr "Odooネットワークエラー"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
 msgstr ""
 "Odooプッシュ通知はブロックされています。ブラウザの設定に移動して許可します。"
@@ -5194,31 +5194,31 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
+msgid "DERAcore Server Error"
 msgstr "Odooサーバーエラー"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
+msgid "DERAcore Session Expired"
 msgstr "Odooセッションが無効になりました"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
+msgid "DERAcore Warning"
 msgstr "Odoo警告"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
+msgid "DERAcore logo"
 msgstr "Odooロゴ"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
+msgid "DERAcore needs your authorization first."
 msgstr "Odooはまずお客様の許可を必要としています。"
 
 #. module: web
@@ -5611,8 +5611,8 @@ msgstr "Powered by %s%s"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "Powered by <span>Odoo</span>"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "Powered by <span>DERAcore</span>"
 
 #. module: web
 #. app-javascript
@@ -8090,7 +8090,7 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
 msgstr ""
 "PDFレポートを印刷するには、ワーカー数を2以上にしてOdooを起動してください。"
@@ -8110,7 +8110,7 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
 msgstr ""
 "Odooセッションの有効期限が切れました。現在のページがリフレッシュされようとし"
 "ています。"
@@ -27306,8 +27306,8 @@ msgstr "ココ"
 #~ msgid "Modifiers:"
 #~ msgstr "修飾："
 
-#~ msgid "My Odoo.com account"
-#~ msgstr "Odoo.comアカウント"
+#~ msgid "My DERAcore.com account"
+#~ msgstr "DERAcore.comアカウント"
 
 #~ msgid "Next page"
 #~ msgstr "次のページ"

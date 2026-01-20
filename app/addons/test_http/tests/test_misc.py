@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 import json
 from importlib import metadata
@@ -35,7 +35,7 @@ class TestHttpMisc(TestHttpBase):
         # client <-> reverse-proxy <-> app
         client_ip = '127.0.0.16'
         reverseproxy_ip = gethostbyname(HOST)
-        host = 'mycompany.app.com'
+        host = 'mycompany.odoo.com'
 
         headers = {
             'Host': '',
@@ -75,14 +75,14 @@ class TestHttpMisc(TestHttpBase):
 
         # Valid URLs
         self.assertEqual(root.get_static_file(f'/{uri}'), path, "Valid file")
-        self.assertEqual(root.get_static_file(f'app.com/{uri}', host='app.com'), path, "Valid file with valid host")
-        self.assertEqual(root.get_static_file(f'http://app.com/{uri}', host='app.com'), path, "Valid file with valid host")
+        self.assertEqual(root.get_static_file(f'odoo.com/{uri}', host='odoo.com'), path, "Valid file with valid host")
+        self.assertEqual(root.get_static_file(f'http://odoo.com/{uri}', host='odoo.com'), path, "Valid file with valid host")
 
         # Invalid URLs
         self.assertIsNone(root.get_static_file('/test_http/i-dont-exist'), "File doesn't exist")
         self.assertIsNone(root.get_static_file('/test_http/__manifest__.py'), "File is not static")
-        self.assertIsNone(root.get_static_file(f'app.com/{uri}'), "No host allowed")
-        self.assertIsNone(root.get_static_file(f'http://app.com/{uri}'), "No host allowed")
+        self.assertIsNone(root.get_static_file(f'odoo.com/{uri}'), "No host allowed")
+        self.assertIsNone(root.get_static_file(f'http://odoo.com/{uri}'), "No host allowed")
 
     def test_misc4_rpc_qweb(self):
         jack = new_test_user(self.env, 'jackoneill', context={'lang': 'en_US'})
@@ -121,7 +121,7 @@ class TestHttpMisc(TestHttpBase):
         headers = {
             'Host': '',
             'X-Forwarded-For': TEST_IP,
-            'X-Forwarded-Host': 'app.com',
+            'X-Forwarded-Host': 'odoo.com',
             'X-Forwarded-Proto': 'https'
         }
         with patch.dict(app.tools.config.options, {'proxy_mode': True}):

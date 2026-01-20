@@ -1,4 +1,4 @@
-# Part of DERACore. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from app.tests.common import BaseCase, TransactionCase
 from app.tools import Query, SQL

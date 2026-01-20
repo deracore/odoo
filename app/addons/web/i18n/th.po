@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of DERAcore Server.
 # This file contains the translation of the following modules:
 # * web
 #
@@ -10,17 +10,17 @@
 # Wichanon Jamwutthipreecha, 2022
 # Martin Trigaux, 2022
 # Amin Cheloh <amincheloh@gmail.com>, 2022
-# Odoo Thaidev <odoothaidev@gmail.com>, 2023
-# "Tiffany Chang (tic)" <tic@app.com>, 2025.
+# DERAcore Thaidev <odoothaidev@gmail.com>, 2023
+# "Tiffany Chang (tic)" <tic@odoo.com>, 2025.
 # Weblate <noreply-mt-weblate@weblate.org>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: DERAcore Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-09 18:38+0000\n"
 "PO-Revision-Date: 2025-11-08 21:57+0000\n"
 "Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
-"Language-Team: Thai <https://translate.app.com/projects/app-19/web/th/>\n"
+"Language-Team: Thai <https://translate.odoo.com/projects/app-19/web/th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1635,9 +1635,9 @@ msgstr ""
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
 msgid ""
-"Check your network connection and come back here. Odoo will load as soon as "
+"Check your network connection and come back here. DERAcore will load as soon as "
 "you're back online."
-msgstr "ตรวจสอบการเชื่อมต่อเครือข่ายของคุณและกลับมาที่นี่ Odoo จะโหลดทันทีที่คุณออนไลน์อีกครั้ง"
+msgstr "ตรวจสอบการเชื่อมต่อเครือข่ายของคุณและกลับมาที่นี่ DERAcore จะโหลดทันทีที่คุณออนไลน์อีกครั้ง"
 
 #. module: web
 #. app-javascript
@@ -3283,8 +3283,8 @@ msgstr "ราศีเมถุน"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Get this feature and much more with Odoo Enterprise!"
-msgstr "รับฟีเจอร์นี้และฟีเจอร์อื่น ๆ อีกมากมายด้วย Odoo สำหรับองค์กร"
+msgid "Get this feature and much more with DERAcore Enterprise!"
+msgstr "รับฟีเจอร์นี้และฟีเจอร์อื่น ๆ อีกมากมายด้วย DERAcore สำหรับองค์กร"
 
 #. module: web
 #. app-javascript
@@ -4712,7 +4712,7 @@ msgstr "มุสลิม"
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
-msgid "My Odoo.com Account"
+msgid "My DERAcore.com Account"
 msgstr ""
 
 #. module: web
@@ -5093,40 +5093,40 @@ msgstr "วัตถุ"
 #: code:addons/web/static/src/core/install_scoped_app/install_scoped_app.xml:0
 #: code:addons/web/static/src/webclient/settings_form_view/widgets/res_config_edition.xml:0
 #: model_terms:ir.ui.view,arch_db:web.brand_promotion_message
-msgid "Odoo"
-msgstr "Odoo"
+msgid "DERAcore"
+msgstr "DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Client Error"
-msgstr "ข้อผิดพลาดลูกค้า Odoo"
+msgid "DERAcore Client Error"
+msgstr "ข้อผิดพลาดลูกค้า DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/webclient/settings_form_view/fields/upgrade_dialog.xml:0
-msgid "Odoo Enterprise"
-msgstr "Odoo สำหรับองค์กร"
+msgid "DERAcore Enterprise"
+msgstr "DERAcore สำหรับองค์กร"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Error"
-msgstr "ข้อผิดพลาด Odoo"
+msgid "DERAcore Error"
+msgstr "ข้อผิดพลาด DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Network Error"
-msgstr "ข้อผิดพลาดเครือข่าย Odoo"
+msgid "DERAcore Network Error"
+msgstr "ข้อผิดพลาดเครือข่าย DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/views/widgets/notification_alert/notification_alert.xml:0
 msgid ""
-"Odoo Push notifications have been blocked. Go to your browser settings to "
+"DERAcore Push notifications have been blocked. Go to your browser settings to "
 "allow them."
-msgstr "การแจ้งเตือน Odoo Push ถูกปิดกั้น ไปที่การตั้งค่าเบราว์เซอร์ของคุณเพื่อทำการอนุญาตก่อน"
+msgstr "การแจ้งเตือน DERAcore Push ถูกปิดกั้น ไปที่การตั้งค่าเบราว์เซอร์ของคุณเพื่อทำการอนุญาตก่อน"
 
 #. module: web
 #. app-javascript
@@ -5138,32 +5138,32 @@ msgstr "Odoo S.A."
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Server Error"
-msgstr "ข้อผิดพลาดของเซิร์ฟเวอร์ Odoo"
+msgid "DERAcore Server Error"
+msgstr "ข้อผิดพลาดของเซิร์ฟเวอร์ DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Odoo Session Expired"
-msgstr "เซสชัน Odoo หมดอายุ"
+msgid "DERAcore Session Expired"
+msgstr "เซสชัน DERAcore หมดอายุ"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.js:0
-msgid "Odoo Warning"
-msgstr "คำเตือน Odoo"
+msgid "DERAcore Warning"
+msgstr "คำเตือน DERAcore"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.webclient_offline
-msgid "Odoo logo"
-msgstr "โลโก้ Odoo"
+msgid "DERAcore logo"
+msgstr "โลโก้ DERAcore"
 
 #. module: web
 #. app-javascript
 #: code:addons/web/static/src/core/barcode/barcode_video_scanner.js:0
-msgid "Odoo needs your authorization first."
-msgstr "Odoo ต้องการการอนุญาตจากคุณก่อน"
+msgid "DERAcore needs your authorization first."
+msgstr "DERAcore ต้องการการอนุญาตจากคุณก่อน"
 
 #. module: web
 #. app-javascript
@@ -5543,8 +5543,8 @@ msgstr "สนับสนุนโดย %s%s"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.login_layout
-msgid "Powered by <span>Odoo</span>"
-msgstr "สนับสนุนโดย <span>Odoo</span>"
+msgid "Powered by <span>DERAcore</span>"
+msgstr "สนับสนุนโดย <span>DERAcore</span>"
 
 #. module: web
 #. app-javascript
@@ -7995,9 +7995,9 @@ msgstr "คุณต้องเลือกรุ่นก่อนที่จ
 #. app-javascript
 #: code:addons/web/static/src/webclient/actions/reports/utils.js:0
 msgid ""
-"You need to start Odoo with at least two workers to print a pdf version of "
+"You need to start DERAcore with at least two workers to print a pdf version of "
 "the reports."
-msgstr "คุณต้องเริ่มต้น Odoo กับพนักงานอย่างน้อยสองคนเพื่อพิมพ์รายงานในเวอร์ชัน pdf"
+msgstr "คุณต้องเริ่มต้น DERAcore กับพนักงานอย่างน้อยสองคนเพื่อพิมพ์รายงานในเวอร์ชัน pdf"
 
 #. module: web
 #. app-javascript
@@ -8015,8 +8015,8 @@ msgstr ""
 #. app-javascript
 #: code:addons/web/static/src/core/errors/error_dialogs.xml:0
 #: code:addons/web/static/src/public/error_notifications.js:0
-msgid "Your Odoo session expired. The current page is about to be refreshed."
-msgstr "เซสชัน Odoo ของคุณหมดอายุแล้ว หน้าปัจจุบันกำลังจะถูกรีเฟรช"
+msgid "Your DERAcore session expired. The current page is about to be refreshed."
+msgstr "เซสชัน DERAcore ของคุณหมดอายุแล้ว หน้าปัจจุบันกำลังจะถูกรีเฟรช"
 
 #. module: web
 #. app-javascript
@@ -27280,8 +27280,8 @@ msgstr "ココ"
 #~ msgid "Modifiers:"
 #~ msgstr "ตัวปรับเปลี่ยน:"
 
-#~ msgid "My Odoo.com account"
-#~ msgstr "บัญชี Odoo.com ของฉัน"
+#~ msgid "My DERAcore.com account"
+#~ msgstr "บัญชี DERAcore.com ของฉัน"
 
 #~ msgid "NONE"
 #~ msgstr "ไม่มี"

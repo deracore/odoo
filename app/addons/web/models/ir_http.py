@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 import app
 from app import api, models, fields
@@ -106,7 +106,7 @@ class IrHttp(models.AbstractModel):
             "user_settings": self.env['res.users.settings']._find_or_create_for_user(user)._res_users_settings_format(),
             "server_version": version_info.get('server_version'),
             "server_version_info": version_info.get('server_version_info'),
-            "support_url": "https://www.app.com/buy",
+            "support_url": "https://www.odoo.com/buy",
             "name": user.name,
             "username": user.login,
             "quick_login": str2bool(IrConfigSudo.get_param('web.quick_login', default=True), True),

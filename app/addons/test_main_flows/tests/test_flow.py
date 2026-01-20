@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 from app import Command
 from app.addons.account.tests.common import AccountTestMockOnlineSyncCommon
 from app.tools import mute_logger

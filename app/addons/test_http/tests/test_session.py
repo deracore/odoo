@@ -1,4 +1,4 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of DERAcore. See LICENSE file for full copyright and licensing details.
 
 import datetime
 import glob
@@ -298,7 +298,7 @@ class TestHttpSession(TestHttpBase):
         res = self.multidb_url_open(
             '/test_http/ensure_db',
             dblist=('a', 'b'),
-            headers={'X-Odoo-Database': 'a'})
+            headers={'X-DERAcore-Database': 'a'})
         self.assertEqual(res.status_code, 200, res.text)
         self.assertEqual(res.text, 'a')
         self.assertNotIn('session_id', res.cookies)
@@ -308,7 +308,7 @@ class TestHttpSession(TestHttpBase):
             '/test_http/ensure_db',
             dblist=('a', 'b'),
             headers={
-                'X-Odoo-Database': 'c',
+                'X-DERAcore-Database': 'c',
             }, timeout=10000)
         self.assertEqual(res.status_code, 303, res.text)
         self.assertURLEqual(res.next.url, '/web/database/selector')
@@ -319,7 +319,7 @@ class TestHttpSession(TestHttpBase):
         self.assertEqual(session.db, get_db_name())
 
         res = self.url_open('/test_http/ensure_db', headers={
-            'X-Odoo-Database': get_db_name(),
+            'X-DERAcore-Database': get_db_name(),
         })
         res.raise_for_status()
         self.assertEqual(res.status_code, 200, res.text)
@@ -331,7 +331,7 @@ class TestHttpSession(TestHttpBase):
         self.assertEqual(session.db, get_db_name())
 
         res = self.url_open('/test_http/ensure_db', headers={
-            'X-Odoo-Database': f'not-{get_db_name()}',
+            'X-DERAcore-Database': f'not-{get_db_name()}',
         })
         self.assertEqual(res.status_code, 403, res.text)
         self.assertIn(

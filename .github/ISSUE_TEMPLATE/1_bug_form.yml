@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Thank you for taking the time to open a bug report. Please make sure to search in existing issues if the issue was not already raised.
-        Also, if you think it is a standard bug, please first try to reproduce the issue on runbot (http://runbot.app.com/runbot - click on the blue door icon of the version row - admin/admin).
+        Also, if you think it is a standard bug, please first try to reproduce the issue on runbot (http://runbot.odoo.com/runbot - click on the blue door icon of the version row - admin/admin).
         To speed the process, we need some information."
   - type: checkboxes
     id: version
@@ -50,5 +50,5 @@ body:
     id: supportticket
     attributes:
       label: Support Ticket
-      description: Optional app.com/help ticket number
+      description: Optional odoo.com/help ticket number
       placeholder: opw-123456789
