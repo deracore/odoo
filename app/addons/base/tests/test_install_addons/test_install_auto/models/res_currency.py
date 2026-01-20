@@ -1,0 +1,11 @@
+# Part of DERACore. See LICENSE file for full copyright and licensing details.
+
+from app import api, models
+
+
+class ResCurrency(models.Model):
+    _inherit = 'res.currency'
+
+    @api.model
+    def _test_install_auto_cron(self):
+        return True

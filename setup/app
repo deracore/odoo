@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+import app.cli
+
+if __name__ == "__main__":
+    app.cli.main()
