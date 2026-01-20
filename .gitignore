@@ -19,11 +19,11 @@ __pycache__/
 *.orig
 status
 # app filestore
-framework/filestore
+app/filestore
 # maintenance migration scripts
-framework/addons/base/maintenance
+app/addons/base/maintenance
 # windows installation config file
-/framework.conf
+/app.conf
 
 # generated for windows installer?
 install/win32/*.bat
