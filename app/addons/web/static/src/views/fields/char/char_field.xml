@@ -7,10 +7,10 @@
         </t>
         <t t-else="">
             <input
-                class="o_input"
+                class="app_input"
                 t-att-class="{
-                    'o_field_translate': isTranslatable,
-                    'o_field_placeholder': hasDynamicPlaceholder
+                    'app_field_translate': isTranslatable,
+                    'app_field_placeholder': hasDynamicPlaceholder
                 }"
                 t-att-id="props.id"
                 t-att-type="props.isPassword ? 'password' : 'text'"
@@ -20,7 +20,7 @@
                 t-on-blur="onBlur"
                 t-ref="input"
             />
-            <div class="o_field_input_buttons">
+            <div class="app_field_input_buttons">
                 <t t-if="isTranslatable">
                     <TranslationButton
                         fieldName="props.name"

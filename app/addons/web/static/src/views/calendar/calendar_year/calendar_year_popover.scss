@@ -1,7 +1,7 @@
-.o_cw_popover_link {
+.app_cw_popover_link {
     margin-top: 2px;
 
-    &[class*="o_calendar_color_"] {
+    &[class*="app_calendar_color_"] {
         --o-bg-opacity: 1;
 
         border-radius: $border-radius;
@@ -14,7 +14,7 @@
             --o-bg-opacity: .5 !important;
         }
 
-        &.o_event_dot {
+        &.app_event_dot {
             --o-bg-opacity: 0;
 
             &:before {
@@ -32,7 +32,7 @@
         $color: nth($o-colors-complete, $i);
         $color-subtle: mix($o-white, $color, 55%);
 
-        &.o_calendar_color_#{$i - 1} {
+        &.app_calendar_color_#{$i - 1} {
             --o-cw-popover-color: #{$color};
             --o-cw-popover-color--subtle: #{$color-subtle};
 

@@ -1205,7 +1205,7 @@ const _getEmojisData1 = () => `{
     "category": "Smileys & Emotion",
     "codepoints": "😳",
     "emoticons": [
-        "o_o"
+        "app_o"
     ],
     "keywords": [
         "` + _t("dazed") + `",

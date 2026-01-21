@@ -1,11 +1,11 @@
-.o_field_res_user_group_ids {
+.app_field_res_user_group_ids {
     @include media-breakpoint-up(sm) {
-        .o_extra_rights_group .o_inner_group {
+        .app_extra_rights_group .app_inner_group {
            grid-template-columns: fit-content(250px) minmax(0, 1fr);
         }
     }
 
-    &.o_field_widget:focus-within {
+    &.app_field_widget:focus-within {
         --o-input-border-color: unset;
         --o-caret-color: unset;
     }

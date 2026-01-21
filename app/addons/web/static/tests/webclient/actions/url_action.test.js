@@ -56,6 +56,6 @@ test("execute an 'ir.actions.act_url' action with target 'download'", async () =
         target: "download",
         url: "/my/test/url",
     });
-    expect(".o_blockUI").toHaveCount(0);
+    expect(".app_blockUI").toHaveCount(0);
     expect.verifySteps(["/my/test/url"]);
 });

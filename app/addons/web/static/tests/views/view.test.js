@@ -116,8 +116,8 @@ test("simple rendering", async function () {
         });
     });
     await mountWithCleanup(View, { props: { resModel: "animal", type: "toy" } });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
 });
 
 test("rendering with given viewId", async function () {
@@ -141,8 +141,8 @@ test("rendering with given viewId", async function () {
         });
     });
     await mountWithCleanup(View, { props: { resModel: "animal", type: "toy", viewId: 1 } });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=1)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=1)</toy>`);
 });
 
 test("rendering with given 'views' param", async function () {
@@ -167,8 +167,8 @@ test("rendering with given 'views' param", async function () {
     });
     await makeMockEnv({ config: { views: [[1, "toy"]] } });
     await mountWithCleanup(View, { props: { resModel: "animal", type: "toy" } });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=1)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=1)</toy>`);
 });
 
 test("rendering with given 'views' param not containing view id", async function () {
@@ -196,8 +196,8 @@ test("rendering with given 'views' param not containing view id", async function
     });
     await makeMockEnv({ config: { views: [[false, "other"]] } });
     await mountWithCleanup(View, { props: { resModel: "animal", type: "toy" } });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
 });
 
 test("viewId defined as prop and in 'views' prop", async function () {
@@ -232,8 +232,8 @@ test("viewId defined as prop and in 'views' prop", async function () {
         },
     });
     await mountWithCleanup(View, { props: { resModel: "animal", type: "toy", viewId: 1 } });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=1)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=1)</toy>`);
 });
 
 test("rendering with given arch and fields", async function () {
@@ -259,8 +259,8 @@ test("rendering with given arch and fields", async function () {
             fields: {},
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("rendering with loadActionMenus='true'", async function () {
@@ -286,8 +286,8 @@ test("rendering with loadActionMenus='true'", async function () {
     await mountWithCleanup(View, {
         props: { resModel: "animal", type: "toy", loadActionMenus: true },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
 });
 
 test("rendering with given arch, fields, and loadActionMenus='true'", async function () {
@@ -319,8 +319,8 @@ test("rendering with given arch, fields, and loadActionMenus='true'", async func
             loadActionMenus: true,
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("rendering with given arch, fields, actionMenus, and loadActionMenus='true'", async function () {
@@ -348,8 +348,8 @@ test("rendering with given arch, fields, actionMenus, and loadActionMenus='true'
             actionMenus: {},
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("rendering with given searchViewId", async function () {
@@ -452,8 +452,8 @@ test("rendering with given searchViewId", async function () {
     await mountWithCleanup(View, {
         props: { resModel: "animal", type: "toy", searchViewId: false },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Arch content (id=false)</toy>`);
 });
 
 test("rendering with given arch, fields, searchViewId, searchViewArch, and searchViewFields", async function () {
@@ -482,8 +482,8 @@ test("rendering with given arch, fields, searchViewId, searchViewArch, and searc
             searchViewFields: {},
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("rendering with given arch, fields, searchViewArch, and searchViewFields", async function () {
@@ -511,8 +511,8 @@ test("rendering with given arch, fields, searchViewArch, and searchViewFields", 
             searchViewFields: {},
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("rendering with given arch, fields, searchViewId, searchViewArch, searchViewFields, and loadIrFilters='true'", async function () {
@@ -560,8 +560,8 @@ test("rendering with given arch, fields, searchViewId, searchViewArch, searchVie
             loadIrFilters: true,
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("rendering with given arch, fields, searchViewId, searchViewArch, searchViewFields, irFilters, and loadIrFilters='true'", async function () {
@@ -607,8 +607,8 @@ test("rendering with given arch, fields, searchViewId, searchViewArch, searchVie
             irFilters,
         },
     });
-    expect(".o_toy_view.o_view_controller").toHaveCount(1);
-    expect(".o_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
+    expect(".app_toy_view.app_view_controller").toHaveCount(1);
+    expect(".app_toy_view.toy").toHaveInnerHTML(`<toy>Specific arch content</toy>`);
 });
 
 test("can click on action-bound links -- 1", async () => {
@@ -714,8 +714,8 @@ test("rendering with given jsClass", async function () {
     await mountWithCleanup(View, {
         props: { resModel: "animal", type: "toy", jsClass: "toy_imp" },
     });
-    expect(".o_toy_view.toy_imp").toHaveCount(1);
-    expect(".o_toy_view.toy_imp").toHaveText("Arch content (id=false)");
+    expect(".app_toy_view.toy_imp").toHaveCount(1);
+    expect(".app_toy_view.toy_imp").toHaveText("Arch content (id=false)");
 });
 
 test("rendering with loaded arch attribute 'js_class'", async function () {
@@ -729,8 +729,8 @@ test("rendering with loaded arch attribute 'js_class'", async function () {
         });
     });
     await mountWithCleanup(View, { props: { resModel: "animal", type: "toy", viewId: 2 } });
-    expect(".o_toy_view.toy_imp").toHaveCount(1);
-    expect(".o_toy_view.toy_imp").toHaveText("Arch content (id=2)");
+    expect(".app_toy_view.toy_imp").toHaveCount(1);
+    expect(".app_toy_view.toy_imp").toHaveText("Arch content (id=2)");
 });
 
 test("rendering with given arch attribute 'js_class'", async function () {
@@ -746,8 +746,8 @@ test("rendering with given arch attribute 'js_class'", async function () {
             fields: {},
         },
     });
-    expect(".o_toy_view.toy_imp").toHaveCount(1);
-    expect(".o_toy_view.toy_imp").toHaveText("Specific arch content for specific class");
+    expect(".app_toy_view.toy_imp").toHaveCount(1);
+    expect(".app_toy_view.toy_imp").toHaveText("Specific arch content for specific class");
 });
 
 test("rendering with loaded arch attribute 'js_class' and given jsClass", async function () {
@@ -756,7 +756,7 @@ test("rendering with loaded arch attribute 'js_class' and given jsClass", async 
         type: "toy",
         Controller: class extends Component {
             static props = ["*"];
-            static template = xml`<div class="o_toy_view_2"/>`;
+            static template = xml`<div class="app_toy_view_2"/>`;
             static type = "toy";
         },
     });
@@ -776,7 +776,7 @@ test("rendering with loaded arch attribute 'js_class' and given jsClass", async 
             viewId: 2,
         },
     });
-    expect(".o_toy_view.toy_imp").toHaveCount(1);
+    expect(".app_toy_view.toy_imp").toHaveCount(1);
 });
 
 test("rendering with given arch attribute 'js_class' and given jsClass", async function () {
@@ -787,7 +787,7 @@ test("rendering with given arch attribute 'js_class' and given jsClass", async f
             type: "toy",
             Controller: class extends Component {
                 static props = ["*"];
-                static template = xml`<div class="o_toy_view_2"/>`;
+                static template = xml`<div class="app_toy_view_2"/>`;
                 static type = "toy";
             },
         },
@@ -805,7 +805,7 @@ test("rendering with given arch attribute 'js_class' and given jsClass", async f
             fields: {},
         },
     });
-    expect(".o_toy_view.toy_imp").toHaveCount(1);
+    expect(".app_toy_view.toy_imp").toHaveCount(1);
 });
 
 ////////////////////////////////////////////////////////////////////////////
@@ -1061,30 +1061,30 @@ test("multiple ways to pass classes for styling", async () => {
     const props = {
         resModel: "animal",
         type: "toy",
-        className: "o_custom_class_from_props_1 o_custom_class_from_props_2",
+        className: "app_custom_class_from_props_1 app_custom_class_from_props_2",
         arch: `
             <toy
                 js_class="toy_imp"
-                class="o_custom_class_from_arch_1 o_custom_class_from_arch_2"
+                class="app_custom_class_from_arch_1 app_custom_class_from_arch_2"
             />
         `,
         fields: {},
     };
     await mountWithCleanup(View, { props });
-    const view = queryOne(".o_toy_view");
-    expect(view).toHaveClass("o_toy_imp_view", {
+    const view = queryOne(".app_toy_view");
+    expect(view).toHaveClass("app_toy_imp_view", {
         message: "should have the class from js_class attribute",
     });
-    expect(view).toHaveClass("o_custom_class_from_props_1", {
+    expect(view).toHaveClass("app_custom_class_from_props_1", {
         message: "should have the class from props",
     });
-    expect(view).toHaveClass("o_custom_class_from_props_2", {
+    expect(view).toHaveClass("app_custom_class_from_props_2", {
         message: "should have the class from props",
     });
-    expect(view).toHaveClass("o_custom_class_from_arch_1", {
+    expect(view).toHaveClass("app_custom_class_from_arch_1", {
         message: "should have the class from arch",
     });
-    expect(view).toHaveClass("o_custom_class_from_arch_2", {
+    expect(view).toHaveClass("app_custom_class_from_arch_2", {
         message: "should have the class from arch",
     });
 });

@@ -99,7 +99,7 @@
             <field name="name">res.currency.kanban</field>
             <field name="model">res.currency</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
+                <kanban class="app_kanban_mobile">
                     <field name="active"/>
                     <templates>
                         <t t-name="card">
@@ -155,7 +155,7 @@
                                 <field name="decimal_places"/>
                             </group>
                         </group>
-                        <notebook class="o_currency_rate_list" invisible="is_current_company_currency">
+                        <notebook class="app_currency_rate_list" invisible="is_current_company_currency">
                             <page string="Rates" name="rates">
                                 <field name="rate_ids" widget="one2many">
                                     <list string="Rates"  editable="top" limit="25">

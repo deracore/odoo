@@ -331,7 +331,7 @@ export const hotkeyService = {
                 const hotkey = item.hotkey;
                 const overlay = document.createElement("div");
                 overlay.classList.add(
-                    "o_web_hotkey_overlay",
+                    "app_web_hotkey_overlay",
                     "position-absolute",
                     "top-0",
                     "bottom-0",
@@ -372,7 +372,7 @@ export const hotkeyService = {
          * Remove all the hotkey overlays.
          */
         function removeHotkeyOverlays() {
-            for (const overlay of document.querySelectorAll(".o_web_hotkey_overlay")) {
+            for (const overlay of document.querySelectorAll(".app_web_hotkey_overlay")) {
                 overlay.remove();
             }
             overlaysVisible = false;

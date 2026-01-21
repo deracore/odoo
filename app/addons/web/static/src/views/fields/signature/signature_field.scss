@@ -1,8 +1,8 @@
-.o_field_widget {
-    .o_signature {
+.app_field_widget {
+    .app_signature {
         outline: 1px solid rgba(map-get($theme-colors, 'secondary'), 0.3);
         position: relative;
-        &.o_signature_empty {
+        &.app_signature_empty {
             display: flex;
         }
         > p {
@@ -14,14 +14,14 @@
     }
 }
 
-.o_field_invalid {
-    .o_signature {
+.app_field_invalid {
+    .app_signature {
         outline: 3px solid map-get($theme-colors, 'danger');
         cursor: pointer;
     }
 }
-.o_form_editable {
-    .o_signature:hover {
+.app_form_editable {
+    .app_signature:hover {
         outline: 3px solid $o-enterprise-action-color;
         cursor: pointer;
     }

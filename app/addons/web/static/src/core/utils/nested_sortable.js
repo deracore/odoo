@@ -113,9 +113,9 @@ export const useNestedSortable = makeDraggableHook({
         ctx.current.placeHolder.classList.add("w-100", "d-block");
         if (ctx.useElementSize) {
             ctx.current.placeHolder.style.height = getComputedStyle(ctx.current.element).height;
-            ctx.current.placeHolder.classList.add("o_nested_sortable_placeholder_realsize");
+            ctx.current.placeHolder.classList.add("app_nested_sortable_placeholder_realsize");
         } else {
-            ctx.current.placeHolder.classList.add("o_nested_sortable_placeholder");
+            ctx.current.placeHolder.classList.add("app_nested_sortable_placeholder");
         }
         addCleanup(() => ctx.current.placeHolder.remove());
     },
@@ -141,8 +141,8 @@ export const useNestedSortable = makeDraggableHook({
         // it on the view elements instead as in our case we want to show the
         // ctx.cursor style on the whole screen, not only in the ref el.
         addStyle(document.body, { "pointer-events": "auto" });
-        addStyle(document.querySelector(".o_navbar"), { "pointer-events": "none" });
-        addStyle(document.querySelector(".o_action_manager"), { "pointer-events": "none" });
+        addStyle(document.querySelector(".app_navbar"), { "pointer-events": "none" });
+        addStyle(document.querySelector(".app_action_manager"), { "pointer-events": "none" });
         addStyle(ctx.current.container, { "pointer-events": "auto" });
 
         // Calls "onDragStart" handler

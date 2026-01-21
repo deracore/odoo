@@ -206,7 +206,7 @@ export class ProfilingQwebView extends Component {
                 }
 
                 // Render delay and query number in span visible on hover.
-                if ((delay || query) && !node.querySelector(".o_info")) {
+                if ((delay || query) && !node.querySelector(".app_info")) {
                     this._renderHover(delay, query, node);
                 }
             } else if (node.classList.contains("ace_tag-open")) {
@@ -260,7 +260,7 @@ export class ProfilingQwebView extends Component {
                 }
 
                 // Display delay and query number in front of the line.
-                if (delays.length && !row.querySelector(".o_info")) {
+                if (delays.length && !row.querySelector(".app_info")) {
                     this._renderInfo(delays, querys, displayDetail, groups, row);
                 }
             }
@@ -286,13 +286,13 @@ export class ProfilingQwebView extends Component {
     }
     _unmoutInfo() {
         if (this.hover) {
-            if (this.ace.el.querySelector(".o_ace_hover")) {
-                this.ace.el.querySelector(".o_ace_hover").remove();
+            if (this.ace.el.querySelector(".app_ace_hover")) {
+                this.ace.el.querySelector(".app_ace_hover").remove();
             }
         }
         if (this.info) {
-            if (this.ace.el.querySelector(".o_ace_info")) {
-                this.ace.el.querySelector(".o_ace_info").remove();
+            if (this.ace.el.querySelector(".app_ace_info")) {
+                this.ace.el.querySelector(".app_ace_info").remove();
             }
         }
     }

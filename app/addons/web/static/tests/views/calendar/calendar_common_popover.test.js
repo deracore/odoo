@@ -40,9 +40,9 @@ test(`mount a CalendarCommonPopover`, async () => {
     expect(`.popover-header`).toHaveCount(1);
     expect(`.popover-header`).toHaveText("Meeting");
     expect(`.list-group`).toHaveCount(2);
-    expect(`.list-group.o_cw_popover_fields_secondary`).toHaveCount(1);
-    expect(`.card-footer .o_cw_popover_edit`).toHaveCount(1);
-    expect(`.card-footer .o_cw_popover_delete`).toHaveCount(1);
+    expect(`.list-group.app_cw_popover_fields_secondary`).toHaveCount(1);
+    expect(`.card-footer .app_cw_popover_edit`).toHaveCount(1);
+    expect(`.card-footer .app_cw_popover_delete`).toHaveCount(1);
 });
 
 test(`date duration: is all day and is same day`, async () => {
@@ -135,14 +135,14 @@ test(`canDelete is true`, async () => {
     await start({
         model: { ...FAKE_MODEL, canDelete: true },
     });
-    expect(`.o_cw_popover_delete`).toHaveCount(1);
+    expect(`.app_cw_popover_delete`).toHaveCount(1);
 });
 
 test(`canDelete is false`, async () => {
     await start({
         model: { ...FAKE_MODEL, canDelete: false },
     });
-    expect(`.o_cw_popover_delete`).toHaveCount(0);
+    expect(`.app_cw_popover_delete`).toHaveCount(0);
 });
 
 test(`click on delete button`, async () => {
@@ -150,7 +150,7 @@ test(`click on delete button`, async () => {
         model: { ...FAKE_MODEL, canDelete: true },
         deleteRecord: () => expect.step("delete"),
     });
-    await click(`.o_cw_popover_delete`);
+    await click(`.app_cw_popover_delete`);
     expect.verifySteps(["delete"]);
 });
 
@@ -158,6 +158,6 @@ test(`click on edit button`, async () => {
     await start({
         editRecord: () => expect.step("edit"),
     });
-    await click(`.o_cw_popover_edit`);
+    await click(`.app_cw_popover_edit`);
     expect.verifySteps(["edit"]);
 });

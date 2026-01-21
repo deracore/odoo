@@ -93,7 +93,7 @@ test("'CLEAR-UNCOMMITTED-CHANGES' is not triggered for window action", async () 
 
 test("'CLEAR-UNCOMMITTED-CHANGES' is not triggered for client actions", async () => {
     class ClientAction extends Component {
-        static template = xml`<div class="o_client_action_test">Hello World</div>`;
+        static template = xml`<div class="app_client_action_test">Hello World</div>`;
         static props = ["*"];
     }
     registry.category("actions").add("my_action", ClientAction);

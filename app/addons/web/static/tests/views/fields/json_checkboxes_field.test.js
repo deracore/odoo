@@ -54,25 +54,25 @@ test("JsonCheckBoxesField", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget div.form-check").toHaveCount(2);
+    expect("div.app_field_widget div.form-check").toHaveCount(2);
 
-    expect("div.o_field_widget div.form-check input:eq(0)").toBeChecked();
-    expect("div.o_field_widget div.form-check input:eq(1)").not.toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(0)").toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(1)").not.toBeChecked();
 
-    expect("div.o_field_widget div.form-check input:disabled").toHaveCount(0);
+    expect("div.app_field_widget div.form-check input:disabled").toHaveCount(0);
 
     // check a value by clicking on input
-    await contains("div.o_field_widget div.form-check input:eq(1)").click();
+    await contains("div.app_field_widget div.form-check input:eq(1)").click();
     await runAllTimers();
     await clickSave();
-    expect("div.o_field_widget div.form-check input:checked").toHaveCount(2);
+    expect("div.app_field_widget div.form-check input:checked").toHaveCount(2);
 
     // uncheck a value by clicking on label
-    await contains("div.o_field_widget div.form-check > label").click();
+    await contains("div.app_field_widget div.form-check > label").click();
     await runAllTimers();
     await clickSave();
-    expect("div.o_field_widget div.form-check input:eq(0)").not.toBeChecked();
-    expect("div.o_field_widget div.form-check input:eq(1)").toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(0)").not.toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(1)").toBeChecked();
 
     expect.verifySteps(["web_save", "web_save"]);
 });
@@ -90,17 +90,17 @@ test("JsonCheckBoxesField (readonly field)", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget div.form-check").toHaveCount(2, {
+    expect("div.app_field_widget div.form-check").toHaveCount(2, {
         message: "should have fetched and displayed the 2 values of the many2many",
     });
-    expect("div.o_field_widget div.form-check input:disabled").toHaveCount(2, {
+    expect("div.app_field_widget div.form-check input:disabled").toHaveCount(2, {
         message: "the checkboxes should be disabled",
     });
 
-    await contains("div.o_field_widget div.form-check > label:eq(1)").click();
+    await contains("div.app_field_widget div.form-check > label:eq(1)").click();
 
-    expect("div.o_field_widget div.form-check input:eq(0)").toBeChecked();
-    expect("div.o_field_widget div.form-check input:eq(1)").not.toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(0)").toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(1)").not.toBeChecked();
 });
 
 test("JsonCheckBoxesField (some readonly)", async () => {
@@ -120,20 +120,20 @@ test("JsonCheckBoxesField (some readonly)", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget div.form-check").toHaveCount(2, {
+    expect("div.app_field_widget div.form-check").toHaveCount(2, {
         message: "should have fetched and displayed the 2 values of the many2many",
     });
-    expect("div.o_field_widget div.form-check input:eq(0):enabled").toHaveCount(1, {
+    expect("div.app_field_widget div.form-check input:eq(0):enabled").toHaveCount(1, {
         message: "first checkbox should be enabled",
     });
-    expect("div.o_field_widget div.form-check input:eq(1):disabled").toHaveCount(1, {
+    expect("div.app_field_widget div.form-check input:eq(1):disabled").toHaveCount(1, {
         message: "second checkbox should be disabled",
     });
 
-    await contains("div.o_field_widget div.form-check > label:eq(1)").click();
+    await contains("div.app_field_widget div.form-check > label:eq(1)").click();
 
-    expect("div.o_field_widget div.form-check input:eq(0)").toBeChecked();
-    expect("div.o_field_widget div.form-check input:eq(1)").not.toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(0)").toBeChecked();
+    expect("div.app_field_widget div.form-check input:eq(1)").not.toBeChecked();
 });
 
 test("JsonCheckBoxesField (question circle)", async () => {
@@ -153,11 +153,11 @@ test("JsonCheckBoxesField (question circle)", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget div.form-check:eq(0) ~ i.fa-question-circle").toHaveCount(0, {
+    expect("div.app_field_widget div.form-check:eq(0) ~ i.fa-question-circle").toHaveCount(0, {
         message: "first checkbox should not have a question circle",
     });
     expect(
-        "div.o_field_widget div.form-check:eq(1) ~ i.fa-question-circle[title='Some info about this']"
+        "div.app_field_widget div.form-check:eq(1) ~ i.fa-question-circle[title='Some info about this']"
     ).toHaveCount(1, {
         message: "second checkbox should have a question circle",
     });
@@ -176,7 +176,7 @@ test("JsonCheckBoxesField (implicit inline mode)", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget .d-inline-block div.form-check").toHaveCount(2, {
+    expect("div.app_field_widget .d-inline-block div.form-check").toHaveCount(2, {
         message: "should show the checkboxes in inlined mode",
     });
 });
@@ -194,7 +194,7 @@ test("JsonCheckBoxesField (explicit inline mode)", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget .d-inline-block div.form-check").toHaveCount(2, {
+    expect("div.app_field_widget .d-inline-block div.form-check").toHaveCount(2, {
         message: "should show the checkboxes in inlined mode",
     });
 });
@@ -212,7 +212,7 @@ test("JsonCheckBoxesField (stacked mode)", async () => {
             </form>`,
     });
 
-    expect("div.o_field_widget .d-block div.form-check").toHaveCount(2, {
+    expect("div.app_field_widget .d-block div.form-check").toHaveCount(2, {
         message: "should show the checkboxes in stacked mode",
     });
 });

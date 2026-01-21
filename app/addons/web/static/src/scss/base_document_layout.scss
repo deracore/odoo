@@ -1,33 +1,33 @@
-.o_document_layout {
+.app_document_layout {
     display: flex;
     height: 100%;
-    .o_content{
+    .app_content{
         height: inherit;
-        .o_form_renderer {
+        .app_form_renderer {
             height: 100%;
-            .o_group {
+            .app_group {
                 display: flex;
                 width: auto !important;
-                .o_document_layout_company {
+                .app_document_layout_company {
                     flex: 5;
 
                     img {
                         max-height: 100px;
                     }
-                    .o_custom_colors {
-                        .o-checkbox {
+                    .app_custom_colors {
+                        .app-checkbox {
                             @include o-position-absolute(0, 0, 0, 0);
                             width: 100%;
                         }
                     }
 
-                    select.o_input {
+                    select.app_input {
                         height: 25px;
                     }
                 }
-                .o_preview {
+                .app_preview {
                     .preview_document_layout {
-                        .o_preview_iframe {
+                        .app_preview_iframe {
                             padding: 0;
                         }
                     }
@@ -38,7 +38,7 @@
 }
 
 @media (max-width: 620px) {
-    .o_document_layout .o_group {
+    .app_document_layout .app_group {
         flex-direction: column;
     }
 }

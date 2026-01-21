@@ -2,12 +2,12 @@
 <templates xml:space="preserve">
 
     <t t-name="web.DebugMenu">
-        <div class="o_debug_manager">
+        <div class="app_debug_manager">
             <Dropdown
                 beforeOpen.bind="loadGroupedItems"
                 position="'bottom-end'"
             >
-                <button t-att-class="`o-dropdown--narrow ${env.inDialog?'btn btn-link':''}`">
+                <button t-att-class="`app-dropdown--narrow ${env.inDialog?'btn btn-link':''}`">
                     <i class="fa fa-bug" role="img" aria-label="Open developer tools"/>
                 </button>
                 <t t-set-slot="content">

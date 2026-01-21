@@ -59,7 +59,7 @@ test("a domain with a user context dynamic part is valid", async () => {
         expect.step("validation");
         return true;
     });
-    await contains(".o_dialog footer button").click();
+    await contains(".app_dialog footer button").click();
     expect.verifySteps(["validation", "confirmed"]);
 });
 
@@ -76,7 +76,7 @@ test("can extend eval context", async () => {
         expect.step("validation");
         return true;
     });
-    await contains(".o_dialog footer button").click();
+    await contains(".app_dialog footer button").click();
     expect.verifySteps(["validation", "confirmed"]);
 });
 
@@ -91,7 +91,7 @@ test("a domain with an unknown expression is not valid", async () => {
         expect.step("validation");
         return true;
     });
-    await contains(".o_dialog footer button").click();
+    await contains(".app_dialog footer button").click();
     expect.verifySteps([]);
 });
 
@@ -100,9 +100,9 @@ test("model_field_selector should close on dialog drag", async () => {
         domain: "[('foo', '=', unknown)]",
     });
 
-    expect(".o_model_field_selector_popover").toHaveCount(0);
-    await contains(".o_model_field_selector_value").click();
-    expect(".o_model_field_selector_popover").toHaveCount(1);
+    expect(".app_model_field_selector_popover").toHaveCount(0);
+    await contains(".app_model_field_selector_value").click();
+    expect(".app_model_field_selector_popover").toHaveCount(1);
 
     const header = queryOne(".modal-header");
     const headerRect = header.getBoundingClientRect();
@@ -115,5 +115,5 @@ test("model_field_selector should close on dialog drag", async () => {
         },
     });
     await animationFrame();
-    expect(".o_model_field_selector_popover").toHaveCount(0);
+    expect(".app_model_field_selector_popover").toHaveCount(0);
 });

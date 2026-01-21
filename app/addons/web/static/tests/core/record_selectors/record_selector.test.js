@@ -56,8 +56,8 @@ test("Can be renderer with no values", async () => {
         resId: false,
     });
 
-    expect(".o_record_selector input").toHaveValue("");
-    expect(".o_record_selector input").toHaveClass("o_input");
+    expect(".app_record_selector input").toHaveValue("");
+    expect(".app_record_selector input").toHaveClass("app_input");
 });
 
 test("Can be renderer with a value", async () => {
@@ -66,7 +66,7 @@ test("Can be renderer with a value", async () => {
         resId: 1,
     });
 
-    expect(".o_record_selector input").toHaveValue("Alice");
+    expect(".app_record_selector input").toHaveValue("Alice");
 });
 
 test("Can be updated from autocomplete", async () => {
@@ -75,14 +75,14 @@ test("Can be updated from autocomplete", async () => {
         resId: 1,
     });
 
-    expect(".o_record_selector input").toHaveValue("Alice");
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(0);
-    await click(".o_record_selector input");
+    expect(".app_record_selector input").toHaveValue("Alice");
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(0);
+    await click(".app_record_selector input");
     await animationFrame();
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(1);
-    await click("li.o-autocomplete--dropdown-item:eq(1)");
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(1);
+    await click("li.app-autocomplete--dropdown-item:eq(1)");
     await animationFrame();
-    expect(".o_record_selector input").toHaveValue("Bob");
+    expect(".app_record_selector input").toHaveValue("Bob");
 });
 
 test("Can display avatars with the right model", async () => {
@@ -91,21 +91,21 @@ test("Can display avatars with the right model", async () => {
         resId: 1,
     });
 
-    expect(".o_record_selector input").toHaveValue("Alice");
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(0);
-    await click(".o_record_selector input");
+    expect(".app_record_selector input").toHaveValue("Alice");
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(0);
+    await click(".app_record_selector input");
     await animationFrame();
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(1);
-    expect(".o-autocomplete--dropdown-menu span.o_avatar img").toHaveCount(3);
-    expect(".o-autocomplete--dropdown-menu span.o_avatar img:eq(1)").toHaveAttribute(
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(1);
+    expect(".app-autocomplete--dropdown-menu span.app_avatar img").toHaveCount(3);
+    expect(".app-autocomplete--dropdown-menu span.app_avatar img:eq(1)").toHaveAttribute(
         "data-src",
         "/web/image/res.partner/2/avatar_128"
     );
-    await click("li.o-autocomplete--dropdown-item:eq(1)");
+    await click("li.app-autocomplete--dropdown-item:eq(1)");
     await animationFrame();
-    expect(".o_record_selector input").toHaveValue("Bob");
-    expect(".o_record_selector .o_m2o_avatar").toHaveCount(1);
-    expect(".o_record_selector .o_m2o_avatar img").toHaveAttribute(
+    expect(".app_record_selector input").toHaveValue("Bob");
+    expect(".app_record_selector .app_m2o_avatar").toHaveCount(1);
+    expect(".app_record_selector .app_m2o_avatar img").toHaveAttribute(
         "data-src",
         "/web/image/res.partner/2/avatar_128"
     );
@@ -122,7 +122,7 @@ test("Display name is correctly fetched", async () => {
         resId: 1,
     });
 
-    expect(".o_record_selector input").toHaveValue("Alice");
+    expect(".app_record_selector input").toHaveValue("Alice");
     expect.verifySteps(["web_search_read"]);
 });
 
@@ -140,9 +140,9 @@ test("Can give domain and context props for the name search", async () => {
         context: { blip: "blop" },
     });
 
-    expect(".o_record_selector input").toHaveValue("Alice");
+    expect(".app_record_selector input").toHaveValue("Alice");
     expect.verifySteps([]);
-    await click(".o_record_selector input");
+    await click(".app_record_selector input");
     await animationFrame();
     expect.verifySteps(["name_search"]);
 });
@@ -153,5 +153,5 @@ test("Support placeholder", async () => {
         resId: false,
         placeholder: "Select a partner",
     });
-    expect(".o_record_selector input").toHaveAttribute("placeholder", "Select a partner");
+    expect(".app_record_selector input").toHaveAttribute("placeholder", "Select a partner");
 });

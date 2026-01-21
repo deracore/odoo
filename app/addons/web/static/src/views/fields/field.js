@@ -372,11 +372,11 @@ export class Field extends Component {
             fieldInfo || {}
         );
         const classNames = {
-            o_field_widget: true,
-            o_readonly_modifier: readonly,
-            o_required_modifier: required,
-            o_field_invalid: invalid,
-            o_field_empty: empty,
+            app_field_widget: true,
+            app_readonly_modifier: readonly,
+            app_required_modifier: required,
+            app_field_invalid: invalid,
+            app_field_empty: empty,
             [`o_field_${this.type}`]: true,
             [_class]: Boolean(_class),
         };

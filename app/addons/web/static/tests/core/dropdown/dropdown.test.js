@@ -30,9 +30,9 @@ import { CheckboxItem } from "@web/core/dropdown/checkbox_item";
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 
-const DROPDOWN_TOGGLE = ".o-dropdown.dropdown-toggle";
-const DROPDOWN_MENU = ".o-dropdown--menu.dropdown-menu";
-const DROPDOWN_ITEM = ".o-dropdown-item.dropdown-item:not(.o-dropdown)";
+const DROPDOWN_TOGGLE = ".app-dropdown.dropdown-toggle";
+const DROPDOWN_MENU = ".app-dropdown--menu.dropdown-menu";
+const DROPDOWN_ITEM = ".app-dropdown-item.dropdown-item:not(.app-dropdown)";
 
 class SimpleDropdown extends Component {
     static components = { Dropdown, DropdownItem };
@@ -108,7 +108,7 @@ test("can be rendered", async () => {
     expect(DROPDOWN_TOGGLE).toHaveCount(1);
     expect(DROPDOWN_MENU).toHaveCount(0);
 
-    expect(DROPDOWN_TOGGLE).toHaveClass(["o-dropdown", "dropdown-toggle", "dropdown"]);
+    expect(DROPDOWN_TOGGLE).toHaveClass(["app-dropdown", "dropdown-toggle", "dropdown"]);
     expect(DROPDOWN_TOGGLE).toHaveAttribute("aria-expanded", "false");
 });
 
@@ -140,7 +140,7 @@ test("can be toggled", async () => {
     expect(DROPDOWN_TOGGLE).toHaveAttribute("aria-expanded", "true");
 
     if (getMockEnv().isSmall) {
-        await click(".o_bottom_sheet_handle_bar");
+        await click(".app_bottom_sheet_handle_bar");
     } else {
         await click(DROPDOWN_TOGGLE);
     }
@@ -170,7 +170,7 @@ test("close on outside click", async () => {
     expect(DROPDOWN_MENU).toHaveCount(1);
 
     if (getMockEnv().isSmall) {
-        await click(".o_bottom_sheet_backdrop");
+        await click(".app_bottom_sheet_backdrop");
     } else {
         await click("div.outside");
     }
@@ -206,7 +206,7 @@ test("close on outside click in shadow dom", async () => {
     expect(queryAll(DROPDOWN_MENU, { root: shadowBody })).toHaveCount(1);
 
     if (getMockEnv().isSmall) {
-        await click(".o_bottom_sheet_backdrop", { root: shadowBody });
+        await click(".app_bottom_sheet_backdrop", { root: shadowBody });
     } else {
         await click(".outside", { root: shadowBody });
     }
@@ -430,7 +430,7 @@ test("dropdowns keynav is not impacted by bootstrap", async () => {
     expect(DROPDOWN_MENU).toHaveCount(1);
 
     // This class presence makes bootstrap ignore the below event
-    expect(DROPDOWN_MENU).toHaveClass("o-dropdown--menu");
+    expect(DROPDOWN_MENU).toHaveClass("app-dropdown--menu");
 
     await pointerDown("select");
 
@@ -482,13 +482,13 @@ test("navigationProps changes navigation behaviour", async () => {
 
     // Toggler is focused, no focus in dropdown
     expect(DROPDOWN_TOGGLE).toBeFocused();
-    expect(".o-dropdown-item:nth-child(1)").not.toHaveClass("focus");
+    expect(".app-dropdown-item:nth-child(1)").not.toHaveClass("focus");
 
     // After arrow down, toggler is still focused, virtual focus in dropdown
     await press("arrowdown");
 
     expect(DROPDOWN_TOGGLE).toBeFocused();
-    expect(".o-dropdown-item:nth-child(1)").toHaveClass("focus");
+    expect(".app-dropdown-item:nth-child(1)").toHaveClass("focus");
 
     expect.verifySteps([]);
 
@@ -496,17 +496,17 @@ test("navigationProps changes navigation behaviour", async () => {
     await press("arrowup");
 
     expect(DROPDOWN_TOGGLE).toBeFocused();
-    expect(".o-dropdown-item:nth-child(1)").toHaveClass("focus");
+    expect(".app-dropdown-item:nth-child(1)").toHaveClass("focus");
     expect.verifySteps(["arrowup"]);
 });
 
-test("'o-dropdown-caret' class adds a caret", async () => {
+test("'app-dropdown-caret' class adds a caret", async () => {
     class Parent extends Component {
         static components = { Dropdown, DropdownItem };
         static props = [];
         static template = xml`
                 <Dropdown>
-                    <button class="first o-dropdown-caret">First</button>
+                    <button class="first app-dropdown-caret">First</button>
                     <t t-set-slot="content">
                         <DropdownItem>Item</DropdownItem>
                         <Dropdown>
@@ -516,7 +516,7 @@ test("'o-dropdown-caret' class adds a caret", async () => {
                             </t>
                         </Dropdown>
                         <Dropdown>
-                            <button class="third o-dropdown--no-caret">Third</button>
+                            <button class="third app-dropdown--no-caret">Third</button>
                             <t t-set-slot="content">
                                 <DropdownItem>Item</DropdownItem>
                             </t>
@@ -554,7 +554,7 @@ test("direction class set to default when closed", async () => {
         static template = xml`
             <Dropdown>
                 <!-- style dropdown to be at the bottom to force popover to position on top -->
-                <button class="o-dropdown-caret" style="margin-top: 500px">First</button>
+                <button class="app-dropdown-caret" style="margin-top: 500px">First</button>
                 <t t-set-slot="content">
                     <div style="height: 300px"/>
                     Content
@@ -600,7 +600,7 @@ test("tooltip on toggler", async () => {
 
     await hover(DROPDOWN_TOGGLE);
     await runAllTimers();
-    expect(".o-tooltip").toHaveText("My tooltip");
+    expect(".app-tooltip").toHaveText("My tooltip");
 });
 
 test("date picker inside does not close when a click occurs in date picker", async () => {
@@ -623,22 +623,22 @@ test("date picker inside does not close when a click occurs in date picker", asy
     await animationFrame();
 
     expect(DROPDOWN_MENU).toHaveCount(1);
-    expect(".o_datetime_picker").toHaveCount(0);
-    expect(".o_datetime_input").toHaveValue("");
+    expect(".app_datetime_picker").toHaveCount(0);
+    expect(".app_datetime_input").toHaveValue("");
 
-    await click(".o_datetime_input");
+    await click(".app_datetime_input");
     await animationFrame();
 
     expect(DROPDOWN_MENU).toHaveCount(1);
-    expect(".o_datetime_picker").toHaveCount(1);
-    expect(".o_datetime_input").toHaveValue("");
+    expect(".app_datetime_picker").toHaveCount(1);
+    expect(".app_datetime_input").toHaveValue("");
 
     await click(getPickerCell("15")); // select some day
     await animationFrame();
 
     expect(DROPDOWN_MENU).toHaveCount(1);
-    expect(".o_datetime_picker").toHaveCount(1);
-    expect(".o_datetime_input").not.toHaveValue("");
+    expect(".app_datetime_picker").toHaveCount(1);
+    expect(".app_datetime_input").not.toHaveValue("");
 });
 
 test("onOpened callback props called after the menu has been mounted", async () => {
@@ -778,7 +778,7 @@ test("don't close dropdown outside the active element", async () => {
 
     expect(DROPDOWN_MENU).toHaveCount(2);
     if (getMockEnv().isSmall) {
-        await click(".o_bottom_sheet_backdrop");
+        await click(".app_bottom_sheet_backdrop");
     } else {
         await click(".outside-dialog");
     }
@@ -900,7 +900,7 @@ test("Dropdown in dialog in dropdown, first dropdown should stay open when click
 
     // Click outside dropdown inside dialog => only first dropdown should be open
     if (getMockEnv().isSmall) {
-        await click(".o_bottom_sheet_backdrop");
+        await click(".app_bottom_sheet_backdrop");
     } else {
         await click(".inside-dialog");
     }
@@ -955,11 +955,11 @@ test("multi-level dropdown: close on outside click", async () => {
 
     expect(DROPDOWN_MENU).toHaveCount(3);
     if (getMockEnv().isSmall) {
-        await click(".o_bottom_sheet_backdrop");
+        await click(".app_bottom_sheet_backdrop");
         await animationFrame();
-        await click(".o_bottom_sheet_backdrop");
+        await click(".app_bottom_sheet_backdrop");
         await animationFrame();
-        await click(".o_bottom_sheet_backdrop");
+        await click(".app_bottom_sheet_backdrop");
     } else {
         await click("div.outside");
     }
@@ -978,7 +978,7 @@ test("multi-level dropdown: close on item selection", async () => {
     expect(DROPDOWN_MENU).toHaveCount(2);
     expect(DROPDOWN_ITEM).toHaveCount(2);
 
-    await click(".o-dropdown-item.item-b");
+    await click(".app-dropdown-item.item-b");
     await animationFrame();
     expect(DROPDOWN_MENU).toHaveCount(0);
 });
@@ -1548,5 +1548,5 @@ test("dropdown: no BottomSheet", async () => {
     await click(DROPDOWN_TOGGLE);
     await animationFrame();
     expect(DROPDOWN_MENU).toHaveCount(1);
-    expect(".o_bottom_sheet").toHaveCount(0);
+    expect(".app_bottom_sheet").toHaveCount(0);
 });

@@ -82,8 +82,8 @@ import { hasTouch, isBrowserFirefox, isIOS } from "../browser/feature_detection"
  * @typedef {DOMHelpers & Position & { element: HTMLElement }} DraggableHandlerParams
  */
 
-const DRAGGABLE_CLASS = "o_draggable";
-export const DRAGGED_CLASS = "o_dragged";
+const DRAGGABLE_CLASS = "app_draggable";
+export const DRAGGED_CLASS = "app_dragged";
 
 const DEFAULT_ACCEPTED_PARAMS = {
     allowDisconnected: [Boolean], // do not use, introduced for stable versions, to challenge in master
@@ -733,7 +733,7 @@ export function makeDraggableHook(hookParams) {
                 if (initiationDelay) {
                     if (hasTouch()) {
                         if (ev.pointerType === "touch") {
-                            dom.addClass(target.closest(ctx.elementSelector), "o_touch_bounce");
+                            dom.addClass(target.closest(ctx.elementSelector), "app_touch_bounce");
                         }
                         if (isBrowserFirefox()) {
                             // On Firefox mobile, long-touch events trigger an unpreventable

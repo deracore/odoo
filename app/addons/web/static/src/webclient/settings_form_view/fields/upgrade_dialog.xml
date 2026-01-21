@@ -15,7 +15,7 @@
                         <li><a href="http://www.odoo.com/editions?utm_source=db&amp;utm_medium=enterprise" target="_blank"><i class="fa fa-plus"></i> And more</a></li>
                     </ul>
                 </div>
-                <div class="o_video_embed w-100 w-md-50 ratio ratio-16x9">
+                <div class="app_video_embed w-100 w-md-50 ratio ratio-16x9">
                     <iframe class="embed-responsive-item"
                         t-attf-src="https://www.youtube.com/embed/nbso3NVz3p8?autoplay=1"
                         frameborder="0" allowfullscreen="true" />

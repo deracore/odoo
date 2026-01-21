@@ -2,9 +2,9 @@ $preview_height: 1464;
 $preview_width: 1040;
 $preview_scale: 0.50;
 
-@mixin o_preview_iframe_styling($scale) {
+@mixin app_preview_iframe_styling($scale) {
 
-  .o_preview_iframe_wrapper {
+  .app_preview_iframe_wrapper {
     overflow: hidden;
     width: ($preview_width * $scale) + 0px;
     height: ($preview_height * $scale) + 0px;
@@ -12,7 +12,7 @@ $preview_scale: 0.50;
     margin: 8px;
   }
 
-  .o_preview_iframe {
+  .app_preview_iframe {
     width: $preview_width + 0px;
     height: $preview_height + 0px;
     border: 2px solid lightgrey;
@@ -31,15 +31,15 @@ $preview_scale: 0.50;
 }
 
 
-@include o_preview_iframe_styling($preview_scale)
+@include app_preview_iframe_styling($preview_scale)
 @media (max-width: 1488px), (max-height: 950px) {
-  @include o_preview_iframe_styling($preview_scale * 0.95)
+  @include app_preview_iframe_styling($preview_scale * 0.95)
 }
 
 @media (max-width: 1488px), (max-height: 900px) {
-    @include o_preview_iframe_styling($preview_scale * 0.75);
+    @include app_preview_iframe_styling($preview_scale * 0.75);
 }
 
 @media (max-width: 600px) {
-  @include o_preview_iframe_styling($preview_scale * 0.60)
+  @include app_preview_iframe_styling($preview_scale * 0.60)
 }

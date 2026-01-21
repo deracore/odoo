@@ -44,7 +44,7 @@ export const BUTTON_CLICK_PARAMS = [
  */
 function getViewClass(type) {
     const isValidType = Boolean(type) && registry.category("views").contains(type);
-    return isValidType && `o_${type}_view`;
+    return isValidType && `app_${type}_view`;
 }
 
 /**

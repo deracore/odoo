@@ -49,7 +49,7 @@ if (window.QUnit) {
         { tagName: "DIV", attr: "id", value: "qunit-fixture", keep: true },
         // shouldn't be in the body after a test but are tolerated:
         { tagName: "SCRIPT", attr: "id", value: "" },
-        { tagName: "DIV", attr: "class", value: "o_notification_manager" },
+        { tagName: "DIV", attr: "class", value: "app_notification_manager" },
         { tagName: "DIV", attr: "class", value: "tooltip fade bs-tooltip-auto" },
         { tagName: "DIV", attr: "class", value: "tooltip fade bs-tooltip-auto show" },
         { tagName: "DIV", attr: "class", value: "tooltip tooltip-field-info fade bs-tooltip-auto" },

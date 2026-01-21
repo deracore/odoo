@@ -8,7 +8,7 @@ import { Notebook } from "@web/core/notebook/notebook";
 
 test("not rendered if empty slots", async () => {
     await mountWithCleanup(Notebook);
-    expect("div.o_notebook").toHaveCount(0);
+    expect("div.app_notebook").toHaveCount(0);
 });
 
 test("notebook with multiple pages given as slots", async () => {
@@ -32,26 +32,26 @@ test("notebook with multiple pages given as slots", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect("div.o_notebook").toHaveCount(1);
-    expect(".o_notebook").toHaveClass("horizontal", {
+    expect("div.app_notebook").toHaveCount(1);
+    expect(".app_notebook").toHaveClass("horizontal", {
         message: "default orientation is set as horizontal",
     });
     expect(".nav").toHaveClass("flex-row", {
         message: "navigation container uses the right class to display as horizontal tabs",
     });
-    expect(".o_notebook_headers a.nav-link").toHaveCount(2, {
+    expect(".app_notebook_headers a.nav-link").toHaveCount(2, {
         message: "navigation link is present for each visible page",
     });
-    expect(".o_notebook_headers .nav-item:first-child a").toHaveClass("active", {
+    expect(".app_notebook_headers .nav-item:first-child a").toHaveClass("active", {
         message: "first page is selected by default",
     });
     expect(".active h3").toHaveText("About the bird", {
         message: "first page content is displayed by the notebook",
     });
 
-    await click(".o_notebook_headers .nav-item:nth-child(2) a");
+    await click(".app_notebook_headers .nav-item:nth-child(2) a");
     await animationFrame();
-    expect(".o_notebook_headers .nav-item:nth-child(2) a").toHaveClass("active", {
+    expect(".app_notebook_headers .nav-item:nth-child(2) a").toHaveClass("active", {
         message: "second page is now selected",
     });
     expect(".active h3").toHaveText("Their favorite activity: hunting", {
@@ -80,8 +80,8 @@ test("notebook with defaultPage props", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect("div.o_notebook").toHaveCount(1);
-    expect(".o_notebook_headers .nav-item:nth-child(2) a").toHaveClass("active", {
+    expect("div.app_notebook").toHaveCount(1);
+    expect(".app_notebook_headers .nav-item:nth-child(2) a").toHaveClass("active", {
         message: "second page is selected by default",
     });
     expect(".active h3").toHaveText("Their favorite activity: hunting", {
@@ -111,7 +111,7 @@ test("notebook with defaultPage set on invisible page", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_notebook_headers .nav-item a.active").toHaveText("About", {
+    expect(".app_notebook_headers .nav-item a.active").toHaveText("About", {
         message: "The first page is selected",
     });
 });
@@ -134,8 +134,8 @@ test("notebook set vertically", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect("div.o_notebook").toHaveCount(1);
-    expect(".o_notebook").toHaveClass("vertical", {
+    expect("div.app_notebook").toHaveCount(1);
+    expect(".app_notebook").toHaveClass("vertical", {
         message: "orientation is set as vertical",
     });
     expect(".nav").toHaveClass("flex-column", {
@@ -193,14 +193,14 @@ test("notebook pages rendered by a template component", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect("div.o_notebook").toHaveCount(1);
-    expect(".o_notebook_headers .nav-item:nth-child(3) a").toHaveClass("active", {
+    expect("div.app_notebook").toHaveCount(1);
+    expect(".app_notebook_headers .nav-item:nth-child(3) a").toHaveClass("active", {
         message: "third page is selected by default",
     });
 
-    await click(".o_notebook_headers .nav-item:nth-child(2) a");
+    await click(".app_notebook_headers .nav-item:nth-child(2) a");
     await animationFrame();
-    expect(".o_notebook_content p").toHaveText("Second page rendered by a template component", {
+    expect(".app_notebook_content p").toHaveText("Second page rendered by a template component", {
         message: "displayed content corresponds to the current page",
     });
 });
@@ -235,7 +235,7 @@ test("each page is different", async () => {
     const firstPage = queryFirst("h3");
     expect(firstPage).toBeInstanceOf(HTMLElement);
 
-    await click(".o_notebook_headers .nav-item:nth-child(2) a");
+    await click(".app_notebook_headers .nav-item:nth-child(2) a");
     await animationFrame();
     const secondPage = queryFirst("h3");
     expect(secondPage).toBeInstanceOf(HTMLElement);
@@ -274,7 +274,7 @@ test("defaultPage recomputed when isVisible is dynamic", async () => {
     expect(".page3").toHaveCount(1);
     expect(".nav-link.active").toHaveText("page3");
 
-    await click(".o_notebook_headers .nav-item:nth-child(2) a");
+    await click(".app_notebook_headers .nav-item:nth-child(2) a");
     await animationFrame();
     expect(".page2").toHaveCount(1);
     expect(".nav-link.active").toHaveText("page2");

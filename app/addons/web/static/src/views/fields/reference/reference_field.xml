@@ -3,9 +3,9 @@
 
     <t t-name="web.ReferenceField">
         <t t-set="relation" t-value="getRelation()"/>
-        <div class="o_row">
+        <div class="app_row">
             <t t-if="!props.readonly and !hideModelSelector">
-                <select class="o_input"
+                <select class="app_input"
                     t-att-tabindex="relation ? '-1': 0"
                     t-on-change="(ev) => this.updateModel(ev.target.value || false)"
                 >

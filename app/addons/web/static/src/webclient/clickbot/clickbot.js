@@ -21,7 +21,7 @@ const BLACKLISTED_MENUS = [
     "pos_enterprise.menu_point_kitchen_display_root", // conditional menu that may leads to frontend
 ];
 // If you change this selector, adapt Studio test "Studio icon matches the clickbot selector"
-const STUDIO_SYSTRAY_ICON_SELECTOR = ".o_web_studio_navbar_item:not(.o_disabled) i";
+const STUDIO_SYSTRAY_ICON_SELECTOR = ".app_web_studio_navbar_item:not(.app_disabled) i";
 
 let isEnterprise;
 let state;
@@ -152,7 +152,7 @@ async function waitForCondition(stopCondition) {
         return size > 0;
     }
     function errorDialog() {
-        if (document.querySelector(".o_error_dialog")) {
+        if (document.querySelector(".app_error_dialog")) {
             if (errorRPC) {
                 browser.console.error(
                     "A RPC in error was detected, maybe it's related to the error dialog : " +
@@ -160,7 +160,7 @@ async function waitForCondition(stopCondition) {
                 );
             }
             throw new Error(
-                "Error dialog detected" + document.querySelector(".o_error_dialog").innerHTML
+                "Error dialog detected" + document.querySelector(".app_error_dialog").innerHTML
             );
         }
         return false;
@@ -198,17 +198,17 @@ async function waitForCondition(stopCondition) {
  * Make sure the home menu is open (enterprise only)
  */
 async function ensureHomeMenu() {
-    const homeMenu = document.querySelector("div.o_home_menu");
+    const homeMenu = document.querySelector("div.app_home_menu");
     if (!homeMenu) {
-        let menuToggle = document.querySelector("nav.o_main_navbar > a.o_menu_toggle");
+        let menuToggle = document.querySelector("nav.app_main_navbar > a.app_menu_toggle");
         if (!menuToggle) {
             // In the Barcode application, there is no navbar. So you have to click
-            // on the o_stock_barcode_home_menu button which is the equivalent
-            // of the o_menu_toggle button in the navbar.
-            menuToggle = document.querySelector(".o_stock_barcode_home_menu");
+            // on the app_stock_barcode_home_menu button which is the equivalent
+            // of the app_menu_toggle button in the navbar.
+            menuToggle = document.querySelector(".app_stock_barcode_home_menu");
         }
         await triggerClick(menuToggle, "home menu toggle button");
-        await waitForCondition(() => document.querySelector("div.o_home_menu"));
+        await waitForCondition(() => document.querySelector("div.app_home_menu"));
     }
 }
 
@@ -216,11 +216,11 @@ async function ensureHomeMenu() {
  * Make sure the apps menu is open (community only)
  */
 async function ensureAppsMenu() {
-    const apps = document.querySelectorAll(".o-dropdown--menu .o_app");
+    const apps = document.querySelectorAll(".app-dropdown--menu .app");
     if (!apps || !apps.length) {
-        const toggler = document.querySelector(".o_navbar_apps_menu .dropdown-toggle");
+        const toggler = document.querySelector(".app_navbar_apps_menu .dropdown-toggle");
         await triggerClick(toggler, "apps menu toggle button");
-        await waitForCondition(() => document.querySelector(".o-dropdown--menu .o_app"));
+        await waitForCondition(() => document.querySelector(".app-dropdown--menu .app"));
     }
 }
 
@@ -231,7 +231,7 @@ async function ensureAppsMenu() {
  */
 async function getNextMenu() {
     const menuToggles = document.querySelectorAll(
-        ".o_menu_sections > .dropdown-toggle, .o_menu_sections > .dropdown-item"
+        ".app_menu_sections > .dropdown-toggle, .app_menu_sections > .dropdown-item"
     );
     if (state.menuIndex === menuToggles.length) {
         state.menuIndex = 0;
@@ -275,10 +275,10 @@ async function getNextApp() {
     if (!apps || !apps.length) {
         if (isEnterprise) {
             await ensureHomeMenu();
-            apps = document.querySelectorAll(".o_apps .o_app");
+            apps = document.querySelectorAll(".app_apps .app");
         } else {
             await ensureAppsMenu();
-            apps = document.querySelectorAll(".o-dropdown--menu .o_app");
+            apps = document.querySelectorAll(".app-dropdown--menu .app");
         }
     }
     const appName = apps[state.appIndex]?.dataset?.menuXmlid;
@@ -297,10 +297,10 @@ async function testStudio() {
     }
     // Open the filter menu dropdown
     await triggerClick(studioIcon, "entering studio");
-    await waitForCondition(() => document.querySelector(".o_in_studio"));
-    await triggerClick(document.querySelector(".o_web_studio_leave"), "leaving studio");
+    await waitForCondition(() => document.querySelector(".app_in_studio"));
+    await triggerClick(document.querySelector(".app_web_studio_leave"), "leaving studio");
     await waitForCondition(() =>
-        document.querySelector(".o_main_navbar:not(.o_studio_navbar) .o_menu_toggle")
+        document.querySelector(".app_main_navbar:not(.app_studio_navbar) .app_menu_toggle")
     );
     state.studioCount++;
 }
@@ -314,38 +314,38 @@ async function testFilters() {
         return;
     }
     const searchBarMenu = document.querySelector(
-        ".o_control_panel .dropdown-toggle.o_searchview_dropdown_toggler"
+        ".app_control_panel .dropdown-toggle.app_searchview_dropdown_toggler"
     );
     if (!searchBarMenu) {
         return;
     }
     // Open the search bar menu dropdown
     await triggerClick(searchBarMenu);
-    const filterMenuButton = document.querySelector(".o_dropdown_container.o_filter_menu");
+    const filterMenuButton = document.querySelector(".app_dropdown_container.app_filter_menu");
     // Is there a filter menu in the search bar
     if (!filterMenuButton) {
         return;
     }
 
-    // Avoid the "Custom Filter" menu item (it don't have the class .o_menu_item)
-    const simpleFilterSel = ".o_filter_menu > .dropdown-item.o_menu_item:not(.o_add_custom_filter)";
-    const dateFilterSel = ".o_filter_menu > .o_accordion";
+    // Avoid the "Custom Filter" menu item (it don't have the class .app_menu_item)
+    const simpleFilterSel = ".app_filter_menu > .dropdown-item.app_menu_item:not(.app_add_custom_filter)";
+    const dateFilterSel = ".app_filter_menu > .app_accordion";
     const filterMenuItems = document.querySelectorAll(`${simpleFilterSel},${dateFilterSel}`);
     browser.console.log(`Testing ${filterMenuItems.length} filters`);
     state.testedFilters += filterMenuItems.length;
     for (const filter of filterMenuItems) {
         // Date filters
-        if (filter.classList.contains("o_accordion")) {
+        if (filter.classList.contains("app_accordion")) {
             // If a fitler has options, it will simply unfold and show all options.
             await triggerClick(
-                filter.querySelector(".o_accordion_toggle"),
+                filter.querySelector(".app_accordion_toggle"),
                 `filter "${filter.innerText.trim()}"`
             );
 
             // If a fitler has options, it will simply unfold and show all options.
             // We then click on the first one.
             const firstOption = filter.querySelector(
-                ".o_accordion > .o_accordion_values > .dropdown-item"
+                ".app_accordion > .app_accordion_values > .dropdown-item"
             );
             if (firstOption) {
                 await triggerClick(firstOption, `filter option "${firstOption.innerText.trim()}"`);
@@ -369,25 +369,25 @@ async function testViews() {
         return;
     }
     const switchButtons = document.querySelectorAll(
-        "nav.o_cp_switch_buttons > button.o_switch_view:not(.active):not(.o_map)"
+        "nav.app_cp_switch_buttons > button.app_switch_view:not(.active):not(.app_map)"
     );
     for (const switchButton of switchButtons) {
         // Only way to get the viewType from the switchButton
         const viewType = [...switchButton.classList]
-            .find((cls) => cls !== "o_switch_view" && cls.startsWith("o_"))
+            .find((cls) => cls !== "app_switch_view" && cls.startsWith("app_"))
             .slice(2);
         browser.console.log(`Testing view switch: ${viewType}`);
         // timeout to avoid click debounce
         browser.setTimeout(function () {
             const target = document.querySelector(
-                `nav.o_cp_switch_buttons > button.o_switch_view.o_${viewType}`
+                `nav.app_cp_switch_buttons > button.app_switch_view.app_${viewType}`
             );
             if (target) {
                 triggerClick(target, `${viewType} view switcher`);
             }
         }, 250);
         await waitForCondition(() => {
-            return document.querySelector(`.o_switch_view.o_${viewType}.active`) !== null;
+            return document.querySelector(`.app_switch_view.app_${viewType}.active`) !== null;
         });
         await testStudio();
         await testFilters();
@@ -416,7 +416,7 @@ async function testMenuItem(element) {
     try {
         let isModal = false;
         await waitForCondition(() => {
-            if (document.querySelector(".o_dialog:not(.o_error_dialog)")) {
+            if (document.querySelector(".app_dialog:not(.app_error_dialog)")) {
                 isModal = true;
                 browser.console.log(`Modal detected: ${menuDescription}`);
                 state.testedModals++;
@@ -427,7 +427,7 @@ async function testMenuItem(element) {
         });
         if (isModal) {
             await triggerClick(
-                document.querySelector(".o_dialog header > .btn-close"),
+                document.querySelector(".app_dialog header > .btn-close"),
                 "modal close button"
             );
         } else {
@@ -455,11 +455,11 @@ async function testApp() {
     if (!state.testedApps.includes(state.app)) {
         if (isEnterprise) {
             await ensureHomeMenu();
-            element = document.querySelector(`a.o_app.o_menuitem[data-menu-xmlid="${state.app}"]`);
+            element = document.querySelector(`a.app.app_menuitem[data-menu-xmlid="${state.app}"]`);
         } else {
             await ensureAppsMenu();
             element = document.querySelector(
-                `.o-dropdown--menu .dropdown-item[data-menu-xmlid="${state.app}"]`
+                `.app-dropdown--menu .dropdown-item[data-menu-xmlid="${state.app}"]`
             );
         }
         if (!element) {

@@ -3,9 +3,9 @@
 
     <t t-name="web.ListView">
         <div t-att-class="className" t-ref="root">
-            <Layout className="model.useSampleModel ? 'o_view_sample_data' : ''" display="display">
+            <Layout className="model.useSampleModel ? 'app_view_sample_data' : ''" display="display">
                 <t t-set-slot="control-panel-create-button">
-                    <button t-if="!editedRecord and activeActions.create and props.showButtons" type="button" class="btn btn-primary o_list_button_add" data-hotkey="c" t-on-click="onClickCreate" data-bounce-button="">
+                    <button t-if="!editedRecord and activeActions.create and props.showButtons" type="button" class="btn btn-primary app_list_button_add" data-hotkey="c" t-on-click="onClickCreate" data-bounce-button="">
                         New
                     </button>
                     <t t-if="props.showButtons and !env.inDialog" t-call="web.ListView.EditableButtons"/>
@@ -43,7 +43,7 @@
                     <CogMenu t-if="!hasSelectedRecords"/>
                     <CogMenu t-elif="env.isSmall and (props.info.actionMenus or archInfo.headerButtons.length)" t-props="this.actionMenuProps" hasSelectedRecords="hasSelectedRecords">
                         <t t-foreach="archInfo.headerButtons" t-as="button" t-key="button.id" t-if="!evalViewModifier(button.invisible)">
-                            <DropdownItem class="'o-dropdown-item-unstyled-button'">
+                            <DropdownItem class="'app-dropdown-item-unstyled-button'">
                                 <MultiRecordViewButton
                                     t-if="button.display !== 'always'"
                                     list="model.root"
@@ -61,7 +61,7 @@
                     </CogMenu>
                 </t>
                 <t t-set-slot="control-panel-selection-actions">
-                    <div t-if="hasSelectedRecords" class="o_selection_container m-1 m-md-0 d-flex gap-1">
+                    <div t-if="hasSelectedRecords" class="app_selection_container m-1 m-md-0 d-flex gap-1">
                         <SelectionBox root="this.model.root"/>
                         <t t-if="!env.isSmall">
                             <t t-foreach="archInfo.headerButtons" t-as="button" t-key="button.id" t-if="!evalViewModifier(button.invisible)">
@@ -105,10 +105,10 @@
     <t t-name="web.ListView.Buttons"/>
 
     <t t-name="web.ListView.EditableButtons">
-        <button t-if="editedRecord" type="button" class="btn btn-primary o_list_button_save" data-hotkey="s" t-on-click.stop="onClickSave">
+        <button t-if="editedRecord" type="button" class="btn btn-primary app_list_button_save" data-hotkey="s" t-on-click.stop="onClickSave">
             Save
         </button>
-        <button t-if="editedRecord" type="button" class="btn btn-secondary o_list_button_discard" data-hotkey="j" t-on-click.stop="onClickDiscard" t-on-mousedown="onMouseDownDiscard">
+        <button t-if="editedRecord" type="button" class="btn btn-secondary app_list_button_discard" data-hotkey="j" t-on-click.stop="onClickDiscard" t-on-mousedown="onMouseDownDiscard">
             Discard
         </button>
     </t>

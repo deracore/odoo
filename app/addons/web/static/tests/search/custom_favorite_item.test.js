@@ -49,9 +49,9 @@ test("simple rendering", async () => {
 
     await toggleSearchBarMenu();
     await toggleSaveFavorite();
-    expect(`.o_add_favorite + .o_accordion_values input[type="text"]`).toHaveValue("Action Name");
-    expect(`.o_add_favorite + .o_accordion_values input[type="checkbox"]`).toHaveCount(1);
-    expect(`.o_add_favorite + .o_accordion_values .form-check label`).toHaveText("Default filter");
+    expect(`.app_add_favorite + .app_accordion_values input[type="text"]`).toHaveValue("Action Name");
+    expect(`.app_add_favorite + .app_accordion_values input[type="checkbox"]`).toHaveCount(1);
+    expect(`.app_add_favorite + .app_accordion_values .form-check label`).toHaveText("Default filter");
 });
 
 test("save filter", async () => {

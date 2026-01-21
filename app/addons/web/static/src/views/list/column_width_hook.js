@@ -200,9 +200,9 @@ function computeWidths(table, state, allowedWidth, startingWidths) {
         // Toggle a className used to remove style that could interfere with the ideal width
         // computation algorithm (e.g. prevent text fields from being wrapped during the
         // computation, to prevent them from being completely crushed)
-        table.classList.add("o_list_computing_widths");
+        table.classList.add("app_list_computing_widths");
         _columnWidths = headers.map((th) => th.getBoundingClientRect().width);
-        table.classList.remove("o_list_computing_widths");
+        table.classList.remove("app_list_computing_widths");
     }
 
     // Force columns to comply with their min and max widths
@@ -392,8 +392,8 @@ export function useMagicColumnWidths(tableRef, getState) {
         // Exception: we were in an empty editable list, and we just added a first record.
         if (hasAlwaysBeenEmpty && !state.isEmpty) {
             hasAlwaysBeenEmpty = false;
-            const rows = table.querySelectorAll(".o_data_row");
-            if (rows.length !== 1 || !rows[0].classList.contains("o_selected_row")) {
+            const rows = table.querySelectorAll(".app_data_row");
+            if (rows.length !== 1 || !rows[0].classList.contains("app_selected_row")) {
                 unsetWidths();
             }
         }
@@ -461,7 +461,7 @@ export function useMagicColumnWidths(tableRef, getState) {
 
         // Apply classes to the selected column
         for (const el of resizingColumnElements) {
-            el.classList.add("o_column_resizing");
+            el.classList.add("app_column_resizing");
         }
         // Mousemove event : resize header
         const resizeHeader = (ev) => {
@@ -494,7 +494,7 @@ export function useMagicColumnWidths(tableRef, getState) {
             ev.stopPropagation();
 
             for (const el of resizingColumnElements) {
-                el.classList.remove("o_column_resizing");
+                el.classList.remove("app_column_resizing");
             }
 
             window.removeEventListener("pointermove", resizeHeader);

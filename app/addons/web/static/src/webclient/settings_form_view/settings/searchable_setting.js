@@ -30,7 +30,7 @@ export class SearchableSetting extends Setting {
                 });
             }
             if (browser.location.hash.substring(1) === this.props.id) {
-                this.state.highlightClass = { o_setting_highlight: true };
+                this.state.highlightClass = { app_setting_highlight: true };
                 setTimeout(() => (this.state.highlightClass = {}), 5000);
             }
         });
@@ -38,7 +38,7 @@ export class SearchableSetting extends Setting {
 
     get classNames() {
         const classNames = super.classNames;
-        classNames.o_searchable_setting = Boolean(this.labels.length);
+        classNames.app_searchable_setting = Boolean(this.labels.length);
         return { ...classNames, ...this.state.highlightClass };
     }
 

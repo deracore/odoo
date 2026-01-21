@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="o_spinner" viewBox="0 0 50 50" width="50" height="50">
+<svg xmlns="http://www.w3.org/2000/svg" class="app_spinner" viewBox="0 0 50 50" width="50" height="50">
     <style>
         @keyframes dash {
             0% {

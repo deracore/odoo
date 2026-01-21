@@ -62,8 +62,8 @@ test("expr well sent, onConfirm and onClose", async () => {
             expect.step(result);
         },
     });
-    expect(".o_technical_modal").toHaveCount(1);
-    await contains(".o_dialog footer button").click();
+    expect(".app_technical_modal").toHaveCount(1);
+    await contains(".app_dialog footer button").click();
     expect.verifySteps([expression, "close"]);
 });
 
@@ -79,7 +79,7 @@ test("expr well sent but wrong, so notification when onConfirm", async () => {
     await makeExpressionEditorDialog({
         expression,
     });
-    expect(".o_technical_modal").toHaveCount(1);
+    expect(".app_technical_modal").toHaveCount(1);
     await contains(".modal-footer button").click();
     await contains(".modal-body button").click();
     expect(getTreeEditorContent()).toEqual([{ level: 0, value: "all" }]);

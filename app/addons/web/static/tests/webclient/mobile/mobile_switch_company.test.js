@@ -28,7 +28,7 @@ function patchUserActiveCompanies(cids) {
 
 describe.current.tags("mobile");
 
-const clickConfirm = () => contains(".o_switch_company_menu_buttons button:first").click();
+const clickConfirm = () => contains(".app_switch_company_menu_buttons button:first").click();
 
 /**
  * @param {number} index
@@ -47,23 +47,23 @@ beforeEach(() => {
 test("basic rendering", async () => {
     await mountWithCleanup(MobileSwitchCompanyMenu);
 
-    expect(".o_burger_menu_companies").toHaveProperty("tagName", "DIV");
-    expect(".o_burger_menu_companies").toHaveClass("o_burger_menu_companies");
+    expect(".app_burger_menu_companies").toHaveProperty("tagName", "DIV");
+    expect(".app_burger_menu_companies").toHaveClass("app_burger_menu_companies");
     expect("[data-company-id]").toHaveCount(3);
     expect(".log_into").toHaveCount(3);
     expect(".fa-check-square").toHaveCount(1);
     expect(".fa-square-o").toHaveCount(2);
 
-    expect(".o_switch_company_item:eq(0)").toHaveText("Hermit");
-    expect(".o_switch_company_item:eq(0)").toHaveClass("alert-secondary");
-    expect(".o_switch_company_item:eq(1)").toHaveText("Herman's");
-    expect(".o_switch_company_item:eq(2)").toHaveText("Heroes TM");
+    expect(".app_switch_company_item:eq(0)").toHaveText("Hermit");
+    expect(".app_switch_company_item:eq(0)").toHaveClass("alert-secondary");
+    expect(".app_switch_company_item:eq(1)").toHaveText("Herman's");
+    expect(".app_switch_company_item:eq(2)").toHaveText("Heroes TM");
 
-    expect(".o_switch_company_item i:eq(0)").toHaveClass("fa-check-square");
-    expect(".o_switch_company_item i:eq(1)").toHaveClass("fa-square-o");
-    expect(".o_switch_company_item i:eq(2)").toHaveClass("fa-square-o");
+    expect(".app_switch_company_item i:eq(0)").toHaveClass("fa-check-square");
+    expect(".app_switch_company_item i:eq(1)").toHaveClass("fa-square-o");
+    expect(".app_switch_company_item i:eq(2)").toHaveClass("fa-square-o");
 
-    expect(".o_burger_menu_companies").toHaveText("Companies\nHermit\nHerman's\nHeroes TM");
+    expect(".app_burger_menu_companies").toHaveText("Companies\nHermit\nHerman's\nHeroes TM");
 });
 
 test("companies can be toggled: toggle a second company", async () => {
@@ -249,17 +249,17 @@ test("companies can be logged in even if some toggled within delay", async () =>
 
 test("show confirm and reset buttons only when selection has changed", async () => {
     await mountWithCleanup(MobileSwitchCompanyMenu);
-    expect(".o_switch_company_menu_buttons").toHaveCount(0);
+    expect(".app_switch_company_menu_buttons").toHaveCount(0);
     await toggleCompany(1);
-    expect(".o_switch_company_menu_buttons button").toHaveCount(2);
+    expect(".app_switch_company_menu_buttons button").toHaveCount(2);
     await toggleCompany(1);
-    expect(".o_switch_company_menu_buttons").toHaveCount(0);
+    expect(".app_switch_company_menu_buttons").toHaveCount(0);
 });
 
 test("No collapse and no search input when less that 10 companies", async () => {
     await mountWithCleanup(MobileSwitchCompanyMenu);
-    expect(".o_burger_menu_companies .fa-caret-right").toHaveCount(0);
-    expect(".o_burger_menu_companies .visually-hidden input").toHaveCount(1);
+    expect(".app_burger_menu_companies .fa-caret-right").toHaveCount(0);
+    expect(".app_burger_menu_companies .visually-hidden input").toHaveCount(1);
 });
 
 test("Show search input when more that 10 companies & search filters items but ignore case and spaces", async () => {
@@ -276,16 +276,16 @@ test("Show search input when more that 10 companies & search filters items but i
         { id: 10, name: "Random e", sequence: 10, parent_id: false, child_ids: [] },
     ];
     await createSwitchCompanyMenu();
-    await contains(".o_burger_menu_companies > div").click();
-    expect(".o_burger_menu_companies input").toHaveCount(1);
-    expect(".o_burger_menu_companies input").not.toBeFocused();
+    await contains(".app_burger_menu_companies > div").click();
+    expect(".app_burger_menu_companies input").toHaveCount(1);
+    expect(".app_burger_menu_companies input").not.toBeFocused();
 
-    expect(".o_switch_company_item").toHaveCount(10);
-    contains(".o_burger_menu_companies input").edit("omcom");
+    expect(".app_switch_company_item").toHaveCount(10);
+    contains(".app_burger_menu_companies input").edit("omcom");
     await animationFrame();
 
-    expect(".o_switch_company_item").toHaveCount(3);
-    expect(queryAllTexts(".o_switch_company_item.o-navigable")).toEqual([
+    expect(".app_switch_company_item").toHaveCount(3);
+    expect(queryAllTexts(".app_switch_company_item.app-navigable")).toEqual([
         "Random Company a",
         "Random Company aa",
         "Random Company ab",

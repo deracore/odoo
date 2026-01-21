@@ -118,7 +118,7 @@ export const datetimePickerService = {
                         }
                     }
                     const calendarIconGroupEl = getInput(0)?.parentElement.querySelector(
-                        ".o_input_group_date_icon"
+                        ".app_input_group_date_icon"
                     );
                     if (calendarIconGroupEl) {
                         calendarIconGroupEl.classList.add("cursor-pointer");

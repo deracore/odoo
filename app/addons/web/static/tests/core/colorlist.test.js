@@ -33,10 +33,10 @@ test("basic rendering with forceExpanded props", async () => {
         },
     });
 
-    expect(".o_colorlist").toHaveCount(1);
-    expect(".o_colorlist button").toHaveCount(2);
-    expect(".o_colorlist button:eq(1)").toHaveAttribute("title", "Raspberry");
-    expect(".o_colorlist button:eq(1)").toHaveClass("o_colorlist_item_color_9");
+    expect(".app_colorlist").toHaveCount(1);
+    expect(".app_colorlist button").toHaveCount(2);
+    expect(".app_colorlist button:eq(1)").toHaveAttribute("title", "Raspberry");
+    expect(".app_colorlist button:eq(1)").toHaveClass("app_colorlist_item_color_9");
 });
 
 test("color click does not open the list if canToggle props is not given", async () => {
@@ -48,11 +48,11 @@ test("color click does not open the list if canToggle props is not given", async
             onColorSelected: (colorId) => expect.step("color #" + colorId + " is selected"),
         },
     });
-    expect(".o_colorlist").toHaveCount(1);
-    expect("button.o_colorlist_toggler").toHaveCount(1);
+    expect(".app_colorlist").toHaveCount(1);
+    expect("button.app_colorlist_toggler").toHaveCount(1);
 
-    await contains(".o_colorlist").click();
-    expect("button.o_colorlist_toggler").toHaveCount(1);
+    await contains(".app_colorlist").click();
+    expect("button.app_colorlist_toggler").toHaveCount(1);
 });
 
 test("open the list of colors if canToggle props is given", async function () {
@@ -65,18 +65,18 @@ test("open the list of colors if canToggle props is given", async function () {
             onColorSelected: (colorId) => expect.step("color #" + colorId + " is selected"),
         },
     });
-    expect(".o_colorlist").toHaveCount(1);
-    expect(".o_colorlist button").toHaveClass("o_colorlist_item_color_" + selectedColorId);
+    expect(".app_colorlist").toHaveCount(1);
+    expect(".app_colorlist button").toHaveClass("app_colorlist_item_color_" + selectedColorId);
 
-    await contains(".o_colorlist button").click();
-    expect("button.o_colorlist_toggler").toHaveCount(0);
-    expect(".o_colorlist button").toHaveCount(3);
+    await contains(".app_colorlist button").click();
+    expect("button.app_colorlist_toggler").toHaveCount(0);
+    expect(".app_colorlist button").toHaveCount(3);
 
     await contains(".outsideDiv").click();
-    expect(".o_colorlist button").toHaveCount(1);
-    expect("button.o_colorlist_toggler").toHaveCount(1);
+    expect(".app_colorlist button").toHaveCount(1);
+    expect("button.app_colorlist_toggler").toHaveCount(1);
 
-    await contains(".o_colorlist_toggler").click();
-    await contains(".o_colorlist button:eq(2)").click();
+    await contains(".app_colorlist_toggler").click();
+    await contains(".app_colorlist button:eq(2)").click();
     expect.verifySteps(["color #6 is selected"]);
 });

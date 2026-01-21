@@ -44,7 +44,7 @@ class Foo extends models.Model {
             </list>
         `,
         kanban: /* xml */ `
-            <kanban class="o_kanban_test">
+            <kanban class="app_kanban_test">
                 <templates><t t-name="card">
                     <field name="foo"/>
                 </t></templates>
@@ -321,7 +321,7 @@ test("clickbot clickeverywhere test (with dropdown menu)", async () => {
     });
     await runAllTimers();
     await animationFrame();
-    expect(".o_menu_sections .dropdown-toggle").toHaveText("a dropdown");
+    expect(".app_menu_sections .dropdown-toggle").toHaveText("a dropdown");
     window.clickEverywhere();
     await clickEverywhereDef;
     expect.verifySteps([

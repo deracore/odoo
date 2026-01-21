@@ -68,7 +68,7 @@ test("badge selection field with filter, empty list", async () => {
         `,
     });
 
-    expect(".o_selection_badge").toHaveCount(0);
+    expect(".app_selection_badge").toHaveCount(0);
 });
 
 test("badge selection field with filter, single choice", async () => {
@@ -86,10 +86,10 @@ test("badge selection field with filter, single choice", async () => {
         `,
     });
 
-    expect(".o_selection_badge").toHaveCount(1);
-    expect(".o_selection_badge[value='\"white\"']").toHaveCount(0);
-    expect(".o_selection_badge[value='\"grey\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"black\"']").toHaveCount(0);
+    expect(".app_selection_badge").toHaveCount(1);
+    expect(".app_selection_badge[value='\"white\"']").toHaveCount(0);
+    expect(".app_selection_badge[value='\"grey\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"black\"']").toHaveCount(0);
 });
 
 test("badge selection field with filter, all choices", async () => {
@@ -107,10 +107,10 @@ test("badge selection field with filter, all choices", async () => {
         `,
     });
 
-    expect(".o_selection_badge").toHaveCount(3);
-    expect(".o_selection_badge[value='\"white\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"grey\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"black\"']").toBeVisible();
+    expect(".app_selection_badge").toHaveCount(3);
+    expect(".app_selection_badge[value='\"white\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"grey\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"black\"']").toBeVisible();
 });
 
 test("badge selection field with filter, synchronize with other field", async () => {
@@ -131,27 +131,27 @@ test("badge selection field with filter, synchronize with other field", async ()
     });
     // not raining outside => sad should be invisible
     expect("[name='is_raining_outside'] input").not.toBeChecked();
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(1);
-    expect(".o_selection_badge[value='\"happy\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"sad\"']").toHaveCount(0);
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(1);
+    expect(".app_selection_badge[value='\"happy\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"sad\"']").toHaveCount(0);
 
     await click("[name='is_raining_outside'] input");
     await animationFrame();
 
     // raining outside => sad should be visible
     expect("[name='is_raining_outside'] input").toBeChecked();
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(2);
-    expect(".o_selection_badge[value='\"happy\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"sad\"']").toBeVisible();
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(2);
+    expect(".app_selection_badge[value='\"happy\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"sad\"']").toBeVisible();
 
     await click("[name='is_raining_outside'] input");
     await animationFrame();
 
     // not raining outside => sad should be invisible
     expect("[name='is_raining_outside'] input").not.toBeChecked();
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(1);
-    expect(".o_selection_badge[value='\"happy\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"sad\"']").toHaveCount(0);
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(1);
+    expect(".app_selection_badge[value='\"happy\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"sad\"']").toHaveCount(0);
 });
 
 test("badge selection field with filter, cross badge synchronization", async () => {
@@ -174,47 +174,47 @@ test("badge selection field with filter, cross badge synchronization", async () 
     });
 
     // happy and white by default, sad and black should be invisible
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(1);
-    expect("div[name='color'] .o_selection_badge").toHaveCount(2);
-    expect(".o_selection_badge[value='\"happy\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"sad\"']").toHaveCount(0);
-    expect(".o_selection_badge[value='\"white\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"grey\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"black\"']").toHaveCount(0);
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(1);
+    expect("div[name='color'] .app_selection_badge").toHaveCount(2);
+    expect(".app_selection_badge[value='\"happy\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"sad\"']").toHaveCount(0);
+    expect(".app_selection_badge[value='\"white\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"grey\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"black\"']").toHaveCount(0);
 
-    await click(".o_selection_badge[value='\"grey\"']");
+    await click(".app_selection_badge[value='\"grey\"']");
     await animationFrame();
 
     // happy and grey, sad should be revealed
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(2);
-    expect("div[name='color'] .o_selection_badge").toHaveCount(2);
-    expect(".o_selection_badge[value='\"happy\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"sad\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"white\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"grey\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"black\"']").toHaveCount(0);
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(2);
+    expect("div[name='color'] .app_selection_badge").toHaveCount(2);
+    expect(".app_selection_badge[value='\"happy\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"sad\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"white\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"grey\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"black\"']").toHaveCount(0);
 
-    await click(".o_selection_badge[value='\"sad\"']");
+    await click(".app_selection_badge[value='\"sad\"']");
     await animationFrame();
 
     // sad and grey, white should disappear and black should appear
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(2);
-    expect("div[name='color'] .o_selection_badge").toHaveCount(2);
-    expect(".o_selection_badge[value='\"happy\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"sad\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"white\"']").toHaveCount(0);
-    expect(".o_selection_badge[value='\"grey\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"black\"']").toBeVisible();
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(2);
+    expect("div[name='color'] .app_selection_badge").toHaveCount(2);
+    expect(".app_selection_badge[value='\"happy\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"sad\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"white\"']").toHaveCount(0);
+    expect(".app_selection_badge[value='\"grey\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"black\"']").toBeVisible();
 
-    await click(".o_selection_badge[value='\"black\"']");
+    await click(".app_selection_badge[value='\"black\"']");
     await animationFrame();
 
     // sad and black, happy should disappear
-    expect("div[name='mood'] .o_selection_badge").toHaveCount(1);
-    expect("div[name='color'] .o_selection_badge").toHaveCount(2);
-    expect(".o_selection_badge[value='\"happy\"']").toHaveCount(0);
-    expect(".o_selection_badge[value='\"sad\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"white\"']").toHaveCount(0);
-    expect(".o_selection_badge[value='\"grey\"']").toBeVisible();
-    expect(".o_selection_badge[value='\"black\"']").toBeVisible();
+    expect("div[name='mood'] .app_selection_badge").toHaveCount(1);
+    expect("div[name='color'] .app_selection_badge").toHaveCount(2);
+    expect(".app_selection_badge[value='\"happy\"']").toHaveCount(0);
+    expect(".app_selection_badge[value='\"sad\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"white\"']").toHaveCount(0);
+    expect(".app_selection_badge[value='\"grey\"']").toBeVisible();
+    expect(".app_selection_badge[value='\"black\"']").toBeVisible();
 });

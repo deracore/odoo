@@ -25,7 +25,7 @@ test("human readable format 1", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'human_readable': 'true'}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveValue("4M", {
+    expect(".app_field_widget input").toHaveValue("4M", {
         message: "The value should be rendered in human readable format (k, M, G, T)",
     });
 });
@@ -38,7 +38,7 @@ test("human readable format 2", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'human_readable': 'true', 'decimals': 1}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveValue("2.0k", {
+    expect(".app_field_widget input").toHaveValue("2.0k", {
         message: "The value should be rendered in human readable format (k, M, G, T)",
     });
 });
@@ -51,7 +51,7 @@ test("human readable format 3", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'human_readable': 'true', 'decimals': 4}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveValue("6.6754T", {
+    expect(".app_field_widget input").toHaveValue("6.6754T", {
         message: "The value should be rendered in human readable format (k, M, G, T)",
     });
 });
@@ -64,7 +64,7 @@ test("still human readable when readonly", async () => {
         resId: 1,
         arch: `<form><field name="price" readonly="true" options="{'human_readable': 'true', 'decimals': 4}"/></form>`,
     });
-    expect(".o_field_widget span").toHaveText("6.6754T");
+    expect(".app_field_widget span").toHaveText("6.6754T");
 });
 
 test("should be 0 when unset", async () => {
@@ -75,8 +75,8 @@ test("should be 0 when unset", async () => {
         resId: 1,
         arch: '<form><field name="price"/></form>',
     });
-    expect(".o_field_widget input").not.toHaveClass("o_field_empty");
-    expect(".o_field_widget input").toHaveValue("0");
+    expect(".app_field_widget input").not.toHaveClass("app_field_empty");
+    expect(".app_field_widget input").toHaveValue("0");
 });
 
 test("basic form view flow", async () => {
@@ -88,11 +88,11 @@ test("basic form view flow", async () => {
         arch: '<form><field name="price"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("10");
+    expect(".app_field_widget input").toHaveValue("10");
     await fieldInput("price").edit("30");
-    expect(".o_field_widget input").toHaveValue("30");
+    expect(".app_field_widget input").toHaveValue("30");
     await clickSave();
-    expect(".o_field_widget input").toHaveValue("30");
+    expect(".app_field_widget input").toHaveValue("30");
 });
 
 test("no need to focus out of the input to save the record after correcting an invalid input", async () => {
@@ -104,15 +104,15 @@ test("no need to focus out of the input to save the record after correcting an i
         arch: '<form><field name="price"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("10");
+    expect(".app_field_widget input").toHaveValue("10");
     await fieldInput("price").edit("a");
-    expect(".o_field_widget input").toHaveValue("a");
-    expect(".o_form_status_indicator span i.fa-warning").toHaveCount(1);
-    expect(".o_form_button_save[disabled]").toHaveCount(1);
+    expect(".app_field_widget input").toHaveValue("a");
+    expect(".app_form_status_indicator span i.fa-warning").toHaveCount(1);
+    expect(".app_form_button_save[disabled]").toHaveCount(1);
     await fieldInput("price").edit("1");
-    expect(".o_field_widget input").toHaveValue("1");
-    expect(".o_form_status_indicator span i.fa-warning").toHaveCount(0);
-    expect(".o_form_button_save[disabled]").toHaveCount(0);
+    expect(".app_field_widget input").toHaveValue("1");
+    expect(".app_form_status_indicator span i.fa-warning").toHaveCount(0);
+    expect(".app_form_button_save[disabled]").toHaveCount(0);
     await clickSave(); // makes sure there is an enabled save button
 });
 
@@ -125,7 +125,7 @@ test("rounded when using formula in form view", async () => {
         arch: '<form><field name="price"/></form>',
     });
     await fieldInput("price").edit("=100/3");
-    expect(".o_field_widget input").toHaveValue("33");
+    expect(".app_field_widget input").toHaveValue("33");
 });
 
 test("with input type 'number' option", async () => {
@@ -137,9 +137,9 @@ test("with input type 'number' option", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'type': 'number'}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveAttribute("type", "number");
+    expect(".app_field_widget input").toHaveAttribute("type", "number");
     await fieldInput("price").edit("1234567890");
-    expect(".o_field_widget input").toHaveValue(1234567890, {
+    expect(".app_field_widget input").toHaveValue(1234567890, {
         message: "Integer value must be not formatted if input type is number",
     });
 });
@@ -152,7 +152,7 @@ test("with 'step' option", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'type': 'number', 'step': 3}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveAttribute("step", "3");
+    expect(".app_field_widget input").toHaveAttribute("step", "3");
 });
 
 test("with 'min'/'max' option", async () => {
@@ -163,8 +163,8 @@ test("with 'min'/'max' option", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'type': 'number', 'min': 3, 'max': 10}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveAttribute("min", "3");
-    expect(".o_field_widget input").toHaveAttribute("max", "10");
+    expect(".app_field_widget input").toHaveAttribute("min", "3");
+    expect(".app_field_widget input").toHaveAttribute("max", "10");
 });
 
 test("without input type option", async () => {
@@ -177,9 +177,9 @@ test("without input type option", async () => {
         arch: '<form><field name="price"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveAttribute("type", "text");
+    expect(".app_field_widget input").toHaveAttribute("type", "text");
     await fieldInput("price").edit("1234567890");
-    expect(".o_field_widget input").toHaveValue("1,234,567,890");
+    expect(".app_field_widget input").toHaveValue("1,234,567,890");
 });
 
 test("is formatted by default", async () => {
@@ -191,7 +191,7 @@ test("is formatted by default", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'enable_formatting': 'false'}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveValue("8,069");
+    expect(".app_field_widget input").toHaveValue("8,069");
 });
 
 test("basic flow in editable list view", async () => {
@@ -206,13 +206,13 @@ test("basic flow in editable list view", async () => {
     expect(zeroValues).toHaveLength(1, {
         message: "Unset integer values should not be rendered as zeros",
     });
-    await contains("td.o_data_cell").click();
-    expect('.o_field_widget[name="price"] input').toHaveCount(1);
-    await contains('.o_field_widget[name="price"] input').edit("-28");
-    expect("td.o_data_cell:first").toHaveText("-28");
-    expect('.o_field_widget[name="price"] input').toHaveValue("10");
+    await contains("td.app_data_cell").click();
+    expect('.app_field_widget[name="price"] input').toHaveCount(1);
+    await contains('.app_field_widget[name="price"] input').edit("-28");
+    expect("td.app_data_cell:first").toHaveText("-28");
+    expect('.app_field_widget[name="price"] input').toHaveValue("10");
     await contains(getFixture()).click();
-    expect(queryAllTexts("td.o_data_cell")).toEqual(["-28", "10"]);
+    expect(queryAllTexts("td.app_data_cell")).toEqual(["-28", "10"]);
 });
 
 test("with enable_formatting option as false", async () => {
@@ -224,9 +224,9 @@ test("with enable_formatting option as false", async () => {
         resId: 1,
         arch: `<form><field name="price" options="{'enable_formatting': false}"/></form>`,
     });
-    expect(".o_field_widget input").toHaveValue("8069");
+    expect(".app_field_widget input").toHaveValue("8069");
     await fieldInput("price").edit("1234567890");
-    expect(".o_field_widget input").toHaveValue("1234567890");
+    expect(".app_field_widget input").toHaveValue("1234567890");
 });
 
 test("value is formatted on Enter", async () => {
@@ -237,10 +237,10 @@ test("value is formatted on Enter", async () => {
         arch: '<form><field name="price"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("0");
+    expect(".app_field_widget input").toHaveValue("0");
 
     await fieldInput("price").edit("1000", { confirm: "Enter" });
-    expect(".o_field_widget input").toHaveValue("1,000");
+    expect(".app_field_widget input").toHaveValue("1,000");
 });
 
 test("value is formatted on Enter (even if same value)", async () => {
@@ -254,10 +254,10 @@ test("value is formatted on Enter (even if same value)", async () => {
         arch: '<form><field name="price"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("8,069");
+    expect(".app_field_widget input").toHaveValue("8,069");
 
     await fieldInput("price").edit("8069", { confirm: "Enter" });
-    expect(".o_field_widget input").toHaveValue("8,069");
+    expect(".app_field_widget input").toHaveValue("8,069");
 });
 
 test("value is formatted on click out (even if same value)", async () => {
@@ -271,13 +271,13 @@ test("value is formatted on click out (even if same value)", async () => {
         arch: '<form><field name="price"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("8,069");
+    expect(".app_field_widget input").toHaveValue("8,069");
 
     await fieldInput("price").edit("8069", { confirm: false });
-    expect(".o_field_widget input").toHaveValue("8069");
+    expect(".app_field_widget input").toHaveValue("8069");
 
-    await contains(".o_control_panel").click();
-    expect(".o_field_widget input").toHaveValue("8,069");
+    await contains(".app_control_panel").click();
+    expect(".app_field_widget input").toHaveValue("8,069");
 });
 
 test("Value should not be a boolean when enable_formatting is false", async () => {
@@ -292,6 +292,6 @@ test("Value should not be a boolean when enable_formatting is false", async () =
             </list>
         `,
     });
-    await contains(`.o_list_button_add`).click();
-    expect(".o_selected_row .o_field_integer").toHaveText("");
+    await contains(`.app_list_button_add`).click();
+    expect(".app_selected_row .app_field_integer").toHaveText("");
 });

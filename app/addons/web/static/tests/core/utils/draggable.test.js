@@ -83,7 +83,7 @@ test("Simple dragging in single group", async () => {
                     expect.step("end");
                     expect(element).toHaveText("1");
                     expect(".item").toHaveCount(3);
-                    expect(".item.o_dragged").toHaveCount(1);
+                    expect(".item.app_dragged").toHaveCount(1);
                 },
                 onDrop({ element }) {
                     expect.step("drop");
@@ -96,14 +96,14 @@ test("Simple dragging in single group", async () => {
     await mountWithCleanup(List);
 
     expect(".item").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps([]);
 
     // First item after 2nd item
     await contains(".item:first-child").dragAndDrop(".item:nth-child(2)");
 
     expect(".item").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps(["start", "drop", "end"]);
 });
 
@@ -277,7 +277,7 @@ test("Dragging element with touch event", async () => {
                 elements: ".item",
                 onDragStart({ element }) {
                     expect.step("start");
-                    expect(".item.o_dragged").toHaveCount(1);
+                    expect(".item.app_dragged").toHaveCount(1);
                 },
                 onDragEnd() {
                     expect.step("end");
@@ -296,7 +296,7 @@ test("Dragging element with touch event", async () => {
     // Should DnD, if the timing value is higher then the default delay value (300ms)
     await contains(".item:first-child").dragAndDrop(".item:nth-child(2)");
 
-    expect(".item.o_touch_bounce").toHaveCount(0, {
+    expect(".item.app_touch_bounce").toHaveCount(0, {
         message: "element no longer has the animation class applied",
     });
     expect.verifySteps(["start", "drop", "end"]);

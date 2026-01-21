@@ -34,13 +34,13 @@ test("PercentPieField in form view with value < 50%", async () => {
         resId: 1,
     });
 
-    expect(".o_field_percent_pie.o_field_widget .o_pie").toHaveCount(1);
-    expect(".o_field_percent_pie.o_field_widget .o_pie_info .o_pie_value").toHaveText("10%", {
+    expect(".app_field_percent_pie.app_field_widget .app_pie").toHaveCount(1);
+    expect(".app_field_percent_pie.app_field_widget .app_pie_info .app_pie_value").toHaveText("10%", {
         message: "should have 10% as pie value since int_field=10",
     });
 
     expect(
-        queryOne(".o_field_percent_pie.o_field_widget .o_pie").style.background.replaceAll(
+        queryOne(".app_field_percent_pie.app_field_widget .app_pie").style.background.replaceAll(
             /\s+/g,
             " "
         )
@@ -65,12 +65,12 @@ test("PercentPieField in form view with value > 50%", async () => {
         resId: 2,
     });
 
-    expect(".o_field_percent_pie.o_field_widget .o_pie").toHaveCount(1);
-    expect(".o_field_percent_pie.o_field_widget .o_pie_info .o_pie_value").toHaveText("80%", {
+    expect(".app_field_percent_pie.app_field_widget .app_pie").toHaveCount(1);
+    expect(".app_field_percent_pie.app_field_widget .app_pie_info .app_pie_value").toHaveText("80%", {
         message: "should have 80% as pie value since int_field=80",
     });
     expect(
-        queryOne(".o_field_percent_pie.o_field_widget .o_pie").style.background.replaceAll(
+        queryOne(".app_field_percent_pie.app_field_widget .app_pie").style.background.replaceAll(
             /\s+/g,
             " "
         )
@@ -95,13 +95,13 @@ test("PercentPieField in form view with float value", async () => {
         resId: 3,
     });
 
-    expect(".o_field_percent_pie.o_field_widget .o_pie").toHaveCount(1);
-    expect(".o_field_percent_pie.o_field_widget .o_pie_info .o_pie_value").toHaveText("33.33%", {
+    expect(".app_field_percent_pie.app_field_widget .app_pie").toHaveCount(1);
+    expect(".app_field_percent_pie.app_field_widget .app_pie_info .app_pie_value").toHaveText("33.33%", {
         message:
             "should have 33.33% as pie value since float_field=33.3333 and its value is rounded to 2 decimals",
     });
     expect(
-        queryOne(".o_field_percent_pie.o_field_widget .o_pie").style.background.replaceAll(
+        queryOne(".app_field_percent_pie.app_field_widget .app_pie").style.background.replaceAll(
             /\s+/g,
             " "
         )
@@ -126,8 +126,8 @@ test("hide the string when the PercentPieField widget is used in the view", asyn
         resId: 1,
     });
 
-    expect(".o_field_percent_pie.o_field_widget .o_pie").toHaveCount(1);
-    expect(".o_field_percent_pie.o_field_widget .o_pie_info .o_pie_text").not.toBeVisible();
+    expect(".app_field_percent_pie.app_field_widget .app_pie").toHaveCount(1);
+    expect(".app_field_percent_pie.app_field_widget .app_pie_info .app_pie_text").not.toBeVisible();
 });
 
 test.tags("desktop");
@@ -146,6 +146,6 @@ test("show the string when the PercentPieField widget is used in a button with t
         resId: 1,
     });
 
-    expect(".o_field_percent_pie.o_field_widget .o_pie").toHaveCount(1);
-    expect(".o_field_percent_pie.o_field_widget .o_pie_info .o_pie_text").toBeVisible();
+    expect(".app_field_percent_pie.app_field_widget .app_pie").toHaveCount(1);
+    expect(".app_field_percent_pie.app_field_widget .app_pie_info .app_pie_text").toBeVisible();
 });

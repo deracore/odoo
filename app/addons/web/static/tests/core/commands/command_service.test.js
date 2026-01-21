@@ -88,10 +88,10 @@ test("useCommand hook", async () => {
 
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command").toHaveCount(1);
-    expect(".o_command").toHaveText("Take the throne");
+    expect(".app_command").toHaveCount(1);
+    expect(".app_command").toHaveText("Take the throne");
 
-    await contains(".o_command").click();
+    await contains(".app_command").click();
     expect.verifySteps(["Hodor"]);
 
     componentInfo.Component = null;
@@ -99,7 +99,7 @@ test("useCommand hook", async () => {
 
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command").toHaveCount(0);
+    expect(".app_command").toHaveCount(0);
 });
 
 test("useCommand hook when the activeElement change", async () => {
@@ -122,16 +122,16 @@ test("useCommand hook when the activeElement change", async () => {
     await mountWithCleanup(MyComponent);
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Take the throne", "Lose the throne"]);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Take the throne", "Lose the throne"]);
     await press("escape");
     await animationFrame();
 
     await mountWithCleanup(OtherComponent, { noMainContainer: true });
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Lose the throne", "I'm taking the throne"]);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Lose the throne", "I'm taking the throne"]);
 });
 
 test("useCommand hook with isAvailable", async () => {
@@ -147,16 +147,16 @@ test("useCommand hook with isAvailable", async () => {
 
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
 
     await press("escape");
     await animationFrame();
     available = true;
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(1);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(1);
 });
 
 test("command with hotkey", async () => {
@@ -317,9 +317,9 @@ test("useCommand hook with hotkey and isAvailable", async () => {
 
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(3);
-    expect(queryAllTexts(".o_command")).toEqual(["Command 1\nA", "Command 2\nB", "Command 4\nD"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(3);
+    expect(queryAllTexts(".app_command")).toEqual(["Command 1\nA", "Command 2\nB", "Command 4\nD"]);
 });
 
 test("open command palette with command config", async () => {
@@ -346,8 +346,8 @@ test("open command palette with command config", async () => {
 
     await press(["alt", "a"]);
     await animationFrame();
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command span:first-child")).toEqual(["Command1"]);
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command span:first-child")).toEqual(["Command1"]);
 });
 
 test("data-hotkey added to command palette", async () => {
@@ -372,12 +372,12 @@ test("data-hotkey added to command palette", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command span:first-child")).toEqual(["Aria stark", "Bran stark"]);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command span:first-child")).toEqual(["Aria stark", "Bran stark"]);
 
     // Click on first command
     await contains("#o_command_0").click();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
 
     // Reopen palette
     await press(["Control", "k"]);
@@ -386,7 +386,7 @@ test("data-hotkey added to command palette", async () => {
     // Click on second command
     expect("input[title='Bran Stark']").not.toBeFocused();
     await contains("#o_command_1").click();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
     expect("input[title='Bran Stark']").toBeFocused();
 
     // only step should come from the first command execution
@@ -422,13 +422,13 @@ test("access to hotkeys from the command palette", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command").toHaveCount(3);
-    expect(queryAllTexts(".o_command span:first-child")).toEqual(["A", "B", "C"]);
+    expect(".app_command").toHaveCount(3);
+    expect(queryAllTexts(".app_command span:first-child")).toEqual(["A", "B", "C"]);
 
     // Trigger the command a
     await press("a");
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
 
     // Reopen palette
     await press(["Control", "k"]);
@@ -437,7 +437,7 @@ test("access to hotkeys from the command palette", async () => {
     // Trigger the command b
     await press(["alt", "b"]);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
 
     // Reopen palette
     await press(["Control", "k"]);
@@ -446,7 +446,7 @@ test("access to hotkeys from the command palette", async () => {
     // Trigger the command c
     await press(["alt", "c"]);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
 
     expect.verifySteps(["A", "B", "C"]);
 });
@@ -465,21 +465,21 @@ test("can be searched", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command_palette_search input").toHaveValue("");
+    expect(".app_command_palette_search input").toHaveValue("");
 
-    expect(queryAllTexts(".o_command")).toEqual(names);
+    expect(queryAllTexts(".app_command")).toEqual(names);
 
     // Search something
-    await contains(".o_command_palette_search input").edit("jl", { confirm: false });
+    await contains(".app_command_palette_search input").edit("jl", { confirm: false });
     await animationFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual(["Jaime Lannister"]);
+    expect(queryAllTexts(".app_command")).toEqual(["Jaime Lannister"]);
 
     // Clear search input
-    await contains(".o_command_palette_search input").clear({ confirm: false });
+    await contains(".app_command_palette_search input").clear({ confirm: false });
     await animationFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual(names);
+    expect(queryAllTexts(".app_command")).toEqual(names);
 });
 
 test("configure the empty message based on the namespace", async () => {
@@ -514,11 +514,11 @@ test("configure the empty message based on the namespace", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command_palette_listbox_empty").toHaveText("Empty Default");
+    expect(".app_command_palette_listbox_empty").toHaveText("Empty Default");
 
-    await contains(".o_command_palette_search input").edit("@", { confirm: false });
+    await contains(".app_command_palette_search input").edit("@", { confirm: false });
     await animationFrame();
-    expect(".o_command_palette_listbox_empty").toHaveText("Empty @");
+    expect(".app_command_palette_listbox_empty").toHaveText("Empty @");
 });
 
 test("footer displays the right tips", async () => {
@@ -557,7 +557,7 @@ test("footer displays the right tips", async () => {
     // Open palette
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette_footer").toHaveText("TIP — search for @FirstName");
+    expect(".app_command_palette_footer").toHaveText("TIP — search for @FirstName");
 
     // Close palette
     await press("escape");
@@ -567,7 +567,7 @@ test("footer displays the right tips", async () => {
     // Open palette
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette_footer").toHaveText("TIP — search for @FirstName and !SecondName");
+    expect(".app_command_palette_footer").toHaveText("TIP — search for @FirstName and !SecondName");
 
     // Close palette
     await press("escape");
@@ -577,7 +577,7 @@ test("footer displays the right tips", async () => {
     // Open palette
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette_footer").toHaveText(
+    expect(".app_command_palette_footer").toHaveText(
         "TIP — search for @FirstName, !SecondName and #ThirdName"
     );
 });
@@ -615,28 +615,28 @@ test("namespaces display in the footer are still clickable", async () => {
     // Open palette
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette_footer").toHaveText("TIP — search for @users and #channels");
-    expect(queryAllTexts(".o_command")).toEqual([]);
+    expect(".app_command_palette_footer").toHaveText("TIP — search for @users and #channels");
+    expect(queryAllTexts(".app_command")).toEqual([]);
 
-    await contains(".o_command_palette_footer .o_namespace").click();
+    await contains(".app_command_palette_footer .app_namespace").click();
     await animationFrame();
-    expect(".o_command_palette_search .o_namespace").toHaveText("@");
-    expect(".o_command_palette_search input").toHaveValue("");
-    expect(queryAllTexts(".o_command")).toEqual(["Command@"]);
+    expect(".app_command_palette_search .app_namespace").toHaveText("@");
+    expect(".app_command_palette_search input").toHaveValue("");
+    expect(queryAllTexts(".app_command")).toEqual(["Command@"]);
 
-    await contains(".o_command_palette_search input").edit("Com", { confirm: false });
+    await contains(".app_command_palette_search input").edit("Com", { confirm: false });
     await advanceFrame();
-    await contains(".o_command_palette_footer .o_namespace:eq(1)").click();
+    await contains(".app_command_palette_footer .app_namespace:eq(1)").click();
     await animationFrame();
-    expect(".o_command_palette_search .o_namespace").toHaveText("#");
-    expect(".o_command_palette_search input").toHaveValue("Com");
-    expect(queryAllTexts(".o_command")).toEqual(["Command#"]);
+    expect(".app_command_palette_search .app_namespace").toHaveText("#");
+    expect(".app_command_palette_search input").toHaveValue("Com");
+    expect(queryAllTexts(".app_command")).toEqual(["Command#"]);
 
-    await contains(".o_command_palette_footer .o_namespace:eq(0)").click();
+    await contains(".app_command_palette_footer .app_namespace:eq(0)").click();
     await animationFrame();
-    expect(".o_command_palette_search .o_namespace").toHaveText("@");
-    expect(".o_command_palette_search input").toHaveValue("Com");
-    expect(queryAllTexts(".o_command")).toEqual(["Command@"]);
+    expect(".app_command_palette_search .app_namespace").toHaveText("@");
+    expect(".app_command_palette_search input").toHaveValue("Com");
+    expect(queryAllTexts(".app_command")).toEqual(["Command@"]);
 });
 
 test("defined multiple providers with the same namespace", async () => {
@@ -667,9 +667,9 @@ test("defined multiple providers with the same namespace", async () => {
     await press(["Control", "k"]);
     await animationFrame();
     await animationFrame();
-    expect(".o_command_palette_search input").toHaveValue("");
+    expect(".app_command_palette_search input").toHaveValue("");
 
-    expect(queryAllTexts(".o_command")).toEqual([...defaultNames, ...otherNames]);
+    expect(queryAllTexts(".app_command")).toEqual([...defaultNames, ...otherNames]);
 });
 
 test("can switch between command providers", async () => {
@@ -700,21 +700,21 @@ test("can switch between command providers", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command_palette_search input").toHaveValue("");
+    expect(".app_command_palette_search input").toHaveValue("");
 
-    expect(queryAllTexts(".o_command")).toEqual(defaultNames);
+    expect(queryAllTexts(".app_command")).toEqual(defaultNames);
 
     // Switch to the other provider
-    await contains(".o_command_palette_search input").edit("@", { confirm: false });
+    await contains(".app_command_palette_search input").edit("@", { confirm: false });
     await advanceFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual(otherNames);
+    expect(queryAllTexts(".app_command")).toEqual(otherNames);
 
     // Press backspace to recover the default provider
     await press("backspace");
     await advanceTime(1);
 
-    expect(queryAllTexts(".o_command")).toEqual(defaultNames);
+    expect(queryAllTexts(".app_command")).toEqual(defaultNames);
 });
 
 test("multi level commands", async () => {
@@ -752,23 +752,23 @@ test("multi level commands", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command_palette_search input").toHaveValue("");
-    expect(".o_command_palette_search input").toHaveProperty(
+    expect(".app_command_palette_search input").toHaveValue("");
+    expect(".app_command_palette_search input").toHaveProperty(
         "placeholder",
         "Search for a command..."
     );
 
-    expect(queryAllTexts(".o_command")).toEqual(defaultNames);
+    expect(queryAllTexts(".app_command")).toEqual(defaultNames);
 
-    await contains(".o_command.focused").click();
+    await contains(".app_command.focused").click();
     await animationFrame();
 
-    expect(".o_command_palette_search input").toHaveProperty(
+    expect(".app_command_palette_search input").toHaveProperty(
         "placeholder",
         "Who is the next King ?"
     );
 
-    expect(queryAllTexts(".o_command")).toEqual(otherNames);
+    expect(queryAllTexts(".app_command")).toEqual(otherNames);
 });
 
 test("multi level commands with hotkey", async () => {
@@ -811,23 +811,23 @@ test("multi level commands with hotkey", async () => {
     // Open palette
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette_search input").toHaveValue("");
-    expect(".o_command_palette_search input").toHaveProperty(
+    expect(".app_command_palette_search input").toHaveValue("");
+    expect(".app_command_palette_search input").toHaveProperty(
         "placeholder",
         "Search for a command..."
     );
 
-    expect(queryAllTexts(".o_command")).toEqual([[name, hotkey.toUpperCase()].join("\n")]);
+    expect(queryAllTexts(".app_command")).toEqual([[name, hotkey.toUpperCase()].join("\n")]);
 
     await press("a");
     await animationFrame();
 
-    expect(".o_command_palette_search input").toHaveProperty(
+    expect(".app_command_palette_search input").toHaveProperty(
         "placeholder",
         "Who is the next King ?"
     );
 
-    expect(queryAllTexts(".o_command")).toEqual(otherNames);
+    expect(queryAllTexts(".app_command")).toEqual(otherNames);
 });
 
 test("command categories", async () => {
@@ -845,8 +845,8 @@ test("command categories", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command_category").toHaveCount(3);
-    expect(queryAllTexts(".o_command_category")).toEqual(["a", "b", "c\nd"]);
+    expect(".app_command_category").toHaveCount(3);
+    expect(queryAllTexts(".app_command_category")).toEqual(["a", "b", "c\nd"]);
 });
 
 test("data-command-category", async () => {
@@ -873,12 +873,12 @@ test("data-command-category", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(".o_command").toHaveCount(4);
+    expect(".app_command").toHaveCount(4);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(1) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(1) .app_command > a > div > span:first-child")
     ).toEqual(["Robert baratheon", "Joffrey baratheon"]);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(2) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(2) .app_command > a > div > span:first-child")
     ).toEqual(["Aria stark", "Bran stark"]);
 });
 
@@ -913,7 +913,7 @@ test("display shortcuts correctly for non-MacOS ", async () => {
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual([
+    expect(queryAllTexts(".app_command")).toEqual([
         "a",
         "b\nALT + B",
         "c\nC",
@@ -956,7 +956,7 @@ test("display shortcuts correctly for MacOS ", async () => {
     await press(["meta", "k"]);
     await animationFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual([
+    expect(queryAllTexts(".app_command")).toEqual([
         "a",
         "b\nCONTROL + B",
         "c\nC",
@@ -988,7 +988,7 @@ test("display shortcuts correctly for non-MacOS with a new overlayModifier", asy
     await press(["Control", "k"]);
     await animationFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual(["Click\nALT + CONTROL + A"]);
+    expect(queryAllTexts(".app_command")).toEqual(["Click\nALT + CONTROL + A"]);
 });
 
 test("display shortcuts correctly for MacOS with a new overlayModifier", async () => {
@@ -1015,7 +1015,7 @@ test("display shortcuts correctly for MacOS with a new overlayModifier", async (
     await press(["meta", "k"]);
     await animationFrame();
 
-    expect(queryAllTexts(".o_command")).toEqual(["Click\nCONTROL + COMMAND + A"]);
+    expect(queryAllTexts(".app_command")).toEqual(["Click\nCONTROL + COMMAND + A"]);
 });
 
 test("openMainPalette with onClose", async () => {
@@ -1026,7 +1026,7 @@ test("openMainPalette with onClose", async () => {
     await mountWithCleanup(TestComponent);
 
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
+    expect(".app_command_palette").toHaveCount(1);
 
     await press("escape");
     await animationFrame();
@@ -1041,9 +1041,9 @@ test("uses openPalette to modify the config used by the command palette", async 
 
     await press(["Control", "k"]);
     await animationFrame();
-    expect(".o_command_palette_search input").toHaveValue("");
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command span:first-child")).toEqual(["Command1"]);
+    expect(".app_command_palette_search input").toHaveValue("");
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command span:first-child")).toEqual(["Command1"]);
 
     const provide = () => [
         {
@@ -1058,9 +1058,9 @@ test("uses openPalette to modify the config used by the command palette", async 
     };
     getService("command").openPalette(configCustom);
     await animationFrame();
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command .o_command_name")).toEqual(["Command2"]);
-    expect(".o_command_palette_search input").toHaveValue("Command");
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command .app_command_name")).toEqual(["Command2"]);
+    expect(".app_command_palette_search input").toHaveValue("Command");
 });
 
 test("ensure that calling openPalette multiple times successfully loads the last config for the command palette", async () => {
@@ -1101,18 +1101,18 @@ test("ensure that calling openPalette multiple times successfully loads the last
 
     getService("command").openPalette(configCustom1);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
     getService("command").openPalette(configCustom2);
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
     providePromise1.resolve();
     await animationFrame();
     // First config should not be loaded since a second config was sent.
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
     providePromise2.resolve();
     await animationFrame();
     // Second config should be loaded properly.
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command .o_command_name")).toEqual(["Command2"]);
-    expect(".o_command_palette_search input").toHaveValue("Command");
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command .app_command_name")).toEqual(["Command2"]);
+    expect(".app_command_palette_search input").toHaveValue("Command");
 });

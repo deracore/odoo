@@ -268,10 +268,10 @@ test("many2many kanban: edition", async () => {
             </form>`,
     });
 
-    expect(`.o_kanban_record:visible:not(.o-kanban-button-new)`).toHaveCount(2);
-    expect(`.o_kanban_record:first`).toHaveText("gold");
-    expect(`.o_kanban_renderer .delete_icon`).toBeVisible();
-    expect(`.o_field_many2many .o-kanban-button-new:visible`).toHaveText("Add pokemon");
+    expect(`.app_kanban_record:visible:not(.app-kanban-button-new)`).toHaveCount(2);
+    expect(`.app_kanban_record:first`).toHaveText("gold");
+    expect(`.app_kanban_renderer .delete_icon`).toBeVisible();
+    expect(`.app_field_many2many .app-kanban-button-new:visible`).toHaveText("Add pokemon");
 
     // edit existing subrecord
 
@@ -281,58 +281,58 @@ test("many2many kanban: edition", async () => {
     await clickModalButton({ text: "Save" });
     await animationFrame(); // todo: ????
 
-    expect(".o_kanban_record:first:visible").toHaveText("new name");
+    expect(".app_kanban_record:first:visible").toHaveText("new name");
 
     // add subrecords
     // -> single select
-    await contains(".o_view_controller .btn:contains(Add pokemon)").click();
+    await contains(".app_view_controller .btn:contains(Add pokemon)").click();
 
-    expect(".modal .o_list_view tbody .o_list_record_selector").toHaveCount(3);
+    expect(".modal .app_list_view tbody .app_list_record_selector").toHaveCount(3);
 
-    await contains(".modal .o_list_view tbody tr:contains(red) .o_data_cell").click();
+    await contains(".modal .app_list_view tbody tr:contains(red) .app_data_cell").click();
 
-    expect(".o_kanban_record:visible:not(.o-kanban-button-new)").toHaveCount(3);
-    expect(".o_kanban_record:contains(red)").toBeVisible();
+    expect(".app_kanban_record:visible:not(.app-kanban-button-new)").toHaveCount(3);
+    expect(".app_kanban_record:contains(red)").toBeVisible();
 
     // -> multiple select
-    await contains(".o_view_controller .btn:contains(Add pokemon)").click();
-    expect(".modal .o_select_button").not.toBeEnabled();
+    await contains(".app_view_controller .btn:contains(Add pokemon)").click();
+    expect(".modal .app_select_button").not.toBeEnabled();
     await animationFrame();
 
-    expect(".modal .o_list_view tbody .o_list_record_selector").toHaveCount(2);
+    expect(".modal .app_list_view tbody .app_list_record_selector").toHaveCount(2);
 
-    await contains(".modal .o_list_view thead .o_list_record_selector input").click();
+    await contains(".modal .app_list_view thead .app_list_record_selector input").click();
     await clickModalButton({ text: "Select" });
 
-    expect(".modal .o_list_view").toHaveCount(0);
-    expect(".o_kanban_record:visible:not(.o-kanban-button-new)").toHaveCount(5);
+    expect(".modal .app_list_view").toHaveCount(0);
+    expect(".app_kanban_record:visible:not(.app-kanban-button-new)").toHaveCount(5);
 
     // -> created record
-    await contains(".o_view_controller .btn:contains(Add pokemon)").click();
+    await contains(".app_view_controller .btn:contains(Add pokemon)").click();
     await clickModalButton({ text: "New" });
 
-    expect(".modal .o_form_view .o_form_editable").toBeVisible();
+    expect(".modal .app_form_view .app_form_editable").toBeVisible();
 
     await fieldInput("name").edit("A new type");
     await clickModalButton({ text: "Save & Close" });
 
-    expect(".o_kanban_record:visible:not(.o-kanban-button-new)").toHaveCount(6);
-    expect(".o_kanban_record:contains(A new type)").toBeVisible();
+    expect(".app_kanban_record:visible:not(.app-kanban-button-new)").toHaveCount(6);
+    expect(".app_kanban_record:contains(A new type)").toBeVisible();
 
     // delete subrecords
     await clickKanbanRecord({ text: "silver" });
 
-    expect(".modal .modal-footer .o_btn_remove").toHaveCount(1);
+    expect(".modal .modal-footer .app_btn_remove").toHaveCount(1);
     await clickModalButton({ text: "Remove" });
 
     expect(".modal").toHaveCount(0);
-    expect(".o_kanban_record:visible:not(.o-kanban-button-new)").toHaveCount(5);
-    expect(".o_kanban_record:contains(silver)").toHaveCount(0);
+    expect(".app_kanban_record:visible:not(.app-kanban-button-new)").toHaveCount(5);
+    expect(".app_kanban_record:contains(silver)").toHaveCount(0);
 
     await clickKanbanRecord({ text: "blue", target: ".delete_icon" });
 
-    expect(".o_kanban_record:visible:not(.o-kanban-button-new)").toHaveCount(4);
-    expect(".o_kanban_record:contains(blue)").toHaveCount(0);
+    expect(".app_kanban_record:visible:not(.app-kanban-button-new)").toHaveCount(4);
+    expect(".app_kanban_record:contains(blue)").toHaveCount(0);
 
     // save the record
     await clickSave();
@@ -359,7 +359,7 @@ test("many2many kanban(editable): properly handle add-label node attribute", asy
         resId: 1,
     });
 
-    expect(".o_field_many2many[name=timmy] .o-kanban-button-new").toHaveText("Add timmy", {
+    expect(".app_field_many2many[name=timmy] .app-kanban-button-new").toHaveText("Add timmy", {
         message: "In M2M Kanban, Add button should have 'Add timmy' label",
     });
 });
@@ -391,14 +391,14 @@ test("field string is used in the SelectCreateDialog", async () => {
             </form>`,
     });
 
-    await contains(".o_field_x2many_list_row_add a:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(0)").click();
     expect(".modal").toHaveCount(1);
     expect(".modal .modal-title").toHaveText("Add: pokemon");
 
-    await contains(".modal .o_form_button_cancel").click();
+    await contains(".modal .app_form_button_cancel").click();
     expect(".modal").toHaveCount(0);
 
-    await contains(".o_field_x2many_list_row_add a:eq(1)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(1)").click();
     expect(".modal").toHaveCount(1);
     expect(".modal .modal-title").toHaveText("Add: Abcde");
 });
@@ -431,10 +431,10 @@ test("many2many kanban: create action disabled", async () => {
         resId: 1,
     });
 
-    expect(".o-kanban-button-new").toHaveCount(1);
-    expect(".o_kanban_renderer .delete_icon").toHaveCount(2);
+    expect(".app-kanban-button-new").toHaveCount(1);
+    expect(".app_kanban_renderer .delete_icon").toHaveCount(2);
 
-    await contains(".o-kanban-button-new:eq(0)").click();
+    await contains(".app-kanban-button-new:eq(0)").click();
     expect(".modal .modal-footer .btn-primary").toHaveCount(1);
 });
 
@@ -465,32 +465,32 @@ test("many2many kanban: conditional create/delete actions", async () => {
     });
 
     // color is red
-    expect(".o-kanban-button-new").toHaveCount(1, {
+    expect(".app-kanban-button-new").toHaveCount(1, {
         message: '"Add" button should be available',
     });
 
-    await contains(".o_kanban_record:contains(silver):eq(0)").click();
-    expect(".modal .modal-footer .o_btn_remove").toHaveCount(1);
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".app_kanban_record:contains(silver):eq(0)").click();
+    expect(".modal .modal-footer .app_btn_remove").toHaveCount(1);
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
-    await contains(".o-kanban-button-new:eq(0)").click();
+    await contains(".app-kanban-button-new:eq(0)").click();
     expect(".modal .modal-footer button").toHaveCount(3);
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
     // set color to black
-    await editSelectMenu(".o_field_widget[name='color'] input", { value: "Black" });
-    expect(".o-kanban-button-new").toHaveCount(1, {
+    await editSelectMenu(".app_field_widget[name='color'] input", { value: "Black" });
+    expect(".app-kanban-button-new").toHaveCount(1, {
         message: '"Add" button should still be available even after color field changed',
     });
 
-    await contains(".o-kanban-button-new:eq(0)").click();
+    await contains(".app-kanban-button-new:eq(0)").click();
     // only select and cancel button should be available, create
     // button should be removed based on color field condition
     expect(".modal .modal-footer button").toHaveCount(2);
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
-    await contains(".o_kanban_record:contains(silver):eq(0)").click();
-    expect(".modal .modal-footer .o_btn_remove").toHaveCount(0);
+    await contains(".app_kanban_record:contains(silver):eq(0)").click();
+    expect(".modal .modal-footer .app_btn_remove").toHaveCount(0);
 });
 
 test("many2many list (non editable): create a new record and click on action button 1", async () => {
@@ -527,9 +527,9 @@ test("many2many list (non editable): create a new record and click on action but
             </form>`,
         resId: 1,
     });
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
 
-    await contains(".modal .o_create_button").click();
+    await contains(".modal .app_create_button").click();
     expect.verifySteps([
         "get_views",
         "web_read",
@@ -541,7 +541,7 @@ test("many2many list (non editable): create a new record and click on action but
     await contains(".modal [name='name'] input").edit("Hello");
     expect("[name='name'] input").toHaveValue("Hello");
 
-    await contains(".modal .o_statusbar_buttons [name='myaction']").click();
+    await contains(".modal .app_statusbar_buttons [name='myaction']").click();
     expect("[name='name'] input").toHaveValue("Hello");
     expect.verifySteps(["web_save", "action: myaction", "web_read"]);
 });
@@ -580,9 +580,9 @@ test("many2many list (non editable): create a new record and click on action but
             </form>`,
         resId: 1,
     });
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
 
-    await contains(".modal .o_create_button").click();
+    await contains(".modal .app_create_button").click();
     expect.verifySteps([
         "get_views",
         "web_read",
@@ -595,7 +595,7 @@ test("many2many list (non editable): create a new record and click on action but
     await contains(".modal [name='name'] input").edit("Hello");
     expect("[name='name'] input").toHaveValue("Hello");
 
-    await contains(".modal .o_statusbar_buttons [name='myaction']").click();
+    await contains(".modal .app_statusbar_buttons [name='myaction']").click();
     expect("[name='name'] input").toHaveValue("Hello");
     expect(queryAllTexts(".modal  .modal-footer button")).toEqual([
         "Save & Close",
@@ -607,7 +607,7 @@ test("many2many list (non editable): create a new record and click on action but
 
     await contains(".modal-footer button").click();
     expect(".modal").toHaveCount(0);
-    expect(queryAllTexts("[name='timmy'] .o_data_row")).toEqual(["Hello (edited)"]);
+    expect(queryAllTexts("[name='timmy'] .app_data_row")).toEqual(["Hello (edited)"]);
 
     expect.verifySteps(["web_save", "action: myaction", "web_read", "web_save", "web_read"]);
 });
@@ -637,10 +637,10 @@ test("add a new record in a many2many non editable list", async () => {
             </form>`,
     });
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    await contains(".o_dialog .o_create_button").click();
-    await contains(".o_dialog .o_field_widget[name=name] input").edit("a name");
-    await contains(".o_dialog .o_form_button_save").click();
+    await contains(".app_field_x2many_list_row_add a").click();
+    await contains(".app_dialog .app_create_button").click();
+    await contains(".app_dialog .app_field_widget[name=name] input").edit("a name");
+    await contains(".app_dialog .app_form_button_save").click();
     expect.verifySteps([
         "/web/webclient/translations",
         "/web/webclient/load_menus",
@@ -688,8 +688,8 @@ test("add record in a many2many non editable list with context", async () => {
             </form>`,
     });
 
-    await contains(".o_field_widget[name=int_field] input").edit("2");
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_widget[name=int_field] input").edit("2");
+    await contains(".app_field_x2many_list_row_add a").click();
 });
 
 test("many2many list (editable): edition", async () => {
@@ -725,49 +725,49 @@ test("many2many list (editable): edition", async () => {
         resId: 1,
     });
 
-    expect(".o_list_renderer td.o_list_number").toHaveCount(2);
-    expect(".o_list_renderer tbody td:eq(0)").toHaveText("gold", {
+    expect(".app_list_renderer td.app_list_number").toHaveCount(2);
+    expect(".app_list_renderer tbody td:eq(0)").toHaveText("gold", {
         message: "name of first subrecord should be the one in DB",
     });
-    expect(".o_list_record_remove").toHaveCount(2);
-    expect("td.o_list_record_remove button").toHaveClass("fa fa-times");
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_list_record_remove").toHaveCount(2);
+    expect("td.app_list_record_remove button").toHaveClass("fa fa-times");
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
 
     // edit existing subrecord
-    await contains(".o_list_renderer tbody td:eq(0)").click();
+    await contains(".app_list_renderer tbody td:eq(0)").click();
     expect(".modal").toHaveCount(0);
-    expect(".o_list_renderer tbody tr:eq(0)").toHaveClass("o_selected_row");
-    await contains(".o_selected_row div[name=name] input").edit("new name", { confirm: false });
-    expect(".o_list_renderer .o_data_row:eq(0)").toHaveClass("o_selected_row");
-    expect(".o_list_renderer div[name=name] input").toBeFocused({
+    expect(".app_list_renderer tbody tr:eq(0)").toHaveClass("app_selected_row");
+    await contains(".app_selected_row div[name=name] input").edit("new name", { confirm: false });
+    expect(".app_list_renderer .app_data_row:eq(0)").toHaveClass("app_selected_row");
+    expect(".app_list_renderer div[name=name] input").toBeFocused({
         message: "edited field should still have the focus",
     });
-    await contains(".o_form_view").click();
-    expect(".o_list_renderer tbody tr:eq(0)").not.toHaveClass("o_selected_row");
-    expect(".o_list_renderer tbody td:eq(0)").toHaveText("new name", {
+    await contains(".app_form_view").click();
+    expect(".app_list_renderer tbody tr:eq(0)").not.toHaveClass("app_selected_row");
+    expect(".app_list_renderer tbody td:eq(0)").toHaveText("new name", {
         message: "value of subrecord should have been updated",
     });
     expect.verifySteps(["get_views", "web_read"]);
 
     // add new subrecords
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
     expect(".modal").toHaveCount(1);
-    expect(".modal .o_list_view .o_data_row").toHaveCount(1);
-    await contains(".modal .o_list_view .o_data_row .o_data_cell").click();
-    expect(".modal .o_list_view").toHaveCount(0);
-    expect(".o_list_renderer td.o_list_number").toHaveCount(3);
+    expect(".modal .app_list_view .app_data_row").toHaveCount(1);
+    await contains(".modal .app_list_view .app_data_row .app_data_cell").click();
+    expect(".modal .app_list_view").toHaveCount(0);
+    expect(".app_list_renderer td.app_list_number").toHaveCount(3);
 
     // remove subrecords
-    await contains(".o_list_record_remove:eq(1)").click();
-    expect(".o_list_renderer td.o_list_number").toHaveCount(2);
-    expect(".o_list_renderer tbody .o_data_row td:eq(0)").toHaveText("new name", {
+    await contains(".app_list_record_remove:eq(1)").click();
+    expect(".app_list_renderer td.app_list_number").toHaveCount(2);
+    expect(".app_list_renderer tbody .app_data_row td:eq(0)").toHaveText("new name", {
         message: "the updated row still has the correct values",
     });
 
     // save
     await clickSave();
-    expect(".o_list_renderer td.o_list_number").toHaveCount(2);
-    expect(".o_list_renderer .o_data_row td:eq(0)").toHaveText("new name", {
+    expect(".app_list_renderer td.app_list_number").toHaveCount(2);
+    expect(".app_list_renderer .app_data_row td:eq(0)").toHaveText("new name", {
         message: "the updated row still has the correct values",
     });
 
@@ -797,8 +797,8 @@ test("many2many: create & delete attributes (both true)", async () => {
         resId: 1,
     });
 
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
-    expect(".o_list_record_remove").toHaveCount(2);
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_list_record_remove").toHaveCount(2);
 });
 
 test("many2many: create & delete attributes (both false)", async () => {
@@ -818,8 +818,8 @@ test("many2many: create & delete attributes (both false)", async () => {
         resId: 1,
     });
 
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
-    expect(".o_list_record_remove").toHaveCount(2);
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_list_record_remove").toHaveCount(2);
 });
 
 test("many2many list: create action disabled", async () => {
@@ -837,7 +837,7 @@ test("many2many list: create action disabled", async () => {
         resId: 1,
     });
 
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
 });
 
 test("fieldmany2many list comodel not writable", async () => {
@@ -872,25 +872,25 @@ test("fieldmany2many list comodel not writable", async () => {
             </form>`,
     });
 
-    expect(".o_field_many2many .o_field_x2many_list_row_add").toHaveCount(1);
-    await contains(".o_field_many2many .o_field_x2many_list_row_add a").click();
+    expect(".app_field_many2many .app_field_x2many_list_row_add").toHaveCount(1);
+    await contains(".app_field_many2many .app_field_x2many_list_row_add a").click();
     expect(".modal").toHaveCount(1);
 
     expect(".modal-footer button").toHaveCount(2);
-    expect(".modal-footer button.o_select_button").toHaveCount(1);
-    expect(".modal-footer button.o_form_button_cancel").toHaveCount(1);
+    expect(".modal-footer button.app_select_button").toHaveCount(1);
+    expect(".modal-footer button.app_form_button_cancel").toHaveCount(1);
 
-    await contains(".modal .o_list_view .o_data_cell").click();
+    await contains(".modal .app_list_view .app_data_cell").click();
     expect(".modal").toHaveCount(0);
 
-    expect(".o_field_many2many .o_data_row").toHaveCount(1);
-    expect(queryAllTexts(".o_field_many2many .o_data_row")).toEqual(["gold"]);
-    expect(".o_field_many2many .o_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_field_many2many .app_data_row").toHaveCount(1);
+    expect(queryAllTexts(".app_field_many2many .app_data_row")).toEqual(["gold"]);
+    expect(".app_field_many2many .app_field_x2many_list_row_add").toHaveCount(1);
 
     await clickSave();
 
-    expect(".o_field_many2many .o_data_row .o_list_record_remove").toHaveCount(1);
-    await contains(".o_field_many2many .o_data_row .o_list_record_remove").click();
+    expect(".app_field_many2many .app_data_row .app_list_record_remove").toHaveCount(1);
+    await contains(".app_field_many2many .app_data_row .app_list_record_remove").click();
     await clickSave();
 });
 
@@ -917,26 +917,26 @@ test("many2many list: conditional create/delete actions", async () => {
     });
 
     // color is red -> create and delete actions are available
-    expect(".o_field_x2many_list_row_add").toHaveCount(1, {
+    expect(".app_field_x2many_list_row_add").toHaveCount(1, {
         message: "should have the 'Add an item' link",
     });
-    expect(".o_list_record_remove").toHaveCount(2);
+    expect(".app_list_record_remove").toHaveCount(2);
 
-    await contains(".o_field_x2many_list_row_add a:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(0)").click();
 
     expect(".modal .modal-footer button").toHaveCount(3);
 
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
     // set color to black -> create and delete actions are no longer available
-    await editSelectMenu(".o_field_widget[name='color'] input", { value: "Black" });
+    await editSelectMenu(".app_field_widget[name='color'] input", { value: "Black" });
 
     // add a line and remove icon should still be there as they don't create/delete records,
     // but rather add/remove links
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
-    expect(".o_list_record_remove").toHaveCount(2);
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_list_record_remove").toHaveCount(2);
 
-    await contains(".o_field_x2many_list_row_add a:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(0)").click();
     expect(".modal .modal-footer button").toHaveCount(2);
 });
 
@@ -962,20 +962,20 @@ test("many2many field with link/unlink options (list)", async () => {
     });
 
     // color is red -> link and unlink actions are available
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
-    expect(".o_list_record_remove").toHaveCount(2);
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_list_record_remove").toHaveCount(2);
 
-    await contains(".o_field_x2many_list_row_add a:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(0)").click();
 
     expect(".modal .modal-footer button").toHaveCount(3);
 
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
     // set color to black -> link and unlink actions are no longer available
-    await editSelectMenu(".o_field_widget[name='color'] input", { value: "Black" });
+    await editSelectMenu(".app_field_widget[name='color'] input", { value: "Black" });
 
-    expect(".o_field_x2many_list_row_add").toHaveCount(0);
-    expect(".o_list_record_remove").toHaveCount(0);
+    expect(".app_field_x2many_list_row_add").toHaveCount(0);
+    expect(".app_list_record_remove").toHaveCount(0);
 });
 
 test('many2many field with link/unlink options (list, create="0")', async () => {
@@ -1000,20 +1000,20 @@ test('many2many field with link/unlink options (list, create="0")', async () => 
     });
 
     // color is red -> link and unlink actions are available
-    expect(".o_field_x2many_list_row_add").toHaveCount(1);
-    expect(".o_list_record_remove").toHaveCount(2);
+    expect(".app_field_x2many_list_row_add").toHaveCount(1);
+    expect(".app_list_record_remove").toHaveCount(2);
 
-    await contains(".o_field_x2many_list_row_add a:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(0)").click();
 
     expect(".modal .modal-footer button").toHaveCount(2);
 
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
     // set color to black -> link and unlink actions are no longer available
-    await editSelectMenu(".o_field_widget[name='color'] input", { value: "Black" });
+    await editSelectMenu(".app_field_widget[name='color'] input", { value: "Black" });
 
-    expect(".o_field_x2many_list_row_add").toHaveCount(0);
-    expect(".o_list_record_remove").toHaveCount(0);
+    expect(".app_field_x2many_list_row_add").toHaveCount(0);
+    expect(".app_list_record_remove").toHaveCount(0);
 });
 
 test("many2many field with link option (kanban)", async () => {
@@ -1043,18 +1043,18 @@ test("many2many field with link option (kanban)", async () => {
     });
 
     // color is red -> link and unlink actions are available
-    expect(".o-kanban-button-new").toHaveCount(1);
+    expect(".app-kanban-button-new").toHaveCount(1);
 
-    await contains(".o-kanban-button-new").click();
+    await contains(".app-kanban-button-new").click();
 
     expect(".modal .modal-footer button").toHaveCount(3);
 
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
     // set color to black -> link and unlink actions are no longer available
-    await editSelectMenu(".o_field_widget[name='color'] input", { value: "Black" });
+    await editSelectMenu(".app_field_widget[name='color'] input", { value: "Black" });
 
-    expect(".o-kanban-button-new").toHaveCount(0);
+    expect(".app-kanban-button-new").toHaveCount(0);
 });
 
 test('many2many field with link option (kanban, create="0")', async () => {
@@ -1083,18 +1083,18 @@ test('many2many field with link option (kanban, create="0")', async () => {
     });
 
     // color is red -> link and unlink actions are available
-    expect(".o-kanban-button-new").toHaveCount(1);
+    expect(".app-kanban-button-new").toHaveCount(1);
 
-    await contains(".o-kanban-button-new").click();
+    await contains(".app-kanban-button-new").click();
 
     expect(".modal .modal-footer button").toHaveCount(2);
 
-    await contains(".modal .modal-footer .o_form_button_cancel:eq(0)").click();
+    await contains(".modal .modal-footer .app_form_button_cancel:eq(0)").click();
 
     // set color to black -> link and unlink actions are no longer available
-    await editSelectMenu(".o_field_widget[name='color'] input", { value: "Black" });
+    await editSelectMenu(".app_field_widget[name='color'] input", { value: "Black" });
 
-    expect(".o-kanban-button-new").toHaveCount(0);
+    expect(".app-kanban-button-new").toHaveCount(0);
 });
 
 test("readonly many2many field: edit record", async () => {
@@ -1121,17 +1121,17 @@ test("readonly many2many field: edit record", async () => {
         resId: 1,
     });
 
-    expect(".o_field_widget[name=timmy]").toHaveClass("o_readonly_modifier");
-    expect(".o_field_x2many_list_row_add").toHaveCount(0);
-    expect(".o_list_record_remove").toHaveCount(0);
-    expect(queryAllTexts(".o_data_cell")).toEqual(["gold", "silver"]);
+    expect(".app_field_widget[name=timmy]").toHaveClass("app_readonly_modifier");
+    expect(".app_field_x2many_list_row_add").toHaveCount(0);
+    expect(".app_list_record_remove").toHaveCount(0);
+    expect(queryAllTexts(".app_data_cell")).toEqual(["gold", "silver"]);
 
-    await contains(".o_data_row:first .o_data_cell").click();
-    expect(".o_dialog .o_form_renderer").toHaveClass("o_form_editable");
+    await contains(".app_data_row:first .app_data_cell").click();
+    expect(".app_dialog .app_form_renderer").toHaveClass("app_form_editable");
 
-    await contains(".o_dialog .o_field_widget[name=name] input").edit("new name");
-    await contains(".o_dialog .o_form_button_save").click();
-    expect(queryAllTexts(".o_data_cell")).toEqual(["new name", "silver"]);
+    await contains(".app_dialog .app_field_widget[name=name] input").edit("new name");
+    await contains(".app_dialog .app_form_button_save").click();
+    expect(queryAllTexts(".app_data_cell")).toEqual(["new name", "silver"]);
     expect.verifySteps(["save new name"]);
 });
 
@@ -1159,7 +1159,7 @@ test("many2many list: list of id as default value", async () => {
         `,
     });
 
-    expect(queryAllTexts("td.o_data_cell")).toEqual(["blip", "kawa"]);
+    expect(queryAllTexts("td.app_data_cell")).toEqual(["blip", "kawa"]);
 });
 
 test("context and domain dependent on an x2m must contain the list of current ids for the x2m", async () => {
@@ -1194,7 +1194,7 @@ test("context and domain dependent on an x2m must contain the list of current id
             </field>
         </form>`,
     });
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
 });
 
 test("many2many list with x2many: add a record", async () => {
@@ -1226,17 +1226,17 @@ test("many2many list with x2many: add a record", async () => {
         resId: 1,
     });
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    await contains(".modal .o_data_row:first .o_data_cell:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a").click();
+    await contains(".modal .app_data_row:first .app_data_cell:eq(0)").click();
 
-    expect(".o_data_row").toHaveCount(1);
-    expect(queryAllTexts(".o_data_row:first .o_tag_badge_text")).toEqual(["leonardo", "donatello"]);
+    expect(".app_data_row").toHaveCount(1);
+    expect(queryAllTexts(".app_data_row:first .app_tag_badge_text")).toEqual(["leonardo", "donatello"]);
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    await contains(".modal .o_data_row .o_data_cell:eq(1)").click();
+    await contains(".app_field_x2many_list_row_add a").click();
+    await contains(".modal .app_data_row .app_data_cell:eq(1)").click();
 
-    expect(".o_data_row").toHaveCount(2);
-    expect(queryAllTexts(".o_data_row:eq(1) .o_tag_badge_text")).toEqual(["donatello", "raphael"]);
+    expect(".app_data_row").toHaveCount(2);
+    expect(queryAllTexts(".app_data_row:eq(1) .app_tag_badge_text")).toEqual(["donatello", "raphael"]);
 
     expect.verifySteps([
         "web_read on partner",
@@ -1266,13 +1266,13 @@ test("many2many with a domain", async () => {
         resId: 1,
     });
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    expect(".modal .o_data_row").toHaveCount(1);
-    await contains(`.modal .o_searchview input`).edit("s");
+    await contains(".app_field_x2many_list_row_add a").click();
+    expect(".modal .app_data_row").toHaveCount(1);
+    await contains(`.modal .app_searchview input`).edit("s");
     await press("enter");
     await animationFrame();
 
-    expect(".modal .o_data_row").toHaveCount(0);
+    expect(".modal .app_data_row").toHaveCount(0);
 });
 
 test("many2many list (editable): edition concurrence", async () => {
@@ -1308,8 +1308,8 @@ test("many2many list (editable): edition concurrence", async () => {
         resId: 1,
     });
 
-    queryFirst(".o_list_record_remove").click();
-    queryFirst(".o_list_record_remove").click();
+    queryFirst(".app_list_record_remove").click();
+    queryFirst(".app_list_record_remove").click();
     await clickSave();
     expect.verifySteps(["get_views", "web_read", "web_save"]);
 });
@@ -1339,7 +1339,7 @@ test("many2many editable list: delete with confirmation (cancel, then delete aga
     const x2ManyFieldWithConfirmation = {
         ...x2ManyField,
         component: X2ManyFieldWithConfirmation,
-        additionalClasses: ["o_field_one2many"],
+        additionalClasses: ["app_field_one2many"],
     };
     registry.category("fields").add("x2many_with_confirmation", x2ManyFieldWithConfirmation);
 
@@ -1359,22 +1359,22 @@ test("many2many editable list: delete with confirmation (cancel, then delete aga
         resId: 1,
     });
 
-    expect(".o_data_row").toHaveCount(2);
+    expect(".app_data_row").toHaveCount(2);
 
-    await contains(".o_list_record_remove button").click();
-    expect(".o_dialog").toHaveCount(1);
+    await contains(".app_list_record_remove button").click();
+    expect(".app_dialog").toHaveCount(1);
 
-    await contains(".o_dialog footer .btn-secondary").click();
-    expect(".o_dialog").toHaveCount(0);
-    expect(".o_data_row").toHaveCount(2);
+    await contains(".app_dialog footer .btn-secondary").click();
+    expect(".app_dialog").toHaveCount(0);
+    expect(".app_data_row").toHaveCount(2);
 
     await runAllTimers(); // the button is disabled (programmatically) for a while
-    await contains(".o_list_record_remove button").click();
-    expect(".o_dialog").toHaveCount(1);
+    await contains(".app_list_record_remove button").click();
+    expect(".app_dialog").toHaveCount(1);
 
-    await contains(".o_dialog footer .btn-primary").click();
-    expect(".o_dialog").toHaveCount(0);
-    expect(".o_data_row").toHaveCount(1);
+    await contains(".app_dialog footer .btn-primary").click();
+    expect(".app_dialog").toHaveCount(0);
+    expect(".app_data_row").toHaveCount(1);
 });
 
 test("many2many list with onchange and edition of a record", async () => {
@@ -1406,13 +1406,13 @@ test("many2many list with onchange and edition of a record", async () => {
     });
     expect.verifySteps(["get_views", "web_read"]);
 
-    await contains("td.o_data_cell").click();
+    await contains("td.app_data_cell").click();
     expect.verifySteps(["get_views", "web_read"]);
 
     await contains(".modal-body input[type=checkbox]").click();
     await contains(".modal .modal-footer .btn-primary").click();
     expect.verifySteps(["web_save"]);
-    expect(".o_form_button_save").not.toBeVisible();
+    expect(".app_form_button_save").not.toBeVisible();
 });
 
 test("many2many concurrency edition", async () => {
@@ -1456,14 +1456,14 @@ test("many2many concurrency edition", async () => {
             </form>`,
         resId: 1,
     });
-    expect(".o_data_row").toHaveCount(4);
-    await contains(".o_data_row .o_list_record_remove").click();
-    await contains(".o_data_row .o_list_record_remove").click();
-    await contains(".o_field_x2many_list_row_add a").click();
-    await contains(".modal .o_data_row td.o_data_cell:eq(0)").click();
+    expect(".app_data_row").toHaveCount(4);
+    await contains(".app_data_row .app_list_record_remove").click();
+    await contains(".app_data_row .app_list_record_remove").click();
+    await contains(".app_field_x2many_list_row_add a").click();
+    await contains(".modal .app_data_row td.app_data_cell:eq(0)").click();
     def.resolve();
     await animationFrame();
-    expect(".o_data_row").toHaveCount(3);
+    expect(".app_data_row").toHaveCount(3);
 });
 
 test("many2many widget: creates a new record with a context containing the parentID", async () => {
@@ -1507,10 +1507,10 @@ test("many2many widget: creates a new record with a context containing the paren
     });
     expect.verifySteps(["get_views", "web_read"]);
 
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
     expect.verifySteps(["get_views", "web_search_read", "has_group"]);
 
-    await contains(".o_create_button").click();
+    await contains(".app_create_button").click();
     expect("[name='turtle_trululu'] input").toHaveValue("first record");
     expect.verifySteps(["get_views", "onchange"]);
 });
@@ -1560,22 +1560,22 @@ test("onchange with 40+ commands for a many2many", async () => {
 
     expect.verifySteps(["get_views", "web_read"]);
 
-    await contains(".o_field_widget[name=foo] input").edit("trigger onchange");
+    await contains(".app_field_widget[name=foo] input").edit("trigger onchange");
     expect.verifySteps(["onchange"]);
-    expect(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)").toHaveCount(40);
-    await contains(".o_field_widget[name=timmy] .o_pager_next:eq(0)").click();
+    expect(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)").toHaveCount(40);
+    await contains(".app_field_widget[name=timmy] .app_pager_next:eq(0)").click();
     expect.verifySteps([]);
-    expect(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)").toHaveCount(5);
+    expect(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)").toHaveCount(5);
 
     await clickSave();
 
-    expect(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)").toHaveCount(40);
+    expect(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)").toHaveCount(40);
 
-    await contains(".o_field_widget[name=timmy] .o_pager_next:eq(0)").click();
-    expect(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)").toHaveCount(5);
+    await contains(".app_field_widget[name=timmy] .app_pager_next:eq(0)").click();
+    expect(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)").toHaveCount(5);
 
-    await contains(".o_field_widget[name=timmy] .o_pager_next:eq(0)").click();
-    expect(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)").toHaveCount(40);
+    await contains(".app_field_widget[name=timmy] .app_pager_next:eq(0)").click();
+    expect(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)").toHaveCount(40);
 
     expect.verifySteps(["web_save", "web_read"]);
 });
@@ -1617,20 +1617,20 @@ test("onchange with 40+ commands for a many2many on desktop", async () => {
         resId: 1,
     });
 
-    await contains(".o_field_widget[name=foo] input").edit("trigger onchange");
-    expect(".o_x2m_control_panel .o_pager_counter").toHaveText("1-40 / 45");
-    await contains(".o_field_widget[name=timmy] .o_pager_next:eq(0)").click();
-    expect(".o_x2m_control_panel .o_pager_counter").toHaveText("41-45 / 45");
+    await contains(".app_field_widget[name=foo] input").edit("trigger onchange");
+    expect(".app_x2m_control_panel .app_pager_counter").toHaveText("1-40 / 45");
+    await contains(".app_field_widget[name=timmy] .app_pager_next:eq(0)").click();
+    expect(".app_x2m_control_panel .app_pager_counter").toHaveText("41-45 / 45");
 
     await clickSave();
 
-    expect(".o_x2m_control_panel .o_pager_counter").toHaveText("1-40 / 45");
+    expect(".app_x2m_control_panel .app_pager_counter").toHaveText("1-40 / 45");
 
-    await contains(".o_field_widget[name=timmy] .o_pager_next:eq(0)").click();
-    expect(".o_x2m_control_panel .o_pager_counter").toHaveText("41-45 / 45");
+    await contains(".app_field_widget[name=timmy] .app_pager_next:eq(0)").click();
+    expect(".app_x2m_control_panel .app_pager_counter").toHaveText("41-45 / 45");
 
-    await contains(".o_field_widget[name=timmy] .o_pager_next:eq(0)").click();
-    expect(".o_x2m_control_panel .o_pager_counter").toHaveText("1-40 / 45");
+    await contains(".app_field_widget[name=timmy] .app_pager_next:eq(0)").click();
+    expect(".app_x2m_control_panel .app_pager_counter").toHaveText("1-40 / 45");
 });
 
 test("default_get, onchange, onchange on m2m", async () => {
@@ -1671,7 +1671,7 @@ test("default_get, onchange, onchange on m2m", async () => {
             </form>`,
     });
 
-    await contains(".o_field_widget[name=int_field] input").edit(2);
+    await contains(".app_field_widget[name=int_field] input").edit(2);
 });
 
 test("many2many list add *many* records, remove, re-add", async () => {
@@ -1715,50 +1715,50 @@ test("many2many list add *many* records, remove, re-add", async () => {
     });
 
     // First round: add 51 records in batch
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
 
     expect(".modal-lg").toHaveCount(1);
 
     await contains("thead input[type=checkbox]:eq(0)").click();
     await animationFrame();
 
-    await contains(".btn.btn-primary.o_select_button:eq(0)").click();
+    await contains(".btn.btn-primary.app_select_button:eq(0)").click();
 
-    expect(".o_data_row").toHaveCount(51); // the 50 in batch + 'gold'
+    expect(".app_data_row").toHaveCount(51); // the 50 in batch + 'gold'
 
     expect(
-        ".o_field_many2many.o_field_widget .o_field_x2many.o_field_x2many_list .o_cp_pager"
+        ".app_field_many2many.app_field_widget .app_field_x2many.app_field_x2many_list .app_cp_pager"
     ).toHaveCount(0);
 
     await clickSave();
 
     expect(
-        ".o_field_many2many.o_field_widget .o_field_x2many.o_field_x2many_list .o_cp_pager"
+        ".app_field_many2many.app_field_widget .app_field_x2many.app_field_x2many_list .app_cp_pager"
     ).toHaveCount(1);
 
     expect(
-        ".o_field_many2many.o_field_widget .o_field_x2many.o_field_x2many_list .o_pager_value"
+        ".app_field_many2many.app_field_widget .app_field_x2many.app_field_x2many_list .app_pager_value"
     ).toHaveText("1-40");
 
     // Secound round: remove one record
     await contains(
-        ".o_field_many2many.o_field_widget .o_field_x2many.o_field_x2many_list .o_list_record_remove:eq(0)"
+        ".app_field_many2many.app_field_widget .app_field_x2many.app_field_x2many_list .app_list_record_remove:eq(0)"
     ).click();
     expect(
-        ".o_field_many2many.o_field_widget .o_field_x2many.o_field_x2many_list .o_pager_limit"
+        ".app_field_many2many.app_field_widget .app_field_x2many.app_field_x2many_list .app_pager_limit"
     ).toHaveText("50");
 
     // Third round: re-add 1 records
-    await contains(".o_field_x2many_list_row_add a:eq(0)").click();
+    await contains(".app_field_x2many_list_row_add a:eq(0)").click();
 
     expect(".modal-lg").toHaveCount(1);
 
     await contains("thead input[type=checkbox]:eq(0)").click();
     await animationFrame();
 
-    await contains(".btn.btn-primary.o_select_button:eq(0)").click();
+    await contains(".btn.btn-primary.app_select_button:eq(0)").click();
 
-    expect(".o_data_row").toHaveCount(41);
+    expect(".app_data_row").toHaveCount(41);
 });
 
 test("many2many kanban: action/type attribute", async () => {
@@ -1784,7 +1784,7 @@ test("many2many kanban: action/type attribute", async () => {
             </form>`,
         resId: 1,
     });
-    await contains(".o_kanban_record").click();
+    await contains(".app_kanban_record").click();
     expect.verifySteps(["action: a1"]);
 });
 
@@ -1816,9 +1816,9 @@ test("select create with _view_ref as text", async () => {
                 <field name="timmy" widget="many2many_tags" context="{ 'list_view_ref': 'my.little.string' }"/>
             </form>`,
     });
-    await contains(".o_field_many2many_selection input").click();
+    await contains(".app_field_many2many_selection input").click();
     checkGetViews = true;
-    await contains(".o_m2o_dropdown_option_search_more").click();
+    await contains(".app_m2o_dropdown_option_search_more").click();
     expect.verifySteps([`get_views`]);
 
     expect(".modal").toHaveCount(1);
@@ -1857,12 +1857,12 @@ test("many2many basic keys in field evalcontext -- in list", async () => {
             </list>`,
     });
 
-    await contains(".o_data_cell").click();
-    await contains(".o_field_many2many_selection input").edit("indianapolis", { confirm: false });
+    await contains(".app_data_cell").click();
+    await contains(".app_field_many2many_selection input").edit("indianapolis", { confirm: false });
     await runAllTimers();
-    await contains(".o_m2o_dropdown_option_create_edit").click();
-    expect(".modal .o_field_many2one").toHaveCount(1);
-    expect(".modal .o_field_many2one input").toHaveValue("default partner");
+    await contains(".app_m2o_dropdown_option_create_edit").click();
+    expect(".modal .app_field_many2one").toHaveCount(1);
+    expect(".modal .app_field_many2one input").toHaveValue("default partner");
 });
 
 test("many2many basic keys in field evalcontext -- in form", async () => {
@@ -1898,11 +1898,11 @@ test("many2many basic keys in field evalcontext -- in form", async () => {
             </form>`,
     });
 
-    await contains(".o_field_many2many_selection input").edit("indianapolis", { confirm: false });
+    await contains(".app_field_many2many_selection input").edit("indianapolis", { confirm: false });
     await runAllTimers();
-    await contains(".o_m2o_dropdown_option_create_edit").click();
-    expect(".modal .o_field_many2one").toHaveCount(1);
-    expect(".modal .o_field_many2one input").toHaveValue("default partner");
+    await contains(".app_m2o_dropdown_option_create_edit").click();
+    expect(".modal .app_field_many2one").toHaveCount(1);
+    expect(".modal .app_field_many2one input").toHaveValue("default partner");
 });
 
 test("many2many basic keys in field evalcontext -- in a x2many in form", async () => {
@@ -1944,12 +1944,12 @@ test("many2many basic keys in field evalcontext -- in a x2many in form", async (
                 </form>`,
     });
 
-    await contains(".o_data_cell").click();
-    await contains(".o_field_many2many_selection input").edit("indianapolis", { confirm: false });
+    await contains(".app_data_cell").click();
+    await contains(".app_field_many2many_selection input").edit("indianapolis", { confirm: false });
     await runAllTimers();
-    await contains(".o_m2o_dropdown_option_create_edit").click();
-    expect(".modal .o_field_many2one").toHaveCount(1);
-    expect(".modal .o_field_many2one input").toHaveValue("default partner");
+    await contains(".app_m2o_dropdown_option_create_edit").click();
+    expect(".modal .app_field_many2one").toHaveCount(1);
+    expect(".modal .app_field_many2one input").toHaveValue("default partner");
 });
 
 test("`this` inside rendererProps should reference the component", async () => {
@@ -1992,7 +1992,7 @@ test("`this` inside rendererProps should reference the component", async () => {
                 </form>`,
         resId: 1,
     });
-    await contains(".o_field_x2many_list_row_add a").click();
+    await contains(".app_field_x2many_list_row_add a").click();
     expect.verifySteps(["onAdd", "selectCreate"]);
 });
 
@@ -2022,24 +2022,24 @@ test("empty many2many tags field with no result", async () => {
             </form>`,
     });
 
-    await contains(".o_field_many2many_selection input").click();
-    expect(".dropdown-menu li.o_m2o_dropdown_option").toHaveCount(1);
-    expect(".dropdown-menu li.o_m2o_dropdown_option").toHaveText("Create...");
-    expect(".dropdown-menu li.o_m2o_start_typing").toHaveCount(0);
+    await contains(".app_field_many2many_selection input").click();
+    expect(".dropdown-menu li.app_m2o_dropdown_option").toHaveCount(1);
+    expect(".dropdown-menu li.app_m2o_dropdown_option").toHaveText("Create...");
+    expect(".dropdown-menu li.app_m2o_start_typing").toHaveCount(0);
 
-    await contains(".dropdown-menu li.o_m2o_dropdown_option").click();
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog .o_field_many2many_selection input").toHaveValue("");
+    await contains(".dropdown-menu li.app_m2o_dropdown_option").click();
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog .app_field_many2many_selection input").toHaveValue("");
     press("Esc");
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
 
-    await contains(".o_field_many2many_selection input").edit("abc", { confirm: false });
+    await contains(".app_field_many2many_selection input").edit("abc", { confirm: false });
     await runAllTimers();
 
-    expect(".dropdown-menu li.o_m2o_dropdown_option").toHaveCount(2);
-    expect(".dropdown-menu li.o_m2o_start_typing").toHaveCount(0);
-    expect(".dropdown-menu li.o_m2o_no_result").toHaveCount(0);
+    expect(".dropdown-menu li.app_m2o_dropdown_option").toHaveCount(2);
+    expect(".dropdown-menu li.app_m2o_start_typing").toHaveCount(0);
+    expect(".dropdown-menu li.app_m2o_no_result").toHaveCount(0);
 });
 
 test("highlight search in many2many", async () => {
@@ -2048,10 +2048,10 @@ test("highlight search in many2many", async () => {
         resModel: "partner",
         arch: `<form><field name="p" widget="many2many_tags"/></form>`,
     });
-    await contains(".o_field_widget[name=p] input").edit("rec", { confirm: false });
+    await contains(".app_field_widget[name=p] input").edit("rec", { confirm: false });
     await runAllTimers();
-    expect(`.o-autocomplete.dropdown li a > span`).toHaveCount(2);
-    expect(`.o-autocomplete.dropdown li:eq(0) a > span`).toHaveInnerHTML(`
+    expect(`.app-autocomplete.dropdown li a > span`).toHaveCount(2);
+    expect(`.app-autocomplete.dropdown li:eq(0) a > span`).toHaveInnerHTML(`
     <span>
         first
         <span class="text-primary fw-bold">
@@ -2059,7 +2059,7 @@ test("highlight search in many2many", async () => {
         </span>
         ord
     </span>`);
-    expect(`.o-autocomplete.dropdown li:eq(1) a > span`).toHaveInnerHTML(`
+    expect(`.app-autocomplete.dropdown li:eq(1) a > span`).toHaveInnerHTML(`
     <span>
         second
         <span class="text-primary fw-bold">
@@ -2097,8 +2097,8 @@ test("test view button warning on opening unsaved record", async () => {
         `,
     });
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    await contains(".o_list_record_open_form_view button").click();
+    await contains(".app_field_x2many_list_row_add a").click();
+    await contains(".app_list_record_open_form_view button").click();
 
     expect.verifySteps(["notification"]);
 });

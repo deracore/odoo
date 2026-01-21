@@ -72,10 +72,10 @@ test("default params", async () => {
         time: ["13:00"],
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_dropdown .o_time_picker_option")).toEqual(TIME_OPTIONS);
-    expect(".o_datetime_picker").toHaveStyle({
+    expect(queryAllTexts(".app_time_picker_dropdown .app_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(".app_datetime_picker").toHaveStyle({
         "--DateTimePicker__Day-template-columns": "8",
     });
 });
@@ -110,16 +110,16 @@ test("minDate: correct days/month/year/decades are disabled", async () => {
         time: ["13:00"],
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_dropdown .o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_dropdown .app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("2023");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual(["Jan", "Feb", "Mar"]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("2023");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual(["Jan", "Feb", "Mar"]);
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual([
         "Apr",
         "May",
         "Jun",
@@ -130,14 +130,14 @@ test("minDate: correct days/month/year/decades are disabled", async () => {
         "Nov",
         "Dec",
     ]);
-    expect(".o_date_item_cell.o_today").toHaveText("Apr");
+    expect(".app_date_item_cell.app_today").toHaveText("Apr");
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("2019 - 2030");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual(["2019", "2020", "2021", "2022"]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("2019 - 2030");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual(["2019", "2020", "2021", "2022"]);
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual([
         "2023",
         "2024",
         "2025",
@@ -147,14 +147,14 @@ test("minDate: correct days/month/year/decades are disabled", async () => {
         "2029",
         "2030",
     ]);
-    expect(".o_date_item_cell.o_today").toHaveText("2023");
+    expect(".app_date_item_cell.app_today").toHaveText("2023");
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("1990 - 2100");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual(["1990", "2000", "2010"]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("1990 - 2100");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual(["1990", "2000", "2010"]);
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual([
         "2020",
         "2030",
         "2040",
@@ -165,13 +165,13 @@ test("minDate: correct days/month/year/decades are disabled", async () => {
         "2090",
         "2100",
     ]);
-    expect(".o_date_item_cell.o_today").toHaveText("2020");
+    expect(".app_date_item_cell.app_today").toHaveText("2020");
 
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
 
     assertDateTimePicker({
@@ -220,15 +220,15 @@ test("maxDate: correct days/month/year/decades are disabled", async () => {
         time: ["13:00"],
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_dropdown .o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_dropdown .app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("2023");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("2023");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual([
         "May",
         "Jun",
         "Jul",
@@ -238,19 +238,19 @@ test("maxDate: correct days/month/year/decades are disabled", async () => {
         "Nov",
         "Dec",
     ]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual([
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual([
         "Jan",
         "Feb",
         "Mar",
         "Apr",
     ]);
-    expect(".o_date_item_cell.o_today").toHaveText("Apr");
+    expect(".app_date_item_cell.app_today").toHaveText("Apr");
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("2019 - 2030");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("2019 - 2030");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual([
         "2024",
         "2025",
         "2026",
@@ -259,20 +259,20 @@ test("maxDate: correct days/month/year/decades are disabled", async () => {
         "2029",
         "2030",
     ]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual([
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual([
         "2019",
         "2020",
         "2021",
         "2022",
         "2023",
     ]);
-    expect(".o_date_item_cell.o_today").toHaveText("2023");
+    expect(".app_date_item_cell.app_today").toHaveText("2023");
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("1990 - 2100");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("1990 - 2100");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual([
         "2030",
         "2040",
         "2050",
@@ -282,19 +282,19 @@ test("maxDate: correct days/month/year/decades are disabled", async () => {
         "2090",
         "2100",
     ]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual([
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual([
         "1990",
         "2000",
         "2010",
         "2020",
     ]);
-    expect(".o_date_item_cell.o_today").toHaveText("2020");
+    expect(".app_date_item_cell.app_today").toHaveText("2020");
 
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
 
     assertDateTimePicker({
@@ -348,15 +348,15 @@ test("min+max date: correct days/month/year/decades are disabled", async () => {
         time: ["13:00"],
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_dropdown .o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_dropdown .app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("2023");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("2023");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual([
         "Jan",
         "Feb",
         "Mar",
@@ -369,14 +369,14 @@ test("min+max date: correct days/month/year/decades are disabled", async () => {
         "Nov",
         "Dec",
     ]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual(["Apr"]);
-    expect(".o_date_item_cell.o_today").toHaveText("Apr");
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual(["Apr"]);
+    expect(".app_date_item_cell.app_today").toHaveText("Apr");
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("2019 - 2030");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("2019 - 2030");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual([
         "2019",
         "2020",
         "2021",
@@ -389,14 +389,14 @@ test("min+max date: correct days/month/year/decades are disabled", async () => {
         "2029",
         "2030",
     ]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual(["2023"]);
-    expect(".o_date_item_cell.o_today").toHaveText("2023");
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual(["2023"]);
+    expect(".app_date_item_cell.app_today").toHaveText("2023");
 
-    await click(".o_zoom_out");
+    await click(".app_zoom_out");
     await animationFrame();
 
-    expect(".o_datetime_picker_header").toHaveText("1990 - 2100");
-    expect(queryAllTexts(".o_date_item_cell[disabled]")).toEqual([
+    expect(".app_datetime_picker_header").toHaveText("1990 - 2100");
+    expect(queryAllTexts(".app_date_item_cell[disabled]")).toEqual([
         "1990",
         "2000",
         "2010",
@@ -409,14 +409,14 @@ test("min+max date: correct days/month/year/decades are disabled", async () => {
         "2090",
         "2100",
     ]);
-    expect(queryAllTexts(".o_date_item_cell:not([disabled])")).toEqual(["2020"]);
-    expect(".o_date_item_cell.o_today").toHaveText("2020");
+    expect(queryAllTexts(".app_date_item_cell:not([disabled])")).toEqual(["2020"]);
+    expect(".app_date_item_cell.app_today").toHaveText("2020");
 
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
-    await click(".o_today");
+    await click(".app_today");
     await animationFrame();
 
     assertDateTimePicker({
@@ -500,9 +500,9 @@ test("twelve-hour clock", async () => {
             }
         }
     }
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_dropdown .o_time_picker_option")).toEqual(times);
+    expect(queryAllTexts(".app_time_picker_dropdown .app_time_picker_option")).toEqual(times);
 });
 
 test("hide time picker", async () => {
@@ -583,7 +583,7 @@ test("next month and previous month", async () => {
         ],
     });
 
-    await click(".o_previous");
+    await click(".app_previous");
     await animationFrame();
 
     assertDateTimePicker({
@@ -604,7 +604,7 @@ test("next month and previous month", async () => {
         ],
     });
 
-    await click(".o_next");
+    await click(".app_next");
     await animationFrame();
 
     assertDateTimePicker({
@@ -625,7 +625,7 @@ test("next month and previous month", async () => {
         ],
     });
 
-    await click(".o_next");
+    await click(".app_next");
     await animationFrame();
 
     assertDateTimePicker({
@@ -678,15 +678,15 @@ test("range value", async () => {
         time: ["17:18", "5:25"],
     });
 
-    await click(".o_time_picker_input:eq(0)");
+    await click(".app_time_picker_input:eq(0)");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    await click(".o_time_picker_input:eq(1)");
+    await click(".app_time_picker_input:eq(1)");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    expect(".o_datetime_picker").toHaveStyle({
+    expect(".app_datetime_picker").toHaveStyle({
         "--DateTimePicker__Day-template-columns": "8",
     });
 });
@@ -723,15 +723,15 @@ test("range value on small device", async () => {
         time: ["9:30", "21:05"],
     });
 
-    await click(".o_time_picker_input:eq(0)");
+    await click(".app_time_picker_input:eq(0)");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    await click(".o_time_picker_input:eq(1)");
+    await click(".app_time_picker_input:eq(1)");
     await animationFrame();
-    expect(queryAllTexts(".o_time_picker_option")).toEqual(TIME_OPTIONS);
+    expect(queryAllTexts(".app_time_picker_option")).toEqual(TIME_OPTIONS);
 
-    expect(".o_datetime_picker").toHaveStyle({
+    expect(".app_datetime_picker").toHaveStyle({
         "--DateTimePicker__Day-template-columns": "8",
     });
 });
@@ -764,7 +764,7 @@ test("range value, previous month", async () => {
         time: ["13:00", "14:00"],
     });
 
-    await click(".o_previous");
+    await click(".app_previous");
     await animationFrame();
 
     assertDateTimePicker({
@@ -826,7 +826,7 @@ test("different rounding", async () => {
     });
 
     await editTime("10:16");
-    expect(".o_time_picker_input").toHaveValue("10:20");
+    expect(".app_time_picker_input").toHaveValue("10:20");
 });
 
 test("rounding=0 enables seconds", async () => {
@@ -836,7 +836,7 @@ test("rounding=0 enables seconds", async () => {
         },
     });
 
-    expect(".o_time_picker_input").toHaveValue("13:00:00");
+    expect(".app_time_picker_input").toHaveValue("13:00:00");
 });
 
 test("no value, select date without handler", async () => {
@@ -996,11 +996,11 @@ test("custom date cell class function", async () => {
         props: {
             type: "date",
             // give special class to weekends
-            dayCellClass: (date) => (date.weekday >= 6 ? "o_weekend" : ""),
+            dayCellClass: (date) => (date.weekday >= 6 ? "app_weekend" : ""),
         },
     });
 
-    expect(queryAllTexts(".o_weekend")).toEqual([
+    expect(queryAllTexts(".app_weekend")).toEqual([
         "26",
         "1",
         "2",
@@ -1247,7 +1247,7 @@ test("disable show week numbers", async () => {
         time: ["13:00"],
     });
 
-    expect(".o_datetime_picker").toHaveStyle({
+    expect(".app_datetime_picker").toHaveStyle({
         "--DateTimePicker__Day-template-columns": "7",
     });
 });

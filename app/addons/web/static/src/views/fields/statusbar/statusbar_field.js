@@ -193,10 +193,10 @@ export class StatusBarField extends Component {
     adjustVisibleItems() {
         // Get all visible buttons
         const itemEls = [
-            ...this.rootRef.el.querySelectorAll(".o_arrow_button:not(.dropdown-toggle)"),
+            ...this.rootRef.el.querySelectorAll(".app_arrow_button:not(.dropdown-toggle)"),
         ];
         const selectedIndex = itemEls.findIndex((el) =>
-            el.classList.contains("o_arrow_button_current")
+            el.classList.contains("app_arrow_button_current")
         );
         const itemsBefore = itemEls.slice(selectedIndex + 2).reverse();
         const itemsAfter = itemEls.slice(0, Math.max(selectedIndex - 1, 0)).reverse();
@@ -206,10 +206,10 @@ export class StatusBarField extends Component {
         hide(this.dropdownRef.el, this.beforeRef.el);
         if (this.items.folded.length) {
             show(this.afterRef.el);
-            itemEls.forEach((el) => el.classList.remove("o_first"));
+            itemEls.forEach((el) => el.classList.remove("app_first"));
         } else {
             hide(this.afterRef.el);
-            itemEls[0]?.classList.add("o_first");
+            itemEls[0]?.classList.add("app_first");
         }
 
         // Reset items variables

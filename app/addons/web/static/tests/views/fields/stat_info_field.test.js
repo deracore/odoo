@@ -33,10 +33,10 @@ test("StatInfoField formats decimal precision", async () => {
     });
 
     // formatFloat renders according to this.field.digits
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(0)").toHaveText("0.4", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(0)").toHaveText("0.4", {
         message: "Default precision should be [16,1]",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(1)").toHaveText("10.00", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(1)").toHaveText("10.00", {
         message: "Currency decimal precision should be 2",
     });
 });
@@ -55,7 +55,7 @@ test("StatInfoField widget on a chart fields", async () => {
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(0)").toHaveText("yop");
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(0)").toHaveText("yop");
 });
 
 test("StatInfoField widget on a char field (unset value)", async () => {
@@ -73,7 +73,7 @@ test("StatInfoField widget on a char field (unset value)", async () => {
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(0)").toHaveText("");
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(0)").toHaveText("");
 });
 
 test("StatInfoField widget on a one2many field (one record)", async () => {
@@ -92,7 +92,7 @@ test("StatInfoField widget on a one2many field (one record)", async () => {
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(0)").toHaveText("1 record");
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(0)").toHaveText("1 record");
 });
 
 test("StatInfoField widget on a one2many field (multiple records)", async () => {
@@ -113,7 +113,7 @@ test("StatInfoField widget on a one2many field (multiple records)", async () => 
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(0)").toHaveText("3 records");
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(0)").toHaveText("3 records");
 });
 
 test("StatInfoField widget on a many2one field", async () => {
@@ -134,7 +134,7 @@ test("StatInfoField widget on a many2one field", async () => {
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_value:eq(0)").toHaveText("Parent");
+    expect("button.oe_stat_button .app_field_widget .app_stat_value:eq(0)").toHaveText("Parent");
 });
 
 test.tags("desktop");
@@ -154,13 +154,13 @@ test("StatInfoField in form view on desktop", async () => {
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_info").toHaveCount(1, {
+    expect("button.oe_stat_button .app_field_widget .app_stat_info").toHaveCount(1, {
         message: "should have one stat button",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value").toHaveText("10", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value").toHaveText("10", {
         message: "should have 10 as value",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_text").toHaveText("int_field", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_text").toHaveText("int_field", {
         message: "should have 'int_field' as text",
     });
 });
@@ -182,14 +182,14 @@ test("StatInfoField in form view on mobile", async () => {
         `,
     });
 
-    await contains(".o-form-buttonbox .o_button_more").click();
-    expect("button.oe_stat_button .o_field_widget .o_stat_info").toHaveCount(1, {
+    await contains(".app-form-buttonbox .app_button_more").click();
+    expect("button.oe_stat_button .app_field_widget .app_stat_info").toHaveCount(1, {
         message: "should have one stat button",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value").toHaveText("10", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value").toHaveText("10", {
         message: "should have 10 as value",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_text").toHaveText("int_field", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_text").toHaveText("int_field", {
         message: "should have 'int_field' as text",
     });
 });
@@ -216,13 +216,13 @@ test("StatInfoField in form view with specific label_field on desktop", async ()
         `,
     });
 
-    expect("button.oe_stat_button .o_field_widget .o_stat_info").toHaveCount(1, {
+    expect("button.oe_stat_button .app_field_widget .app_stat_info").toHaveCount(1, {
         message: "should have one stat button",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value").toHaveText("10", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value").toHaveText("10", {
         message: "should have 10 as value",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_text").toHaveText("yop", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_text").toHaveText("yop", {
         message: "should have 'yop' as text, since it is the value of field foo",
     });
 });
@@ -249,14 +249,14 @@ test("StatInfoField in form view with specific label_field on mobile", async () 
         `,
     });
 
-    await contains(".o-form-buttonbox .o_button_more").click();
-    expect("button.oe_stat_button .o_field_widget .o_stat_info").toHaveCount(1, {
+    await contains(".app-form-buttonbox .app_button_more").click();
+    expect("button.oe_stat_button .app_field_widget .app_stat_info").toHaveCount(1, {
         message: "should have one stat button",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value").toHaveText("10", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value").toHaveText("10", {
         message: "should have 10 as value",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_text").toHaveText("yop", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_text").toHaveText("yop", {
         message: "should have 'yop' as text, since it is the value of field foo",
     });
 });
@@ -279,13 +279,13 @@ test("StatInfoField in form view with no label on desktop", async () => {
             </form>
         `,
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_info").toHaveCount(1, {
+    expect("button.oe_stat_button .app_field_widget .app_stat_info").toHaveCount(1, {
         message: "should have one stat button",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value").toHaveText("10", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value").toHaveText("10", {
         message: "should have 10 as value",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_text").toHaveCount(0, {
+    expect("button.oe_stat_button .app_field_widget .app_stat_text").toHaveCount(0, {
         message: "should not have any label",
     });
 });
@@ -308,14 +308,14 @@ test("StatInfoField in form view with no label on mobile", async () => {
             </form>
         `,
     });
-    await contains(".o-form-buttonbox .o_button_more").click();
-    expect("button.oe_stat_button .o_field_widget .o_stat_info").toHaveCount(1, {
+    await contains(".app-form-buttonbox .app_button_more").click();
+    expect("button.oe_stat_button .app_field_widget .app_stat_info").toHaveCount(1, {
         message: "should have one stat button",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_value").toHaveText("10", {
+    expect("button.oe_stat_button .app_field_widget .app_stat_value").toHaveText("10", {
         message: "should have 10 as value",
     });
-    expect("button.oe_stat_button .o_field_widget .o_stat_text").toHaveCount(0, {
+    expect("button.oe_stat_button .app_field_widget .app_stat_text").toHaveCount(0, {
         message: "should not have any label",
     });
 });

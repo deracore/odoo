@@ -223,8 +223,8 @@ export class SelectMenu extends Component {
         return mergeClasses(
             {
                 "my-0": this.displayInputInToggler,
-                o_select_menu_menu: true,
-                o_select_menu_multi_select: this.props.multiSelect,
+                app_select_menu_menu: true,
+                app_select_menu_multi_select: this.props.multiSelect,
             },
             this.props.menuClass
         );
@@ -245,7 +245,7 @@ export class SelectMenu extends Component {
         if (!this.props.searchable) {
             return ev.target.blur();
         }
-        if (ev.target.classList.contains("o_select_menu_input")) {
+        if (ev.target.classList.contains("app_select_menu_input")) {
             this.state.isFocused = true;
             ev.target.select();
         }
@@ -259,7 +259,7 @@ export class SelectMenu extends Component {
     }
 
     onInputClick(ev) {
-        if (!ev.target.classList.contains("o_select_menu_toggler")) {
+        if (!ev.target.classList.contains("app_select_menu_toggler")) {
             ev.stopPropagation();
         }
     }
@@ -299,9 +299,9 @@ export class SelectMenu extends Component {
 
     getItemClass(choice) {
         if (this.isOptionSelected(choice)) {
-            return "o_select_menu_item fw-bolder selected";
+            return "app_select_menu_item fw-bolder selected";
         } else {
-            return "o_select_menu_item";
+            return "app_select_menu_item";
         }
     }
 

@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
 
     <t t-name="web.KanbanView">
-        <div t-attf-class="{{ className }} {{ hasSelectedRecords ? 'o_kanban_selection_active' : 'o_kanban_selection_available' }}" t-ref="root">
-            <Layout className="model.useSampleModel ? 'o_view_sample_data' : ''" display="display">
+        <div t-attf-class="{{ className }} {{ hasSelectedRecords ? 'app_kanban_selection_active' : 'app_kanban_selection_available' }}" t-ref="root">
+            <Layout className="model.useSampleModel ? 'app_view_sample_data' : ''" display="display">
                 <t t-set-slot="control-panel-create-button">
                     <button t-if="canCreate and props.showButtons" type="button" t-att-disabled="isNewButtonDisabled" class="btn btn-primary o-kanban-button-new" accesskey="c" t-on-click="() => this.createRecord()" data-bounce-button="">
                         New
@@ -29,7 +29,7 @@
                     </t>
                 </t>
                 <t t-set-slot="control-panel-selection-actions">
-                    <div t-if="hasSelectedRecords" class="o_selection_container d-flex gap-1 w-100 w-md-auto">
+                    <div t-if="hasSelectedRecords" class="app_selection_container d-flex gap-1 w-100 w-md-auto">
                        <SelectionBox root="this.model.root"/>
                         <t t-if="!env.isSmall">
                             <t t-foreach="headerButtons" t-as="button" t-key="button.id" t-if="!evalViewModifier(button.invisible)">
@@ -56,7 +56,7 @@
                     <CogMenu t-if="!hasSelectedRecords"/>
                     <CogMenu t-elif="env.isSmall and (props.info.actionMenus or headerButtons.length)" t-props="this.actionMenuProps" hasSelectedRecords="hasSelectedRecords">
                         <t t-foreach="headerButtons" t-as="button" t-key="button.id" t-if="!evalViewModifier(button.invisible)">
-                            <DropdownItem class="'o-dropdown-item-unstyled-button'">
+                            <DropdownItem class="'app-dropdown-item-unstyled-button'">
                                 <MultiRecordViewButton
                                     t-if="button.display !== 'always'"
                                     list="model.root"

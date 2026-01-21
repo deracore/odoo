@@ -40,7 +40,7 @@ test("Simple rendering with a scroll", async () => {
     class MyComponent extends Component {
         static template = xml/* xml */ `
             <div id="scroller" style="overflow: scroll; width: 400px; height: 150px">
-                <div class="o_content">
+                <div class="app_content">
                     <a href="#scrollToHere"  class="btn btn-primary">sroll to ...</a>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
@@ -93,7 +93,7 @@ test("clicking to scroll on a web client shouldn't open the default app", async 
 
     class MyComponent extends Component {
         static template = xml/* xml */ `
-            <div class="o_content" style="overflow:scroll;height:150px;width:400px">
+            <div class="app_content" style="overflow:scroll;height:150px;width:400px">
                 <a href="#scrollToHere"  class="alert-link" role="button">sroll to ...</a>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
@@ -137,7 +137,7 @@ test("clicking to scroll on a web client shouldn't open the default app", async 
     await mountWithCleanup(WebClient);
     await getService("action").doAction("my_component");
 
-    const scrollableParent = document.querySelector(".o_content");
+    const scrollableParent = document.querySelector(".app_content");
     expect(scrollableParent.scrollTop).toBe(0);
     await click(".alert-link");
     expect(scrollableParent.scrollTop).not.toBe(0);
@@ -147,7 +147,7 @@ test("Rendering with multiple anchors and scrolls", async () => {
     class MyComponent extends Component {
         static template = xml/* xml */ `
             <div id="scroller" style="overflow: scroll; width: 400px; height: 150px">
-                <div class="o_content">
+                <div class="app_content">
                     <h2 id="anchor3">ANCHOR 3</h2>
                     <a href="#anchor1" class="link1">sroll to ...</a>
                     <p>
@@ -224,7 +224,7 @@ test("clicking anchor when no scrollable", async () => {
     class MyComponent extends Component {
         static template = xml/* xml */ `
             <div id="scroller" style="overflow: auto; width: 400px; height: 150px">
-                <div class="o_content">
+                <div class="app_content">
                     <a href="#scrollToHere"  class="btn btn-primary">scroll to ...</a>
                     <div class="active-container">
                         <p>There is no scrollable with only the height of this element</p>
@@ -263,7 +263,7 @@ test("clicking anchor when multi levels scrollables", async () => {
     class MyComponent extends Component {
         static template = xml/* xml */ `
         <div id="scroller" style="overflow: auto; width: 400px; height: 150px">
-            <div class="o_content scrollable-1">
+            <div class="app_content scrollable-1">
                 <a href="#scroll1"  class="btn1 btn btn-primary">go to level 2 anchor</a>
                 <div>
                     <p>This is some content</p>
@@ -354,7 +354,7 @@ test("Simple scroll to HTML elements", async () => {
     class MyComponent extends Component {
         static template = xml/* xml */ `
             <div id="scroller" style="overflow: auto; width: 400px; height: 150px">
-                <div class="o_content">
+                <div class="app_content">
                     <p>
                         Aliquam convallis sollicitudin purus.
                     </p>
@@ -493,7 +493,7 @@ test("Simple scroll to HTML elements", async () => {
 test("scroll to anchor from load", async () => {
     class MyComponent extends Component {
         static template = xml/* xml */ `
-            <div class="o_content" style="overflow:scroll;height:150px;width:400px">
+            <div class="app_content" style="overflow:scroll;height:150px;width:400px">
                 <a href="#scrollToHere"  class="alert-link" role="button">sroll to ...</a>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
@@ -538,6 +538,6 @@ test("scroll to anchor from load", async () => {
     await mountWithCleanup(WebClient);
     await animationFrame();
 
-    const scrollableParent = document.querySelector(".o_content");
+    const scrollableParent = document.querySelector(".app_content");
     expect(scrollableParent.scrollTop).not.toBe(0);
 });

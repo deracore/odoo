@@ -188,11 +188,11 @@ test("close popover when owner component is unmounted", async() => {
 
     await click("input.datetime_hook_input");
     await animationFrame();
-    expect(".o_datetime_picker").toHaveCount(1);
+    expect(".app_datetime_picker").toHaveCount(1);
 
     // we can't simply add a button because `useClickAway` will be triggered, thus closing the popover properly
     hidePopover();
     await animationFrame();
     await animationFrame();
-    expect(".o_datetime_picker").toHaveCount(0);
+    expect(".app_datetime_picker").toHaveCount(0);
 });

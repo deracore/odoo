@@ -5,8 +5,8 @@
 /*
   Fade in and out with t-transition
   Usage:
-    scss: @include owl-fade(0.5s, 'o_notification')
-    xml: <tag t-transition="o_notification_fade" />
+    scss: @include owl-fade(0.5s, 'app_notification')
+    xml: <tag t-transition="app_notification_fade" />
  */
 @mixin owl-fade($time, $name) {
   .#{$name}_fade {

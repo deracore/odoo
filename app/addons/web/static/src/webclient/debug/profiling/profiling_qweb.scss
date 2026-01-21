@@ -1,10 +1,10 @@
-.o_form_view .o_ace_view_editor {
+.app_form_view .app_ace_view_editor {
     background: transparent;
 }
 
-.o_profiling_qweb_view {
+.app_profiling_qweb_view {
     user-select: none;
-    .o_select_view_profiling {
+    .app_select_view_profiling {
         margin-bottom: 10px;
         .dropdown-menu {
             overflow: auto;
@@ -13,7 +13,7 @@
         a {
             margin: 3px 0;
             display: block;
-            .o_delay, .o_query {
+            .app_delay, .app_query {
                 font-size: 0.8em;
                 display: inline-block;
                 color: $body-color;
@@ -22,7 +22,7 @@
                 margin-right: 10px;
                 white-space: nowrap;
             }
-            .o_key {
+            .app_key {
                 display: inline-block;
                 margin-left: 10px;
                 font-size: 0.8em;
@@ -41,18 +41,18 @@
             cursor: default;
             pointer-events: all;
             position: relative;
-            .o_info {
+            .app_info {
                 display: none;
                 left: 8px;
                 top: 14px;
                 width: 100px;
-                .o_delay span, .o_query span {
+                .app_delay span, .app_query span {
                     text-align: left;
                     display: inline-block;
                     width: 40px;
                 }
             }
-            &:hover .o_info {
+            &:hover .app_info {
                 display: block;
                 &:hover {
                     display: none;
@@ -67,12 +67,12 @@
             width: 134px !important;
             overflow: visible;
         }
-        .ace_gutter-cell .o_info {
+        .ace_gutter-cell .app_info {
             display: block;
             float: left;
             font-size: 0.8em;
             white-space: nowrap;
-            .o_more {
+            .app_more {
                 float: left;
                 position: relative;
                 span {
@@ -80,7 +80,7 @@
                     cursor: default;
                     margin-left: -12px;
                 }
-                .o_detail {
+                .app_detail {
                     left: 30px;
                     top: -30px;
                     min-width: 120px;
@@ -101,14 +101,14 @@
                         padding-left: 10px;
                     }
                 }
-                &:hover > .o_detail {
+                &:hover > .app_detail {
                     display: block;
                     &:hover {
                         display: none;
                     }
                 }
             }
-            .o_delay, .o_query {
+            .app_delay, .app_query {
                 display: block;
                 float: left;
                 margin-right: 10px;
@@ -122,7 +122,7 @@
             z-index: 3;
         }
 
-        .o_detail {
+        .app_detail {
             position: absolute;
             z-index: 1;
             background: #ffedcb;

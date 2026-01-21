@@ -15,17 +15,17 @@ test("basic rendering", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
     await hover(".mybtn");
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("hello");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("hello");
 
     await leave();
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -37,21 +37,21 @@ test("basic rendering 2", async () => {
 
     await mountWithCleanup(MyComponent);
 
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
     await hover(".inner_span");
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("hello");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("hello");
 
     await hover(".outer_span");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
     await leave();
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -72,16 +72,16 @@ test("remove element with opened tooltip", async () => {
     await mountWithCleanup(MyComponent);
 
     expect("button").toHaveCount(1);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
     await hover("button");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
     compState.visible = false;
     await animationFrame();
     expect("button").toHaveCount(0);
     await runAllTimers();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -97,17 +97,17 @@ test("rendering with several tooltips", async () => {
 
     await mountWithCleanup(MyComponent);
 
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await hover("button.button_1");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("tooltip 1");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("tooltip 1");
 
     await hover("button.button_2");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("tooltip 2");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("tooltip 2");
 });
 
 test.tags("desktop");
@@ -144,36 +144,36 @@ test("positioning", async () => {
     // default
     await hover("button.default");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("default");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("default");
     expect.verifySteps(["popover added with default positioning"]);
 
     // top
     await hover("button.top");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("top");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("top");
     expect.verifySteps(["popover added with position: top"]);
 
     // right
     await hover("button.right");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("right");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("right");
     expect.verifySteps(["popover added with position: right"]);
 
     // bottom
     await hover("button.bottom");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("bottom");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("bottom");
     expect.verifySteps(["popover added with position: bottom"]);
 
     // left
     await hover("button.left");
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("left");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("left");
     expect.verifySteps(["popover added with position: left"]);
 });
 
@@ -193,13 +193,13 @@ test("tooltip with a template, no info", async () => {
         },
     });
 
-    expect(".o-tooltip").toHaveCount(0);
+    expect(".app-tooltip").toHaveCount(0);
 
     await hover("button");
     await runAllTimers();
 
-    expect(".o-tooltip").toHaveCount(1);
-    expect(".o-tooltip").toHaveInnerHTML("<i>tooltip</i>");
+    expect(".app-tooltip").toHaveCount(1);
+    expect(".app-tooltip").toHaveInnerHTML("<i>tooltip</i>");
 });
 
 test.tags("desktop");
@@ -229,13 +229,13 @@ test("tooltip with a template and info", async () => {
         },
     });
 
-    expect(".o-tooltip").toHaveCount(0);
+    expect(".app-tooltip").toHaveCount(0);
 
     await hover("button");
     await runAllTimers();
 
-    expect(".o-tooltip").toHaveCount(1);
-    expect(".o-tooltip").toHaveInnerHTML("<ul><li>X: 3</li><li>Y: abc</li></ul>");
+    expect(".app-tooltip").toHaveCount(1);
+    expect(".app-tooltip").toHaveInnerHTML("<ul><li>X: 3</li><li>Y: abc</li></ul>");
 });
 
 test.tags("desktop");
@@ -249,10 +249,10 @@ test("empty tooltip, no template", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o-tooltip").toHaveCount(0);
+    expect(".app-tooltip").toHaveCount(0);
     await hover("button");
     await runAllTimers();
-    expect(".o-tooltip").toHaveCount(0);
+    expect(".app-tooltip").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -263,13 +263,13 @@ test("tooltip with a delay", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o-tooltip").toHaveCount(0);
+    expect(".app-tooltip").toHaveCount(0);
 
     await hover("button.myBtn");
     await advanceTime(OPEN_DELAY);
-    expect(".o-tooltip").toHaveCount(0);
+    expect(".app-tooltip").toHaveCount(0);
     await advanceTime(2000 - OPEN_DELAY);
-    expect(".o-tooltip").toHaveCount(1);
+    expect(".app-tooltip").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -280,17 +280,17 @@ test("tooltip does not crash with disappearing target", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await hover(".mybtn");
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     // the element disappeared from the DOM during the setTimeout
     queryOne(".mybtn").remove();
 
     await runAllTimers();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -303,20 +303,20 @@ test("tooltip using touch enabled device", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await drag(".mybtn");
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await advanceTime(SHOW_AFTER_DELAY);
     await advanceTime(OPEN_DELAY);
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("hello");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("hello");
 
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("hello");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("hello");
 });
 
 test.tags("mobile");
@@ -327,23 +327,23 @@ test("touch rendering - hold-to-show", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
     await pointerDown("button");
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await advanceTime(SHOW_AFTER_DELAY);
     await advanceTime(OPEN_DELAY);
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("hello");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("hello");
 
     await pointerUp("button");
     await animationFrame();
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
     await pointerDown(document.body);
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });
 
 test.tags("mobile");
@@ -354,35 +354,35 @@ test("touch rendering - tap-to-show", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
     await pointerDown("button[data-tooltip]");
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await advanceTime(SHOW_AFTER_DELAY);
     await advanceTime(OPEN_DELAY);
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover").toHaveText("hello");
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover").toHaveText("hello");
 
     await pointerUp("button");
     await animationFrame();
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
     await runAllTimers();
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
     // The tooltip should be closed if you click on the button itself
     await click("button[data-tooltip]");
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     // Reopen it
     await pointerDown("button[data-tooltip]");
     await advanceTime(SHOW_AFTER_DELAY);
     await advanceTime(OPEN_DELAY);
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
     // The tooltip should be also closed if you click anywhere else
     await pointerDown(document.body);
     await animationFrame();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });

@@ -9,7 +9,7 @@
                 <form string="Update Module List">
                     <separator string="Module Update Result" invisible="state != 'done'"/>
                     <group invisible="state != 'init'">
-                        <span class="o_form_label" colspan="2">Click on Update below to start the process...</span>
+                        <span class="app_form_label" colspan="2">Click on Update below to start the process...</span>
                     </group>
                     <group invisible="state != 'done'" >
                         <field name="updated"/>

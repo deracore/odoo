@@ -1,11 +1,11 @@
-.o_tree_editor {
-    .o_tree_editor_node {
-        .o_tree_editor_node_control_panel > button {
+.app_tree_editor {
+    .app_tree_editor_node {
+        .app_tree_editor_node_control_panel > button {
             opacity: .2;
         }
 
-        &.o_hovered_button {
-            .o_tree_editor_node_control_panel > button {
+        &.app_hovered_button {
+            .app_tree_editor_node_control_panel > button {
                 opacity: .5;
 
                 &:hover {
@@ -14,8 +14,8 @@
             }
         }
     }
-    .o_record_selector .o-autocomplete,
-    .o_multi_record_selector .o_record_autocomplete_with_caret {
+    .app_record_selector .app-autocomplete,
+    .app_multi_record_selector .app_record_autocomplete_with_caret {
         min-width: unset;
         flex: 1 0 50px;
     }

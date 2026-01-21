@@ -1,4 +1,4 @@
-.o_searchview {
+.app_searchview {
     --SearchBar-background-color: #{$input-focus-bg};
 
     background-color: var(--SearchBar-background-color);
@@ -8,37 +8,37 @@
         border-color: $input-focus-border-color;
         color: $input-focus-color;
 
-        + .o_searchview_dropdown_toggler {
+        + .app_searchview_dropdown_toggler {
             border-top-color: $input-focus-border-color;
             border-right-color: $input-focus-border-color;
             border-bottom-color: $input-focus-border-color;
         }
     }
 
-    .o_searchview_input {
+    .app_searchview_input {
         appearance: none;
     }
 }
 
-.o_search_options {
+.app_search_options {
     flex-wrap: wrap;
     margin: auto 0;
     flex-grow: 1;
 }
 
 // Filter menu
-.o_filter_menu {
-    .o_filter_condition {
-        &.o_filter_condition_with_buttons {
+.app_filter_menu {
+    .app_filter_condition {
+        &.app_filter_condition_with_buttons {
             padding-right: 0;
             padding-left: $dropdown-item-padding-x*1.5;
         }
 
-        .o_or_filter {
+        .app_or_filter {
             @include o-position-absolute($left: $dropdown-item-padding-x*.2);
         }
 
-        .o_generator_menu_value {
+        .app_generator_menu_value {
             color: $o-main-text-color; // avoid to inherit .dropdown-item style
 
             .datepickerbutton {
@@ -47,7 +47,7 @@
             }
         }
 
-        .o_generator_menu_delete {
+        .app_generator_menu_delete {
             @include o-hover-opacity(0.8, 1);
             @include o-position-absolute($dropdown-item-padding-x*.3, $dropdown-item-padding-x*.2, auto, auto);
 
@@ -56,7 +56,7 @@
             }
         }
     }
-    .o_add_condition {
+    .app_add_condition {
         line-height: 1.1;
 
         .fa {
@@ -65,7 +65,7 @@
     }
 }
 
-.o_web_client .o_mobile_search {
+.app_web_client .app_mobile_search {
     align-items: normal;
     background-color: var(--mobileSearch-bg, #{$o-white});
     border: none;
@@ -80,14 +80,14 @@
     width: 100%;
     z-index: $zindex-modal;
 
-    .o_mobile_search_header {
+    .app_mobile_search_header {
         background-color: var(--mobileSearch__header-bg, #{$o-brand-app});
         display: flex;
         min-height: $o-navbar-height;
         justify-content: space-between;
         width: 100%;
 
-        .o_mobile_search_button {
+        .app_mobile_search_button {
             color: white;
 
             &:active {
@@ -96,35 +96,35 @@
         }
     }
 
-    .o_mobile_search_content {
+    .app_mobile_search_content {
         flex: auto;
         height: auto;
         overflow-y: auto;
         width: 100%;
 
-        .o_searchview_input_container {
+        .app_searchview_input_container {
             display: flex;
             padding: 15px 20px 0 20px;
             position: relative;
 
-            .o_searchview_input {
+            .app_searchview_input {
                 border-bottom: 1px solid $o-brand-secondary;
                 margin-bottom: 15px;
                 width: 100%;
                 background-color: var(--o-input-background-color, #{$input-bg});
             }
 
-            .o_searchview_facet {
+            .app_searchview_facet {
                 border-radius: 10px;
                 display: inline-flex;
                 order: 1;
 
-                .o_searchview_facet_label {
+                .app_searchview_facet_label {
                     border-radius: 2em 0em 0em 2em;
                 }
             }
 
-            .o_searchview_autocomplete {
+            .app_searchview_autocomplete {
                 top: 100%;
 
                 > li {
@@ -133,7 +133,7 @@
             }
         }
 
-        .o_mobile_search_filter {
+        .app_mobile_search_filter {
             padding: 8px 20px 15%;
             flex: auto;
 
@@ -168,7 +168,7 @@
         }
     }
 
-    .o_mobile_search_footer {
+    .app_mobile_search_footer {
         width: 100%;
     }
 }

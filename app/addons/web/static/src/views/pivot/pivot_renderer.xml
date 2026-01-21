@@ -4,10 +4,10 @@
     <t t-name="web.PivotRenderer">
         <div>
             <t t-call="{{ props.buttonTemplate }}"/>
-            <div t-if="model.hasData() and model.metaData.activeMeasures.length" t-att-class="env.isSmall ? 'table-responsive' : ''" class="o_pivot mx-3">
+            <div t-if="model.hasData() and model.metaData.activeMeasures.length" t-att-class="env.isSmall ? 'table-responsive' : ''" class="app_pivot mx-3">
                 <table
                     class="table-hover table table-sm table-bordered table-borderless"
-                    t-att-class="{ o_enable_linking: !model.metaData.disableLinking }"
+                    t-att-class="{ app_enable_linking: !model.metaData.disableLinking }"
                     t-ref="table"
                 >
                     <thead>
@@ -32,17 +32,17 @@
                                 <t t-set="isInHead" t-value="false"/>
                             </t>
                             <t t-foreach="row.subGroupMeasurements" t-as="cell" t-key="'row_cell_' + cell_index">
-                                <td class="o_pivot_cell_value bg-100" t-att-class="{
-                                        o_empty: cell.value === undefined,
+                                <td class="app_pivot_cell_value bg-100" t-att-class="{
+                                        app_empty: cell.value === undefined,
                                         'cursor-pointer': cell.value !== undefined and !model.metaData.disableLinking,
                                         'fw-bold': cell.isBold,
                                     }" t-custom-click.synthetic="(ev, isMiddleClick) => this.onOpenView(cell, isMiddleClick)"
                                     t-on-mouseover="onMouseEnter" t-on-mouseout="onMouseLeave">
                                     <t t-if="cell.value !== undefined">
-                                        <div t-if="model.metaData.measures[cell.measure].type === 'boolean'" class="o_value">
+                                        <div t-if="model.metaData.measures[cell.measure].type === 'boolean'" class="app_value">
                                             <CheckBox disabled="true" value="cell.value" />
                                         </div>
-                                        <div t-else="" class="o_value">
+                                        <div t-else="" class="app_value">
                                             <t t-set="formattedValue" t-value="getFormattedValue(cell)"/>
                                             <span t-att-data-tooltip="formattedValue.help">
                                                 <t t-esc="formattedValue.value"/>
@@ -80,14 +80,14 @@
             </t>
             <t t-elif="item.options">
                 <Dropdown>
-                    <button class="o_menu_item" t-esc="item.description"/>
+                    <button class="app_menu_item" t-esc="item.description"/>
                     <t t-set-slot="content">
                         <t t-set="subGroup" t-value="null"/>
                         <t t-foreach="item.options" t-as="option" t-key="option.id">
                             <t t-if="subGroup !== null and subGroup !== option.groupNumber">
                                 <div class="dropdown-divider" role="separator"/>
                             </t>
-                            <DropdownItem class="'o_item_option'"
+                            <DropdownItem class="'app_item_option'"
                                 t-esc="option.description"
                                 onSelected="() => this.onGroupBySelected({ itemId: item.id, optionId: option.id})"
                             />
@@ -97,7 +97,7 @@
                 </Dropdown>
             </t>
             <t t-else="">
-                <DropdownItem class="'o_menu_item'"
+                <DropdownItem class="'app_menu_item'"
                     t-esc="item.description"
                     onSelected="() => this.onGroupBySelected({ itemId: item.id })"
                 />
@@ -117,8 +117,8 @@
             t-att-colspan="isXAxis ? cell.width : undefined"
             t-att-rowspan="isXAxis ? cell.height : undefined"
             t-att-class="{
-                o_pivot_header_cell_closed: cell.isLeaf,
-                o_pivot_header_cell_opened: !cell.isLeaf,
+                app_pivot_header_cell_closed: cell.isLeaf,
+                app_pivot_header_cell_opened: !cell.isLeaf,
                 'border-top': isInHead,
             }"
             t-attf-style="{{
@@ -139,9 +139,9 @@
     </t>
 
     <t t-name="web.PivotMeasure">
-        <th class="bg-view text-muted text-center text-nowrap fw-normal o_pivot_measure_row cursor-pointer user-select-none" t-att-colspan="cell.width" t-att-rowspan="cell.height" t-att-class="{
-                o_pivot_sort_order_asc: cell.order === 'asc',
-                o_pivot_sort_order_desc: cell.order === 'desc',
+        <th class="bg-view text-muted text-center text-nowrap fw-normal app_pivot_measure_row cursor-pointer user-select-none" t-att-colspan="cell.width" t-att-rowspan="cell.height" t-att-class="{
+                app_pivot_sort_order_asc: cell.order === 'asc',
+                app_pivot_sort_order_desc: cell.order === 'desc',
             }" t-on-click.prevent="() => this.onMeasureClick(cell)" t-on-mouseover="onMouseEnter" t-on-mouseout="onMouseLeave">
             <t t-esc="cell.title"/>
             <i t-if="cell.order === 'asc' || cell.order ==='desc'" t-attf-class="fa fa-caret-{{ cell.order === 'asc' ? 'up' : 'down' }} ms-1"/>

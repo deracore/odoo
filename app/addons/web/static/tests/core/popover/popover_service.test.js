@@ -19,19 +19,19 @@ test("simple use", async () => {
         static props = ["*"];
     }
 
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     const remove = getService("popover").add(target, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     remove();
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test("close on click away", async () => {
@@ -43,14 +43,14 @@ test("close on click away", async () => {
     getService("popover").add(target, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     await click(document.body);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test("close on click away when loading", async () => {
@@ -68,20 +68,20 @@ test("close on click away when loading", async () => {
     getService("popover").add(target, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 
     click(document.body);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 
     def.resolve();
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -94,14 +94,14 @@ test("close on 'Escape' keydown", async () => {
     getService("popover").add(target, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     await press("Escape");
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test("do not close on click away", async () => {
@@ -113,20 +113,20 @@ test("do not close on click away", async () => {
     const remove = getService("popover").add(target, Comp, {}, { closeOnClickAway: false });
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     await click(document.body);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     remove();
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test("close callback", async () => {
@@ -157,14 +157,14 @@ test("sub component triggers close", async () => {
     getService("popover").add(target, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     await click("#comp");
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test("close popover if target is removed", async () => {
@@ -178,14 +178,14 @@ test("close popover if target is removed", async () => {
     getService("popover").add(popoverTarget, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     popoverTarget.remove();
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp").toHaveCount(0);
 });
 
 test("close and do not crash if target parent does not exist", async () => {
@@ -224,12 +224,12 @@ test("keep popover if target sibling is removed", async () => {
     getService("popover").add(target, Comp);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 
     target.querySelector("#sibling").remove();
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp").toHaveCount(1);
 });

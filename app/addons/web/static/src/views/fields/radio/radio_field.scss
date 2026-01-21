@@ -1,30 +1,30 @@
-.o_field_radio {
+.app_field_radio {
     > span, > button {
         flex: 0 0 auto;
     }
     @include media-breakpoint-down(md) {
         display: inline-block;
     }
-    .o_radio_input {
+    .app_radio_input {
         outline: none;
     }
 
-    .o_radio_item {
+    .app_radio_item {
         flex: 0 0 auto;
     }
 
-    .o_horizontal {
+    .app_horizontal {
         display: inline-flex;
         flex-wrap: wrap;
 
-        .o_radio_item {
+        .app_radio_item {
             margin-right: $o-form-spacing-unit * 2;
         }
     }
 
-    .o_vertical {
+    .app_vertical {
         flex-flow: column nowrap;
-        .o_radio_item {
+        .app_radio_item {
             margin-bottom: $o-form-spacing-unit;
         }
     }

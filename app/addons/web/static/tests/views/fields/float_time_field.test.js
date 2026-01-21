@@ -39,17 +39,17 @@ test("FloatTimeField in form view", async () => {
     });
 
     // 9 + 0.1 * 60 = 9.06
-    expect(".o_field_float_time[name=qux] input").toHaveValue("09:06", {
+    expect(".app_field_float_time[name=qux] input").toHaveValue("09:06", {
         message: "The value should be rendered correctly in the input.",
     });
 
-    await contains(".o_field_float_time[name=qux] input").edit("-11:48");
-    expect(".o_field_float_time[name=qux] input").toHaveValue("-11:48", {
+    await contains(".app_field_float_time[name=qux] input").edit("-11:48");
+    expect(".app_field_float_time[name=qux] input").toHaveValue("-11:48", {
         message: "The new value should be displayed properly in the input.",
     });
 
     await clickSave();
-    expect(".o_field_widget input").toHaveValue("-11:48", {
+    expect(".app_field_widget input").toHaveValue("-11:48", {
         message: "The new value should be saved and displayed properly.",
     });
 });
@@ -71,17 +71,17 @@ test("FloatTimeField value formatted on blur", async () => {
         resId: 5,
     });
 
-    expect(".o_field_widget input").toHaveValue("09:06", {
+    expect(".app_field_widget input").toHaveValue("09:06", {
         message: "The formatted time value should be displayed properly.",
     });
 
-    await contains(".o_field_float_time[name=qux] input").edit("9.5");
-    expect(".o_field_float_time[name=qux] input").toHaveValue("09:30", {
+    await contains(".app_field_float_time[name=qux] input").edit("9.5");
+    expect(".app_field_float_time[name=qux] input").toHaveValue("09:30", {
         message: "The new value should be displayed properly in the input.",
     });
 
     await clickSave();
-    expect(".o_field_widget input").toHaveValue("09:30", {
+    expect(".app_field_widget input").toHaveValue("09:30", {
         message: "The new value should be saved and displayed properly.",
     });
 });
@@ -96,14 +96,14 @@ test("FloatTimeField with invalid value", async () => {
             </form>`,
     });
 
-    await contains(".o_field_float_time[name=qux] input").edit("blabla");
+    await contains(".app_field_float_time[name=qux] input").edit("blabla");
     await clickSave();
-    expect(".o_notification_content").toHaveText("Missing required fields");
-    expect(".o_notification_bar").toHaveClass("bg-danger");
-    expect(".o_field_float_time[name=qux]").toHaveClass("o_field_invalid");
+    expect(".app_notification_content").toHaveText("Missing required fields");
+    expect(".app_notification_bar").toHaveClass("bg-danger");
+    expect(".app_field_float_time[name=qux]").toHaveClass("app_field_invalid");
 
-    await contains(".o_field_float_time[name=qux] input").edit("6.5");
-    expect(".o_field_float_time[name=qux] input").not.toHaveClass("o_field_invalid", {
+    await contains(".app_field_float_time[name=qux] input").edit("6.5");
+    expect(".app_field_float_time[name=qux] input").not.toHaveClass("app_field_invalid", {
         message: "date field should not be displayed as invalid now",
     });
 });
@@ -118,5 +118,5 @@ test("float_time field does not have an inputmode attribute", async () => {
             </form>`,
     });
 
-    expect(".o_field_widget[name='qux'] input").not.toHaveAttribute("inputmode");
+    expect(".app_field_widget[name='qux'] input").not.toHaveAttribute("inputmode");
 });

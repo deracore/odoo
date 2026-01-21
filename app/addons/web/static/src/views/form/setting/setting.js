@@ -38,7 +38,7 @@ export class Setting extends Component {
     get classNames() {
         const { class: _class } = this.props;
         const classNames = {
-            o_setting_box: true,
+            app_setting_box: true,
             "col-12": true,
             "col-lg-6": true,
             [_class]: Boolean(_class),

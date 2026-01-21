@@ -40,5 +40,5 @@ export function getGraphRenderer(graph) {
 }
 
 export function selectMode(el, mode) {
-    return click(el, `.o_graph_button[data-mode="${mode}"`);
+    return click(el, `.app_graph_button[data-mode="${mode}"`);
 }

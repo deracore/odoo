@@ -1,7 +1,7 @@
 
 // = Main Navbar
 // ============================================================================
-.o_main_navbar {
+.app_main_navbar {
     @include print-variable(o-navbar-height, $o-navbar-height);
 
     --Dropdown_menu-margin-y: 0;
@@ -29,7 +29,7 @@
     // = General components & behaviours
     // --------------------------------------------------------------------------
 
-    .o_menu_toggle {
+    .app_menu_toggle {
         --NavBar-entry-padding-left: #{$o-horizontal-padding};
         --NavBar-entry-padding-right: #{$o-horizontal-padding * .5};
 
@@ -43,7 +43,7 @@
 
         // Define a local mixin to handle the toggle state
         // --------------------------------------------------------------------
-        @mixin o_main_navbar_toggler_toggled() {
+        @mixin app_main_navbar_toggler_toggled() {
             rect {
                 width: 6px;
                 height: 3px;
@@ -68,25 +68,25 @@
             }
         }
 
-        &.o_menu_toggle_back {
-            @include o_main_navbar_toggler_toggled();
+        &.app_menu_toggle_back {
+            @include app_main_navbar_toggler_toggled();
             transform: translateX(25%) rotateY(-180deg);
         }
 
         // Animate on large screen without 'reduced-motion' only.
         // --------------------------------------------------------------------
         @include media-breakpoint-up(md) {
-            &.hasImage:not(.o_menu_toggle_back) {
-                .o_menu_toggle_icon {
+            &.hasImage:not(.app_menu_toggle_back) {
+                .app_menu_toggle_icon {
                     opacity: 0;
                 }
 
                 &:hover {
-                    .o_menu_toggle_icon {
+                    .app_menu_toggle_icon {
                         opacity: 1;
                     }
 
-                    .o_menu_brand_icon {
+                    .app_menu_brand_icon {
                         opacity: 0;
                     }
                 }
@@ -94,7 +94,7 @@
 
             @media screen and (prefers-reduced-motion: no-preference) {
                 &:hover {
-                    @include o_main_navbar_toggler_toggled();
+                    @include app_main_navbar_toggler_toggled();
                 }
 
                 &, g {
@@ -105,31 +105,31 @@
                     transition: all .1s;
                 }
 
-                &.hasImage:not(.o_menu_toggle_back) {
+                &.hasImage:not(.app_menu_toggle_back) {
                     transform: none;
                     transition: none;
 
-                    .o_menu_toggle_icon, .o_menu_brand_icon, .o_menu_brand {
+                    .app_menu_toggle_icon, .app_menu_brand_icon, .app_menu_brand {
                         will-change: transform;
                         transition: all 0.1s;
                     }
 
-                    .o_menu_toggle_icon {
+                    .app_menu_toggle_icon {
                         transform: translateX(75%);
                     }
 
                     &:hover {
-                        .o_menu_toggle_icon {
+                        .app_menu_toggle_icon {
                             transform: translateX(25%);
                             transition: all .4s;
                         }
 
-                        .o_menu_brand_icon {
+                        .app_menu_brand_icon {
                             transform: rotateY(-90deg);
                             transition: all .2s;
                         }
 
-                        .o_menu_brand {
+                        .app_menu_brand {
                             transform: translateX(-#{map-get($spacers, 2)});
                             transition: all .4s;
                         }
@@ -137,21 +137,21 @@
                 }
             }
 
-            .o_menu_brand_icon {
+            .app_menu_brand_icon {
                 width: calc(var(--o-navbar-height) - #{$o-navbar-padding-v * 2} + #{map-get($spacers, 1)});
                 object-fit: cover;
             }
         }
     }
 
-    .o_nav_entry, .dropdown-toggle:not(.o-dropdown-toggle-custo) {
+    .app_nav_entry, .dropdown-toggle:not(.app-dropdown-toggle-custo) {
         @extend %-main-navbar-entry-base;
         @extend %-main-navbar-entry-spacing;
         border-color: transparent;
     }
 
-    .o_menu_sections {
-        .o_nav_entry, .dropdown-toggle {
+    .app_menu_sections {
+        .app_nav_entry, .dropdown-toggle {
             background: var(--NavBar-entry-backgroundColor, #{$o-navbar-background});
             border: $border-width solid transparent;
 
@@ -179,28 +179,28 @@
       margin-top: 0;
     }
 
-    .dropdown-item + .dropdown-header:not(.o_more_dropdown_section_group) {
+    .dropdown-item + .dropdown-header:not(.app_more_dropdown_section_group) {
       margin-top: .3em;
     }
 
-    .o_dropdown_menu_group_entry.dropdown-item {
-        padding-left: $o-dropdown-hpadding * 1.5;
+    .app_dropdown_menu_group_entry.dropdown-item {
+        padding-left: $app-dropdown-hpadding * 1.5;
 
-        + .dropdown-item:not(.o_dropdown_menu_group_entry) {
+        + .dropdown-item:not(.app_dropdown_menu_group_entry) {
             margin-top: .8em;
         }
     }
 
     // = Navbar Sections & Children
     // --------------------------------------------------------------------------
-    .o_navbar_apps_menu .dropdown-toggle {
+    .app_navbar_apps_menu .dropdown-toggle {
         --NavBar-entry-padding-left: #{$o-horizontal-padding};
 
         @extend %-main-navbar-entry-base;
         font-size: $o-navbar-brand-font-size;
     }
 
-    .o_menu_brand {
+    .app_menu_brand {
         @extend %-main-navbar-entry-base;
         @extend %-main-navbar-entry-spacing;
         padding-left: 0;
@@ -211,12 +211,12 @@
         }
     }
 
-    .o_menu_brand, .o_navbar_breadcrumbs, .o_navbar_breadcrumbs .btn {
+    .app_menu_brand, .app_navbar_breadcrumbs, .app_navbar_breadcrumbs .btn {
         color: var(--NavBar-brand-color, #{$o-navbar-brand-color});
     }
 
-    .o_menu_sections {
-        .o_more_dropdown_section_group {
+    .app_menu_sections {
+        .app_more_dropdown_section_group {
             margin-top: .8em;
 
             &:first-child {
@@ -226,7 +226,7 @@
         }
     }
 
-    .o_menu_systray {
+    .app_menu_systray {
         --NavBar-entry-padding-left: #{$o-navbar-entry-padding-h * 0.5};
         --NavBar-entry-padding-right: #{$o-navbar-entry-padding-h * 0.5};
 
@@ -246,7 +246,7 @@
 
 // = SuperUser Design
 // ============================================================================
-body.o_is_superuser .o_menu_systray {
+body.app_is_superuser .app_menu_systray {
     border-image: repeating-linear-gradient(135deg, #d9b904, #d9b904 10px, #373435 10px, #373435 20px) 2;
     border-image-width: map-get($border-widths, 2);
 }

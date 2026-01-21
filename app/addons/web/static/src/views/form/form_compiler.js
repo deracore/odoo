@@ -224,11 +224,11 @@ export class FormCompiler extends ViewCompiler {
             ? `d-flex d-print-block {{ __comp__.uiService.size < ${SIZES.XXL} ? "flex-column" : "flex-nowrap h-100" }}`
             : "d-block";
         const stateClasses =
-            "{{ __comp__.props.record.dirty ? 'o_form_dirty' : !__comp__.props.record.isNew ? 'o_form_saved' : '' }}";
+            "{{ __comp__.props.record.dirty ? 'app_form_dirty' : !__comp__.props.record.isNew ? 'app_form_saved' : '' }}";
         const form = createElement("div", {
-            class: "o_form_renderer",
+            class: "app_form_renderer",
             "t-att-class": "__comp__.props.class",
-            "t-attf-class": `{{__comp__.props.record.isInEdition ? 'o_form_editable' : 'o_form_readonly'}} ${displayClasses} ${stateClasses}`,
+            "t-attf-class": `{{__comp__.props.record.isInEdition ? 'app_form_editable' : 'app_form_readonly'}} ${displayClasses} ${stateClasses}`,
         });
         if (!sheetNode) {
             for (const child of el.childNodes) {
@@ -238,7 +238,7 @@ export class FormCompiler extends ViewCompiler {
                     append(form, this.compileNode(child, params));
                 }
             }
-            form.classList.add("o_form_nosheet");
+            form.classList.add("app_form_nosheet");
         } else {
             let compiledList = [];
             for (const child of el.childNodes) {
@@ -362,14 +362,14 @@ export class FormCompiler extends ViewCompiler {
                     mainSlot.setAttribute("subType", "'item_component'");
                 }
             } else {
-                // TODO: When every apps will be revamp, we could remove the condition using 'o_td_label' in favor of 'o_wrap_label'
+                // TODO: When every apps will be revamp, we could remove the condition using 'app_td_label' in favor of 'app_wrap_label'
                 if (
-                    child.classList.contains("o_wrap_label") ||
-                    child.classList.contains("o_td_label") ||
+                    child.classList.contains("app_wrap_label") ||
+                    child.classList.contains("app_td_label") ||
                     getTag(child, true) === "label"
                 ) {
                     mainSlot.setAttribute("subType", "'label'");
-                    child.classList.remove("o_wrap_label");
+                    child.classList.remove("app_wrap_label");
                 }
                 slotContent = this.compileNode(child, { ...params, currentSlot: mainSlot }, false);
             }
@@ -442,7 +442,7 @@ export class FormCompiler extends ViewCompiler {
         const statusBar = createElement("div", {
             "t-att-class": "{ 'shadow-sm': __comp__.state.isStatusbarStickyPinned }",
         });
-        statusBar.className = "o_form_statusbar d-flex justify-content-between py-2";
+        statusBar.className = "app_form_statusbar d-flex justify-content-between py-2";
         const buttons = [];
         const others = [];
         for (const child of el.childNodes) {
@@ -653,10 +653,10 @@ export class FormCompiler extends ViewCompiler {
         const sheetBG = createElement("div", {
             "t-on-scroll": "__comp__.onScrollThrottled",
         });
-        sheetBG.className = "o_form_sheet_bg";
+        sheetBG.className = "app_form_sheet_bg";
 
         const sheetFG = createElement("div");
-        sheetFG.className = "o_form_sheet position-relative";
+        sheetFG.className = "app_form_sheet position-relative";
 
         append(sheetBG, sheetFG);
         for (const child of el.childNodes) {

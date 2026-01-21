@@ -68,13 +68,13 @@ export class TimePicker extends Component {
 
     get cssClass() {
         return mergeClasses(this.props.cssClass, {
-            o_time_picker_seconds: this.props.showSeconds,
+            app_time_picker_seconds: this.props.showSeconds,
         });
     }
 
     get inputCssClass() {
         return mergeClasses(this.props.inputCssClass, {
-            o_invalid: !this.state.isValid,
+            app_invalid: !this.state.isValid,
         });
     }
 

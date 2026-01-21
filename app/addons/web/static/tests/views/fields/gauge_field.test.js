@@ -46,9 +46,9 @@ test("GaugeField in kanban view", async () => {
         </kanban>`,
     });
 
-    expect(".o_kanban_record:not(.o_kanban_ghost)").toHaveCount(2);
-    expect(".o_field_widget[name=int_field] .oe_gauge canvas").toHaveCount(2);
-    expect(queryAllTexts(".o_gauge_value")).toEqual(["10", "4"]);
+    expect(".app_kanban_record:not(.app_kanban_ghost)").toHaveCount(2);
+    expect(".app_field_widget[name=int_field] .oe_gauge canvas").toHaveCount(2);
+    expect(queryAllTexts(".app_gauge_value")).toEqual(["10", "4"]);
 });
 
 test("GaugeValue supports max_value option", async () => {
@@ -82,6 +82,6 @@ test("GaugeValue supports max_value option", async () => {
     });
 
     expect.verifySteps(["gauge mounted"]);
-    expect(".o_field_widget[name=int_field] .oe_gauge canvas").toHaveCount(1);
-    expect(".o_gauge_value").toHaveText("10");
+    expect(".app_field_widget[name=int_field] .oe_gauge canvas").toHaveCount(1);
+    expect(".app_gauge_value").toHaveText("10");
 });

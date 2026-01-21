@@ -53,26 +53,26 @@ test("signature can be drawn", async () => {
         arch: /* xml */ `<form><field name="sign" widget="signature" /></form>`,
     });
 
-    expect("div[name=sign] img.o_signature").toHaveCount(0);
-    expect("div[name=sign] div.o_signature svg").toHaveCount(1, {
+    expect("div[name=sign] img.app_signature").toHaveCount(0);
+    expect("div[name=sign] div.app_signature svg").toHaveCount(1, {
         message: "should have a valid signature widget",
     });
 
     // Click on the widget to open signature modal
-    await click("div[name=sign] div.o_signature");
+    await click("div[name=sign] div.app_signature");
     await waitFor(".modal .modal-body");
-    expect(".modal .modal-body .o_web_sign_name_and_signature").toHaveCount(1);
+    expect(".modal .modal-body .app_web_sign_name_and_signature").toHaveCount(1);
     expect(".modal .btn.btn-primary:not([disabled])").toHaveCount(0);
 
     // Use a drag&drop simulation to draw a signature
-    const { drop } = await drag(".modal .o_web_sign_signature", {
+    const { drop } = await drag(".modal .app_web_sign_signature", {
         position: {
             x: 1,
             y: 1,
         },
         relative: true,
     });
-    await drop(".modal .o_web_sign_signature", {
+    await drop(".modal .app_web_sign_signature", {
         position: {
             x: 10, // Arbitrary value
             y: 10, // Arbitrary value
@@ -88,10 +88,10 @@ test("signature can be drawn", async () => {
     expect(".modal").toHaveCount(0);
 
     // The signature widget should now display the signature img
-    expect("div[name=sign] div.o_signature svg").toHaveCount(0);
-    expect("div[name=sign] img.o_signature").toHaveCount(1);
+    expect("div[name=sign] div.app_signature svg").toHaveCount(0);
+    expect("div[name=sign] img.app_signature").toHaveCount(1);
 
-    const signImgSrc = queryFirst("div[name=sign] img.o_signature").dataset.src;
+    const signImgSrc = queryFirst("div[name=sign] img.app_signature").dataset.src;
     expect(signImgSrc).not.toMatch("placeholder");
     expect(signImgSrc).toMatch(/^data:image\/png;base64,/);
 });
@@ -115,16 +115,16 @@ test("Set simple field in 'full_name' node option", async () => {
             </form>`,
     });
 
-    expect("div[name=sign] div.o_signature svg").toHaveCount(1, {
+    expect("div[name=sign] div.app_signature svg").toHaveCount(1, {
         message: "should have a valid signature widget",
     });
     // Click on the widget to open signature modal
-    await click("div[name=sign] div.o_signature");
+    await click("div[name=sign] div.app_signature");
     await animationFrame();
-    expect(".modal .modal-body a.o_web_sign_auto_button").toHaveCount(1, {
+    expect(".modal .modal-body a.app_web_sign_auto_button").toHaveCount(1, {
         message: 'should open a modal with "Auto" button',
     });
-    expect(".o_web_sign_auto_button").toHaveClass("active", {
+    expect(".app_web_sign_auto_button").toHaveClass("active", {
         message: "'Auto' panel is visible by default",
     });
     expect.verifySteps(["Pop's Chock'lit"]);
@@ -150,15 +150,15 @@ test("Set m2o field in 'full_name' node option", async () => {
             </form>`,
     });
 
-    expect("div[name=sign] div.o_signature svg").toHaveCount(1, {
+    expect("div[name=sign] div.app_signature svg").toHaveCount(1, {
         message: "should have a valid signature widget",
     });
 
     // Click on the widget to open signature modal
-    await click("div[name=sign] div.o_signature");
+    await click("div[name=sign] div.app_signature");
     await waitFor(".modal .modal-body");
 
-    expect(".modal .modal-body a.o_web_sign_auto_button").toHaveCount(1, {
+    expect(".modal .modal-body a.app_web_sign_auto_button").toHaveCount(1, {
         message: 'should open a modal with "Auto" button',
     });
     expect.verifySteps(["Veggie Burger"]);
@@ -181,17 +181,17 @@ test("Set size (width and height) in node option", async () => {
             </form>`,
     });
 
-    expect(".o_signature").toHaveCount(3);
+    expect(".app_signature").toHaveCount(3);
 
-    expect("[name='sign'] .o_signature").toHaveStyle({
+    expect("[name='sign'] .app_signature").toHaveStyle({
         width: "150px",
         height: "50px",
     });
-    expect("[name='sign2'] .o_signature").toHaveStyle({
+    expect("[name='sign2'] .app_signature").toHaveStyle({
         width: "300px",
         height: "100px",
     });
-    expect("[name='sign3'] .o_signature").toHaveStyle({
+    expect("[name='sign3'] .app_signature").toHaveStyle({
         width: "120px",
         height: "40px",
     });
@@ -206,17 +206,17 @@ test("clicking save manually after changing signature should change the unique o
     rec.sign = "3 kb";
     rec.write_date = "2022-08-05 08:37:00"; // 1659688620000
     const fillSignatureField = async (lineToX, lineToY) => {
-        await click(".o_field_signature img", { visible: false });
+        await click(".app_field_signature img", { visible: false });
         await waitFor(".modal .modal-body");
         expect(".modal canvas").toHaveCount(1);
-        const { drop } = await drag(".modal .o_web_sign_signature", {
+        const { drop } = await drag(".modal .app_web_sign_signature", {
             position: {
                 x: 1,
                 y: 1,
             },
             relative: true,
         });
-        await drop(".modal .o_web_sign_signature", {
+        await drop(".modal .app_web_sign_signature", {
             position: {
                 x: lineToX,
                 y: lineToY,
@@ -249,21 +249,21 @@ test("clicking save manually after changing signature should change the unique o
                 <field name="sign" widget="signature" />
             </form>`,
     });
-    expect(getUnique(queryFirst(".o_field_signature img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_signature img"))).toBe("1659688620000");
 
     await fillSignatureField(0, 2);
-    await click(".o_field_widget[name='foo'] input");
+    await click(".app_field_widget[name='foo'] input");
     await edit("grrr", { confirm: "Enter" });
     await runAllTimers();
     await animationFrame();
     await clickSave();
     expect.verifySteps(["web_save"]);
-    expect(getUnique(queryFirst(".o_field_signature img"))).toBe("1659692220000");
+    expect(getUnique(queryFirst(".app_field_signature img"))).toBe("1659692220000");
 
     await fillSignatureField(2, 0);
     await clickSave();
     expect.verifySteps(["web_save"]);
-    expect(getUnique(queryFirst(".o_field_signature img"))).toBe("1659695820000");
+    expect(getUnique(queryFirst(".app_field_signature img"))).toBe("1659695820000");
 });
 
 test("save record with signature field modified by onchange", async () => {
@@ -298,7 +298,7 @@ test("save record with signature field modified by onchange", async () => {
                 <field name="sign" widget="signature" />
             </form>`,
     });
-    expect(getUnique(queryFirst(".o_field_signature img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_signature img"))).toBe("1659688620000");
     await click("[name='foo'] input");
     await edit("grrr", { confirm: "Enter" });
     await runAllTimers();
@@ -306,7 +306,7 @@ test("save record with signature field modified by onchange", async () => {
     expect(queryFirst("div[name=sign] img").dataset.src).toBe(`data:image/png;base64,${MYB64}`);
 
     await clickSave();
-    expect(getUnique(queryFirst(".o_field_signature img"))).toBe("1659692220000");
+    expect(getUnique(queryFirst(".app_field_signature img"))).toBe("1659692220000");
     expect.verifySteps(["web_save"]);
 });
 
@@ -330,14 +330,14 @@ test("signature field should render initials", async () => {
             </form>`,
     });
 
-    expect("div[name=sign] div.o_signature svg").toHaveCount(1, {
+    expect("div[name=sign] div.app_signature svg").toHaveCount(1, {
         message: "should have a valid signature widget",
     });
 
     // Click on the widget to open signature modal
-    await click("div[name=sign] div.o_signature");
+    await click("div[name=sign] div.app_signature");
     await animationFrame();
-    expect(".modal .modal-body a.o_web_sign_auto_button").toHaveCount(1, {
+    expect(".modal .modal-body a.app_web_sign_auto_button").toHaveCount(1, {
         message: 'should open a modal with "Auto" button',
     });
     expect.verifySteps(["V.B."]);

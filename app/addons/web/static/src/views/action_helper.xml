@@ -2,10 +2,10 @@
 <templates xml:space="preserve">
 
     <t t-name="web.ActionHelper">
-        <div class="o_view_nocontent">
-            <div class="o_nocontent_help">
+        <div class="app_view_nocontent">
+            <div class="app_nocontent_help">
                 <t t-if="showDefaultHelper">
-                    <p class="o_view_nocontent_empty_folder">
+                    <p class="app_view_nocontent_empty_folder">
                         <t t-if="title" t-esc="title"/>
                         <t t-else="">No data to display</t>
                     </p>

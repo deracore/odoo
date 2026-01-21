@@ -76,10 +76,10 @@ export const checkTooltip = (view, { title, lines }, index, datasetIndex = null)
         lineValues.push(String(line.value));
     }
 
-    expect(`.o_graph_custom_tooltip`).toHaveCount(1);
-    expect(`table thead tr th.o_measure`).toHaveText(title || "Count");
-    expect(queryAllTexts(`table tbody tr td small.o_label`)).toEqual(lineLabels);
-    expect(queryAllTexts(`table tbody tr td.o_value`)).toEqual(lineValues);
+    expect(`.app_graph_custom_tooltip`).toHaveCount(1);
+    expect(`table thead tr th.app_measure`).toHaveText(title || "Count");
+    expect(queryAllTexts(`table tbody tr td small.app_label`)).toEqual(lineLabels);
+    expect(queryAllTexts(`table tbody tr td.app_value`)).toEqual(lineValues);
 };
 
 /**
@@ -100,7 +100,7 @@ export const getGraphModelMetaData = (view) => getGraphModel(view).metaData;
 /**
  * @param {GraphMode} mode
  */
-export const getModeButton = (mode) => queryOne`.o_graph_button[data-mode=${mode}]`;
+export const getModeButton = (mode) => queryOne`.app_graph_button[data-mode=${mode}]`;
 
 /**
  * @param {GraphView} view

@@ -1,10 +1,10 @@
-.o_calendar_filter {
-    .o_calendar_filter_item {
-        button.o_remove {
+.app_calendar_filter {
+    .app_calendar_filter_item {
+        button.app_remove {
             display: none;
         }
         &:hover {
-            button.o_remove {
+            button.app_remove {
                 display: block;
             }
         }

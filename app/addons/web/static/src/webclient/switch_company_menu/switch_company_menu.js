@@ -221,7 +221,7 @@ export class SwitchCompanyMenu extends Component {
                     if (!navItem) {
                         return;
                     }
-                    if (navItem.el.classList.contains("o_switch_company_item")) {
+                    if (navItem.el.classList.contains("app_switch_company_item")) {
                         const companyId = parseInt(navItem.el.dataset.companyId);
                         this.companySelector.switchCompany("toggle", companyId);
                     }
@@ -231,7 +231,7 @@ export class SwitchCompanyMenu extends Component {
                     if (!navItem) {
                         return;
                     }
-                    if (navItem.el.classList.contains("o_switch_company_item")) {
+                    if (navItem.el.classList.contains("app_switch_company_item")) {
                         const companyId = parseInt(navItem.el.dataset.companyId);
                         this.companySelector.switchCompany("loginto", companyId);
                         this.dropdown.close();

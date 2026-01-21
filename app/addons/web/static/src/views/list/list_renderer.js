@@ -73,12 +73,12 @@ const formatters = registry.category("formatters");
 const DEFAULT_GROUP_PAGER_COLSPAN = 1;
 
 const FIELD_CLASSES = {
-    char: "o_list_char",
-    float: "o_list_number",
-    integer: "o_list_number",
-    monetary: "o_list_number",
-    text: "o_list_text",
-    many2one: "o_list_many2one",
+    char: "app_list_char",
+    float: "app_list_number",
+    integer: "app_list_number",
+    monetary: "app_list_number",
+    text: "app_list_text",
+    many2one: "app_list_many2one",
 };
 
 /**
@@ -175,7 +175,7 @@ export class ListRenderer extends Component {
             this.activeElement = this.uiService.activeElement;
         });
         onWillPatch(() => {
-            const activeRow = document.activeElement.closest(".o_data_row.o_selected_row");
+            const activeRow = document.activeElement.closest(".app_data_row.app_selected_row");
             this.activeRowId = activeRow ? activeRow.dataset.id : null;
         });
         this.optionalActiveFields = this.props.optionalActiveFields || {};
@@ -226,8 +226,8 @@ export class ListRenderer extends Component {
             enable: () => this.canResequenceRows,
             // Params
             ref: this.rootRef,
-            elements: ".o_row_draggable",
-            handle: ".o_handle_cell",
+            elements: ".app_row_draggable",
+            handle: ".app_handle_cell",
             cursor: "grabbing",
             placeholderClasses: ["d-table-row"],
             // Hooks
@@ -250,7 +250,7 @@ export class ListRenderer extends Component {
                 const nextTh = this.tableRef.el.querySelector("thead th");
                 const toFocus = getElementToFocus(nextTh);
                 this.focus(toFocus);
-                this.tableRef.el.querySelector("tbody").classList.add("o_keyboard_navigation");
+                this.tableRef.el.querySelector("tbody").classList.add("app_keyboard_navigation");
             });
         }
 
@@ -555,7 +555,7 @@ export class ListRenderer extends Component {
             // refactor
             if (!this.isCellReadonly(column, this.editedRecord)) {
                 const cell = this.tableRef.el.querySelector(
-                    `.o_selected_row td[name='${column.name}']`
+                    `.app_selected_row td[name='${column.name}']`
                 );
                 if (cell) {
                     const toFocus = getElementToFocus(cell);
@@ -865,7 +865,7 @@ export class ListRenderer extends Component {
     getColumnClass(column) {
         const classNames = ["align-middle"];
         if (this.isSortable(column)) {
-            classNames.push("o_column_sortable", "position-relative", "cursor-pointer");
+            classNames.push("app_column_sortable", "position-relative", "cursor-pointer");
         } else {
             classNames.push("cursor-default");
         }
@@ -879,13 +879,13 @@ export class ListRenderer extends Component {
             classNames.push("table-active");
         }
         if (this.isNumericColumn(column)) {
-            classNames.push("o_list_number_th");
+            classNames.push("app_list_number_th");
         }
         if (column.type === "button_group") {
-            classNames.push("o_list_button");
+            classNames.push("app_list_button");
         }
         if (column.widget) {
-            classNames.push(`o_${column.widget}_cell`);
+            classNames.push(`app_${column.widget}_cell`);
         }
 
         return classNames.join(" ");
@@ -939,15 +939,15 @@ export class ListRenderer extends Component {
         if (record.selected) {
             classNames.push("table-info");
         }
-        // "o_selected_row" classname for the potential row in edition
+        // "app_selected_row" classname for the potential row in edition
         if (record.isInEdition) {
-            classNames.push("o_selected_row");
+            classNames.push("app_selected_row");
         }
         if (record.selected) {
-            classNames.push("o_data_row_selected");
+            classNames.push("app_data_row_selected");
         }
         if (this.canResequenceRows) {
-            classNames.push("o_row_draggable");
+            classNames.push("app_row_draggable");
         }
         return classNames.join(" ");
     }
@@ -962,11 +962,11 @@ export class ListRenderer extends Component {
         }
 
         if (!this.cellClassByColumn[column.id]) {
-            const classNames = ["o_data_cell"];
+            const classNames = ["app_data_cell"];
             if (column.type === "button_group") {
-                classNames.push("o_list_button");
+                classNames.push("app_list_button");
             } else if (column.type === "field") {
-                classNames.push("o_field_cell");
+                classNames.push("app_field_cell");
                 if (column.attrs && column.attrs.class && this.canUseFormatter(column, record)) {
                     classNames.push(column.attrs.class);
                 }
@@ -975,7 +975,7 @@ export class ListRenderer extends Component {
                     classNames.push(typeClass);
                 }
                 if (column.widget) {
-                    classNames.push(`o_${column.widget}_cell`);
+                    classNames.push(`app_${column.widget}_cell`);
                 }
             }
             this.cellClassByColumn[column.id] = classNames;
@@ -983,13 +983,13 @@ export class ListRenderer extends Component {
         const classNames = [...this.cellClassByColumn[column.id]];
         if (column.type === "field") {
             if (evaluateBooleanExpr(column.required, record.evalContextWithVirtualIds)) {
-                classNames.push("o_required_modifier");
+                classNames.push("app_required_modifier");
             }
             if (record.isFieldInvalid(column.name)) {
-                classNames.push("o_invalid_cell");
+                classNames.push("app_invalid_cell");
             }
             if (this.isCellReadonly(column, record)) {
-                classNames.push("o_readonly_modifier");
+                classNames.push("app_readonly_modifier");
             }
             if (this.canUseFormatter(column, record)) {
                 // generate field decorations classNames (only if field-specific decorations
@@ -1245,7 +1245,7 @@ export class ListRenderer extends Component {
         ) {
             if (record.isInEdition && this.editedRecord === record) {
                 const cell = this.tableRef.el.querySelector(
-                    `.o_selected_row td[name='${column.name}']`
+                    `.app_selected_row td[name='${column.name}']`
                 );
                 if (cell && containsActiveElement(cell)) {
                     this.lastEditedCell = { column, record };
@@ -1286,7 +1286,7 @@ export class ListRenderer extends Component {
      * @param {PointerEvent} ev
      */
     async onRemoveCellClicked(record, ev) {
-        const element = ev.target.closest(".o_list_record_remove");
+        const element = ev.target.closest(".app_list_record_remove");
         if (element.dataset.clicked) {
             return;
         }
@@ -1341,9 +1341,9 @@ export class ListRenderer extends Component {
 
                 if (futureRow) {
                     const addCell = [...futureRow.children].find((c) =>
-                        c.classList.contains("o_group_field_row_add")
+                        c.classList.contains("app_group_field_row_add")
                     );
-                    const nextIsGroup = futureRow.classList.contains("o_group_header");
+                    const nextIsGroup = futureRow.classList.contains("app_group_header");
                     const rowTypeSwitched = cellIsInGroupRow !== nextIsGroup;
                     const isGroupToGroup = cellIsInGroupRow && nextIsGroup;
                     if (rowTypeSwitched || isGroupToGroup) {
@@ -1365,9 +1365,9 @@ export class ListRenderer extends Component {
                 futureRow = futureRow || row.parentElement.nextElementSibling?.firstElementChild;
                 if (futureRow) {
                     const addCell = [...futureRow.children].find((c) =>
-                        c.classList.contains("o_group_field_row_add")
+                        c.classList.contains("app_group_field_row_add")
                     );
-                    const nextIsGroup = futureRow.classList.contains("o_group_header");
+                    const nextIsGroup = futureRow.classList.contains("app_group_header");
                     const rowTypeSwitched = cellIsInGroupRow !== nextIsGroup;
                     const isGroupToGroup = cellIsInGroupRow && nextIsGroup;
                     const headerRow = this.tableRef.el.querySelector("thead tr");
@@ -1444,7 +1444,7 @@ export class ListRenderer extends Component {
         if (handled) {
             this.lastCreatingAction = false;
             for (const tbody of this.tableRef.el.getElementsByTagName("tbody")) {
-                tbody.classList.add("o_keyboard_navigation");
+                tbody.classList.add("app_keyboard_navigation");
             }
             ev.preventDefault();
             ev.stopPropagation();
@@ -1483,12 +1483,12 @@ export class ListRenderer extends Component {
         const index = children.indexOf(cell);
         const nextCells = children.slice(index + 1);
         for (const c of nextCells) {
-            if (!c.classList.contains("o_data_cell")) {
+            if (!c.classList.contains("app_data_cell")) {
                 continue;
             }
             if (
                 c.firstElementChild &&
-                c.firstElementChild.classList.contains("o_readonly_modifier")
+                c.firstElementChild.classList.contains("app_readonly_modifier")
             ) {
                 continue;
             }
@@ -1510,12 +1510,12 @@ export class ListRenderer extends Component {
         const index = children.indexOf(cell);
         const previousCells = children.slice(0, index);
         for (const c of previousCells.reverse()) {
-            if (!c.classList.contains("o_data_cell")) {
+            if (!c.classList.contains("app_data_cell")) {
                 continue;
             }
             if (
                 c.firstElementChild &&
-                c.firstElementChild.classList.contains("o_readonly_modifier")
+                c.firstElementChild.classList.contains("app_readonly_modifier")
             ) {
                 continue;
             }
@@ -1808,7 +1808,7 @@ export class ListRenderer extends Component {
                 // TODO this seems bad: refactor this
                 list.leaveEditMode({ discard: true });
                 const firstAddButton = this.tableRef.el.querySelector(
-                    ".o_field_x2many_list_row_add a"
+                    ".app_field_x2many_list_row_add a"
                 );
 
                 if (firstAddButton) {
@@ -1818,11 +1818,11 @@ export class ListRenderer extends Component {
                     const index = children.indexOf(row);
                     for (let i = index + 1; i < children.length; i++) {
                         const row = children[i];
-                        if (row.classList.contains("o_group_header")) {
+                        if (row.classList.contains("app_group_header")) {
                             break;
                         }
                         const addCell = [...row.children].find((c) =>
-                            c.classList.contains("o_group_field_row_add")
+                            c.classList.contains("app_group_field_row_add")
                         );
                         if (addCell) {
                             const toFocus = addCell.querySelector("a");
@@ -1870,7 +1870,7 @@ export class ListRenderer extends Component {
                     return true;
                 }
 
-                if (cell.classList.contains("o_field_x2many_list_row_add")) {
+                if (cell.classList.contains("app_field_x2many_list_row_add")) {
                     // to refactor
                     const a = document.activeElement;
                     toFocus = a.previousElementSibling;
@@ -1884,7 +1884,7 @@ export class ListRenderer extends Component {
                     return true;
                 }
 
-                if (cell.classList.contains("o_field_x2many_list_row_add")) {
+                if (cell.classList.contains("app_field_x2many_list_row_add")) {
                     // This cell contains only <a/> elements, see template.
                     const a = document.activeElement;
                     toFocus = a.nextElementSibling;
@@ -1894,7 +1894,7 @@ export class ListRenderer extends Component {
                 break;
             case "tab":
                 if (cellIsInGroupRow) {
-                    const buttons = Array.from(cell.querySelectorAll(".o_group_buttons button"));
+                    const buttons = Array.from(cell.querySelectorAll(".app_group_buttons button"));
                     const currentButton = document.activeElement.closest("button");
                     const index = buttons.indexOf(currentButton);
                     toFocus = buttons[index + 1] || currentButton;
@@ -1902,7 +1902,7 @@ export class ListRenderer extends Component {
                 break;
             case "shift+tab":
                 if (cellIsInGroupRow) {
-                    const buttons = Array.from(cell.querySelectorAll(".o_group_buttons button"));
+                    const buttons = Array.from(cell.querySelectorAll(".app_group_buttons button"));
                     const currentButton = document.activeElement.closest("button");
                     const index = buttons.indexOf(currentButton);
                     toFocus = buttons[index - 1] || currentButton;
@@ -1932,7 +1932,7 @@ export class ListRenderer extends Component {
                     return false;
                 }
 
-                if (cell.classList.contains("o_list_record_remove")) {
+                if (cell.classList.contains("app_list_record_remove")) {
                     this.onDeleteRecord(record);
                     return true;
                 }
@@ -2130,13 +2130,13 @@ export class ListRenderer extends Component {
             return; // there's no row or group in edition
         }
 
-        this.tableRef.el.querySelector("tbody").classList.remove("o_keyboard_navigation");
+        this.tableRef.el.querySelector("tbody").classList.remove("app_keyboard_navigation");
 
         const target = ev.target;
         if (this.state.showGroupInput && this.groupInputRef.el !== target) {
             this.state.showGroupInput = false;
         }
-        if (this.tableRef.el.contains(target) && target.closest(".o_data_row")) {
+        if (this.tableRef.el.contains(target) && target.closest(".app_data_row")) {
             // ignore clicks inside the table that are originating from a record row
             // as they are handled directly by the renderer.
             return;
@@ -2145,7 +2145,7 @@ export class ListRenderer extends Component {
             return;
         }
         // DateTime picker
-        if (target.closest(".o_datetime_picker")) {
+        if (target.closest(".app_datetime_picker")) {
             return;
         }
         // Legacy autocomplete
@@ -2231,7 +2231,7 @@ export class ListRenderer extends Component {
      * @param {HTMLElement} [params.previous]
      */
     async sortDrop(dataRowId, dataGroupId, { element, previous }) {
-        element.classList.remove("o_row_draggable");
+        element.classList.remove("app_row_draggable");
         const refId = previous ? previous.dataset.id : null;
         try {
             if (dataGroupId) {
@@ -2248,7 +2248,7 @@ export class ListRenderer extends Component {
             }
             await this.resequencePromise;
         } finally {
-            element.classList.add("o_row_draggable");
+            element.classList.add("app_row_draggable");
             await this.props.list.leaveEditMode();
         }
     }

@@ -35,8 +35,8 @@ test(`simple rendering`, async () => {
     });
 
     await toggleSearchBarMenu();
-    expect(`.o_group_by_menu option[disabled]`).toHaveText(`Custom Group`);
-    expect(queryAllTexts`.o_add_custom_group_menu option:not([disabled])`).toEqual([
+    expect(`.app_group_by_menu option[disabled]`).toHaveText(`Custom Group`);
+    expect(queryAllTexts`.app_add_custom_group_menu option:not([disabled])`).toEqual([
         "Birthday",
         "Created on",
         "Date",
@@ -58,7 +58,7 @@ test(`the ID field should not be proposed in "Custom Group" menu`, async () => {
     });
 
     await toggleSearchBarMenu();
-    expect(queryAllTexts`.o_add_custom_group_menu option:not([disabled])`).toEqual(["Foo"]);
+    expect(queryAllTexts`.app_add_custom_group_menu option:not([disabled])`).toEqual(["Foo"]);
 });
 
 test(`stored many2many should be proposed in "Custom Group" menu`, async () => {
@@ -85,7 +85,7 @@ test(`stored many2many should be proposed in "Custom Group" menu`, async () => {
     });
 
     await toggleSearchBarMenu();
-    expect(queryAllTexts`.o_add_custom_group_menu option:not([disabled])`).toEqual([
+    expect(queryAllTexts`.app_add_custom_group_menu option:not([disabled])`).toEqual([
         "Char A",
         "M2M Stored",
     ]);
@@ -110,7 +110,7 @@ test(`add a date field in "Custom Group" activate a groupby with global default 
 
     await toggleSearchBarMenu();
     expect(component.env.searchModel.groupBy).toEqual([]);
-    expect(`.o_add_custom_group_menu`).toHaveCount(1); // Custom Group
+    expect(`.app_add_custom_group_menu`).toHaveCount(1); // Custom Group
 
     await selectGroup("date");
     expect(component.env.searchModel.groupBy).toEqual(["date:month"]);
@@ -138,11 +138,11 @@ test(`click on add custom group toggle group selector`, async () => {
     });
 
     await toggleSearchBarMenu();
-    expect(`.o_add_custom_group_menu option[disabled]`).toHaveText("Custom Group");
+    expect(`.app_add_custom_group_menu option[disabled]`).toHaveText("Custom Group");
 
     // Single select node with a single option
-    expect(`.o_add_custom_group_menu option:not([disabled])`).toHaveCount(1);
-    expect(`.o_add_custom_group_menu option:not([disabled])`).toHaveText("Super Date");
+    expect(`.app_add_custom_group_menu option:not([disabled])`).toHaveCount(1);
+    expect(`.app_add_custom_group_menu option:not([disabled])`).toHaveText("Super Date");
 });
 
 test(`select a field name in Custom Group menu properly trigger the corresponding field`, async () => {
@@ -162,7 +162,7 @@ test(`select a field name in Custom Group menu properly trigger the correspondin
 
     await toggleSearchBarMenu();
     await selectGroup("candle_light");
-    expect(`.o_group_by_menu .o_menu_item`).toHaveCount(2);
-    expect(`.o_add_custom_group_menu`).toHaveCount(1);
+    expect(`.app_group_by_menu .app_menu_item`).toHaveCount(2);
+    expect(`.app_add_custom_group_menu`).toHaveCount(1);
     expect(getFacetTexts()).toEqual(["Candlelight"]);
 });

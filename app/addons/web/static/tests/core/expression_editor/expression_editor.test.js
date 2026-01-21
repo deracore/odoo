@@ -43,7 +43,7 @@ import { pick } from "@web/core/utils/objects";
 
 const SELECTORS = {
     ...treeEditorSELECTORS,
-    debugArea: ".o_expression_editor_debug_container textarea",
+    debugArea: ".app_expression_editor_debug_container textarea",
 };
 
 /**
@@ -193,7 +193,7 @@ test("change path, operator and value", async () => {
         { level: 1, value: ["Bar", label("!="), "blabla"] },
     ]);
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover_item_name:eq(5)").click();
+    await contains(".app_model_field_selector_popover_item_name:eq(5)").click();
     await selectOperator("=");
     await editValue("Doku");
     expect(getTreeEditorContent()).toEqual([
@@ -366,7 +366,7 @@ test("allow selection of boolean field", async () => {
         { level: 1, value: ["Id", label("set")] },
     ]);
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover_item_name").click();
+    await contains(".app_model_field_selector_popover_item_name").click();
     expect(getTreeEditorContent()).toEqual([
         { level: 0, value: "all" },
         { level: 1, value: ["Bar", label("set")] },
@@ -405,7 +405,7 @@ test("no field of type properties in model field selector", async () => {
     expect.verifySteps([`foo == ""`]);
 
     await openModelFieldSelectorPopover();
-    expect(queryAllTexts(".o_model_field_selector_popover_item_name")).toEqual(["Bar", "Foo"]);
+    expect(queryAllTexts(".app_model_field_selector_popover_item_name")).toEqual(["Bar", "Foo"]);
 });
 
 test("no special fields in fields", async () => {
@@ -481,7 +481,7 @@ test(`date: "in range" operator`, async () => {
     });
     await openModelFieldSelectorPopover();
     await contains(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_item_name:eq(2)"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_item_name:eq(2)"
     ).click();
     expect(getCurrentOperator()).toBe(label("in range"));
     expect(getCurrentValue()).toBe("Today");
@@ -554,7 +554,7 @@ test(`date: "in range" operator`, async () => {
     expect(queryOne(`${SELECTORS.valueEditor} select`).value).toBe('"custom range"');
     expect.verifySteps([formatExpr(`date >= "2023-04-20" and date <= "2023-04-20"`)]);
 
-    await contains(".o_datetime_input:last").click();
+    await contains(".app_datetime_input:last").click();
     await contains(getPickerCell("26", true)).click();
     await press("enter");
     await animationFrame();
@@ -580,7 +580,7 @@ test(`datetime: "in range" operator`, async () => {
     });
     await openModelFieldSelectorPopover();
     await contains(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_item_name:eq(3)"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_item_name:eq(3)"
     ).click();
     expect(getCurrentOperator()).toBe(label("in range"));
     expect(getCurrentValue()).toBe("Today");
@@ -683,7 +683,7 @@ test(`datetime: "in range" operator`, async () => {
         formatExpr(`datetime >= "2023-04-20 00:00:00" and datetime <= "2023-04-20 23:59:59"`),
     ]);
 
-    await contains(".o_datetime_input:last").click();
+    await contains(".app_datetime_input:last").click();
     await contains(getPickerCell("26", true)).click();
     await press("enter");
     await animationFrame();

@@ -13,12 +13,12 @@
     </t>
 
     <t t-name="web.StatusBarField">
-        <div class="o_statusbar_status" t-ref="root" role="radiogroup" aria-label="Statusbar">
+        <div class="app_statusbar_status" t-ref="root" role="radiogroup" aria-label="Statusbar">
             <Dropdown position="'bottom-end'">
                 <button
                     t-ref="after"
                     type="button"
-                    class="btn btn-secondary dropdown-toggle o_arrow_button o_first"
+                    class="btn btn-secondary dropdown-toggle app_arrow_button app_first"
                     t-att-disabled="props.isDisabled"
                     aria-label="More..."
                 >
@@ -33,11 +33,11 @@
             <t t-foreach="items.inline" t-as="item" t-key="item.value">
                 <button
                     type="button"
-                    class="btn btn-secondary o_arrow_button"
+                    class="btn btn-secondary app_arrow_button"
                     t-att-class="{
-                        o_first: item_first,
-                        o_arrow_button_current: item.isSelected,
-                        o_last: item_last,
+                        app_first: item_first,
+                        app_arrow_button_current: item.isSelected,
+                        app_last: item_last,
                     }"
                     t-att-disabled="props.isDisabled || item.isSelected"
                     role="radio"
@@ -52,7 +52,7 @@
                 <button
                     t-ref="before"
                     type="button"
-                    class="btn btn-secondary dropdown-toggle o_arrow_button o_last"
+                    class="btn btn-secondary dropdown-toggle app_arrow_button app_last"
                     t-att-disabled="props.isDisabled"
                     aria-label="More..."
                 >
@@ -71,7 +71,7 @@
                     t-ref="dropdown" 
                     type="button" 
                     class="btn btn-secondary dropdown-toggle"
-                    t-att-class="{'o_arrow_button': env.isSmall, 'o_last': selectedIndex === 0 , 'o_first': selectedIndex === allItems.length - 1}"
+                    t-att-class="{'app_arrow_button': env.isSmall, 'app_last': selectedIndex === 0 , 'app_first': selectedIndex === allItems.length - 1}"
                     t-att-disabled="props.isDisabled"
                 >
                     <t t-out="getCurrentLabel()" />

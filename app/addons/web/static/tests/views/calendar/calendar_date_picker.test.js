@@ -37,11 +37,11 @@ test(`Mount a CalendarDatePicker`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="day"/>`,
     });
-    expect(`.o_datetime_picker`).toHaveCount(1);
-    expect(`.o_datetime_picker .o_selected`).toHaveCount(1);
-    expect(`.o_datetime_picker .o_selected`).toHaveText("14");
-    expect(`.o_datetime_picker_header .o_datetime_button`).toHaveText("August 2021");
-    expect(queryAllTexts`.o_datetime_picker .o_day_of_week_cell`).toEqual([
+    expect(`.app_datetime_picker`).toHaveCount(1);
+    expect(`.app_datetime_picker .app_selected`).toHaveCount(1);
+    expect(`.app_datetime_picker .app_selected`).toHaveText("14");
+    expect(`.app_datetime_picker_header .app_datetime_button`).toHaveText("August 2021");
+    expect(queryAllTexts`.app_datetime_picker .app_day_of_week_cell`).toEqual([
         "S",
         "M",
         "T",
@@ -58,8 +58,8 @@ test(`Scale: init with day`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="day"/>`,
     });
-    expect(`.o_datetime_picker .o_selected`).toHaveCount(1);
-    expect(`.o_datetime_picker .o_selected`).toHaveText("14");
+    expect(`.app_datetime_picker .app_selected`).toHaveCount(1);
+    expect(`.app_datetime_picker .app_selected`).toHaveText("14");
 });
 
 test(`Scale: init with week`, async () => {
@@ -68,8 +68,8 @@ test(`Scale: init with week`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="week"/>`,
     });
-    expect(`.o_datetime_picker .o_selected`).toHaveCount(1);
-    expect(`.o_datetime_picker .o_selected`).toHaveText("14");
+    expect(`.app_datetime_picker .app_selected`).toHaveCount(1);
+    expect(`.app_datetime_picker .app_selected`).toHaveText("14");
 });
 
 test(`Scale: init with month`, async () => {
@@ -78,8 +78,8 @@ test(`Scale: init with month`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="month"/>`,
     });
-    expect(`.o_datetime_picker .o_selected`).toHaveCount(1);
-    expect(`.o_datetime_picker .o_selected`).toHaveText("14");
+    expect(`.app_datetime_picker .app_selected`).toHaveCount(1);
+    expect(`.app_datetime_picker .app_selected`).toHaveText("14");
 });
 
 test(`Scale: init with year`, async () => {
@@ -88,8 +88,8 @@ test(`Scale: init with year`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="year"/>`,
     });
-    expect(`.o_datetime_picker .o_selected`).toHaveCount(1);
-    expect(`.o_datetime_picker .o_selected`).toHaveText("14");
+    expect(`.app_datetime_picker .app_selected`).toHaveCount(1);
+    expect(`.app_datetime_picker .app_selected`).toHaveText("14");
 });
 
 test(`First day: 0 = Sunday`, async () => {
@@ -102,7 +102,7 @@ test(`First day: 0 = Sunday`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="day"/>`,
     });
-    expect(queryAllTexts`.o_datetime_picker .o_day_of_week_cell`).toEqual([
+    expect(queryAllTexts`.app_datetime_picker .app_day_of_week_cell`).toEqual([
         "S",
         "M",
         "T",
@@ -123,7 +123,7 @@ test(`First day: 1 = Monday`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="day"/>`,
     });
-    expect(queryAllTexts`.o_datetime_picker .o_day_of_week_cell`).toEqual([
+    expect(queryAllTexts`.app_datetime_picker .app_day_of_week_cell`).toEqual([
         "M",
         "T",
         "W",
@@ -141,7 +141,7 @@ test(`Click on active day should change scale : day -> month`, async () => {
         arch: `<calendar date_start="start" mode="day"/>`,
     });
     const calendar = findComponent(view, (component) => component instanceof CalendarController);
-    await contains(`.o_datetime_picker .o_selected`).click();
+    await contains(`.app_datetime_picker .app_selected`).click();
     expect(calendar.model.scale).toBe("month");
     expect(calendar.model.date.valueOf()).toBe(luxon.DateTime.local(2021, 8, 14).valueOf());
 });
@@ -153,7 +153,7 @@ test(`Click on active day should change scale : month -> week`, async () => {
         arch: `<calendar date_start="start" mode="month"/>`,
     });
     const calendar = findComponent(view, (component) => component instanceof CalendarController);
-    await contains(`.o_datetime_picker .o_selected`).click();
+    await contains(`.app_datetime_picker .app_selected`).click();
     expect(calendar.model.scale).toBe("week");
     expect(calendar.model.date.valueOf()).toBe(luxon.DateTime.local(2021, 8, 14).valueOf());
 });
@@ -165,7 +165,7 @@ test(`Click on active day should change scale : week -> day`, async () => {
         arch: `<calendar date_start="start" mode="week"/>`,
     });
     const calendar = findComponent(view, (component) => component instanceof CalendarController);
-    await contains(`.o_datetime_picker .o_selected`).click();
+    await contains(`.app_datetime_picker .app_selected`).click();
     expect(calendar.model.scale).toBe("day");
     expect(calendar.model.date.valueOf()).toBe(luxon.DateTime.local(2021, 8, 14).valueOf());
 });
@@ -177,6 +177,6 @@ test(`Scale: today is correctly highlighted`, async () => {
         type: "calendar",
         arch: `<calendar date_start="start" mode="month"/>`,
     });
-    expect(`.o_datetime_picker .o_today`).toHaveClass("o_selected");
-    expect(`.o_datetime_picker .o_today`).toHaveText("4");
+    expect(`.app_datetime_picker .app_today`).toHaveClass("app_selected");
+    expect(`.app_datetime_picker .app_today`).toHaveText("4");
 });

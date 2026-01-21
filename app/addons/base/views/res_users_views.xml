@@ -97,7 +97,7 @@
             <field name="name">res.users.form</field>
             <field name="model">res.users</field>
             <field name="arch" type="xml">
-                <form string="Users" class="o_res_users_form_view_full">
+                <form string="Users" class="app_res_users_form_view_full">
                     <header>
                     </header>
                     <sheet>
@@ -114,7 +114,7 @@
                         </div>
                         <widget name="web_ribbon" title="External user" bg_color="text-bg-warning" invisible="not share"/>
                         <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
-                        <div class="alert alert-info text-center o_form_header"
+                        <div class="alert alert-info text-center app_form_header"
                             invisible="active and active_partner or not active and not active_partner or active and not active_partner"
                             role="alert">
                           <a class="close" data-bs-dismiss="alert" href="#">x</a>
@@ -168,7 +168,7 @@
                                 <group>
                                     <group>
                                         <label for="lang" />
-                                        <div class="o_row">
+                                        <div class="app_row">
                                             <field name="lang" required="1"/>
                                             <button
                                                 type="action"
@@ -197,7 +197,7 @@
                             <page string="Security" name="page_security" invisible="not id">
                                 <div name="auth" class="d-flex">
                                     <div class="col-7 col-sm-6 col-lg-3 d-flex flex-column">
-                                        <span class="o_form_label">
+                                        <span class="app_form_label">
                                             Change Password
                                         </span>
                                         <span class="text-muted">
@@ -211,13 +211,13 @@
                                 </div>
                                 <div name="api_keys" invisible="id != uid" class="d-md-flex mt-3">
                                     <div class="col-md-6 col-lg-3 d-flex flex-column">
-                                        <label for="api_key_wizard" string="API Keys" class="o_form_label"/>
+                                        <label for="api_key_wizard" string="API Keys" class="app_form_label"/>
                                         <span class="text-muted">
                                             Connect external services.
                                         </span>
                                     </div>
                                     <div class="w-md-50 w-lg-75 d-flex flex-column my-auto">
-                                        <field name="api_key_ids" mode="kanban" invisible="not api_key_ids" class="w-sm-75 w-md-100 w-lg-75 w-xl-50 o_base_api_keys_kanban_view"/>
+                                        <field name="api_key_ids" mode="kanban" invisible="not api_key_ids" class="w-sm-75 w-md-100 w-lg-75 w-xl-50 app_base_api_keys_kanban_view"/>
                                         <div>
                                             <button name="api_key_wizard" string="Add API Key" type="object" class="btn btn-secondary h-100"/>
                                         </div>
@@ -225,13 +225,13 @@
                                 </div>
                                 <div invisible="id != uid" class="d-md-flex mt-3">
                                     <div class="w-md-50 w-lg-25  d-flex flex-column">
-                                        <label for="action_revoke_all_devices" string="Devices" class="o_form_label"/>
+                                        <label for="action_revoke_all_devices" string="Devices" class="app_form_label"/>
                                         <span class="text-muted">
                                             Check if they are yours.
                                         </span>
                                     </div>
                                     <div class="w-md-50 w-lg-75 d-flex flex-column my-auto">
-                                        <field name="device_ids" mode="kanban" class="w-sm-75 w-md-100 w-lg-75 w-xl-50 o_base_devices_kanban_view"/>
+                                        <field name="device_ids" mode="kanban" class="w-sm-75 w-md-100 w-lg-75 w-xl-50 app_base_devices_kanban_view"/>
                                         <div>
                                             <button name="action_revoke_all_devices" type="object" string="Log out from all devices" class="btn btn-secondary h-100"/>
                                         </div>
@@ -249,7 +249,7 @@
             <field name="model">res.users</field>
             <field name="arch" type="xml">
                 <list string="Users" multi_edit="1">
-                    <field name="avatar_128" widget="image" options="{'size': [24, 24], 'img_class': 'o_avatar rounded'}" width="30" nolabel="1"/>
+                    <field name="avatar_128" widget="image" options="{'size': [24, 24], 'img_class': 'app_avatar rounded'}" width="30" nolabel="1"/>
                     <field name="name" readonly="1"/>
                     <field name="login" readonly="1" optional="show"/>
                     <field name="lang" optional="hide"/>
@@ -262,7 +262,7 @@
             <field name="name">res.users.kanban</field>
             <field name="model">res.users</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
+                <kanban class="app_kanban_mobile">
                     <field name="active"/>
                     <field name="login_date"/>
                     <templates>
@@ -432,7 +432,7 @@
                                 <group>
                                     <group>
                                         <label for="lang"/>
-                                        <div class="o_row">
+                                        <div class="app_row">
                                             <field name="lang" required="1" readonly="0"/>
                                             <button
                                                 type="action"
@@ -462,7 +462,7 @@
                             <page string="Security" name="page_security">
                                 <div name="auth" class="d-flex">
                                     <div class="col-7 col-sm-6 col-lg-3 d-flex flex-column">
-                                        <span class="o_form_label">
+                                        <span class="app_form_label">
                                             Change Password
                                         </span>
                                         <span class="text-muted">
@@ -474,13 +474,13 @@
                                 </div>
                                 <div name="api_keys" class="d-lg-flex mt-3">
                                     <div class="col-lg-3 d-flex flex-column">
-                                        <label for="api_key_wizard" string="API Keys" class="o_form_label"/>
+                                        <label for="api_key_wizard" string="API Keys" class="app_form_label"/>
                                         <span class="text-muted">
                                             Connect external services.
                                         </span>
                                     </div>
                                     <div class="w-lg-75 d-flex flex-column my-auto">
-                                        <field name="api_key_ids" mode="kanban" invisible="not api_key_ids" class="w-lg-75 o_base_api_keys_kanban_view"/>
+                                        <field name="api_key_ids" mode="kanban" invisible="not api_key_ids" class="w-lg-75 app_base_api_keys_kanban_view"/>
                                         <div>
                                             <button name="api_key_wizard" string="Add API Key" type="object" class="btn btn-secondary h-100"/>
                                         </div>
@@ -488,13 +488,13 @@
                                 </div>
                                 <div class="d-lg-flex mt-3">
                                     <div class="col-lg-3 d-flex flex-column">
-                                        <label for="action_revoke_all_devices" string="Devices" class="o_form_label"/>
+                                        <label for="action_revoke_all_devices" string="Devices" class="app_form_label"/>
                                         <span class="text-muted">
                                             Check if they are yours.
                                         </span>
                                     </div>
                                     <div class="w-lg-75 d-flex flex-column my-auto">
-                                        <field name="device_ids" mode="kanban" class="w-lg-75 o_base_devices_kanban_view"/>
+                                        <field name="device_ids" mode="kanban" class="w-lg-75 app_base_devices_kanban_view"/>
                                         <div>
                                             <button name="action_revoke_all_devices" type="object" string="Log out from all devices" class="btn btn-secondary h-100"/>
                                         </div>

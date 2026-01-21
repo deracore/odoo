@@ -123,14 +123,14 @@ test("can display client actions in Dialog and close the dialog", async () => {
 test("can display client actions as main, then in Dialog", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction("__test__client__action__");
-    expect(".o_action_manager .test_client_action").toHaveCount(1);
+    expect(".app_action_manager .test_client_action").toHaveCount(1);
 
     await getService("action").doAction({
         target: "new",
         tag: "__test__client__action__",
         type: "ir.actions.client",
     });
-    expect(".o_action_manager .test_client_action").toHaveCount(1);
+    expect(".app_action_manager .test_client_action").toHaveCount(1);
     expect(".modal .test_client_action").toHaveCount(1);
 });
 
@@ -189,8 +189,8 @@ test("soft_reload a form view", async () => {
         ],
         type: "ir.actions.act_window",
     });
-    await contains(".o_data_row .o_data_cell").click();
-    await contains(".o_form_view .o_pager_next").click();
+    await contains(".app_data_row .app_data_cell").click();
+    await contains(".app_form_view .app_pager_next").click();
     expect.verifySteps(["read 1", "read 2"]);
 
     await getService("action").doAction("soft_reload");
@@ -207,7 +207,7 @@ test("soft_reload when there is no controller", async () => {
 
 test("can execute client actions from tag name", async () => {
     class ClientAction extends Component {
-        static template = xml`<div class="o_client_action_test">Hello World</div>`;
+        static template = xml`<div class="app_client_action_test">Hello World</div>`;
         static props = ["*"];
     }
     actionRegistry.add("HelloWorldTest", ClientAction);
@@ -215,8 +215,8 @@ test("can execute client actions from tag name", async () => {
     stepAllNetworkCalls();
     await mountWithCleanup(WebClient);
     await getService("action").doAction("HelloWorldTest");
-    expect(".o_control_panel").toHaveCount(0);
-    expect(".o_client_action_test").toHaveText("Hello World");
+    expect(".app_control_panel").toHaveCount(0);
+    expect(".app_client_action_test").toHaveText("Hello World");
     expect.verifySteps(["/web/webclient/translations", "/web/webclient/load_menus"]);
 });
 
@@ -227,7 +227,7 @@ test("async client action (function) returning another action", async () => {
     });
     await mountWithCleanup(WebClient);
     await getService("action").doAction("my_action");
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_kanban_view").toHaveCount(1);
 });
 
 test("'CLEAR-UNCOMMITTED-CHANGES' is not triggered for function client actions", async () => {
@@ -273,7 +273,7 @@ test("ClientAction receives breadcrumbs and exports title", async () => {
     expect(".my_action").toHaveCount(1);
     await contains(".my_action").click();
     await getService("action").doAction(3);
-    expect(".o_breadcrumb").toHaveText("Partners Action 1\nnewTitle\nPartners");
+    expect(".app_breadcrumb").toHaveText("Partners Action 1\nnewTitle\nPartners");
 });
 
 test("ClientAction receives arbitrary props from doAction", async () => {
@@ -320,7 +320,7 @@ test("ClientAction with extractProps", async () => {
 test("test display_notification client action", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_kanban_view").toHaveCount(1);
 
     await getService("action").doAction({
         type: "ir.actions.client",
@@ -331,17 +331,17 @@ test("test display_notification client action", async () => {
         },
     });
     await animationFrame(); // wait for the notification to be displayed
-    expect(".o_notification_manager .o_notification").toHaveCount(1);
-    expect(".o_notification_manager .o_notification .o_notification_content").toHaveText("message");
-    expect(".o_kanban_view").toHaveCount(1);
-    await contains(".o_notification_close").click();
-    expect(".o_notification_manager .o_notification").toHaveCount(0);
+    expect(".app_notification_manager .app_notification").toHaveCount(1);
+    expect(".app_notification_manager .app_notification .app_notification_content").toHaveText("message");
+    expect(".app_kanban_view").toHaveCount(1);
+    await contains(".app_notification_close").click();
+    expect(".app_notification_manager .app_notification").toHaveCount(0);
 });
 
 test("test display_notification client action with links", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_kanban_view").toHaveCount(1);
 
     await getService("action").doAction({
         type: "ir.actions.client",
@@ -358,13 +358,13 @@ test("test display_notification client action with links", async () => {
         },
     });
     await animationFrame(); // wait for the notification to be displayed
-    expect(".o_notification_manager .o_notification").toHaveCount(1);
-    expect(".o_notification_manager .o_notification .o_notification_content").toHaveText(
+    expect(".app_notification_manager .app_notification").toHaveCount(1);
+    expect(".app_notification_manager .app_notification .app_notification_content").toHaveText(
         "message test <R&D> <R&D>"
     );
-    expect(".o_kanban_view").toHaveCount(1);
-    await contains(".o_notification_close").click();
-    expect(".o_notification_manager .o_notification").toHaveCount(0);
+    expect(".app_kanban_view").toHaveCount(1);
+    await contains(".app_notification_close").click();
+    expect(".app_notification_manager .app_notification").toHaveCount(0);
 
     // display_notification without title
     await getService("action").doAction({
@@ -382,8 +382,8 @@ test("test display_notification client action with links", async () => {
         },
     });
     await animationFrame(); // wait for the notification to be displayed
-    expect(".o_notification_manager .o_notification").toHaveCount(1);
-    expect(".o_notification_manager .o_notification .o_notification_title").toHaveCount(0);
+    expect(".app_notification_manager .app_notification").toHaveCount(1);
+    expect(".app_notification_manager .app_notification .app_notification_title").toHaveCount(0);
 });
 
 test("test next action on display_notification client action", async () => {
@@ -409,7 +409,7 @@ test("test next action on display_notification client action", async () => {
         options
     );
     await animationFrame(); // wait for the notification to be displayed
-    expect(".o_notification_manager .o_notification").toHaveCount(1);
+    expect(".app_notification_manager .app_notification").toHaveCount(1);
     expect.verifySteps(["onClose"]);
 });
 

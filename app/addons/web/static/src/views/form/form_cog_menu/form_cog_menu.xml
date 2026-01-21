@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
     <t t-name="web.FormCogMenu" t-inherit="web.CogMenu">
-        <xpath expr="//div[hasclass('o_cp_action_menus')]" position="attributes">
+        <xpath expr="//div[hasclass('app_cp_action_menus')]" position="attributes">
             <attribute name="t-if">env.isSmall or hasItems</attribute>
         </xpath>
         <xpath expr="//t[@t-if='state.printItems.length']/Dropdown" position="before">

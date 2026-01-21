@@ -118,12 +118,12 @@ test("create/modify a record with a non-connected company", async () => {
         res_model: "res.partner",
         views: [[false, "form"]],
     });
-    await contains(`.o_field_widget[name=name] input`).edit("some foo value");
-    await contains(`.o_form_button_save`).click();
+    await contains(`.app_field_widget[name=name] input`).edit("some foo value");
+    await contains(`.app_form_button_save`).click();
     await animationFrame();
     expect.verifySteps([[1], [1, 2]]);
     expect(cookie.get("cids")).toBe("1-2");
-    expect(`.o_field_widget[name=name] input`).toHaveValue("some foo value");
+    expect(`.app_field_widget[name=name] input`).toHaveValue("some foo value");
 });
 
 test.tags("desktop");

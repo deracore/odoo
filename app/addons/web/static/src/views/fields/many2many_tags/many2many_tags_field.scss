@@ -1,24 +1,24 @@
-.o_tag_popover {
+.app_tag_popover {
     max-width: 150px;
     min-width: 100px;
 }
 
-.o_tag_popover label {
+.app_tag_popover label {
     line-height: $o-line-height-base;
 }
 
-.o_field_widget.o_field_many2many_tags {
+.app_field_widget.app_field_many2many_tags {
     flex-flow: row wrap;
     margin: var(--Tags-margin, 0);
 
-    .o_tags_input {
+    .app_tags_input {
         padding: 1px 0;
     }
 
-    .o_field_many2many_selection {
+    .app_field_many2many_selection {
         flex: 1 0 50px;
 
-        .o_input {
+        .app_input {
             height: 100%;
             border: none;
         }
@@ -36,45 +36,45 @@
             color: inherit;
         }
 
-        .o_badge_text, .o_tag_badge_text {
+        .app_badge_text, .app_tag_badge_text {
             @include o-text-overflow(inline-block);
             max-width: var(--Tag-max-width, 200px);
         }
     }
 }
 
-.o_field_widget.o_field_many2many_tags, .o_field_widget.o_field_many2many_tags_avatar {
-    .o_field_many2many_selection .o_input {
+.app_field_widget.app_field_many2many_tags, .app_field_widget.app_field_many2many_tags_avatar {
+    .app_field_many2many_selection .app_input {
         --o-input-background-color: transparent;
     }
 }
 
-.o_list_view .o_field_widget.o_field_many2many_tags {
-    .o_tags_input {
+.app_list_view .app_field_widget.app_field_many2many_tags {
+    .app_tags_input {
         border: 0;
         padding: 0;
     }
 
-    .o_field_many2many_selection {
+    .app_field_many2many_selection {
         flex-basis: 40px;
     }
 }
 
-.o_form_view {
-    .o_group, .o_inner_group {
-        .o_field_tags {
+.app_form_view {
+    .app_group, .app_inner_group {
+        .app_field_tags {
             width: 100%;
         }
     }
 
-    &:not(.o_field_highlight) {
-        .o_field_many2many_selection {
-            .o_dropdown_button {
+    &:not(.app_field_highlight) {
+        .app_field_many2many_selection {
+            .app_dropdown_button {
                 visibility: hidden;
             }
 
             &:hover, &:focus-within {
-                .o_dropdown_button {
+                .app_dropdown_button {
                     visibility: visible;
                 }
             }
@@ -82,6 +82,6 @@
     }
 }
 
-.o_form_statusbar .o_field_tags {
+.app_form_statusbar .app_field_tags {
     align-self: center;
 }

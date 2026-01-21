@@ -151,17 +151,17 @@ test("Sorting in a single group without nesting", async () => {
     await mountWithCleanup(NestedSortable);
 
     expect(".sortable_list > .item").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps([]);
 
     // Move first item after second item
     const { drop, moveUnder } = await sortableDrag(".sortable_list > .item:first-child");
     await moveUnder(".sortable_list > .item:nth-child(2)");
-    expect(".sortable_list > .item:first").toHaveClass("o_dragged");
+    expect(".sortable_list > .item:first").toHaveClass("app_dragged");
 
     await drop();
     expect(".sortable_list > .item").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps(["start", "move", "drop", "end"]);
 });
 
@@ -917,7 +917,7 @@ test("shouldn't drag above max level", async () => {
                     expect.step("end");
                     expect(element).toHaveAttribute("id", "dragged");
                     expect(element.parentElement.closest("#parent")).toBe(null);
-                    expect(element.previousSibling).toHaveClass("o_nested_sortable_placeholder");
+                    expect(element.previousSibling).toHaveClass("app_nested_sortable_placeholder");
                 },
             });
         }
@@ -980,7 +980,7 @@ test("shouldn't drag outside a nest level", async () => {
                 },
                 onDragEnd({ element }) {
                     expect.step("end");
-                    const placeholder = queryFirst(".o_nested_sortable_placeholder");
+                    const placeholder = queryFirst(".app_nested_sortable_placeholder");
                     if (element.id === "D1") {
                         expect(placeholder.nextElementSibling).toHaveAttribute("id", "C");
                     } else if (element.id === "D2") {
@@ -1052,10 +1052,10 @@ test("shouldn't drag when not allowed", async () => {
                     if (firstAllowedCheck) {
                         // 1st check is used by internal nested_sortable hooks "onMove"
                         firstAllowedCheck = false;
-                        expect(".o_nested_sortable_placeholder.d-none").toHaveCount(0);
+                        expect(".app_nested_sortable_placeholder.d-none").toHaveCount(0);
                     } else {
                         // 2e check is used by internal nested_sortable hooks "onDrop"
-                        expect(".o_nested_sortable_placeholder.d-none").toHaveCount(1);
+                        expect(".app_nested_sortable_placeholder.d-none").toHaveCount(1);
                     }
                     return false;
                 },
@@ -1109,8 +1109,8 @@ test("placeholder and drag element have same size", async () => {
                 onDrop({ element, placeholder }) {
                     expect(element).toHaveAttribute("id", "dragged");
                     expect(placeholder).toHaveClass("dragged");
-                    expect(placeholder).toHaveClass("o_nested_sortable_placeholder_realsize");
-                    expect(placeholder).not.toHaveClass("o_nested_sortable_placeholder");
+                    expect(placeholder).toHaveClass("app_nested_sortable_placeholder_realsize");
+                    expect(placeholder).not.toHaveClass("app_nested_sortable_placeholder");
                     expect(element).toHaveRect({ height: queryRect(placeholder).height });
                 },
             });

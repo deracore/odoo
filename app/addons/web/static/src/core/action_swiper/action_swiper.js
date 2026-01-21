@@ -83,7 +83,7 @@ export class ActionSwiper extends Component {
             // strictly necessary
             if (this.props.onLeftSwipe || this.props.onRightSwipe) {
                 const classes = new Set(this.root.el.classList);
-                classes.delete("o_actionswiper");
+                classes.delete("app_actionswiper");
                 for (const className of classes) {
                     this.targetContainer.el.firstChild.classList.add(className);
                     this.root.el.classList.remove(className);

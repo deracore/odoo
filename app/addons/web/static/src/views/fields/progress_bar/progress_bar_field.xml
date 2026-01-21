@@ -2,17 +2,17 @@
 <templates xml:space="preserve">
 
     <t t-name="web.ProgressBarField">
-        <div class="o_progressbar w-100 d-flex align-items-center" t-ref="numpadDecimal">
-            <div t-if="props.title" class="o_progressbar_title text-nowrap pe-1"><t t-esc="props.title"/></div>
-            <div class="o_progress align-middle overflow-hidden" aria-valuemin="0" t-att-aria-valuemax="this.maxValue" t-att-aria-valuenow="this.currentValue">
+        <div class="app_progressbar w-100 d-flex align-items-center" t-ref="numpadDecimal">
+            <div t-if="props.title" class="app_progressbar_title text-nowrap pe-1"><t t-esc="props.title"/></div>
+            <div class="app_progress align-middle overflow-hidden" aria-valuemin="0" t-att-aria-valuemax="this.maxValue" t-att-aria-valuenow="this.currentValue">
                 <div t-attf-class="{{ progressBarColorClass }} h-100" t-att-style="'width: min(' + 100 * this.currentValue / this.maxValue + '%, 100%)'"></div>
             </div>
-            <div class="o_progressbar_value d-flex">
+            <div class="app_progressbar_value d-flex">
                 <t t-if="isPercentage">
                     <input
                         t-if="isEditable and props.isCurrentValueEditable"
                         t-ref="currentValue"
-                        class="o_input h-100 text-center"
+                        class="app_input h-100 text-center"
                         type="text"
                         inputmode="decimal"
                         autocomplete="off"
@@ -27,7 +27,7 @@
                     <input
                         t-if="isEditable and props.isCurrentValueEditable"
                         t-ref="currentValue"
-                        class="o_input h-100 text-center"
+                        class="app_input h-100 text-center"
                         type="text"
                         inputmode="decimal"
                         autocomplete="off"
@@ -39,7 +39,7 @@
                     <input
                         t-if="isEditable and props.isMaxValueEditable"
                         t-ref="maxValue"
-                        class="o_input h-100 text-center"
+                        class="app_input h-100 text-center"
                         type="text"
                         inputmode="decimal"
                         autocomplete="off"

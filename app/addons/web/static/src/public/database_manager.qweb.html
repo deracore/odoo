@@ -29,7 +29,7 @@
     <div class="container">
         <!-- Database List -->
         <div class="row">
-            <div class="col-lg-6 offset-lg-3 o_database_list">
+            <div class="col-lg-6 offset-lg-3 app_database_list">
                 <img src="/web/static/img/logo2.png" class="img-fluid d-block mx-auto"/>
                 <t t-if="not list_db">
                     <div class="alert alert-danger text-center">The database manager has been disabled by the administrator</div>
@@ -37,7 +37,7 @@
                 <t t-elif="insecure and databases">
                     <div class="alert alert-warning">
                         Warning, your DERAcore database manager is not protected.<br/>
-                        Please <a href="#" data-bs-toggle="modal" data-bs-target=".o_database_master">set a master password</a> to secure it.
+                        Please <a href="#" data-bs-toggle="modal" data-bs-target=".app_database_master">set a master password</a> to secure it.
                     </div>
                 </t>
                 <t t-if="error">
@@ -56,13 +56,13 @@
                                 </a>
                                 <t t-if="manage">
                                     <div class="btn-group btn-group-sm float-end">
-                                        <button type="button" t-att-data-db="db" data-bs-target=".o_database_backup" class="o_database_action btn btn-primary">
+                                        <button type="button" t-att-data-db="db" data-bs-target=".app_database_backup" class="app_database_action btn btn-primary">
                                             <i class="fa fa-floppy-o fa-fw"></i> Backup
                                         </button>
-                                        <button type="button" t-att-data-db="db" data-bs-target=".o_database_duplicate" class="o_database_action btn btn-secondary">
+                                        <button type="button" t-att-data-db="db" data-bs-target=".app_database_duplicate" class="app_database_action btn btn-secondary">
                                             <i class="fa fa-files-o fa-fw"></i> Duplicate
                                         </button>
-                                        <button type="button" t-att-data-db="db" data-bs-target=".o_database_delete" class="o_database_action btn btn-danger">
+                                        <button type="button" t-att-data-db="db" data-bs-target=".app_database_delete" class="app_database_action btn btn-danger">
                                             <i class="fa fa-trash-o fa-fw"></i> Delete
                                         </button>
                                     </div>
@@ -72,9 +72,9 @@
                     </div>
                     <t t-if="manage">
                         <div class="d-flex mt-2">
-                            <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_create" class="btn btn-primary flex-grow-1">Create Database</button>
-                            <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_restore" class="btn btn-primary flex-grow-1 ms-2">Restore Database</button>
-                            <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_master" class="btn btn-primary flex-grow-1 ms-2">Set Master Password</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target=".app_database_create" class="btn btn-primary flex-grow-1">Create Database</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target=".app_database_restore" class="btn btn-primary flex-grow-1 ms-2">Restore Database</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target=".app_database_master" class="btn btn-primary flex-grow-1 ms-2">Set Master Password</button>
                         </div>
                     </t>
                     <t t-else="">
@@ -88,13 +88,13 @@
                         <t t-call="create_form" />
                         <input type="submit" value="Create database" class="btn btn-primary float-start"/>
                     </form>
-                    <a role="button" data-bs-toggle="modal" data-bs-target=".o_database_restore" class="btn btn-link">or restore a database</a>
+                    <a role="button" data-bs-toggle="modal" data-bs-target=".app_database_restore" class="btn btn-link">or restore a database</a>
                 </t>
             </div>
         </div>
 
         <!-- Create -->
-        <div class="modal fade o_database_create" role="dialog">
+        <div class="modal fade app_database_create" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form role="form" action="/web/database/create" method="post">
@@ -117,7 +117,7 @@
         </div>
 
         <!-- Restore -->
-        <div class="modal fade o_database_restore" role="dialog">
+        <div class="modal fade app_database_restore" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -168,7 +168,7 @@
         </div>
 
         <!-- Master password -->
-        <div class="modal fade o_database_master" role="dialog">
+        <div class="modal fade app_database_master" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -185,7 +185,7 @@
                                 <div class="col-md-7">
                                     <div class="input-group">
                                         <input id="master_pwd_new" type="password" name="master_pwd_new" class="form-control" required="required" autocomplete="new-password"/>
-                                        <span class="fa fa-eye o_little_eye input-group-text" aria-hidden="true" style="cursor: pointer;"></span>
+                                        <span class="fa fa-eye app_little_eye input-group-text" aria-hidden="true" style="cursor: pointer;"></span>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
         </div>
 
         <!-- Duplicate DB -->
-        <div class="modal fade o_database_duplicate" role="dialog">
+        <div class="modal fade app_database_duplicate" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -238,7 +238,7 @@
         </div>
 
         <!-- Drop DB -->
-        <div class="modal fade o_database_delete" role="dialog">
+        <div class="modal fade app_database_delete" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -264,7 +264,7 @@
         </div>
 
         <!-- Backup DB -->
-        <div class="modal fade o_database_backup" role="dialog">
+        <div class="modal fade app_database_backup" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

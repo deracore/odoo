@@ -1,4 +1,4 @@
-body:not(.o_touch_device) .o_field_phone {
+body:not(.app_touch_device) .app_field_phone {
     &:not(:hover):not(:focus-within) {
         & input:not(:hover) ~ a {
             display: none !important;
@@ -7,7 +7,7 @@ body:not(.o_touch_device) .o_field_phone {
     word-break: keep-all !important;
 }
 
-.o_phone_content small {
+.app_phone_content small {
     overflow-wrap: normal;
     word-break: normal;
 }

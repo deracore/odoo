@@ -71,14 +71,14 @@ test("translation-context: single template", async () => {
     registerTemplates({
         name: "A",
         content: `
-            <div class="o_test_component" title="title">
+            <div class="app_test_component" title="title">
                 text
             </div>
         `,
     });
     const el = await mountTestComponentWithTemplate("A");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_A)">
+        <div class="app_test_component" title="title (addon_A)">
             text (addon_A)
         </div>
     `);
@@ -86,12 +86,12 @@ test("translation-context: single template", async () => {
 
 test("translation-context: xpath position replace (outer)", async () => {
     registerTemplates(
-        { name: "A", content: `<div class="o_test_component" title="title"> text </div>` },
+        { name: "A", content: `<div class="app_test_component" title="title"> text </div>` },
         {
             name: "B",
             content: `
                 <xpath expr="div" position="replace">
-                    <div class="o_test_component" title="title"> text </div>
+                    <div class="app_test_component" title="title"> text </div>
                 </xpath>
             `,
             inheritFrom: "A",
@@ -99,7 +99,7 @@ test("translation-context: xpath position replace (outer)", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_B)">
+        <div class="app_test_component" title="title (addon_B)">
             text (addon_B)
         </div>
     `);
@@ -107,12 +107,12 @@ test("translation-context: xpath position replace (outer)", async () => {
 
 test("translation-context: xpath position replace (outer) with $0", async () => {
     registerTemplates(
-        { name: "A", content: `<div class="o_test_component" title="title"> text </div>` },
+        { name: "A", content: `<div class="app_test_component" title="title"> text </div>` },
         {
             name: "B",
             content: `
                 <xpath expr="div" position="replace">
-                    <div class="o_test_component" title="title">
+                    <div class="app_test_component" title="title">
                         text
                         <div title="title2">$0</div>
                     </div>
@@ -123,10 +123,10 @@ test("translation-context: xpath position replace (outer) with $0", async () => 
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_B)">
+        <div class="app_test_component" title="title (addon_B)">
             text (addon_B)
             <div title="title2 (addon_B)">
-                <div class="o_test_component" title="title (addon_A)">
+                <div class="app_test_component" title="title (addon_A)">
                     text (addon_A)
                 </div>
             </div>
@@ -139,7 +139,7 @@ test("translation-context: xpath position replace (inner)", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component" title="title">
+                <div class="app_test_component" title="title">
                     text
                     <span> text </span>
                 </div>
@@ -160,7 +160,7 @@ test("translation-context: xpath position replace (inner)", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_A)">
+        <div class="app_test_component" title="title (addon_A)">
             <span>
                 text (addon_B)
                 <div title="title (addon_B)">
@@ -173,7 +173,7 @@ test("translation-context: xpath position replace (inner)", async () => {
 
 test("translation-context: xpath position attributes", async () => {
     registerTemplates(
-        { name: "A", content: `<div class="o_test_component" title="title"> text </div>` },
+        { name: "A", content: `<div class="app_test_component" title="title"> text </div>` },
         {
             name: "B",
             content: `
@@ -187,7 +187,7 @@ test("translation-context: xpath position attributes", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_B)" label="label (addon_B)">
+        <div class="app_test_component" title="title (addon_B)" label="label (addon_B)">
             text (addon_A)
         </div>
     `);
@@ -195,7 +195,7 @@ test("translation-context: xpath position attributes", async () => {
 
 test("translation-context: xpath position inside", async () => {
     registerTemplates(
-        { name: "A", content: `<div class="o_test_component" title="title"> text </div>` },
+        { name: "A", content: `<div class="app_test_component" title="title"> text </div>` },
         {
             name: "B",
             content: `
@@ -210,7 +210,7 @@ test("translation-context: xpath position inside", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_A)">
+        <div class="app_test_component" title="title (addon_A)">
             text (addon_A) text (addon_B)
             <span title="title (addon_B)">
                 text (addon_B)
@@ -225,7 +225,7 @@ test("translation-context: xpath position inside: moved element", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component">
+                <div class="app_test_component">
                     <span>Hello</span>
                     <span>World</span>
                 </div>
@@ -242,7 +242,7 @@ test("translation-context: xpath position inside: moved element", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component">
+        <div class="app_test_component">
             <span>World (addon_A)</span>
             <span>Hello (addon_A)</span>
         </div>
@@ -254,7 +254,7 @@ test("translation-context: xpath position after with some text", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component" title="title">
+                <div class="app_test_component" title="title">
                     <span>text1</span>
                     <span>text2</span>
                 </div>
@@ -275,7 +275,7 @@ test("translation-context: xpath position after with some text", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_A)">
+        <div class="app_test_component" title="title (addon_A)">
             <span>
                 text1 (addon_A)
             </span>
@@ -295,7 +295,7 @@ test("translation-context: xpath position before with some text", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component" title="title">
+                <div class="app_test_component" title="title">
                     <span>text1</span>
                     <span>text2</span>
                 </div>
@@ -316,7 +316,7 @@ test("translation-context: xpath position before with some text", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_A)">
+        <div class="app_test_component" title="title (addon_A)">
             <div title="title (addon_B)">
                 text1 (addon_B)
             </div>
@@ -336,7 +336,7 @@ test("translation-context: wrappers texts in t tags", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component">
+                <div class="app_test_component">
                     Hello
                 </div>
             `,
@@ -352,7 +352,7 @@ test("translation-context: wrappers texts in t tags", async () => {
     );
     const el = await mountTestComponentWithTemplate("B");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component">
+        <div class="app_test_component">
             Hello (addon_A) World (addon_B)
         </div>
     `);
@@ -364,7 +364,7 @@ test("translation-context: wrappers texts in t tags (2)", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component">
+                <div class="app_test_component">
                     Hello
                 </div>
             `,
@@ -381,7 +381,7 @@ test("translation-context: wrappers texts in t tags (2)", async () => {
     );
     const el = await mountTestComponentWithTemplate("A");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component">
+        <div class="app_test_component">
             Hello (addon_A) World (addon_B)
         </div>
     `);
@@ -393,7 +393,7 @@ test("translation-context: wrappers texts in t tags (3)", async () => {
         {
             name: "A",
             content: `
-                <div class="o_test_component" title="title">
+                <div class="app_test_component" title="title">
                     text
                 </div>
             `,
@@ -411,7 +411,7 @@ test("translation-context: wrappers texts in t tags (3)", async () => {
             name: "C",
             content: `
                 <xpath expr="div" position="replace">
-                    <div class="o_test_component" title="title">
+                    <div class="app_test_component" title="title">
                         text
                         <div title="title2">$0</div>
                     </div>
@@ -422,10 +422,10 @@ test("translation-context: wrappers texts in t tags (3)", async () => {
     );
     const el = await mountTestComponentWithTemplate("C");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component" title="title (addon_C)">
+        <div class="app_test_component" title="title (addon_C)">
             text (addon_C)
             <div title="title2 (addon_C)">
-                <div class="o_test_component" title="title (addon_A)">
+                <div class="app_test_component" title="title (addon_A)">
                     text (addon_A) text (addon_B)
                 </div>
             </div>
@@ -438,7 +438,7 @@ test("translation-context: wrappers around texts do not affect xpaths (1)", asyn
         {
             name: "A",
             content: `
-                <div class="o_test_component">
+                <div class="app_test_component">
                     Hello
                     <t t-if="true">
                         Janet
@@ -465,7 +465,7 @@ test("translation-context: wrappers around texts do not affect xpaths (1)", asyn
     );
     const el = await mountTestComponentWithTemplate("C");
     expect(el).toHaveInnerHTML(`
-        <div class="o_test_component">
+        <div class="app_test_component">
             Hello (addon_A) World (addon_B)  Jamie (addon_C)
         </div>
     `);

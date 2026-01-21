@@ -64,7 +64,7 @@ function addProperties() {
 
 test("creating a field chain from scratch", async () => {
     const getValueFromDOM = (root) =>
-        queryAllTexts(".o_model_field_selector_chain_part", { root }).join(" -> ");
+        queryAllTexts(".app_model_field_selector_chain_part", { root }).join(" -> ");
 
     class Parent extends Component {
         static components = { ModelFieldSelector };
@@ -91,55 +91,55 @@ test("creating a field chain from scratch", async () => {
     const fieldSelector = await mountWithCleanup(Parent);
 
     await openModelFieldSelectorPopover();
-    expect("input.o_input[placeholder='Search...']").toBeFocused();
-    expect(".o_model_field_selector_popover").toHaveCount(1);
+    expect("input.app_input[placeholder='Search...']").toBeFocused();
+    expect(".app_model_field_selector_popover").toHaveCount(1);
 
     // The field selector popover should contain the list of "partner"
     // fields. "Bar" should be among them.
-    expect(".o_model_field_selector_popover_item_name:first").toHaveText("Bar");
+    expect(".app_model_field_selector_popover_item_name:first").toHaveText("Bar");
 
     // Clicking the "Bar" field should close the popover and set the field
     // chain to "bar" as it is a basic field
-    await contains(".o_model_field_selector_popover_item_name").click();
-    expect(".o_model_field_selector_popover").toHaveCount(0);
+    await contains(".app_model_field_selector_popover_item_name").click();
+    expect(".app_model_field_selector_popover").toHaveCount(0);
     expect(getValueFromDOM()).toBe("Bar");
     expect(fieldSelector.path).toBe("bar");
     expect.verifySteps(["update: bar"]);
 
     await openModelFieldSelectorPopover();
-    expect(".o_model_field_selector_popover").toHaveCount(1);
+    expect(".app_model_field_selector_popover").toHaveCount(1);
     // The field selector popover should contain the list of "partner"
     // fields. "Product" should be among them.
     expect(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_relation_icon"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_relation_icon"
     ).toHaveCount(1, { message: "field selector popover should contain the 'Product' field" });
 
     // Clicking on the "Product" field should update the popover to show
     // the product fields (so only "Product Name" and the default fields should be there)
     await followRelation();
-    expect(".o_model_field_selector_popover_item_name").toHaveCount(5);
-    expect(queryAllTexts(".o_model_field_selector_popover_item_name").at(-1)).toBe("Product Name", {
+    expect(".app_model_field_selector_popover_item_name").toHaveCount(5);
+    expect(queryAllTexts(".app_model_field_selector_popover_item_name").at(-1)).toBe("Product Name", {
         message: "the name of the last suggestion should be 'Product Name'",
     });
-    await contains(".o_model_field_selector_popover_item_name:last").click();
-    expect(".o_model_field_selector_popover").toHaveCount(0);
+    await contains(".app_model_field_selector_popover_item_name:last").click();
+    expect(".app_model_field_selector_popover").toHaveCount(0);
     expect(getValueFromDOM()).toBe("Product -> Product Name");
     expect.verifySteps(["update: product_id.name"]);
 
     // Remove the current selection and recreate it again
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover_prev_page").click();
-    await contains(".o_model_field_selector_popover_close").click();
+    await contains(".app_model_field_selector_popover_prev_page").click();
+    await contains(".app_model_field_selector_popover_close").click();
     expect.verifySteps(["update: product_id"]);
 
     await openModelFieldSelectorPopover();
     expect(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_relation_icon"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_relation_icon"
     ).toHaveCount(1);
 
     await followRelation();
-    await contains(".o_model_field_selector_popover_item_name:last").click();
-    expect(".o_model_field_selector_popover").toHaveCount(0);
+    await contains(".app_model_field_selector_popover_item_name:last").click();
+    expect(".app_model_field_selector_popover").toHaveCount(0);
     expect(getValueFromDOM()).toBe("Product -> Product Name");
     expect.verifySteps(["update: product_id.name"]);
 });
@@ -154,7 +154,7 @@ test("default field chain should set the page data correctly", async () => {
         },
     });
     await openModelFieldSelectorPopover();
-    expect(".o_model_field_selector_popover").toHaveCount(1);
+    expect(".app_model_field_selector_popover").toHaveCount(1);
     expect(getDisplayedFieldNames()).toEqual([
         "Bar",
         "Created on",
@@ -164,7 +164,7 @@ test("default field chain should set the page data correctly", async () => {
         "Last Modified on",
         "Product",
     ]);
-    expect(".o_model_field_selector_popover_item:last").toHaveClass("active");
+    expect(".app_model_field_selector_popover_item:last").toHaveClass("active");
 });
 
 test("use the filter option", async () => {
@@ -220,7 +220,7 @@ test("default `showSearchInput` option", async () => {
         },
     });
     await openModelFieldSelectorPopover();
-    expect(".o_model_field_selector_popover .o_model_field_selector_popover_search").toHaveCount(1);
+    expect(".app_model_field_selector_popover .app_model_field_selector_popover_search").toHaveCount(1);
     expect(getDisplayedFieldNames()).toEqual([
         "Bar",
         "Created on",
@@ -233,14 +233,14 @@ test("default `showSearchInput` option", async () => {
 
     // search 'xx'
     await contains(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_search input"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_search input"
     ).edit("xx", { confirm: false });
     await runAllTimers();
     expect(getDisplayedFieldNames()).toBeEmpty();
 
     // search 'Pro'
     await contains(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_search input"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_search input"
     ).edit("Pro", { confirm: false });
     await runAllTimers();
     expect(getDisplayedFieldNames()).toEqual(["Product"]);
@@ -256,7 +256,7 @@ test("false `showSearchInput` option", async () => {
         },
     });
     await openModelFieldSelectorPopover();
-    expect(".o_model_field_selector_popover .o_model_field_selector_popover_search").toHaveCount(0);
+    expect(".app_model_field_selector_popover .app_model_field_selector_popover_search").toHaveCount(0);
 });
 
 test("create a field chain with value 1 i.e. TRUE_LEAF", async () => {
@@ -268,7 +268,7 @@ test("create a field chain with value 1 i.e. TRUE_LEAF", async () => {
             resModel: "partner",
         },
     });
-    expect(".o_model_field_selector_chain_part").toHaveText("1");
+    expect(".app_model_field_selector_chain_part").toHaveText("1");
 });
 
 test("create a field chain with value 0 i.e. FALSE_LEAF", async () => {
@@ -280,7 +280,7 @@ test("create a field chain with value 0 i.e. FALSE_LEAF", async () => {
             resModel: "partner",
         },
     });
-    expect(".o_model_field_selector_chain_part").toHaveText("0", {
+    expect(".app_model_field_selector_chain_part").toHaveText("0", {
         message: "field name value should be 0.",
     });
 });
@@ -331,18 +331,18 @@ test("Using back button in popover", async () => {
 
     await mountWithCleanup(Parent);
     expect(getModelFieldSelectorValues()).toEqual(["Partner", "Foo"]);
-    expect(".o_model_field_selector i.o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector i.app_model_field_selector_warning").toHaveCount(0);
 
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover_prev_page").click();
+    await contains(".app_model_field_selector_popover_prev_page").click();
     expect(getModelFieldSelectorValues()).toEqual(["Partner"]);
-    expect(".o_model_field_selector i.o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector i.app_model_field_selector_warning").toHaveCount(0);
 
     await contains(
-        ".o_model_field_selector_popover_item:nth-child(1) .o_model_field_selector_popover_item_name"
+        ".app_model_field_selector_popover_item:nth-child(1) .app_model_field_selector_popover_item_name"
     ).click();
     expect(getModelFieldSelectorValues()).toEqual(["Bar"]);
-    expect(".o_model_field_selector_popover").toHaveCount(0);
+    expect(".app_model_field_selector_popover").toHaveCount(0);
 });
 
 test("select a relational field does not follow relation", async () => {
@@ -358,14 +358,14 @@ test("select a relational field does not follow relation", async () => {
     });
     await openModelFieldSelectorPopover();
     expect(
-        ".o_model_field_selector_popover_item:last-child .o_model_field_selector_popover_relation_icon"
+        ".app_model_field_selector_popover_item:last-child .app_model_field_selector_popover_relation_icon"
     ).toHaveCount(1);
 
     await contains(
-        ".o_model_field_selector_popover_item:last-child .o_model_field_selector_popover_item_name"
+        ".app_model_field_selector_popover_item:last-child .app_model_field_selector_popover_item_name"
     ).click();
     expect.verifySteps(["product_id"]);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 
     await openModelFieldSelectorPopover();
     expect(getDisplayedFieldNames()).toEqual([
@@ -377,7 +377,7 @@ test("select a relational field does not follow relation", async () => {
         "Last Modified on",
         "Product",
     ]);
-    expect(".o_model_field_selector_popover_relation_icon").toHaveCount(1);
+    expect(".app_model_field_selector_popover_relation_icon").toHaveCount(1);
 
     await followRelation();
     expect(getDisplayedFieldNames()).toEqual([
@@ -387,11 +387,11 @@ test("select a relational field does not follow relation", async () => {
         "Last Modified on",
         "Product Name",
     ]);
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
-    await contains(".o_model_field_selector_popover_item_name").click();
+    await contains(".app_model_field_selector_popover_item_name").click();
     expect.verifySteps(["product_id.create_date"]);
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });
 
 test("can follow relations", async () => {
@@ -416,7 +416,7 @@ test("can follow relations", async () => {
         "Last Modified on",
         "Product",
     ]);
-    expect(".o_model_field_selector_popover_relation_icon").toHaveCount(1);
+    expect(".app_model_field_selector_popover_relation_icon").toHaveCount(1);
 
     await followRelation();
     expect(getDisplayedFieldNames()).toEqual([
@@ -426,7 +426,7 @@ test("can follow relations", async () => {
         "Last Modified on",
         "Product Name",
     ]);
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 });
 
 test("cannot follow relations", async () => {
@@ -451,9 +451,9 @@ test("cannot follow relations", async () => {
         "Last Modified on",
         "Product",
     ]);
-    expect(".o_model_field_selector_popover_relation_icon").toHaveCount(0);
-    await contains(".o_model_field_selector_popover_item_name:last").click();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_model_field_selector_popover_relation_icon").toHaveCount(0);
+    await contains(".app_model_field_selector_popover_item_name:last").click();
+    expect(".app_popover").toHaveCount(0);
     expect(getModelFieldSelectorValues()).toEqual(["Product"]);
 });
 
@@ -488,7 +488,7 @@ test("Edit path in popover debug input", async () => {
     expect(getModelFieldSelectorValues()).toEqual(["Foo"]);
 
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover .o_model_field_selector_debug").edit(
+    await contains(".app_model_field_selector_popover .app_model_field_selector_debug").edit(
         "partner_id.bar"
     );
     expect(getModelFieldSelectorValues()).toEqual(["Partner", "Bar"]);
@@ -575,7 +575,7 @@ test("start on complex path and click prev", async () => {
     expect(getTitle()).toBe("Select a field");
     expect(getFocusedFieldName()).toBe("Mother");
     expect(getModelFieldSelectorValues()).toEqual(["Mother"]);
-    expect(".o_model_field_selector_popover_prev_page").toHaveCount(0);
+    expect(".app_model_field_selector_popover_prev_page").toHaveCount(0);
 });
 
 test("support of invalid paths (allowEmpty=false)", async () => {
@@ -590,37 +590,37 @@ test("support of invalid paths (allowEmpty=false)", async () => {
 
     const parent = await mountWithCleanup(Parent);
     expect(getModelFieldSelectorValues()).toEqual(["-"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = undefined;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["-"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = false;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["-"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = {};
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["-"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = `a`;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["a"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = `foo.a`;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["Foo", "a"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = `a.foo`;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["a", "foo"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 });
 
 test("support of invalid paths (allowEmpty=true)", async () => {
@@ -635,37 +635,37 @@ test("support of invalid paths (allowEmpty=true)", async () => {
 
     const parent = await mountWithCleanup(Parent);
     expect(getModelFieldSelectorValues()).toEqual([]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
 
     parent.state.path = undefined;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual([]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
 
     parent.state.path = false;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual([]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
 
     parent.state.path = {};
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["-"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = `a`;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["a"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = `foo.a`;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["Foo", "a"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     parent.state.path = `a.foo`;
     await animationFrame();
     expect(getModelFieldSelectorValues()).toEqual(["a", "foo"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 });
 
 test("debug input", async () => {
@@ -708,22 +708,22 @@ test("debug input", async () => {
 
     await mountWithCleanup(Parent);
     expect(getModelFieldSelectorValues()).toEqual(["-"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_debug").edit("a", { confirm: false });
-    await contains(".o_model_field_selector_popover_search").click();
+    await contains(".app_model_field_selector_debug").edit("a", { confirm: false });
+    await contains(".app_model_field_selector_popover_search").click();
     expect(getModelFieldSelectorValues()).toEqual(["a"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
 
-    await contains(".o_model_field_selector_popover_close").click();
+    await contains(".app_model_field_selector_popover_close").click();
 
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_debug").edit("foo");
+    await contains(".app_model_field_selector_debug").edit("foo");
     expect(getModelFieldSelectorValues()).toEqual(["Foo"]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
 
-    await contains(".o_model_field_selector_popover_close").click();
+    await contains(".app_model_field_selector_popover_close").click();
 });
 
 test("focus on search input", async () => {
@@ -739,10 +739,10 @@ test("focus on search input", async () => {
 
     await mountWithCleanup(Parent);
     await openModelFieldSelectorPopover();
-    expect(".o_model_field_selector_popover_search .o_input").toBeFocused();
+    expect(".app_model_field_selector_popover_search .app_input").toBeFocused();
 
     await followRelation();
-    expect(".o_model_field_selector_popover_search .o_input").toBeFocused();
+    expect(".app_model_field_selector_popover_search .app_input").toBeFocused();
 });
 
 test("support properties", async () => {
@@ -773,31 +773,31 @@ test("support properties", async () => {
     await mountWithCleanup(Parent);
     await openModelFieldSelectorPopover();
     expect(getTitle()).toBe("Select a field");
-    expect('.o_model_field_selector_popover_item[data-name="properties"]').toHaveCount(1);
+    expect('.app_model_field_selector_popover_item[data-name="properties"]').toHaveCount(1);
     expect(
-        '.o_model_field_selector_popover_item[data-name="properties"] .o_model_field_selector_popover_relation_icon'
+        '.app_model_field_selector_popover_item[data-name="properties"] .app_model_field_selector_popover_relation_icon'
     ).toHaveCount(1);
     expect(getModelFieldSelectorValues()).toEqual(["Foo"]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
 
     await contains(
-        '.o_model_field_selector_popover_item[data-name="properties"] .o_model_field_selector_popover_relation_icon'
+        '.app_model_field_selector_popover_item[data-name="properties"] .app_model_field_selector_popover_relation_icon'
     ).click();
     expect(getModelFieldSelectorValues()).toEqual(["Properties"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
     expect.verifySteps([]);
 
     await clickPrev();
     expect(getTitle()).toBe("Select a field");
     await contains(
-        '.o_model_field_selector_popover_item[data-name="properties"] .o_model_field_selector_popover_item_name'
+        '.app_model_field_selector_popover_item[data-name="properties"] .app_model_field_selector_popover_item_name'
     ).click();
     expect(getTitle()).toBe("Properties");
-    expect(".o_model_field_selector_value").toHaveText("Properties");
-    expect(".o_model_field_selector_popover_item").toHaveCount(3);
-    expect('.o_model_field_selector_popover_item[data-name="xphone_prop_1"]').toHaveCount(1);
-    expect('.o_model_field_selector_popover_item[data-name="xphone_prop_2"]').toHaveCount(1);
-    expect('.o_model_field_selector_popover_item[data-name="xpad_prop_1"]').toHaveCount(1);
+    expect(".app_model_field_selector_value").toHaveText("Properties");
+    expect(".app_model_field_selector_popover_item").toHaveCount(3);
+    expect('.app_model_field_selector_popover_item[data-name="xphone_prop_1"]').toHaveCount(1);
+    expect('.app_model_field_selector_popover_item[data-name="xphone_prop_2"]').toHaveCount(1);
+    expect('.app_model_field_selector_popover_item[data-name="xpad_prop_1"]').toHaveCount(1);
     expect(getDisplayedFieldNames()).toEqual([
         "P1 (xphone)\nxphone_prop_1 (boolean)",
         "P1 (xpad)\nxpad_prop_1 (date)",
@@ -805,11 +805,11 @@ test("support properties", async () => {
     ]);
 
     await contains(
-        '.o_model_field_selector_popover_item[data-name="xphone_prop_2"] .o_model_field_selector_popover_item_name'
+        '.app_model_field_selector_popover_item[data-name="xphone_prop_2"] .app_model_field_selector_popover_item_name'
     ).click();
     expect.verifySteps(["properties.xphone_prop_2"]);
-    expect(".o_model_field_selector_value").toHaveText("PropertiesP2");
-    expect(".o_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector_value").toHaveText("PropertiesP2");
+    expect(".app_model_field_selector_warning").toHaveCount(0);
 });
 
 test("search on field string and name in debug mode", async () => {
@@ -832,7 +832,7 @@ test("search on field string and name in debug mode", async () => {
     await mountWithCleanup(Parent);
     await openModelFieldSelectorPopover();
     await contains(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_search input"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_search input"
     ).edit("uct", { confirm: false });
     await runAllTimers();
     expect(getDisplayedFieldNames()).toEqual([
@@ -868,29 +868,29 @@ test("clear button (allowEmpty=true)", async () => {
     await mountWithCleanup(Parent);
 
     expect(getModelFieldSelectorValues()).toEqual(["baaarrr"]);
-    expect(".o_model_field_selector_warning").toHaveCount(1);
-    expect(".o_model_field_selector .fa.fa-times").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(1);
+    expect(".app_model_field_selector .fa.fa-times").toHaveCount(1);
 
     // clear when popover is not open
-    await contains(".o_model_field_selector .fa.fa-times").click();
+    await contains(".app_model_field_selector .fa.fa-times").click();
     expect(getModelFieldSelectorValues()).toEqual([]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
-    expect(".o_model_field_selector .fa.fa-times").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector .fa.fa-times").toHaveCount(0);
     expect.verifySteps([`path is ""`]);
 
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover_item_name").click();
+    await contains(".app_model_field_selector_popover_item_name").click();
     expect(getModelFieldSelectorValues()).toEqual(["Bar"]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
-    expect(".o_model_field_selector .fa.fa-times").toHaveCount(1);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector .fa.fa-times").toHaveCount(1);
     expect.verifySteps([`path is "bar"`]);
 
     // clear when popover is open
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector .fa.fa-times").click();
+    await contains(".app_model_field_selector .fa.fa-times").click();
     expect(getModelFieldSelectorValues()).toEqual([]);
-    expect(".o_model_field_selector_warning").toHaveCount(0);
-    expect(".o_model_field_selector .fa.fa-times").toHaveCount(0);
+    expect(".app_model_field_selector_warning").toHaveCount(0);
+    expect(".app_model_field_selector .fa.fa-times").toHaveCount(0);
     expect.verifySteps([`path is ""`]);
 });
 
@@ -921,7 +921,7 @@ test("Modify path in popover debug input and click away", async () => {
     expect(getModelFieldSelectorValues()).toEqual(["Foo"]);
 
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover .o_model_field_selector_debug").edit(
+    await contains(".app_model_field_selector_popover .app_model_field_selector_debug").edit(
         "foooooo",
         { confirm: false }
     );
@@ -944,5 +944,5 @@ test("showDebugInput = false", async () => {
     });
 
     await openModelFieldSelectorPopover();
-    expect(".o_model_field_selector_debug").toHaveCount(0);
+    expect(".app_model_field_selector_debug").toHaveCount(0);
 });

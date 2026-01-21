@@ -129,7 +129,7 @@ export class CalendarCommonRenderer extends Component {
             nowIndicator: true,
             nowIndicatorContent: {
                 html: `
-                    <div class="o_calendar_time_indicator_now"></div>
+                    <div class="app_calendar_time_indicator_now"></div>
                 `,
             },
             select: this.onSelect,
@@ -213,13 +213,13 @@ export class CalendarCommonRenderer extends Component {
         this.popover.open(
             target,
             this.getPopoverProps(record),
-            `o_cw_popover card o_calendar_color_${typeof color === "number" ? color : 0}`
+            `o_cw_popover card app_calendar_color_${typeof color === "number" ? color : 0}`
         );
     }
 
     onClick(info) {
         this.openPopover(info.el, this.props.model.records[info.event.id]);
-        this.highlightEvent(info.event, "o_cw_custom_highlight");
+        this.highlightEvent(info.event, "app_cw_custom_highlight");
     }
     onDateClick(info) {
         if (info.jsEvent.defaultPrevented) {
@@ -230,7 +230,7 @@ export class CalendarCommonRenderer extends Component {
     getDayCellClassNames(info) {
         const date = luxon.DateTime.fromJSDate(info.date).toISODate();
         if (this.props.model.unusualDays.includes(date)) {
-            return ["o_calendar_disabled"];
+            return ["app_calendar_disabled"];
         }
         return [];
     }
@@ -270,7 +270,7 @@ export class CalendarCommonRenderer extends Component {
     }
     eventClassNames({ el, event }) {
         const classesToAdd = [];
-        classesToAdd.push("o_event");
+        classesToAdd.push("app_event");
         const record = this.props.model.records[event.id];
 
         if (record) {
@@ -278,26 +278,26 @@ export class CalendarCommonRenderer extends Component {
             if (typeof color === "number") {
                 classesToAdd.push(`o_calendar_color_${color}`);
             } else if (typeof color !== "string") {
-                classesToAdd.push("o_calendar_color_0");
+                classesToAdd.push("app_calendar_color_0");
             }
 
             if (record.isHatched) {
-                classesToAdd.push("o_event_hatched");
+                classesToAdd.push("app_event_hatched");
             }
             if (record.isStriked) {
-                classesToAdd.push("o_event_striked");
+                classesToAdd.push("app_event_striked");
             }
             if (record.duration <= 0.25) {
-                classesToAdd.push("o_event_oneliner");
+                classesToAdd.push("app_event_oneliner");
             }
             if (DateTime.now() >= record.end) {
-                classesToAdd.push("o_past_event");
+                classesToAdd.push("app_past_event");
             }
 
             if (!record.isAllDay && !record.isTimeHidden && record.isMonth) {
-                classesToAdd.push("o_event_dot");
+                classesToAdd.push("app_event_dot");
             } else if (record.isAllDay) {
-                classesToAdd.push("o_event_allday");
+                classesToAdd.push("app_event_allday");
             }
         }
         return classesToAdd;
@@ -374,24 +374,24 @@ export class CalendarCommonRenderer extends Component {
         return res;
     }
     onEventMouseEnter(info) {
-        this.highlightEvent(info.event, "o_cw_custom_highlight");
+        this.highlightEvent(info.event, "app_cw_custom_highlight");
     }
     onEventMouseLeave(info) {
         if (!info.event.id) {
             return;
         }
-        this.unhighlightEvent(info.event, "o_cw_custom_highlight");
+        this.unhighlightEvent(info.event, "app_cw_custom_highlight");
     }
     onEventDragStart(info) {
         this.props.cleanSquareSelection();
         info.el.classList.add(info.view.type);
         this.fc.api.unselect();
-        this.highlightEvent(info.event, "o_cw_custom_highlight");
+        this.highlightEvent(info.event, "app_cw_custom_highlight");
     }
     onEventResizeStart(info) {
         this.props.cleanSquareSelection();
         this.fc.api.unselect();
-        this.highlightEvent(info.event, "o_cw_custom_highlight");
+        this.highlightEvent(info.event, "app_cw_custom_highlight");
     }
     onEventLimitClick() {
         this.fc.api.unselect();

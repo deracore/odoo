@@ -10,16 +10,16 @@
     }
 }
 
-.o_draggable {
+.app_draggable {
     -webkit-touch-callout: none; // for iOS
 }
 
-.o_dragged {
+.app_dragged {
     z-index: 1000;
     pointer-events: none;
 }
 
-.o_touch_bounce {
+.app_touch_bounce {
     animation: o-draggable-bounce .4s forwards;
     user-select: none;
 }

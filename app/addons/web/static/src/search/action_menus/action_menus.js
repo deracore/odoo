@@ -159,7 +159,7 @@ export class ActionMenus extends Component {
             .filter((action) => validActionIds.includes(action.id))
             .map((action) => ({
                 action,
-                class: "o_menu_item",
+                class: "app_menu_item",
                 description: action.name,
                 key: action.id,
             }));
@@ -177,7 +177,7 @@ export class ActionMenus extends Component {
         if (!allItems.length) {
             allItems.push({
                 description: _t("No report available."),
-                class: "o_menu_item disabled",
+                class: "app_menu_item disabled",
                 key: "nothing_to_display",
             });
         }

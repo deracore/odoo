@@ -10,7 +10,7 @@ export async function executeButtonCallback(el, fct) {
         btns = [
             ...btns,
             ...el.querySelectorAll("button:not([disabled])"),
-            ...document.querySelectorAll(".o-overlay-container button:not([disabled])"),
+            ...document.querySelectorAll(".app-overlay-container button:not([disabled])"),
         ];
         for (const btn of btns) {
             btn.setAttribute("disabled", "1");

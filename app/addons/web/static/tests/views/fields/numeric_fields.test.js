@@ -71,49 +71,49 @@ test("Numeric fields: fields with keydown on numpad decimal key", async () => {
 
     // Dispatch numpad "dot" and numpad "comma" keydown events to all inputs and check
     // Numpad "comma" is specific to some countries (Brazil...)
-    await click(".o_field_float_factor input");
+    await click(".app_field_float_factor input");
     await keyDown("ArrowRight", { code: "ArrowRight" });
     await keyDown(".", { code: "NumpadDecimal" });
     await keyDown(",", { code: "NumpadDecimal" });
     await animationFrame();
-    expect(".o_field_float_factor input").toHaveValue("5🇧🇪00🇧🇪🇧🇪");
+    expect(".app_field_float_factor input").toHaveValue("5🇧🇪00🇧🇪🇧🇪");
 
-    await click(".o_field_float input");
+    await click(".app_field_float input");
     await keyDown("ArrowRight", { code: "ArrowRight" });
     await keyDown(".", { code: "NumpadDecimal" });
     await keyDown(",", { code: "NumpadDecimal" });
     await animationFrame();
-    expect(".o_field_float input").toHaveValue("0🇧🇪4🇧🇪🇧🇪");
+    expect(".app_field_float input").toHaveValue("0🇧🇪4🇧🇪🇧🇪");
 
-    await click(".o_field_integer input");
+    await click(".app_field_integer input");
     await keyDown("ArrowRight", { code: "ArrowRight" });
     await keyDown(".", { code: "NumpadDecimal" });
     await keyDown(",", { code: "NumpadDecimal" });
     await animationFrame();
-    expect(".o_field_integer input").toHaveValue("10🇧🇪🇧🇪");
+    expect(".app_field_integer input").toHaveValue("10🇧🇪🇧🇪");
 
-    await click(".o_field_monetary input");
+    await click(".app_field_monetary input");
     await keyDown("ArrowRight", { code: "ArrowRight" });
     await keyDown(".", { code: "NumpadDecimal" });
     await keyDown(",", { code: "NumpadDecimal" });
     await animationFrame();
-    expect(".o_field_monetary input").toHaveValue("9🇧🇪99🇧🇪🇧🇪");
+    expect(".app_field_monetary input").toHaveValue("9🇧🇪99🇧🇪🇧🇪");
 
-    await click(".o_field_percentage input");
+    await click(".app_field_percentage input");
     await keyDown("ArrowRight", { code: "ArrowRight" });
     await keyDown(".", { code: "NumpadDecimal" });
     await keyDown(",", { code: "NumpadDecimal" });
     await animationFrame();
-    expect(".o_field_percentage input").toHaveValue("99🇧🇪🇧🇪");
+    expect(".app_field_percentage input").toHaveValue("99🇧🇪🇧🇪");
 
-    await click(".o_field_progressbar input");
+    await click(".app_field_progressbar input");
     await animationFrame();
 
     await keyDown("ArrowRight", { code: "ArrowRight" });
     await keyDown(".", { code: "NumpadDecimal" });
     await keyDown(",", { code: "NumpadDecimal" });
     await animationFrame();
-    expect(".o_field_progressbar input").toHaveValue("0🇧🇪44🇧🇪🇧🇪");
+    expect(".app_field_progressbar input").toHaveValue("0🇧🇪44🇧🇪🇧🇪");
 });
 
 test("Numeric fields: NumpadDecimal key is different from the decimalPoint", async () => {
@@ -135,12 +135,12 @@ test("Numeric fields: NumpadDecimal key is different from the decimalPoint", asy
     });
 
     // Get all inputs
-    const floatFactorField = queryFirst(".o_field_float_factor input");
-    const floatInput = queryFirst(".o_field_float input");
-    const integerInput = queryFirst(".o_field_integer input");
-    const monetaryInput = queryFirst(".o_field_monetary input");
-    const percentageInput = queryFirst(".o_field_percentage input");
-    const progressbarInput = queryFirst(".o_field_progressbar input");
+    const floatFactorField = queryFirst(".app_field_float_factor input");
+    const floatInput = queryFirst(".app_field_float input");
+    const integerInput = queryFirst(".app_field_integer input");
+    const monetaryInput = queryFirst(".app_field_monetary input");
+    const percentageInput = queryFirst(".app_field_percentage input");
+    const progressbarInput = queryFirst(".app_field_progressbar input");
 
     /**
      * Common assertion steps are extracted in this procedure.
@@ -285,7 +285,7 @@ test("select all content on focus", async () => {
         arch: /* xml */ `<form><field name="monetary"/></form>`,
     });
 
-    const input = queryFirst(".o_field_widget[name='monetary'] input");
+    const input = queryFirst(".app_field_widget[name='monetary'] input");
     await pointerDown(input);
     await animationFrame();
     expect(input.selectionStart).toBe(0);

@@ -20,7 +20,7 @@ tfoot {
 // ------------------------------------------------------------------
 //  General
 // ------------------------------------------------------------------
-.o_web_client {
+.app_web_client {
   direction: ltr;
   position: relative; // normally useless but required by bootstrap-datepicker
   background-color: $o-webclient-background-color;
@@ -32,7 +32,7 @@ tfoot {
 // ------------------------------------------------------------------
 
 // Buttons
-.o_icon_button {
+.app_icon_button {
   background-color: transparent;
   border: 0;
   padding: 0;
@@ -93,7 +93,7 @@ kbd {
 }
 
 /*!rtl:begin:ignore*/
-.o-dropdown.dropstart > .dropdown-item.dropdown-toggle:not(.dropdown-item_active_noarrow) {
+.app-dropdown.dropstart > .dropdown-item.dropdown-toggle:not(.dropdown-item_active_noarrow) {
   &.active, &.selected {
     &::after {
       @include o-position-absolute(0, $left: 90%);
@@ -140,7 +140,7 @@ kbd {
   cursor: pointer !important;
 }
 
-.o_web_client.o_touch_device {
+.app_web_client.app_touch_device {
   .btn {
       &, .btn-sm {
         &:where(:not(.dropdown-item)) {
@@ -161,7 +161,7 @@ kbd {
 }
 
 //------------------------------------------------------------------------------
-// Inputs and selects (note: put the o_input class to have the style)
+// Inputs and selects (note: put the app_input class to have the style)
 //------------------------------------------------------------------------------
 [type="text"],
 [type="password"],

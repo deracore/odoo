@@ -28,9 +28,9 @@ test("simple rendering with neither groupbys nor groupable fields", async () => 
         searchViewFields: {},
     });
     await toggleSearchBarMenu();
-    expect(`.o_menu_item`).toHaveCount(0);
+    expect(`.app_menu_item`).toHaveCount(0);
     expect(`.dropdown-divider`).toHaveCount(0);
-    expect(`.o_add_custom_group_menu`).toHaveCount(0);
+    expect(`.app_add_custom_group_menu`).toHaveCount(0);
 });
 
 test("simple rendering with no groupby", async () => {
@@ -40,9 +40,9 @@ test("simple rendering with no groupby", async () => {
         searchViewId: false,
     });
     await toggleSearchBarMenu();
-    expect(`.o_menu_item`).toHaveCount(1);
+    expect(`.app_menu_item`).toHaveCount(1);
     expect(`.dropdown-divider`).toHaveCount(0);
-    expect(`.o_add_custom_group_menu`).toHaveCount(1);
+    expect(`.app_add_custom_group_menu`).toHaveCount(1);
 });
 
 test("simple rendering with a single groupby", async () => {
@@ -58,13 +58,13 @@ test("simple rendering with a single groupby", async () => {
     });
     await toggleSearchBarMenu();
 
-    expect(`.o_menu_item`).toHaveCount(2);
-    const menuItem = queryFirst`.o_menu_item`;
+    expect(`.app_menu_item`).toHaveCount(2);
+    const menuItem = queryFirst`.app_menu_item`;
     expect(menuItem).toHaveText("Foo");
     expect(menuItem).toHaveAttribute("role", "menuitemcheckbox");
     expect(menuItem).toHaveProperty("ariaChecked", "false");
     expect(".dropdown-divider").toHaveCount(1);
-    expect(".o_add_custom_group_menu").toHaveCount(1);
+    expect(".app_add_custom_group_menu").toHaveCount(1);
 });
 
 test(`toggle a "simple" groupby in groupby menu works`, async () => {
@@ -84,7 +84,7 @@ test(`toggle a "simple" groupby in groupby menu works`, async () => {
     expect(getFacetTexts()).toEqual([]);
     expect(isItemSelected("Foo")).toBe(false);
 
-    const menuItem = queryFirst`.o_menu_item`;
+    const menuItem = queryFirst`.app_menu_item`;
     expect(menuItem).toHaveText("Foo");
     expect(menuItem).toHaveAttribute("role", "menuitemcheckbox");
     expect(menuItem).toHaveProperty("ariaChecked", "false");
@@ -93,7 +93,7 @@ test(`toggle a "simple" groupby in groupby menu works`, async () => {
     expect(menuItem).toHaveProperty("ariaChecked", "true");
     expect(searchBar.env.searchModel.groupBy).toEqual(["foo"]);
     expect(getFacetTexts()).toEqual(["Foo"]);
-    expect(`.o_searchview .o_searchview_facet .o_searchview_facet_label`).toHaveCount(1);
+    expect(`.app_searchview .app_searchview_facet .app_searchview_facet_label`).toHaveCount(1);
     expect(isItemSelected("Foo")).toBe(true);
 
     await toggleMenuItem("Foo");
@@ -164,7 +164,7 @@ test("group by a date field using interval works", async () => {
 
     await toggleMenuItem("Date");
     expect(isOptionSelected("Date", "Week")).toBe(true);
-    expect(queryAllTexts`.o_item_option`).toEqual(["Year", "Quarter", "Month", "Week", "Day"]);
+    expect(queryAllTexts`.app_item_option`).toEqual(["Year", "Quarter", "Month", "Week", "Day"]);
 
     await toggleMenuItemOption("Date", "Year");
     expect(searchBar.env.searchModel.groupBy).toEqual(["date_field:year", "date_field:week"]);
@@ -303,7 +303,7 @@ test("a separator in groupbys does not cause problems", async () => {
     expect(isOptionSelected("Date", "Day")).toBe(true);
     expect(getFacetTexts()).toEqual(["Date: Quarter\n>\nDate: Day"]);
 
-    await contains(`.o_facet_remove`).click();
+    await contains(`.app_facet_remove`).click();
     expect(getFacetTexts()).toEqual([]);
 
     await toggleSearchBarMenu();
@@ -344,7 +344,7 @@ test("Custom group by menu is displayed when hideCustomGroupBy is not set", asyn
         searchMenuTypes: ["groupBy"],
     });
     await toggleSearchBarMenu();
-    expect(`.o_add_custom_group_menu`).toHaveCount(1);
+    expect(`.app_add_custom_group_menu`).toHaveCount(1);
 });
 
 test("Custom group by menu is displayed when hideCustomGroupBy is false", async () => {
@@ -361,7 +361,7 @@ test("Custom group by menu is displayed when hideCustomGroupBy is false", async 
         searchMenuTypes: ["groupBy"],
     });
     await toggleSearchBarMenu();
-    expect(`.o_add_custom_group_menu`).toHaveCount(1);
+    expect(`.app_add_custom_group_menu`).toHaveCount(1);
 });
 
 test("Custom group by menu is displayed when hideCustomGroupBy is true", async () => {
@@ -378,5 +378,5 @@ test("Custom group by menu is displayed when hideCustomGroupBy is true", async (
         searchMenuTypes: ["groupBy"],
     });
     await toggleSearchBarMenu();
-    expect(`.o_add_custom_group_menu`).toHaveCount(0);
+    expect(`.app_add_custom_group_menu`).toHaveCount(0);
 });

@@ -39,19 +39,19 @@ beforeEach(() => {
 test("default params, click on suggestion to select time", async () => {
     await mountWithCleanup(TimePicker);
 
-    expect(".o_time_picker").toHaveCount(1);
-    expect("input.o_time_picker_input").toHaveValue("0:00");
+    expect(".app_time_picker").toHaveCount(1);
+    expect("input.app_time_picker_input").toHaveValue("0:00");
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
-    expect(".o-dropdown--menu.o_time_picker_dropdown").toHaveCount(1);
-    expect(queryAllTexts(".o_time_picker_option")).toEqual(getTimeOptions());
+    expect(".app-dropdown--menu.app_time_picker_dropdown").toHaveCount(1);
+    expect(queryAllTexts(".app_time_picker_option")).toEqual(getTimeOptions());
 
-    await click(".o_time_picker_option:contains(12:15)");
+    await click(".app_time_picker_option:contains(12:15)");
     await animationFrame();
 
-    expect("input.o_time_picker_input").toHaveValue("12:15");
+    expect("input.app_time_picker_input").toHaveValue("12:15");
 });
 
 test("when opening, select the suggestion equals to the props value", async () => {
@@ -61,14 +61,14 @@ test("when opening, select the suggestion equals to the props value", async () =
         },
     });
 
-    expect("input.o_time_picker_input").toHaveValue("12:30");
+    expect("input.app_time_picker_input").toHaveValue("12:30");
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
-    expect(".o-dropdown--menu.o_time_picker_dropdown").toHaveCount(1);
-    expect(queryAllTexts(".o_time_picker_option")).toEqual(getTimeOptions());
-    expect(".o_time_picker_option:contains(12:30)").toHaveClass("focus");
+    expect(".app-dropdown--menu.app_time_picker_dropdown").toHaveCount(1);
+    expect(queryAllTexts(".app_time_picker_option")).toEqual(getTimeOptions());
+    expect(".app_time_picker_option:contains(12:30)").toHaveClass("focus");
 });
 
 test("onChange only triggers if the value has changed", async () => {
@@ -79,24 +79,24 @@ test("onChange only triggers if the value has changed", async () => {
         },
     });
 
-    expect("input.o_time_picker_input").toHaveValue("12:15");
+    expect("input.app_time_picker_input").toHaveValue("12:15");
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    await click(".o_time_picker_option:contains(12:15)");
+    await click(".app_time_picker_option:contains(12:15)");
     await animationFrame();
 
-    expect(".o-dropdown--menu.o_time_picker_dropdown").toHaveCount(0);
-    expect("input.o_time_picker_input").toHaveValue("12:15");
+    expect(".app-dropdown--menu.app_time_picker_dropdown").toHaveCount(0);
+    expect("input.app_time_picker_input").toHaveValue("12:15");
     expect.verifySteps([]);
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    await click(".o_time_picker_option:contains(12:30)");
+    await click(".app_time_picker_option:contains(12:30)");
     await animationFrame();
 
-    expect(".o-dropdown--menu.o_time_picker_dropdown").toHaveCount(0);
-    expect("input.o_time_picker_input").toHaveValue("12:30");
+    expect(".app-dropdown--menu.app_time_picker_dropdown").toHaveCount(0);
+    expect("input.app_time_picker_input").toHaveValue("12:30");
     expect.verifySteps(["12:30"]);
 });
 
@@ -108,21 +108,21 @@ test("seconds only shown and usable when 'showSeconds' is true", async () => {
         },
     });
 
-    expect("input.o_time_picker_input").toHaveValue("0:00:00");
+    expect("input.app_time_picker_input").toHaveValue("0:00:00");
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
-    await click(".o_time_picker_option:contains(12:15)");
+    await click(".app_time_picker_option:contains(12:15)");
     await animationFrame();
 
-    expect("input.o_time_picker_input").toHaveValue("12:15:00");
+    expect("input.app_time_picker_input").toHaveValue("12:15:00");
     expect.verifySteps(["12:15:0"]);
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await edit("15:25:33", { confirm: "enter" });
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("15:25:33");
+    expect("input.app_time_picker_input").toHaveValue("15:25:33");
     expect.verifySteps(["15:25:33"]);
 });
 
@@ -139,9 +139,9 @@ test("handle 12h (am/pm) time format", async () => {
         },
     });
 
-    expect("input.o_time_picker_input").toHaveValue("12:00am");
+    expect("input.app_time_picker_input").toHaveValue("12:00am");
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
     const M = range(60, (i) => i)
@@ -150,18 +150,18 @@ test("handle 12h (am/pm) time format", async () => {
     const H = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     const options = [];
     ["am", "pm"].forEach((a) => H.forEach((h) => M.forEach((m) => options.push(`${h}:${m}${a}`))));
-    expect(queryAllTexts(".o_time_picker_dropdown .o_time_picker_option")).toEqual(options);
+    expect(queryAllTexts(".app_time_picker_dropdown .app_time_picker_option")).toEqual(options);
 
     await edit("4:15pm", { confirm: "enter" });
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("4:15pm");
+    expect("input.app_time_picker_input").toHaveValue("4:15pm");
     // actual data is always in 24h format
     expect.verifySteps(["16:15"]);
 
     await edit("8:30", { confirm: "enter" });
     await animationFrame();
     // default to am when no meridiem is provided
-    expect("input.o_time_picker_input").toHaveValue("8:30am");
+    expect("input.app_time_picker_input").toHaveValue("8:30am");
     expect.verifySteps(["8:30"]);
 });
 
@@ -173,12 +173,12 @@ test("validity updated on input and cannot apply non-valid time strings", async 
         },
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
     await edit("gg ez", { confirm: false });
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveClass("o_invalid");
+    expect("input.app_time_picker_input").toHaveClass("app_invalid");
 
     await press("enter");
     await animationFrame();
@@ -186,7 +186,7 @@ test("validity updated on input and cannot apply non-valid time strings", async 
 
     await edit("12:30", { confirm: false });
     await animationFrame();
-    expect("input.o_time_picker_input").not.toHaveClass("o_invalid");
+    expect("input.app_time_picker_input").not.toHaveClass("app_invalid");
     expect.verifySteps([]);
 
     await press("enter");
@@ -202,18 +202,18 @@ test("arrow keys navigation, enter selects items, up/down arrow updates the inpu
         },
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("0:00");
+    expect("input.app_time_picker_input").toHaveValue("0:00");
 
     await press("arrowdown");
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("0:15");
+    expect("input.app_time_picker_input").toHaveValue("0:15");
 
     await press("arrowup");
     await press("arrowup");
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("23:45");
+    expect("input.app_time_picker_input").toHaveValue("23:45");
 
     await press("enter");
     await animationFrame();
@@ -228,25 +228,25 @@ test("if typing after navigating, enter validates input value", async () => {
         },
     });
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
     await press("arrowdown");
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("0:15");
+    expect("input.app_time_picker_input").toHaveValue("0:15");
 
     await press("enter");
     await animationFrame();
     // Enter selects the navigated item
     expect.verifySteps(["0:15"]);
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
 
     await press("arrowdown");
     await press("arrowdown");
     await animationFrame();
-    expect("input.o_time_picker_input").toHaveValue("0:45");
+    expect("input.app_time_picker_input").toHaveValue("0:45");
 
     await edit("12:5", { confirm: false });
     await press("enter");
@@ -258,15 +258,15 @@ test("if typing after navigating, enter validates input value", async () => {
 test("typing a value that is in the suggestions will focus it in the dropdown", async () => {
     await mountWithCleanup(TimePicker);
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
     await runAllTimers();
-    expect(".o_time_picker_option.focus").toHaveText("0:00");
+    expect(".app_time_picker_option.focus").toHaveText("0:00");
 
     await edit("12:3", { confirm: false });
     await animationFrame();
-    expect(".o_time_picker_option.focus").toHaveText("12:30");
-    expect(".o_time_picker_option.focus").toBeVisible();
+    expect(".app_time_picker_option.focus").toHaveText("12:30");
+    expect(".app_time_picker_option.focus").toBeVisible();
 });
 
 test("false, null and undefined are accepted values", async () => {
@@ -283,15 +283,15 @@ test("false, null and undefined are accepted values", async () => {
     }
 
     const comp = await mountWithCleanup(Parent);
-    expect(".o_time_picker_input").toHaveValue("");
+    expect(".app_time_picker_input").toHaveValue("");
 
     comp.state.value = false;
     await runAllTimers();
-    expect(".o_time_picker_input").toHaveValue("");
+    expect(".app_time_picker_input").toHaveValue("");
 
     comp.state.value = undefined;
     await runAllTimers();
-    expect(".o_time_picker_input").toHaveValue("0:00");
+    expect(".app_time_picker_input").toHaveValue("0:00");
 });
 
 test("click-out triggers onChange", async () => {
@@ -320,9 +320,9 @@ test("click-out triggers onChange", async () => {
     await click(".open");
     await animationFrame();
 
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    expect(".o_time_picker_option.focus").toHaveText("0:00");
+    expect(".app_time_picker_option.focus").toHaveText("0:00");
 
     await edit("12:3", { confirm: false });
     await animationFrame();
@@ -330,7 +330,7 @@ test("click-out triggers onChange", async () => {
 
     await click(".outside");
     await animationFrame();
-    expect(".o-dropdown--menu.o_time_picker_dropdown").toHaveCount(0);
+    expect(".app-dropdown--menu.app_time_picker_dropdown").toHaveCount(0);
     expect.verifySteps(["12:30"]);
 });
 
@@ -352,18 +352,18 @@ test("changing the props value updates the input", async () => {
     }
 
     const comp = await mountWithCleanup(Parent);
-    expect(".o_time_picker_input").toHaveValue("");
+    expect(".app_time_picker_input").toHaveValue("");
 
     // Set value from props
     comp.state.value = "12:00";
     await runAllTimers();
-    expect(".o_time_picker_input").toHaveValue("12:00");
+    expect(".app_time_picker_input").toHaveValue("12:00");
     expect.verifySteps([]);
 
     // Set value by clicking
-    await click(".o_time_picker_input");
+    await click(".app_time_picker_input");
     await animationFrame();
-    await click(`.o_time_picker_option:contains("11:30")`);
+    await click(`.app_time_picker_option:contains("11:30")`);
     await animationFrame();
     await runAllTimers();
     expect.verifySteps(["11:30"]);
@@ -371,7 +371,7 @@ test("changing the props value updates the input", async () => {
     // Set falsy value from props
     comp.state.value = false;
     await runAllTimers();
-    expect(".o_time_picker_input").toHaveValue("");
+    expect(".app_time_picker_input").toHaveValue("");
     expect.verifySteps([]);
 });
 
@@ -388,31 +388,31 @@ test("ensure placeholder is customizable", async () => {
 
     const comp = await mountWithCleanup(Parent);
     await animationFrame();
-    expect(".o_time_picker_input").toHaveAttribute("placeholder", "hh:mm");
+    expect(".app_time_picker_input").toHaveAttribute("placeholder", "hh:mm");
 
     comp.state.placeholder = "your time";
     await animationFrame();
-    expect(".o_time_picker_input").toHaveAttribute("placeholder", "your time");
+    expect(".app_time_picker_input").toHaveAttribute("placeholder", "your time");
 });
 
 test("add a custom class", async () => {
     class Parent extends Component {
         static components = { TimePicker };
         static props = {};
-        static template = xml`<TimePicker cssClass="'o_custom_class'"/>`;
+        static template = xml`<TimePicker cssClass="'app_custom_class'"/>`;
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_time_picker").toHaveClass("o_custom_class");
+    expect(".app_time_picker").toHaveClass("app_custom_class");
 });
 
 test("add a custom input class", async () => {
     class Parent extends Component {
         static components = { TimePicker };
         static props = {};
-        static template = xml`<TimePicker inputCssClass="'o_custom_class'"/>`;
+        static template = xml`<TimePicker inputCssClass="'app_custom_class'"/>`;
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_time_picker_input").toHaveClass("o_custom_class");
+    expect(".app_time_picker_input").toHaveClass("app_custom_class");
 });

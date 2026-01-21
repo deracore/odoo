@@ -26,9 +26,9 @@ export function assertDateTimePicker(expectedParams) {
 
     // Check for picker in DOM
     if (expectedParams) {
-        assert.containsOnce(fixture, ".o_datetime_picker");
+        assert.containsOnce(fixture, ".app_datetime_picker");
     } else {
-        assert.containsNone(fixture, ".o_datetime_picker");
+        assert.containsNone(fixture, ".app_datetime_picker");
         return;
     }
 
@@ -37,33 +37,33 @@ export function assertDateTimePicker(expectedParams) {
     // Title
     if (title) {
         const expectedTitle = ensureArray(title);
-        assert.containsOnce(fixture, ".o_datetime_picker_header");
+        assert.containsOnce(fixture, ".app_datetime_picker_header");
         assert.deepEqual(
-            getTexts(".o_datetime_picker_header", "strong"),
+            getTexts(".app_datetime_picker_header", "strong"),
             expectedTitle,
             `title should be "${expectedTitle.join(" - ")}"`
         );
     } else {
-        assert.containsNone(fixture, ".o_datetime_picker_header");
+        assert.containsNone(fixture, ".app_datetime_picker_header");
     }
 
     // Time picker
     if (time) {
-        assert.containsN(fixture, ".o_time_picker", time.length);
-        const timePickers = select(".o_time_picker");
+        assert.containsN(fixture, ".app_time_picker", time.length);
+        const timePickers = select(".app_time_picker");
         for (let i = 0; i < time.length; i++) {
             const expectedTime = time[i];
-            const values = select(timePickers[i], ".o_time_picker_select").map((sel) => sel.value);
+            const values = select(timePickers[i], ".app_time_picker_select").map((sel) => sel.value);
             const actual = [...values.slice(0, 2).map(Number), ...values.slice(2)];
             assert.deepEqual(actual, expectedTime, `time values should be [${expectedTime}]`);
         }
     } else {
-        assert.containsNone(fixture, ".o_time_picker");
+        assert.containsNone(fixture, ".app_time_picker");
     }
 
     // Date picker
-    const datePickerEls = select(".o_date_picker");
-    assert.containsN(fixture, ".o_date_picker", date.length);
+    const datePickerEls = select(".app_date_picker");
+    assert.containsN(fixture, ".app_date_picker", date.length);
 
     let selectedCells = 0;
     let outOfRangeCells = 0;
@@ -71,7 +71,7 @@ export function assertDateTimePicker(expectedParams) {
     for (let i = 0; i < date.length; i++) {
         const { cells, daysOfWeek, weekNumbers } = date[i];
         const datePickerEl = datePickerEls[i];
-        const cellEls = select(datePickerEl, ".o_date_item_cell");
+        const cellEls = select(datePickerEl, ".app_date_item_cell");
 
         assert.strictEqual(
             cellEls.length,
@@ -82,7 +82,7 @@ export function assertDateTimePicker(expectedParams) {
         );
 
         if (daysOfWeek) {
-            const actualDow = getTexts(datePickerEl, ".o_day_of_week_cell");
+            const actualDow = getTexts(datePickerEl, ".app_day_of_week_cell");
             assert.deepEqual(
                 actualDow,
                 daysOfWeek,
@@ -94,7 +94,7 @@ export function assertDateTimePicker(expectedParams) {
 
         if (weekNumbers) {
             assert.deepEqual(
-                getTexts(datePickerEl, ".o_week_number_cell").map(Number),
+                getTexts(datePickerEl, ".app_week_number_cell").map(Number),
                 weekNumbers,
                 `picker should display the week numbers (${weekNumbers.join(", ")})`
             );
@@ -123,15 +123,15 @@ export function assertDateTimePicker(expectedParams) {
                 // Assert based on flags
                 if (isSelected) {
                     selectedCells++;
-                    assert.hasClass(cellEl, "o_selected");
+                    assert.hasClass(cellEl, "app_selected");
                 }
                 if (isOutOfRange) {
                     outOfRangeCells++;
-                    assert.hasClass(cellEl, "o_out_of_range");
+                    assert.hasClass(cellEl, "app_out_of_range");
                 }
                 if (isToday) {
                     todayCells++;
-                    assert.hasClass(cellEl, "o_today");
+                    assert.hasClass(cellEl, "app_today");
                 }
 
                 return value;
@@ -145,9 +145,9 @@ export function assertDateTimePicker(expectedParams) {
         );
     }
 
-    assert.containsN(fixture, ".o_selected", selectedCells);
-    assert.containsN(fixture, ".o_out_of_range", outOfRangeCells);
-    assert.containsN(fixture, ".o_today", todayCells);
+    assert.containsN(fixture, ".app_selected", selectedCells);
+    assert.containsN(fixture, ".app_out_of_range", outOfRangeCells);
+    assert.containsN(fixture, ".app_today", todayCells);
 }
 
 /**
@@ -155,7 +155,7 @@ export function assertDateTimePicker(expectedParams) {
  */
 export function getPickerCell(expr) {
     const regex = expr instanceof RegExp ? expr : new RegExp(`^${expr}$`, "i");
-    const cells = select(".o_datetime_picker .o_date_item_cell").filter((cell) =>
+    const cells = select(".app_datetime_picker .app_date_item_cell").filter((cell) =>
         regex.test(getTexts(cell)[0])
     );
     return cells.length === 1 ? cells[0] : cells;
@@ -188,7 +188,7 @@ export function useTwelveHourClockFormat() {
 }
 
 export function zoomOut() {
-    return click(getFixture(), ".o_zoom_out");
+    return click(getFixture(), ".app_zoom_out");
 }
 
 const PICKER_ROWS = 6;

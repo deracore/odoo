@@ -183,14 +183,14 @@ test(`basic action as App`, async () => {
     expect(browser.location.href).toBe("http://example.com/app");
     expect(router.current).toEqual({});
 
-    await contains(`.o_navbar_apps_menu button`).click();
-    await contains(`.o-dropdown-item:eq(2)`).click();
+    await contains(`.app_navbar_apps_menu button`).click();
+    await contains(`.app-dropdown-item:eq(2)`).click();
     await animationFrame();
     await animationFrame();
     expect(router.current.action).toBe(1002);
     expect(browser.location.href).toBe("http://example.com/app/action-1002");
     expect(`.test_client_action`).toHaveText("ClientAction_Id 2");
-    expect(`.o_menu_brand`).toHaveText("App2");
+    expect(`.app_menu_brand`).toHaveText("App2");
 });
 
 test(`do action keeps menu in url`, async () => {
@@ -198,21 +198,21 @@ test(`do action keeps menu in url`, async () => {
     expect(browser.location.href).toBe("http://example.com/app");
     expect(router.current).toEqual({});
 
-    await contains(`.o_navbar_apps_menu button`).click();
-    await contains(`.o-dropdown-item:eq(2)`).click();
+    await contains(`.app_navbar_apps_menu button`).click();
+    await contains(`.app-dropdown-item:eq(2)`).click();
     await animationFrame();
     await animationFrame();
     expect(browser.location.href).toBe("http://example.com/app/action-1002");
     expect(router.current.action).toBe(1002);
     expect(`.test_client_action`).toHaveText("ClientAction_Id 2");
-    expect(`.o_menu_brand`).toHaveText("App2");
+    expect(`.app_menu_brand`).toHaveText("App2");
 
     await getService("action").doAction(1001, { clearBreadcrumbs: true });
     await animationFrame();
     expect(browser.location.href).toBe("http://example.com/app/action-1001");
     expect(router.current.action).toBe(1001);
     expect(`.test_client_action`).toHaveText("ClientAction_Id 1");
-    expect(`.o_menu_brand`).toHaveText("App2");
+    expect(`.app_menu_brand`).toHaveText("App2");
 });
 
 test(`actions can push state`, async () => {
@@ -314,8 +314,8 @@ test(`actions override previous state from menu click`, async () => {
 
     await getService("action").doAction("client_action_pushes");
     await contains(`.test_client_action`).click();
-    await contains(`.o_navbar_apps_menu button`).click();
-    await contains(`.o-dropdown-item:eq(2)`).click();
+    await contains(`.app_navbar_apps_menu button`).click();
+    await contains(`.app-dropdown-item:eq(2)`).click();
     await animationFrame();
     await animationFrame();
     expect(browser.location.href).toBe("http://example.com/app/action-1002");
@@ -394,7 +394,7 @@ test(`properly push state`, async () => {
         ],
     });
 
-    await contains(`tr .o_data_cell:first`).click();
+    await contains(`tr .app_data_cell:first`).click();
     await animationFrame();
     expect(browser.location.href).toBe("http://example.com/app/action-4/action-8/4");
     expect(browser.history.length).toBe(4);
@@ -477,9 +477,9 @@ test(`do not push state when action fails`, async () => {
         ],
     });
 
-    await contains(`tr.o_data_row:first`).click();
+    await contains(`tr.app_data_row:first`).click();
     // we make sure here that the list view is still in the dom
-    expect(`.o_list_view`).toHaveCount(1, {
+    expect(`.app_list_view`).toHaveCount(1, {
         message: "there should still be a list view in dom",
     });
 
@@ -606,10 +606,10 @@ test(`properly push globalState`, async () => {
     // add element on the search Model
     await editSearch("blip");
     await validateSearch();
-    expect(queryAllTexts(".o_facet_value")).toEqual(["blip"]);
+    expect(queryAllTexts(".app_facet_value")).toEqual(["blip"]);
 
     //open record
-    await contains(".o_kanban_record").click();
+    await contains(".app_kanban_record").click();
 
     // Add the globalState on the state before leaving the kanban
     expect(router.current).toEqual({
@@ -628,7 +628,7 @@ test(`properly push globalState`, async () => {
 
     // pushState is defered
     await animationFrame();
-    expect(".o_form_view").toHaveCount(1);
+    expect(".app_form_view").toHaveCount(1);
     expect(browser.location.href).toBe("http://example.com/app/action-4/2");
     expect(router.current).toEqual({
         action: 4,
@@ -653,7 +653,7 @@ test(`properly push globalState`, async () => {
     await animationFrame();
 
     // The search Model should be restored
-    expect(queryAllTexts(".o_facet_value")).toEqual(["blip"]);
+    expect(queryAllTexts(".app_facet_value")).toEqual(["blip"]);
     expect(browser.location.href).toBe("http://example.com/app/action-4");
 
     // The global state is restored on the state

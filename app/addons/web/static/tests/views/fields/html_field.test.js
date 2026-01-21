@@ -37,8 +37,8 @@ test("html fields are correctly rendered in form view (readonly)", async () => {
     });
 
     expect("div.kek").toHaveCount(1);
-    expect(".o_field_html .kek").toHaveStyle({ color: "rgb(255, 0, 0)" });
-    expect(".o_field_html").toHaveText("some text");
+    expect(".app_field_html .kek").toHaveStyle({ color: "rgb(255, 0, 0)" });
+    expect(".app_field_html").toHaveText("some text");
 });
 
 test("html field with required attribute", async () => {
@@ -49,14 +49,14 @@ test("html field with required attribute", async () => {
         arch: /* xml */ `<form><field name="txt" required="1"/></form>`,
     });
 
-    expect(".o_field_html textarea").toHaveCount(1, { message: "should have a text area" });
-    await click(".o_field_html textarea");
+    expect(".app_field_html textarea").toHaveCount(1, { message: "should have a text area" });
+    await click(".app_field_html textarea");
     await edit("");
     await animationFrame();
-    expect(".o_field_html textarea").toHaveValue("");
+    expect(".app_field_html textarea").toHaveValue("");
 
     await clickSave();
-    expect(queryFirst(".o_notification_content")).toHaveText("Missing required fields");
+    expect(queryFirst(".app_notification_content")).toHaveText("Missing required fields");
 });
 
 test("html fields are correctly rendered (edit)", async () => {
@@ -68,17 +68,17 @@ test("html fields are correctly rendered (edit)", async () => {
         arch: /* xml */ `<form><field name="txt" /></form>`,
     });
 
-    expect(".o_field_html textarea").toHaveCount(1, { message: "should have a text area" });
-    expect(".o_field_html textarea").toHaveValue(RED_TEXT);
-    await click(".o_field_html textarea");
+    expect(".app_field_html textarea").toHaveCount(1, { message: "should have a text area" });
+    expect(".app_field_html textarea").toHaveValue(RED_TEXT);
+    await click(".app_field_html textarea");
     await edit(GREEN_TEXT);
     await animationFrame();
-    expect(".o_field_html textarea").toHaveValue(GREEN_TEXT);
-    expect(".o_field_html .kek").toHaveCount(0);
+    expect(".app_field_html textarea").toHaveValue(GREEN_TEXT);
+    expect(".app_field_html .kek").toHaveCount(0);
 
     await edit(BLUE_TEXT);
     await animationFrame();
-    expect(".o_field_html textarea").toHaveValue(BLUE_TEXT);
+    expect(".app_field_html textarea").toHaveValue(BLUE_TEXT);
 });
 
 test("html fields are correctly rendered in list view", async () => {
@@ -88,12 +88,12 @@ test("html fields are correctly rendered in list view", async () => {
         resModel: "partner",
         arch: /* xml */ `<list editable="top"><field name="txt"/></list>`,
     });
-    expect(".o_data_row [name='txt']").toHaveText("some text");
-    expect(".o_data_row [name='txt'] .kek").toHaveStyle({ color: "rgb(255, 0, 0)" });
+    expect(".app_data_row [name='txt']").toHaveText("some text");
+    expect(".app_data_row [name='txt'] .kek").toHaveStyle({ color: "rgb(255, 0, 0)" });
 
-    await click(".o_data_row [name='txt']");
+    await click(".app_data_row [name='txt']");
     await animationFrame();
-    expect(".o_data_row [name='txt'] textarea").toHaveValue(
+    expect(".app_data_row [name='txt'] textarea").toHaveValue(
         '<div class="kek" style="color:red">some text</div>'
     );
 });
@@ -108,12 +108,12 @@ test("html field displays an empty string for the value false in list view", asy
         arch: /* xml */ `<list editable="top"><field name="txt"/></list>`,
     });
 
-    expect(".o_data_row [name='txt']").toHaveText("");
+    expect(".app_data_row [name='txt']").toHaveText("");
 
-    await click(".o_data_row [name='txt']");
+    await click(".app_data_row [name='txt']");
     await animationFrame();
 
-    expect(".o_data_row [name='txt'] textarea").toHaveValue("");
+    expect(".app_data_row [name='txt'] textarea").toHaveValue("");
 });
 
 test("html fields are correctly rendered in kanban view", async () => {
@@ -121,7 +121,7 @@ test("html fields are correctly rendered in kanban view", async () => {
         type: "kanban",
         resModel: "partner",
         arch: /* xml */ `
-            <kanban class="o_kanban_test">
+            <kanban class="app_kanban_test">
                 <templates>
                     <t t-name="card">
                         <field name="txt"/>
@@ -204,22 +204,22 @@ test("field html translatable", async () => {
             </form>`,
     });
 
-    expect("[name=txt] textarea").toHaveClass("o_field_translate");
+    expect("[name=txt] textarea").toHaveClass("app_field_translate");
     await contains("[name=txt] textarea").click();
-    expect(".o_field_html .btn.o_field_translate").toHaveCount(1, {
+    expect(".app_field_html .btn.app_field_translate").toHaveCount(1, {
         message: "should have a translate button",
     });
-    expect(".o_field_html .btn.o_field_translate").toHaveText("EN", {
+    expect(".app_field_html .btn.app_field_translate").toHaveText("EN", {
         message: "the button should have as test the current language",
     });
 
-    await click(".o_field_html .btn.o_field_translate");
+    await click(".app_field_html .btn.app_field_translate");
     await animationFrame();
 
     expect(".modal").toHaveCount(1, { message: "a translate modal should be visible" });
     expect(".translation").toHaveCount(4, { message: "four rows should be visible" });
 
-    const translations = queryAll(".modal .o_translation_dialog .translation input");
+    const translations = queryAll(".modal .app_translation_dialog .translation input");
 
     const enField1 = translations[0];
     expect(enField1).toHaveValue("first paragraph", {
@@ -255,7 +255,7 @@ test("html fields: spellcheck is disabled on blur", async () => {
         arch: /* xml */ `<form><field name="txt" /></form>`,
     });
 
-    const textarea = queryFirst(".o_field_html textarea");
+    const textarea = queryFirst(".app_field_html textarea");
     expect(textarea).toHaveProperty("spellcheck", true, {
         message: "by default, spellcheck is enabled",
     });
@@ -294,7 +294,7 @@ test("Setting an html field to empty string is saved as a false value", async ()
         resId: 1,
     });
 
-    await click(".o_field_widget[name=txt] textarea");
+    await click(".app_field_widget[name=txt] textarea");
     await edit("");
     await clickSave();
 });

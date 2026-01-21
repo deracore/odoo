@@ -236,14 +236,14 @@ test("insert item before current", async () => {
 
     const component = await mountWithCleanup(TestComp);
     await press("arrowup");
-    expect(queryAllTexts(".o-navigable")).toEqual(["1", "2", "3"]);
+    expect(queryAllTexts(".app-navigable")).toEqual(["1", "2", "3"]);
     expect(".item-3").toBeFocused();
     expect(".item-3").toHaveClass("focus");
 
     component.state.items.splice(2, 0, 10);
     await animationFrame();
 
-    expect(queryAllTexts(".o-navigable")).toEqual(["1", "2", "10", "3"]);
+    expect(queryAllTexts(".app-navigable")).toEqual(["1", "2", "10", "3"]);
     expect(".item-3").toBeFocused();
     expect(".item-3").toHaveClass("focus");
 

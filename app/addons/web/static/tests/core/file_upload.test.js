@@ -102,7 +102,7 @@ test("upload can be aborted by clicking on cross", async () => {
     const fileUploadService = await getService("file_upload");
     fileUploadService.upload("/test/", []);
     await animationFrame();
-    await contains(".o-file-upload-progress-bar-abort", { visible: false }).click();
+    await contains(".app-file-upload-progress-bar-abort", { visible: false }).click();
     await animationFrame();
     expect(".file_upload").toHaveCount(0);
 });

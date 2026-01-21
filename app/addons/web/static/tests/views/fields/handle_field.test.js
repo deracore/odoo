@@ -52,22 +52,22 @@ test("HandleField in x2m", async () => {
             </form>`,
     });
 
-    expect("td span.o_row_handle").toHaveText("", {
+    expect("td span.app_row_handle").toHaveText("", {
         message: "handle should not have any content",
     });
-    expect(queryFirst("td span.o_row_handle")).toBeVisible({
+    expect(queryFirst("td span.app_row_handle")).toBeVisible({
         message: "handle should be invisible",
     });
 
-    expect("span.o_row_handle").toHaveCount(2, { message: "should have 2 handles" });
+    expect("span.app_row_handle").toHaveCount(2, { message: "should have 2 handles" });
 
-    expect(queryFirst("td")).toHaveClass("o_handle_cell", {
+    expect(queryFirst("td")).toHaveClass("app_handle_cell", {
         message: "column widget should be displayed in css class",
     });
     await click("td:eq(1)");
     await animationFrame();
 
-    expect("td:eq(0) span.o_row_handle").toHaveCount(1, {
+    expect("td:eq(0) span.app_row_handle").toHaveCount(1, {
         message: "content of the cell should have been replaced",
     });
 });
@@ -84,7 +84,7 @@ test("HandleField with falsy values", async () => {
             </list>`,
     });
 
-    expect(".o_row_handle:visible").toHaveCount(MockServer.env["partner"].length, {
+    expect(".app_row_handle:visible").toHaveCount(MockServer.env["partner"].length, {
         message: "there should be a visible handle for each record",
     });
 });
@@ -107,7 +107,7 @@ test("HandleField in a readonly one2many", async () => {
         resId: 1,
     });
 
-    expect(".o_row_handle.o_disabled").toHaveCount(3, {
+    expect(".app_row_handle.app_disabled").toHaveCount(3, {
         message: "there should be 3 handles but they should be disabled from readonly",
     });
 });

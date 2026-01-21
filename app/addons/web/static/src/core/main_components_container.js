@@ -14,7 +14,7 @@ export class MainComponentsContainer extends Component {
     static components = { ErrorHandler };
     static props = {};
     static template = xml`
-    <div class="o-main-components-container">
+    <div class="app-main-components-container">
         <t t-foreach="Components.entries" t-as="C" t-key="C[0]">
             <ErrorHandler onError="error => this.handleComponentError(error, C)">
                 <t t-component="C[1].Component" t-props="C[1].props"/>

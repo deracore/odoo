@@ -241,9 +241,9 @@ export class KanbanRecord extends Component {
 
     getRecordClasses() {
         const { archInfo, canResequence, forceGlobalClick, record, progressBarState } = this.props;
-        const classes = ["o_kanban_record d-flex"];
+        const classes = ["app_kanban_record d-flex"];
         if (canResequence) {
-            classes.push("o_draggable");
+            classes.push("app_draggable");
         }
         if (forceGlobalClick || archInfo.openAction || archInfo.canOpenRecords) {
             classes.push("cursor-pointer");
@@ -264,10 +264,10 @@ export class KanbanRecord extends Component {
             classes.push("flex-grow-1 flex-md-shrink-1 flex-shrink-0");
         }
         if (this.props.selectionAvailable) {
-            classes.push("o_record_selection_available");
+            classes.push("app_record_selection_available");
         }
         if (this.props.record.selected) {
-            classes.push("o_record_selected");
+            classes.push("app_record_selected");
         }
         classes.push(archInfo.cardClassName);
         return classes.join(" ");

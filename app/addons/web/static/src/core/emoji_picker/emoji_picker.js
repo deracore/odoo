@@ -156,7 +156,7 @@ export class EmojiPicker extends Component {
                 this.shouldScrollElem = false;
                 const getElement = () =>
                     this.gridRef.el.querySelector(
-                        `.o-EmojiPicker-category[data-category="${this.state.categoryId}"`
+                        `.app-EmojiPicker-category[data-category="${this.state.categoryId}"`
                     );
                 const elem = getElement();
                 if (elem) {
@@ -173,7 +173,7 @@ export class EmojiPicker extends Component {
         useEffect(
             (el) => {
                 const gridEl = this.gridRef.el;
-                const activeEl = gridEl?.querySelector(".o-Emoji.o-active");
+                const activeEl = gridEl?.querySelector(".app-Emoji.app-active");
                 if (!gridEl) {
                     return;
                 }
@@ -225,7 +225,7 @@ export class EmojiPicker extends Component {
             parseInt(computedStyle.marginLeft) -
             parseInt(computedStyle.paddingLeft) -
             parseInt(computedStyle.marginLeft);
-        const itemWidth = this.navbarRef.el.querySelector(".o-Emoji").getBoundingClientRect().width;
+        const itemWidth = this.navbarRef.el.querySelector(".app-Emoji").getBoundingClientRect().width;
         const gapWidth = parseInt(computedStyle.gap);
         const maxAvailableNavbarItemAmountAtOnce = Math.floor(
             availableWidth / (itemWidth + gapWidth)
@@ -338,7 +338,7 @@ export class EmojiPicker extends Component {
         if (this.emojis.length === 0) {
             return;
         }
-        const emojiEls = Array.from(this.gridRef.el.querySelectorAll(".o-Emoji"));
+        const emojiEls = Array.from(this.gridRef.el.querySelectorAll(".app-Emoji"));
         const emojiRects = emojiEls.map((el) => el.getBoundingClientRect());
         this.emojiMatrix = [];
         for (const [index, pos] of emojiRects.entries()) {
@@ -407,7 +407,7 @@ export class EmojiPicker extends Component {
 
     get activeEmoji() {
         const activeCodepoints = this.gridRef.el.querySelector(
-            `.o-EmojiPicker-content .o-Emoji[data-index="${this.state.activeEmojiIndex}"]`
+            `.app-EmojiPicker-content .app-Emoji[data-index="${this.state.activeEmojiIndex}"]`
         )?.dataset.codepoints;
         return activeCodepoints ? this.emojiByCodepoints[activeCodepoints] : undefined;
     }
@@ -425,7 +425,7 @@ export class EmojiPicker extends Component {
                 ev.preventDefault();
                 this.gridRef.el
                     ?.querySelector(
-                        `.o-EmojiPicker-content .o-Emoji[data-index="${this.state.activeEmojiIndex}"]`
+                        `.app-EmojiPicker-content .app-Emoji[data-index="${this.state.activeEmojiIndex}"]`
                     )
                     ?.click();
                 break;

@@ -48,17 +48,17 @@ test("Upload a file: default props", async () => {
         props: {},
     });
 
-    expect(".o_file_input").toHaveText("Choose File", {
+    expect(".app_file_input").toHaveText("Choose File", {
         message: "File input total text should match its given inner element's text",
     });
-    expect(".o_file_input input").toHaveAttribute("accept", "*", {
+    expect(".app_file_input input").toHaveAttribute("accept", "*", {
         message: "Input should accept all files by default",
     });
 
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([]);
 
-    expect(".o_file_input input").not.toHaveAttribute("multiple", null, {
+    expect(".app_file_input input").not.toHaveAttribute("multiple", null, {
         message: "'multiple' attribute should not be set",
     });
     expect.verifySteps(["/web/binary/upload_attachment"]);
@@ -92,14 +92,14 @@ test("Upload a file: custom attachment", async () => {
         },
     });
 
-    expect(".o_file_input input").toHaveAttribute("accept", ".png", {
+    expect(".app_file_input input").toHaveAttribute("accept", ".png", {
         message: "Input should now only accept pngs",
     });
 
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([]);
 
-    expect(".o_file_input input").toHaveAttribute("multiple", null, {
+    expect(".app_file_input input").toHaveAttribute("multiple", null, {
         message: "'multiple' attribute should be set",
     });
 
@@ -111,7 +111,7 @@ test("Hidden file input", async () => {
         props: { hidden: true },
     });
 
-    expect(".o_file_input").not.toBeVisible();
+    expect(".app_file_input").not.toBeVisible();
 });
 
 test("uploading the same file twice triggers the onChange twice", async () => {
@@ -127,12 +127,12 @@ test("uploading the same file twice triggers the onChange twice", async () => {
     });
 
     const file = new File(["test"], "fake_file.txt", { type: "text/plain" });
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([file]);
     await animationFrame();
     expect.verifySteps(["fake_file.txt"]);
 
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([file]);
     await animationFrame();
     expect.verifySteps(["fake_file.txt"]);
@@ -160,7 +160,7 @@ test("uploading a file that is too heavy will send a notification", async () => 
     });
 
     const file = new File(["test"], "fake_file.txt", { type: "text/plain" });
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([file]);
     await animationFrame();
     expect.verifySteps(["notification"]);
@@ -178,18 +178,18 @@ test("Upload button is disabled if attachment upload is not finished", async () 
         props: {},
     });
     //enable button
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([]);
     await animationFrame();
 
     //disable button
-    expect(".o_file_input input").not.toBeEnabled({
+    expect(".app_file_input input").not.toBeEnabled({
         message: "the upload button should be disabled on upload",
     });
 
     uploadedPromise.resolve();
     await animationFrame();
-    expect(".o_file_input input").toBeEnabled({
+    expect(".app_file_input input").toBeEnabled({
         message: "the upload button should be enabled for upload",
     });
 });
@@ -207,7 +207,7 @@ test("support preprocessing of files via props", async () => {
         },
     });
 
-    await contains(".o_file_input input", { visible: false }).click();
+    await contains(".app_file_input input", { visible: false }).click();
     await setInputFiles([new File(["test"], "fake_file.txt", { type: "text/plain" })]);
     await animationFrame();
 

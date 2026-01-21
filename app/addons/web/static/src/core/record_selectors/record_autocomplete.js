@@ -66,7 +66,7 @@ export class RecordAutocomplete extends Component {
         }));
         if (SEARCH_LIMIT < nameGets.length) {
             options.push({
-                cssClass: "o_m2o_dropdown_option",
+                cssClass: "app_m2o_dropdown_option",
                 label: _t("Search More..."),
                 onSelect: this.onSearchMore.bind(this, name),
             });

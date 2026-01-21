@@ -1,12 +1,12 @@
-.o_progressbar {
-    .o_progress {
+.app_progressbar {
+    .app_progress {
         width: 100px;
         height: 15px;
         border: 1px solid $o-gray-300;
         background-color: $o-view-background-color;
     }
 
-    .o_progressbar_value input {
+    .app_progressbar_value input {
         // Prevent the input to grow and deteriorate the visibility
         width: 45px;
         min-width: 45px;
@@ -14,8 +14,8 @@
     }
 }
 
-.o_form_view {
-    .o_progressbar_value input {
+.app_form_view {
+    .app_progressbar_value input {
         &:focus-within {
             // To improve the edition of the value, the
             // input grows to the full available width
@@ -24,16 +24,16 @@
     }
 }
 
-.o_list_view .o_data_cell {
-    .o_progressbar {
+.app_list_view .app_data_cell {
+    .app_progressbar {
         // Force progress bars to respect table's layout
         display: table-row;
         justify-content: end;
-        .o_rtl & {
+        .app_rtl & {
             justify-content: flex-start;
             text-align: right;
         }
-        .o_progressbar_value {
+        .app_progressbar_value {
             span {
                 min-width: 1.5rem;
             }
@@ -44,8 +44,8 @@
     }
 }
 
-.o_kanban_renderer {
-    .o_progressbar:not(:hover):not(:focus-within) {
+.app_kanban_renderer {
+    .app_progressbar:not(:hover):not(:focus-within) {
         input {
             border-color: transparent;
         }

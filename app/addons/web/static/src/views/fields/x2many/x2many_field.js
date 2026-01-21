@@ -49,8 +49,8 @@ export class X2ManyField extends Component {
 
         this.archInfo = this.props.views?.[this.props.viewMode] || {};
         const classes = this.props.viewMode
-            ? ["o_field_x2many", `o_field_x2many_${this.props.viewMode}`]
-            : ["o_field_x2many"];
+            ? ["app_field_x2many", `o_field_x2many_${this.props.viewMode}`]
+            : ["app_field_x2many"];
         this.className = computeViewClassName(this.props.viewMode, this.archInfo.xmlDoc, classes);
 
         const { activeActions, controls } = this.archInfo;

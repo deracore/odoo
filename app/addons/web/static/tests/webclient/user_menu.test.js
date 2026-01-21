@@ -80,8 +80,8 @@ test("can be rendered", async () => {
         },
     }));
     await mountWithCleanup(UserMenu);
-    expect("img.o_user_avatar").toHaveCount(1);
-    expect("img.o_user_avatar").toHaveAttribute(
+    expect("img.app_user_avatar").toHaveCount(1);
+    expect("img.app_user_avatar").toHaveAttribute(
         "data-src",
         `${getOrigin()}/web/image/res.partner/17/avatar_128?unique=1704106800000`
     );
@@ -123,7 +123,7 @@ test("can be rendered", async () => {
 test("display the correct name in debug mode", async () => {
     serverState.debug = "1";
     await mountWithCleanup(UserMenu);
-    expect("img.o_user_avatar").toHaveCount(1);
+    expect("img.app_user_avatar").toHaveCount(1);
     expect("small.oe_topbar_name").toHaveCount(1);
     expect(".oe_topbar_name").toHaveText("Sauron" + "\n" + "test");
 });
@@ -159,9 +159,9 @@ test("click on app account item", async () => {
     onRpc("/web/session/account", () => "https://account-url.com");
     stepAllNetworkCalls();
     await contains("button.dropdown-toggle").click();
-    expect(".o-dropdown--menu .dropdown-item").toHaveCount(1);
-    expect(".o-dropdown--menu .dropdown-item").toHaveText("My DERAcore.com Account");
-    await contains(".o-dropdown--menu .dropdown-item").click();
+    expect(".app-dropdown--menu .dropdown-item").toHaveCount(1);
+    expect(".app-dropdown--menu .dropdown-item").toHaveText("My DERAcore.com Account");
+    await contains(".app-dropdown--menu .dropdown-item").click();
     expect.verifySteps(["/web/session/account", "open https://account-url.com"]);
 });
 
@@ -177,5 +177,5 @@ test("can use component as registry item", async () => {
     }));
     await mountWithCleanup(UserMenu);
     await contains("button.dropdown-toggle").click();
-    expect(".o-dropdown--menu span.component-class").toHaveText("Example Component");
+    expect(".app-dropdown--menu span.component-class").toHaveText("Example Component");
 });

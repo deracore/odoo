@@ -151,7 +151,7 @@ export function compensateScrollbar(
     if (!scrollableEl) {
         return;
     }
-    const isRTL = scrollableEl.classList.contains(".o_rtl");
+    const isRTL = scrollableEl.classList.contains(".app_rtl");
     if (isRTL) {
         cssProperty = cssProperty.replace("right", "left");
     }

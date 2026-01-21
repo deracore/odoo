@@ -123,7 +123,7 @@ export class CalendarYearRenderer extends Component {
         };
     }
     openPopover(target, date, records) {
-        this.popover.open(target, this.getPopoverProps(date, records), "o_cw_popover");
+        this.popover.open(target, this.getPopoverProps(date, records), "app_cw_popover");
     }
     unselect() {
         for (const fc of Object.values(this.fcs)) {
@@ -165,27 +165,27 @@ export class CalendarYearRenderer extends Component {
     getDayCellClassNames(info) {
         const date = luxon.DateTime.fromJSDate(info.date).toISODate();
         if (this.props.model.unusualDays.includes(date)) {
-            return ["o_calendar_disabled"];
+            return ["app_calendar_disabled"];
         }
         return [];
     }
     eventClassNames({ event }) {
         const classesToAdd = [];
-        classesToAdd.push("o_event");
+        classesToAdd.push("app_event");
         const record = this.props.model.records[event.id];
         if (record) {
             const color = getColor(record.colorIndex);
             if (typeof color === "number") {
                 classesToAdd.push(`o_calendar_color_${color}`);
             } else if (typeof color !== "string") {
-                classesToAdd.push("o_calendar_color_0");
+                classesToAdd.push("app_calendar_color_0");
             }
 
             if (record.isHatched) {
-                classesToAdd.push("o_event_hatched");
+                classesToAdd.push("app_event_hatched");
             }
             if (record.isStriked) {
-                classesToAdd.push("o_event_striked");
+                classesToAdd.push("app_event_striked");
             }
         }
         return classesToAdd;

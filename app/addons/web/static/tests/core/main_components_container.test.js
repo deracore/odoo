@@ -26,13 +26,13 @@ test("simple rendering", async () => {
     mainComponentsRegistry.add("MainComponentA", { Component: MainComponentA, props: {} });
     mainComponentsRegistry.add("MainComponentB", { Component: MainComponentB, props: {} });
     await mountWithCleanup(MainComponentsContainer);
-    expect("div.o-main-components-container").toHaveCount(1);
-    expect(".o-main-components-container").toHaveInnerHTML(`
+    expect("div.app-main-components-container").toHaveCount(1);
+    expect(".app-main-components-container").toHaveInnerHTML(`
         <span>MainComponentA</span>
         <span>MainComponentB</span>
-        <div class="o-overlay-container"></div>
+        <div class="app-overlay-container"></div>
         <div></div>
-        <div class="o_notification_manager"></div>
+        <div class="app_notification_manager"></div>
     `);
 });
 
@@ -64,12 +64,12 @@ test("unmounts erroring main component", async () => {
     mainComponentsRegistry.add("MainComponentA", { Component: MainComponentA, props: {} });
     mainComponentsRegistry.add("MainComponentB", { Component: MainComponentB, props: {} });
     await mountWithCleanup(MainComponentsContainer);
-    expect("div.o-main-components-container").toHaveCount(1);
-    expect(".o-main-components-container").toHaveInnerHTML(`
+    expect("div.app-main-components-container").toHaveCount(1);
+    expect(".app-main-components-container").toHaveInnerHTML(`
         <span>MainComponentA</span><span>MainComponentB</span>
-        <div class="o-overlay-container"></div>
+        <div class="app-overlay-container"></div>
         <div></div>
-        <div class="o_notification_manager"></div>
+        <div class="app_notification_manager"></div>
     `);
     compA.state.shouldThrow = true;
     await animationFrame();
@@ -79,8 +79,8 @@ test("unmounts erroring main component", async () => {
     ]);
     expect.verifyErrors(["BOOM"]);
 
-    expect(".o-main-components-container span").toHaveCount(1);
-    expect(".o-main-components-container span").toHaveInnerHTML("MainComponentB");
+    expect(".app-main-components-container span").toHaveCount(1);
+    expect(".app-main-components-container span").toHaveInnerHTML("MainComponentB");
 });
 
 test("unmounts erroring main component: variation", async () => {
@@ -111,12 +111,12 @@ test("unmounts erroring main component: variation", async () => {
     mainComponentsRegistry.add("MainComponentA", { Component: MainComponentA, props: {} });
     mainComponentsRegistry.add("MainComponentB", { Component: MainComponentB, props: {} });
     await mountWithCleanup(MainComponentsContainer);
-    expect("div.o-main-components-container").toHaveCount(1);
-    expect(".o-main-components-container").toHaveInnerHTML(`
+    expect("div.app-main-components-container").toHaveCount(1);
+    expect(".app-main-components-container").toHaveInnerHTML(`
         <span>MainComponentA</span><span>MainComponentB</span>
-        <div class="o-overlay-container"></div>
+        <div class="app-overlay-container"></div>
         <div></div>
-        <div class="o_notification_manager"></div>
+        <div class="app_notification_manager"></div>
     `);
     compB.state.shouldThrow = true;
     await animationFrame();
@@ -125,8 +125,8 @@ test("unmounts erroring main component: variation", async () => {
         "BOOM",
     ]);
     expect.verifyErrors(["BOOM"]);
-    expect(".o-main-components-container span").toHaveCount(1);
-    expect(".o-main-components-container span").toHaveInnerHTML("MainComponentA");
+    expect(".app-main-components-container span").toHaveCount(1);
+    expect(".app-main-components-container span").toHaveInnerHTML("MainComponentA");
 });
 
 test("MainComponentsContainer re-renders when the registry changes", async () => {

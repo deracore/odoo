@@ -90,12 +90,12 @@ test(`use stored menus, and don't update on load_menus return (if identical)`, a
 
     const webClient = await mountWebClient();
     webClient.env.bus.addEventListener("MENUS:APP-CHANGED", () => expect.step("Don't Update"));
-    expect(`.o_menu_brand`).toHaveText("App1");
+    expect(`.app_menu_brand`).toHaveText("App1");
     expect(browser.sessionStorage.getItem("menu_id")).toBe("1");
-    expect(".o_menu_sections").toHaveText("Test1\nTest2");
+    expect(".app_menu_sections").toHaveText("Test1\nTest2");
     def.resolve();
     await animationFrame();
-    expect(".o_menu_sections").toHaveText("Test1\nTest2");
+    expect(".app_menu_sections").toHaveText("Test1\nTest2");
     expect.verifySteps([]);
 });
 
@@ -117,13 +117,13 @@ test(`use stored menus, and update on load_menus return`, async () => {
 
     const webClient = await mountWebClient();
     webClient.env.bus.addEventListener("MENUS:APP-CHANGED", () => expect.step("Update Menus"));
-    expect(`.o_menu_brand`).toHaveText("App1");
+    expect(`.app_menu_brand`).toHaveText("App1");
     expect(browser.sessionStorage.getItem("menu_id")).toBe("1");
-    expect(".o_menu_sections").toHaveText("Test1");
+    expect(".app_menu_sections").toHaveText("Test1");
     expect.verifySteps([]);
     def.resolve();
     await animationFrame();
-    expect(".o_menu_sections").toHaveText("Test1\nTest2");
+    expect(".app_menu_sections").toHaveText("Test1\nTest2");
     expect(JSON.parse(browser.localStorage.webclient_menus)).toEqual({
         1: {
             actionID: 666,

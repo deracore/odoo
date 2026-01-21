@@ -19,8 +19,8 @@ test("effect service displays a rainbowman by default", async () => {
     getService("effect").add();
     await animationFrame();
 
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_reward").toHaveText("Well Done!");
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_reward").toHaveText("Well Done!");
 });
 
 test("rainbowman effect with show_effect: false", async () => {
@@ -29,44 +29,44 @@ test("rainbowman effect with show_effect: false", async () => {
     getService("effect").add();
     await animationFrame();
 
-    expect(".o_reward").toHaveCount(0);
-    expect(".o_notification").toHaveCount(1);
+    expect(".app_reward").toHaveCount(0);
+    expect(".app_notification").toHaveCount(1);
 });
 
 test("rendering a rainbowman destroy after animation", async () => {
     getService("effect").add(effectParams);
     await animationFrame();
 
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_reward_rainbow").toHaveCount(1);
-    expect(".o_reward_msg_content").toHaveInnerHTML("<div>Congrats!</div>");
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_reward_rainbow").toHaveCount(1);
+    expect(".app_reward_msg_content").toHaveInnerHTML("<div>Congrats!</div>");
 
-    await manuallyDispatchProgrammaticEvent(queryOne(".o_reward"), "animationend", {
+    await manuallyDispatchProgrammaticEvent(queryOne(".app_reward"), "animationend", {
         animationName: "reward-fading-reverse",
     });
     await animationFrame();
-    expect(".o_reward").toHaveCount(0);
+    expect(".app_reward").toHaveCount(0);
 });
 
 test("rendering a rainbowman destroy on click", async () => {
     getService("effect").add(effectParams);
     await animationFrame();
 
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_reward_rainbow").toHaveCount(1);
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_reward_rainbow").toHaveCount(1);
 
-    await click(".o_reward");
+    await click(".app_reward");
     await animationFrame();
-    expect(".o_reward").toHaveCount(0);
+    expect(".app_reward").toHaveCount(0);
 });
 
 test("rendering a rainbowman with an escaped message", async () => {
     getService("effect").add(effectParams);
     await animationFrame();
 
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_reward_rainbow").toHaveCount(1);
-    expect(".o_reward_msg_content").toHaveText("Congrats!");
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_reward_rainbow").toHaveCount(1);
+    expect(".app_reward_msg_content").toHaveText("Congrats!");
 });
 
 test("rendering a rainbowman with a custom component", async () => {
@@ -84,5 +84,5 @@ test("rendering a rainbowman with a custom component", async () => {
     getService("effect").add({ Component: Custom, props });
     await animationFrame();
 
-    expect(".o_reward_msg_content").toHaveInnerHTML(`<div class="custom">foo is bar</div>`);
+    expect(".app_reward_msg_content").toHaveInnerHTML(`<div class="custom">foo is bar</div>`);
 });

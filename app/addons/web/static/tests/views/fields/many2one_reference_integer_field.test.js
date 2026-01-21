@@ -40,7 +40,7 @@ test("Many2OneReferenceIntegerField in form view", async () => {
         arch: '<form><field name="res_id" widget="many2one_reference_integer"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("10");
+    expect(".app_field_widget input").toHaveValue("10");
 });
 
 test("Many2OneReferenceIntegerField in list view", async () => {
@@ -51,7 +51,7 @@ test("Many2OneReferenceIntegerField in list view", async () => {
         arch: '<list><field name="res_id" widget="many2one_reference_integer"/></list>',
     });
 
-    expect(queryAllTexts(".o_data_cell")).toEqual(["10", ""]);
+    expect(queryAllTexts(".app_data_cell")).toEqual(["10", ""]);
 });
 
 test("Many2OneReferenceIntegerField: unset value in form view", async () => {
@@ -62,5 +62,5 @@ test("Many2OneReferenceIntegerField: unset value in form view", async () => {
         arch: '<form><field name="res_id" widget="many2one_reference_integer"/></form>',
     });
 
-    expect(".o_field_widget input").toHaveValue("");
+    expect(".app_field_widget input").toHaveValue("");
 });

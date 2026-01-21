@@ -7,7 +7,7 @@ import { getDropdownMenu, mountWithCleanup } from "@web/../tests/web_test_helper
 import { Dropdown } from "@web/core/dropdown/dropdown";
 import { DropdownGroup } from "@web/core/dropdown/dropdown_group";
 
-const DROPDOWN_MENU = ".o-dropdown--menu.dropdown-menu";
+const DROPDOWN_MENU = ".app-dropdown--menu.dropdown-menu";
 
 test.tags("desktop");
 test("DropdownGroup: when one Dropdown is open, others with same group name can be toggled on mouse-enter", async () => {

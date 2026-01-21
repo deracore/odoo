@@ -26,11 +26,11 @@ test("UrlField in form view", async () => {
         resId: 1,
         arch: `<form><field name="url" widget="url"/></form>`,
     });
-    expect(`.o_field_widget input[type="text"]`).toHaveCount(1);
-    expect(`.o_field_widget input[type="text"]`).toHaveValue("https://www.example.com");
-    expect(`.o_field_url a`).toHaveAttribute("href", "https://www.example.com");
+    expect(`.app_field_widget input[type="text"]`).toHaveCount(1);
+    expect(`.app_field_widget input[type="text"]`).toHaveValue("https://www.example.com");
+    expect(`.app_field_url a`).toHaveAttribute("href", "https://www.example.com");
     await fieldInput("url").edit("https://www.odoo.com");
-    expect(`.o_field_widget input[type="text"]`).toHaveValue("https://www.odoo.com");
+    expect(`.app_field_widget input[type="text"]`).toHaveValue("https://www.odoo.com");
 });
 
 test("in form view (readonly)", async () => {
@@ -41,10 +41,10 @@ test("in form view (readonly)", async () => {
         resId: 1,
         arch: `<form><field name="url" widget="url" readonly="1"/></form>`,
     });
-    expect("a.o_field_widget.o_form_uri").toHaveCount(1);
-    expect("a.o_field_widget.o_form_uri").toHaveAttribute("href", "https://www.example.com");
-    expect("a.o_field_widget.o_form_uri").toHaveAttribute("target", "_blank");
-    expect("a.o_field_widget.o_form_uri").toHaveText("https://www.example.com");
+    expect("a.app_field_widget.app_form_uri").toHaveCount(1);
+    expect("a.app_field_widget.app_form_uri").toHaveAttribute("href", "https://www.example.com");
+    expect("a.app_field_widget.app_form_uri").toHaveAttribute("target", "_blank");
+    expect("a.app_field_widget.app_form_uri").toHaveText("https://www.example.com");
 });
 
 test("it takes its text content from the text attribute", async () => {
@@ -55,7 +55,7 @@ test("it takes its text content from the text attribute", async () => {
         resId: 1,
         arch: '<form><field name="url" widget="url" text="https://another.com" readonly="1"/></form>',
     });
-    expect(`.o_field_url a`).toHaveText("https://another.com");
+    expect(`.app_field_url a`).toHaveText("https://another.com");
 });
 
 test("href attribute and website_path option", async () => {
@@ -84,10 +84,10 @@ test("href attribute and website_path option", async () => {
                 <field name="url4" widget="url" readonly="1"/>
             </form>`,
     });
-    expect(`.o_field_widget[name="url1"] a`).toHaveAttribute("href", "http://www.url1.com");
-    expect(`.o_field_widget[name="url2"] a`).toHaveAttribute("href", "www.url2.com");
-    expect(`.o_field_widget[name="url3"] a`).toHaveAttribute("href", "http://www.url3.com");
-    expect(`.o_field_widget[name="url4"] a`).toHaveAttribute("href", "https://url4.com");
+    expect(`.app_field_widget[name="url1"] a`).toHaveAttribute("href", "http://www.url1.com");
+    expect(`.app_field_widget[name="url2"] a`).toHaveAttribute("href", "www.url2.com");
+    expect(`.app_field_widget[name="url3"] a`).toHaveAttribute("href", "http://www.url3.com");
+    expect(`.app_field_widget[name="url4"] a`).toHaveAttribute("href", "https://url4.com");
 });
 
 test("in editable list view", async () => {
@@ -100,31 +100,31 @@ test("in editable list view", async () => {
         resModel: "product",
         arch: '<list editable="bottom"><field name="url" widget="url"/></list>',
     });
-    expect("tbody td:not(.o_list_record_selector) a").toHaveCount(2);
-    expect(".o_field_url.o_field_widget[name='url'] a").toHaveCount(2);
-    expect(queryAllAttributes(".o_field_url.o_field_widget[name='url'] a", "href")).toEqual([
+    expect("tbody td:not(.app_list_record_selector) a").toHaveCount(2);
+    expect(".app_field_url.app_field_widget[name='url'] a").toHaveCount(2);
+    expect(queryAllAttributes(".app_field_url.app_field_widget[name='url'] a", "href")).toEqual([
         "http://example.com",
         "http://odoo.com",
     ]);
-    expect(queryAllTexts(".o_field_url.o_field_widget[name='url'] a")).toEqual([
+    expect(queryAllTexts(".app_field_url.app_field_widget[name='url'] a")).toEqual([
         "example.com",
         "odoo.com",
     ]);
-    let cell = queryFirst("tbody td:not(.o_list_record_selector)");
+    let cell = queryFirst("tbody td:not(.app_list_record_selector)");
     await contains(cell).click();
-    expect(cell.parentElement).toHaveClass("o_selected_row");
+    expect(cell.parentElement).toHaveClass("app_selected_row");
     expect(cell.querySelector("input")).toHaveValue("example.com");
     await fieldInput("url").edit("test");
     await contains(getFixture()).click(); // click out
-    cell = queryFirst("tbody td:not(.o_list_record_selector)");
-    expect(cell.parentElement).not.toHaveClass("o_selected_row");
-    expect("tbody td:not(.o_list_record_selector) a").toHaveCount(2);
-    expect(".o_field_url.o_field_widget[name='url'] a").toHaveCount(2);
-    expect(queryAllAttributes(".o_field_url.o_field_widget[name='url'] a", "href")).toEqual([
+    cell = queryFirst("tbody td:not(.app_list_record_selector)");
+    expect(cell.parentElement).not.toHaveClass("app_selected_row");
+    expect("tbody td:not(.app_list_record_selector) a").toHaveCount(2);
+    expect(".app_field_url.app_field_widget[name='url'] a").toHaveCount(2);
+    expect(queryAllAttributes(".app_field_url.app_field_widget[name='url'] a", "href")).toEqual([
         "http://test",
         "http://odoo.com",
     ]);
-    expect(queryAllTexts(".o_field_url.o_field_widget[name='url'] a")).toEqual([
+    expect(queryAllTexts(".app_field_url.app_field_widget[name='url'] a")).toEqual([
         "test",
         "odoo.com",
     ]);
@@ -153,10 +153,10 @@ test("onchange scenario", async () => {
         resId: 1,
         arch: `<form><field name="url" widget="url" readonly="True"/><field name="url_source"/></form>`,
     });
-    expect(".o_field_widget[name=url]").toHaveText("odoo.com");
-    expect(".o_field_widget[name=url_source] input").toHaveValue("another.com");
+    expect(".app_field_widget[name=url]").toHaveText("odoo.com");
+    expect(".app_field_widget[name=url_source] input").toHaveValue("another.com");
     await fieldInput("url_source").edit("example.com");
-    expect(".o_field_widget[name=url]").toHaveText("example.com");
+    expect(".app_field_widget[name=url]").toHaveText("example.com");
 });
 
 test("with placeholder", async () => {
@@ -166,7 +166,7 @@ test("with placeholder", async () => {
         resModel: "product",
         arch: `<form><field name="url" widget="url" placeholder="Placeholder"/></form>`,
     });
-    expect(`.o_field_widget input`).toHaveAttribute("placeholder", "Placeholder");
+    expect(`.app_field_widget input`).toHaveAttribute("placeholder", "Placeholder");
 });
 
 test("placeholder_field shows as placeholder", async () => {
@@ -181,7 +181,7 @@ test("placeholder_field shows as placeholder", async () => {
             <field name="url1"/>
         </form>`,
     });
-    expect(`.o_field_url input`).toHaveAttribute("placeholder", "http://www.url1.com");
+    expect(`.app_field_url input`).toHaveAttribute("placeholder", "http://www.url1.com");
 });
 
 test("with non falsy, but non url value", async () => {
@@ -191,5 +191,5 @@ test("with non falsy, but non url value", async () => {
         resModel: "product",
         arch: `<form><field name="url" widget="url"/></form>`,
     });
-    expect(".o_field_widget[name=url] a").toHaveAttribute("href", "http://app://hello");
+    expect(".app_field_widget[name=url] a").toHaveAttribute("href", "http://app://hello");
 });

@@ -73,7 +73,7 @@ export class KanbanHeader extends Component {
                         method: () => this.group.toggle(),
                         isVisible: () => !utils.isSmall(),
                         class: () => ({
-                            o_kanban_toggle_fold: true,
+                            app_kanban_toggle_fold: true,
                             disabled: this.props.list.model.useSampleModel,
                         }),
                         icon: "fa-compress",

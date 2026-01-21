@@ -16,6 +16,6 @@ test("basic rendering", async () => {
         resId: 1,
         arch: '<form><field name="json_field"/></form>',
     });
-    expect(".o_field_json").toHaveCount(1);
-    expect(".o_field_json span").toHaveText(`"['coupon', 'promotion']"`);
+    expect(".app_field_json").toHaveCount(1);
+    expect(".app_field_json span").toHaveText(`"['coupon', 'promotion']"`);
 });

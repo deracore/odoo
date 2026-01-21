@@ -1,4 +1,4 @@
-.o-form-buttonbox {
+.app-form-buttonbox {
     // Compute the expected oe_stat_button's height according to the default btn size.
     $-stat-button-inner-size: calc(#{$btn-padding-y} * 2 + #{$btn-font-size} * #{$btn-line-height});
     $-stat-button-height: calc(#{$-stat-button-inner-size} + #{$btn-border-width} * 2);
@@ -49,7 +49,7 @@
             min-width: 7.5em; // Arbitrary
         }
 
-        .o_button_icon {
+        .app_button_icon {
             font-size: $-stat-button-icon-size;
             color: var(--o-stat-button-color, #{$primary});
 
@@ -63,40 +63,40 @@
             @include o-text-overflow(block);
         }
 
-        .o_field_statinfo {
+        .app_field_statinfo {
             overflow: hidden;
         }
 
-        .o_stat_info, > span, .o_field_statinfo {
+        .app_stat_info, > span, .app_field_statinfo {
             @extend %-stat-button-container;
 
-            .o_stat_text {
+            .app_stat_text {
                 @extend %-stat-button-text;
 
-                .o_field_empty {
+                .app_field_empty {
                     display: none;
                 }
             }
 
-            .o_stat_value {
+            .app_stat_value {
                 @extend %-stat-button-value;
             }
         }
 
         &:not(:disabled) {
-            > .o_stat_info .o_field_widget, > span .o_field_widget {
+            > .app_stat_info .app_field_widget, > span .app_field_widget {
                 cursor: pointer;
             }
         }
 
-        &:not(:first-child) .o_button_icon {
+        &:not(:first-child) .app_button_icon {
             @extend %-stat-button-figure-offset;
         }
 
-        &:not(:hover) .o_stat_info > .o_hover {
+        &:not(:hover) .app_stat_info > .app_hover {
             display: none !important;
         }
-        &:hover .o_stat_info > .o_not_hover {
+        &:hover .app_stat_info > .app_not_hover {
             display: none !important
         }
         &.btn-outline-secondary:disabled {
@@ -108,7 +108,7 @@
         }
     }
 
-    &:not(.o-form-buttonbox-small) > * + * {
+    &:not(.app-form-buttonbox-small) > * + * {
         margin-left: -$border-width;
     }
 
@@ -134,7 +134,7 @@
     .oe_stat_button.dropdown {
         min-width: auto;
 
-        > .o_button_more {
+        > .app_button_more {
             width: 100%;
             height: 100%;
 
@@ -149,24 +149,24 @@
     --PercentPieField-size: #{$-stat-button-icon-size};
     --PercentPieField-gap: #{$-stat-button-icon-margin-end};
 
-    .oe_stat_button:not(:first-child) .o_pie {
+    .oe_stat_button:not(:first-child) .app_pie {
         @extend %-stat-button-figure-offset;
     }
 
-    .o_pie_info {
+    .app_pie_info {
         @extend %-stat-button-container;
     }
 
-    .o_pie_text {
+    .app_pie_text {
         @extend %-stat-button-text;
     }
 
-    .o_pie_value {
+    .app_pie_value {
         @extend %-stat-button-value;
     }
 }
 
-.o-form-buttonbox-small {
+.app-form-buttonbox-small {
     --button-box-gap: 1px;
     --button-box-per-row: 2;
     --button-box-border-color: #{map-get(map-get($o-btns-bs-outline-override, 'secondary'), 'border')};
@@ -177,16 +177,16 @@
     overflow: hidden;
     gap: var(--button-box-gap);
 
-    &:has(.o-dropdown-item:only-child) {
+    &:has(.app-dropdown-item:only-child) {
         --button-box-per-row: 1;
     }
-    &:not(:has(.o-dropdown-item:only-child)) {
+    &:not(:has(.app-dropdown-item:only-child)) {
         width: calc(100vw - var(--button-box-spacing) * 2) !important;
         left: var(--button-box-spacing) !important;
         right: var(--button-box-spacing) !important;
     }
 
-    > span .o_field_widget, .o_stat_info, .o_stat_value {
+    > span .app_field_widget, .app_stat_info, .app_stat_value {
         @include text-truncate;
     }
 
@@ -196,12 +196,12 @@
         border-radius: 0;
     }
 
-    > .o-dropdown-item {
+    > .app-dropdown-item {
         outline: $btn-border-width solid var(--button-box-border-color);
     }
 }
 
-.o_dropdown_more {
+.app_dropdown_more {
 
     .oe_stat_button {
         height: auto;
@@ -212,7 +212,7 @@
     }
 }
 
-.o_bottom_sheet .o-form-buttonbox {
+.app_bottom_sheet .app-form-buttonbox {
     --button-box-per-row: 1;
     --o-stat-text-color: currentColor;
     --o-stat-button-color: currentColor;
@@ -221,11 +221,11 @@
     display: grid;
     padding: map-get($spacers, 3) !important;
 
-    &.o-form-buttonbox-small:not(:has(.o-dropdown-item:only-child)) {
+    &.app-form-buttonbox-small:not(:has(.app-dropdown-item:only-child)) {
         width: revert !important;
     }
 
-    .o-dropdown-item {
+    .app-dropdown-item {
         outline: none;
 
         &:not(:last-child) {
@@ -242,7 +242,7 @@
                 font-weight: $o-font-weight-medium;
             }
 
-            .o_button_icon {
+            .app_button_icon {
                 &::before {
                     margin-right: unset;
 
@@ -252,7 +252,7 @@
             }
         }
 
-        .o_field_statinfo, .o_stat_info {
+        .app_field_statinfo, .app_stat_info {
             flex-direction: row-reverse;
             align-items: baseline;
             gap: map-get($spacers, 1);

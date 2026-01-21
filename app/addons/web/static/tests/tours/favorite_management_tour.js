@@ -5,119 +5,119 @@ registry.category("web_tour.tours").add("test_favorite_management", {
     steps: () => [
         {
             trigger:
-                ".o_kanban_renderer:not(:has(.o_kanban_record:contains(France - Localizations)))",
+                ".app_kanban_renderer:not(:has(.app_kanban_record:contains(France - Localizations)))",
         },
         {
-            trigger: ".o_facet_remove",
+            trigger: ".app_facet_remove",
             run: "click",
         },
         {
-            trigger: ".o_kanban_renderer:has(.o_kanban_record:contains(France - Localizations))",
+            trigger: ".app_kanban_renderer:has(.app_kanban_record:contains(France - Localizations))",
         },
         {
-            trigger: ".o_searchview_dropdown_toggler",
+            trigger: ".app_searchview_dropdown_toggler",
             run: "click",
         },
         {
-            trigger: ".o_favorite_menu .o_accordion > .o_menu_item",
+            trigger: ".app_favorite_menu .app_accordion > .app_menu_item",
             run: "click",
         },
         {
-            trigger: ".o_favorite_menu .o_accordion_values .o_input",
+            trigger: ".app_favorite_menu .app_accordion_values .app_input",
             run: "edit Apps1",
         },
         {
-            trigger: ".o_save_favorite",
+            trigger: ".app_save_favorite",
             run: "click",
         },
         {
-            trigger: ".o_searchview_facet .o_facet_value:contains(Apps1)",
+            trigger: ".app_searchview_facet .app_facet_value:contains(Apps1)",
         },
         {
-            trigger: ".o_group_by_menu > .o-dropdown-item:contains(Category)",
+            trigger: ".app_group_by_menu > .app-dropdown-item:contains(Category)",
             run: "click",
         },
         {
-            trigger: ".o_kanban_header:contains(Account Charts)",
+            trigger: ".app_kanban_header:contains(Account Charts)",
         },
         {
-            trigger: ".o_favorite_menu .o_accordion_values .o_input",
+            trigger: ".app_favorite_menu .app_accordion_values .app_input",
             run: "edit Apps2",
         },
         {
-            trigger: ".o_save_favorite",
+            trigger: ".app_save_favorite",
             run: "click",
         },
         {
-            trigger: ".o_favorite_menu .o-dropdown-item:contains(Apps2)",
+            trigger: ".app_favorite_menu .app-dropdown-item:contains(Apps2)",
         },
         {
-            trigger: ".o_favorite_menu .o-dropdown-item:contains(Apps1) i:not(:visible)",
+            trigger: ".app_favorite_menu .app-dropdown-item:contains(Apps1) i:not(:visible)",
             run: "click",
         },
         {
-            trigger: ".o_field_domain > div > div",
+            trigger: ".app_field_domain > div > div",
             run: "click",
         },
         {
-            trigger: ".o_tree_editor_row:contains(New Rule) > a",
+            trigger: ".app_tree_editor_row:contains(New Rule) > a",
             run: "click",
         },
         {
-            trigger: ".o_form_button_save",
+            trigger: ".app_form_button_save",
             run: "click",
         },
         {
-            trigger: ".o_back_button > a",
+            trigger: ".app_back_button > a",
             run: "click",
         },
         {
-            trigger: ".o_facet_values:contains('Apps2')",
+            trigger: ".app_facet_values:contains('Apps2')",
         },
         {
-            trigger: ".o_kanban_header:contains(Account Charts)",
+            trigger: ".app_kanban_header:contains(Account Charts)",
         },
         {
-            trigger: ".o_searchview_dropdown_toggler",
+            trigger: ".app_searchview_dropdown_toggler",
             run: "click",
         },
         {
-            trigger: ".o_favorite_menu .o-dropdown-item:contains(Apps1)",
+            trigger: ".app_favorite_menu .app-dropdown-item:contains(Apps1)",
             run: "click",
         },
         {
-            trigger: ".o_kanban_record:not(.o_kanban_ghost):only",
+            trigger: ".app_kanban_record:not(.app_kanban_ghost):only",
         },
         {
-            trigger: ".o_favorite_menu .o-dropdown-item:contains(Apps1) i:not(:visible)",
+            trigger: ".app_favorite_menu .app-dropdown-item:contains(Apps1) i:not(:visible)",
             run: "click",
         },
         {
-            trigger: ".o_form_view .o_cp_action_menus .o-dropdown",
+            trigger: ".app_form_view .app_cp_action_menus .app-dropdown",
             run: "click",
         },
         {
-            trigger: ".o_popover > .o-dropdown-item:contains(Delete)",
+            trigger: ".app_popover > .app-dropdown-item:contains(Delete)",
             run: "click",
         },
         {
-            trigger: ".o_technical_modal button:contains(Delete)",
+            trigger: ".app_technical_modal button:contains(Delete)",
             run: "click",
         },
         {
-            trigger: ".o_searchview_dropdown_toggler",
+            trigger: ".app_searchview_dropdown_toggler",
             run: "click",
         },
         {
-            trigger: ".o_favorite_menu .o-dropdown-item:contains(Apps2)",
+            trigger: ".app_favorite_menu .app-dropdown-item:contains(Apps2)",
         },
         {
             content: "There should not be any facet inside the search bar",
-            trigger: "body:not(:has(.o_searchview_facet))",
+            trigger: "body:not(:has(.app_searchview_facet))",
         },
         {
             content: "The Apps1 filter should be deleted",
-            trigger: "body:not(:has(.o_favorite_menu .o-dropdown-item:contains(Apps1)))",
+            trigger: "body:not(:has(.app_favorite_menu .app-dropdown-item:contains(Apps1)))",
         },
     ],
 });

@@ -385,7 +385,7 @@ export class SearchBar extends Component {
      * @param {number} [index]
      */
     focusFacet(index) {
-        const facets = this.root.el.getElementsByClassName("o_searchview_facet");
+        const facets = this.root.el.getElementsByClassName("app_searchview_facet");
         if (facets.length) {
             if (index === undefined) {
                 facets[facets.length - 1].focus();
@@ -476,14 +476,14 @@ export class SearchBar extends Component {
     }
 
     setupFacetNavigation() {
-        const isFacet = (target) => target && target.classList.contains("o_searchview_facet");
+        const isFacet = (target) => target && target.classList.contains("app_searchview_facet");
 
         useNavigation(this.facetContainerRef, {
             shouldFocusChildInput: false,
             getItems: () => {
                 if (this.root.el && this.inputRef.el) {
                     return [
-                        ...this.root.el.querySelectorAll(":scope .o_searchview_facet"),
+                        ...this.root.el.querySelectorAll(":scope .app_searchview_facet"),
                         this.inputRef.el,
                     ];
                 }
@@ -557,7 +557,7 @@ export class SearchBar extends Component {
 
         return {
             virtualFocus: true,
-            getItems: () => this.menuRef.el?.querySelectorAll(":scope .o-dropdown-item") ?? [],
+            getItems: () => this.menuRef.el?.querySelectorAll(":scope .app-dropdown-item") ?? [],
             isNavigationAvailable: ({ navigator, target }) =>
                 this.inputDropdownState.isOpen &&
                 (this.facetContainerRef.el?.contains(target) || navigator.contains(target)),

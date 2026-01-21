@@ -1,4 +1,4 @@
-.o_loading_indicator {
+.app_loading_indicator {
   position: fixed;
   bottom: 0;
   right: 0;
@@ -8,7 +8,7 @@
   padding: 4px;
 
   transition: opacity 0.4s;
-  &.o-fade-leave, &.o-fade-enter {
+  &.app-fade-leave, &.app-fade-enter {
     opacity: 0;
   }
 }

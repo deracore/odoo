@@ -427,7 +427,7 @@ export function useNavigation(containerRef, options = {}) {
 
     const newOptions = { ...options };
     if (!newOptions.getItems) {
-        newOptions.getItems = () => containerRef.el?.querySelectorAll(":scope .o-navigable") ?? [];
+        newOptions.getItems = () => containerRef.el?.querySelectorAll(":scope .app-navigable") ?? [];
     }
 
     const hotkeyService = useService("hotkey");

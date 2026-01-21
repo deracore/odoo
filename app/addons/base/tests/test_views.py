@@ -3378,7 +3378,7 @@ class TestViews(ViewCase):
         self.assertValid('<form><field name="model"/><label for="model"/></form>')
         self.assertInvalid(
             '<form><field name="model"/><label/></form>',
-            """Label tag must contain a "for". To match label style without corresponding field or button, use 'class="o_form_label"'""",
+            """Label tag must contain a "for". To match label style without corresponding field or button, use 'class="app_form_label"'""",
         )
         self.assertInvalid(
             '<form><label for="model"/></form>',
@@ -3452,11 +3452,11 @@ class TestViews(ViewCase):
         self.assertWarning('<form><ul class="dropdown-menu"></ul></form>')
 
     def test_valid_simili_progressbar(self):
-        self.assertValid('<form><div class="o_progressbar" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">14%</div></form>')
-        self.assertWarning('<form><div class="o_progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">14%</div></form>')
-        self.assertWarning('<form><div class="o_progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100">14%</div></form>')
-        self.assertWarning('<form><div class="o_progressbar" role="progressbar" aria-valuenow="14" aria-valuemax="100">14%</div></form>')
-        self.assertWarning('<form><div class="o_progressbar" role="progressbar" aria-valuenow="14" aria-valuemin="0" >14%</div></form>')
+        self.assertValid('<form><div class="app_progressbar" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">14%</div></form>')
+        self.assertWarning('<form><div class="app_progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">14%</div></form>')
+        self.assertWarning('<form><div class="app_progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100">14%</div></form>')
+        self.assertWarning('<form><div class="app_progressbar" role="progressbar" aria-valuenow="14" aria-valuemax="100">14%</div></form>')
+        self.assertWarning('<form><div class="app_progressbar" role="progressbar" aria-valuenow="14" aria-valuemin="0" >14%</div></form>')
 
     def test_valid_simili_tabpanel(self):
         self.assertValid('<form><div class="tab-pane" role="tabpanel"/></form>')

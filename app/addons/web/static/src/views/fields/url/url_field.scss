@@ -1,4 +1,4 @@
-body:not(.o_touch_device) .o_field_url {
+body:not(.app_touch_device) .app_field_url {
     &:not(:hover):not(:focus-within) {
         & input:not(:hover) ~ a {
             display: none !important;

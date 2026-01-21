@@ -77,7 +77,7 @@ export class Dialog extends Component {
             "control+enter",
             () => {
                 const btns = document.querySelectorAll(
-                    ".o_dialog:not(.o_inactive_modal) .modal-footer button"
+                    ".app_dialog:not(.app_inactive_modal) .modal-footer button"
                 );
                 const firstVisibleBtn = Array.from(btns).find((btn) => {
                     const styles = getComputedStyle(btn);

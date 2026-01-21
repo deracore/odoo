@@ -47,7 +47,7 @@ class ResUserGroupIdsPrivilegeField extends Component {
         const invisible = !this.isSet && !this.impliedGroup?.id;
         const isDisjoint = this.isDisjoint;
         return {
-            o_group_info_button: true,
+            app_group_info_button: true,
             invisible,
             btn: true,
             "btn-link": true,

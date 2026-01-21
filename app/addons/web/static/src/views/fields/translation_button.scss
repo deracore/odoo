@@ -1,5 +1,5 @@
 
-.btn.o_field_translate {
+.btn.app_field_translate {
     position: absolute;
     right: 5px;
     top: 5px;
@@ -7,24 +7,24 @@
     text-align: right;
     visibility: hidden;
 
-    &, .o_web_client.o_touch_device & {
+    &, .app_web_client.app_touch_device & {
         padding: 0;
     }
 }
 
-.o_field_widget {
+.app_field_widget {
     &:hover,
     &:focus-within {
-        .btn.o_field_translate {
+        .btn.app_field_translate {
             visibility: visible;
         }
     }
 
     input, textarea {
-        &.o_field_translate, &.o_field_placeholder {
+        &.app_field_translate, &.app_field_placeholder {
             padding-right: $o-field-translate-padding;
         }
-        &.o_field_translate.o_field_placeholder {
+        &.app_field_translate.app_field_placeholder {
             padding-right: $o-field-translate-padding * 2;
         }
     }

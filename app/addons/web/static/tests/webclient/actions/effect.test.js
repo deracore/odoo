@@ -84,24 +84,24 @@ test("rainbowman integrated to webClient", async () => {
 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(".o_kanban_view").toHaveCount(1);
-    expect(".o_reward").toHaveCount(0);
+    expect(".app_kanban_view").toHaveCount(1);
+    expect(".app_reward").toHaveCount(0);
     getService("effect").add({ type: "rainbow_man", message: "", fadeout: "no" });
     await animationFrame();
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_kanban_view").toHaveCount(1);
-    await contains(".o_reward").click();
-    expect(".o_reward").toHaveCount(0);
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_kanban_view").toHaveCount(1);
+    await contains(".app_reward").click();
+    expect(".app_reward").toHaveCount(0);
+    expect(".app_kanban_view").toHaveCount(1);
     getService("effect").add({ type: "rainbow_man", message: "", fadeout: "no" });
     await animationFrame();
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_kanban_view").toHaveCount(1);
     // Do not force rainbow man to destroy on doAction
     // we let it die either after its animation or on user click
     await getService("action").doAction(3);
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_list_view").toHaveCount(1);
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_list_view").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -120,7 +120,7 @@ test("on close with effect from server", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(6);
     await contains("button[name=object]").click();
-    expect(".o_reward").toHaveCount(1);
+    expect(".app_reward").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -141,8 +141,8 @@ test("on close with effect in xml on desktop", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(6);
     await contains("button[name=object]").click();
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_reward .o_reward_msg_content").toHaveText("rainBowInXML");
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_reward .app_reward_msg_content").toHaveText("rainBowInXML");
 });
 
 test.tags("mobile");
@@ -162,8 +162,8 @@ test("on close with effect in xml on mobile", async () => {
 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(6);
-    await contains(`.o_cp_action_menus button:has(.fa-cog)`).click();
+    await contains(`.app_cp_action_menus button:has(.fa-cog)`).click();
     await contains("button[name=object]").click();
-    expect(".o_reward").toHaveCount(1);
-    expect(".o_reward .o_reward_msg_content").toHaveText("rainBowInXML");
+    expect(".app_reward").toHaveCount(1);
+    expect(".app_reward .app_reward_msg_content").toHaveText("rainBowInXML");
 });

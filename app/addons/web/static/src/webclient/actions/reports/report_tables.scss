@@ -17,11 +17,11 @@ div#total {
     page-break-inside: avoid;
 }
 
-// Table styling of the reports, apply the styling class .o_table_x
+// Table styling of the reports, apply the styling class .app_table_x
 // to the .article bloc of the report to change the table style.
 
-.o_table_standard {
-    table:not(.o_ignore_layout_styling) {
+.app_table_standard {
+    table:not(.app_ignore_layout_styling) {
         thead {
             border-bottom: $border-width solid $o-gray-900;
         }
@@ -35,14 +35,14 @@ div#total {
         }
     }
 
-    .o_total_table:not(.o_ignore_layout_styling),
-    .o_total_table:not(.o_ignore_layout_styling) .o_total {
+    .app_total_table:not(.app_ignore_layout_styling),
+    .app_total_table:not(.app_ignore_layout_styling) .app_total {
         border-top: $border-width solid $border-color;
     }
 }
 
-.o_table_bold {
-    table:not(.o_ignore_layout_styling) {
+.app_table_bold {
+    table:not(.app_ignore_layout_styling) {
         thead th {
             border-top: $border-width * 3 solid $o-default-report-secondary-color;
             text-transform: uppercase;
@@ -59,22 +59,22 @@ div#total {
         }
     }
 
-    .o_total_table:not(.o_ignore_layout_styling) {
-        & .o_total, & .o_price_total {
+    .app_total_table:not(.app_ignore_layout_styling) {
+        & .app_total, & .app_price_total {
             border-top: $border-width solid $gray-200;
         }
     }
 }
 
-.o_table_striped {
-    table:not(.o_ignore_layout_styling) {
+.app_table_striped {
+    table:not(.app_ignore_layout_styling) {
         tr:not(:first-child) {
             // Using border-top not bottom, to manage a different border on line sections
             border-top: $border-width solid $gray-200;
         }
 
         tbody tr {
-            &:first-child, &.o_line_section {
+            &:first-child, &.app_line_section {
                 border-top: $border-width solid $gray-400;
             }
 
@@ -92,7 +92,7 @@ div#total {
         }
     }
 
-    .o_total_table:not(.o_ignore_layout_styling) {
+    .app_total_table:not(.app_ignore_layout_styling) {
         tr:first-child {
             border-top: none;
         }
@@ -103,8 +103,8 @@ div#total {
     }
 }
 
-.o_table_boxed, .o_table_boxed-rounded {
-    table:not(.o_ignore_layout_styling) {
+.app_table_boxed, .app_table_boxed-rounded {
+    table:not(.app_ignore_layout_styling) {
         position: relative;
 
         &::before {
@@ -139,24 +139,24 @@ div#total {
                 border-right: $border-width solid $gray-400;
             }
 
-            &.o_line_section td,
-            &.o_line_note td,
+            &.app_line_section td,
+            &.app_line_note td,
             &.is-subtotal td {
                 border-top: $border-width solid $gray-700;
                 border-bottom: $border-width solid $gray-700;
             }
 
-            &.o_line_section td {
+            &.app_line_section td {
                 background-color: rgba($gray-200, .5);
             }
 
-            td.o_price_total, .o_taxes td {
+            td.app_price_total, .app_taxes td {
                 background-color: rgba($gray-200, .5);
             }
         }
     }
 
-    .o_total_table:not(.o_ignore_layout_styling) {
+    .app_total_table:not(.app_ignore_layout_styling) {
         td {
             border-right: none;
         }
@@ -166,20 +166,20 @@ div#total {
         }
     }
 
-    .mt-5 .o_total_table:not(.o_ignore_layout_styling) {
+    .mt-5 .app_total_table:not(.app_ignore_layout_styling) {
         &::before {
             border-top: $border-width solid $border-color;
         }
     }
 }
 
-.o_table_boxed-rounded {
-    table:not(.o_ignore_layout_styling) {
+.app_table_boxed-rounded {
+    table:not(.app_ignore_layout_styling) {
         &::before {
             border-radius: $border-radius-lg;
         }
 
-        &.o_has_total_table::before {
+        &.app_has_total_table::before {
             border-radius: $border-radius-lg $border-radius-lg 0 $border-radius-lg ;
         }
 
@@ -196,7 +196,7 @@ div#total {
         }
     }
 
-    .o_total_table:not(.o_ignore_layout_styling) {
+    .app_total_table:not(.app_ignore_layout_styling) {
         &::before {
             border-radius: 0 0 $border-radius-lg $border-radius-lg;
         }

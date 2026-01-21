@@ -58,7 +58,7 @@ test("simple week recurrence widget", async () => {
         arch: /* xml */ `<form><sheet><group><widget name="week_days" /></group></sheet></form>`,
     });
 
-    expect(queryAllTexts(".o_recurrent_weekday_label")).toEqual(
+    expect(queryAllTexts(".app_recurrent_weekday_label")).toEqual(
         ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         { message: "labels should be short week names" }
     );
@@ -109,7 +109,7 @@ test("week recurrence widget readonly modifiers", async () => {
         arch: /* xml */ `<form><sheet><group><widget name="week_days" readonly="1"/></group></sheet></form>`,
     });
 
-    expect(queryAllTexts(".o_recurrent_weekday_label")).toEqual(
+    expect(queryAllTexts(".app_recurrent_weekday_label")).toEqual(
         ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         { message: "labels should be short week names" }
     );
@@ -127,7 +127,7 @@ test("week recurrence widget show week start as per language configuration", asy
         arch: /* xml */ `<form><sheet><group><widget name="week_days"/></group></sheet></form>`,
     });
 
-    expect(queryAllTexts(".o_recurrent_weekday_label")).toEqual(
+    expect(queryAllTexts(".app_recurrent_weekday_label")).toEqual(
         ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"],
         { message: "labels should be short week names" }
     );

@@ -13,7 +13,7 @@
             t-att-max="props.max"
             t-att-type="props.inputType" 
             inputmode="numeric" 
-            class="o_input" 
+            class="app_input" 
             autocomplete="off"
             t-att-step="props.step" />
     </t>

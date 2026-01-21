@@ -340,7 +340,7 @@ function getPartialValueEditorInfo(fieldDef, operator, params = {}) {
     }
 
     // Global default for visualization mainly. It is there to visualize what
-    // has been produced in the debug textarea (in o_domain_selector_debug_container)
+    // has been produced in the debug textarea (in app_domain_selector_debug_container)
     // It is hardly useful to produce a string in general.
     return {
         component: Input,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <div t-name="web.CalendarPropertiesField" t-ref="properties" class="d-flex flex-column gap-3">
-        <div class="o_calendar_property_field d-flex"
+        <div class="app_calendar_property_field d-flex"
             t-foreach="propertiesList"
             t-as="propertyConfiguration"
             t-key="propertyConfiguration.name"
@@ -25,7 +25,7 @@
                     record="props.record"
                 />
             </div>
-            <span class="o_property_field_value_suffix" t-if="propertyConfiguration.suffix" t-out="propertyConfiguration.suffix"/>
+            <span class="app_property_field_value_suffix" t-if="propertyConfiguration.suffix" t-out="propertyConfiguration.suffix"/>
         </div>
     </div>
 </templates>

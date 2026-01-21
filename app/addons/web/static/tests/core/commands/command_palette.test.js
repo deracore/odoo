@@ -38,12 +38,12 @@ test("empty providers", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
-    expect(".o_command_palette_listbox_empty").toHaveText("No result found");
-    expect(".o_command_palette_search input").toHaveAttribute("placeholder", "Search...");
-    expect(".o_command_palette_footer").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command_palette_listbox_empty").toHaveText("No result found");
+    expect(".app_command_palette_search input").toHaveAttribute("placeholder", "Search...");
+    expect(".app_command_palette_footer").toHaveCount(0);
 });
 
 test("custom empty message", async () => {
@@ -72,23 +72,23 @@ test("custom empty message", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
-    expect(".o_command_palette_listbox_empty").toHaveText(
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command_palette_listbox_empty").toHaveText(
         configByNamespace["default"].emptyMessage
     );
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@");
     await runAllTimers();
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
-    expect(".o_command_palette_listbox_empty").toHaveText(configByNamespace["@"].emptyMessage);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command_palette_listbox_empty").toHaveText(configByNamespace["@"].emptyMessage);
 
     await edit("#");
     await runAllTimers();
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
-    expect(".o_command_palette_listbox_empty").toHaveText(configByNamespace["#"].emptyMessage);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command_palette_listbox_empty").toHaveText(configByNamespace["#"].emptyMessage);
 });
 
 test("custom debounce delay", async () => {
@@ -124,24 +124,24 @@ test("custom debounce delay", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
-    await click(".o_command_palette_search input");
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    await click(".app_command_palette_search input");
     await fill("com");
     await runAllTimers();
-    expect(".o_command_palette_listbox_empty").toHaveText("No result found");
+    expect(".app_command_palette_listbox_empty").toHaveText("No result found");
     await edit("@");
     await advanceTime(700);
-    expect(".o_command").toHaveCount(0);
+    expect(".app_command").toHaveCount(0);
     await advanceTime(300);
-    expect(".o_command").toHaveCount(2);
+    expect(".app_command").toHaveCount(2);
     await press("backspace");
     await runAllTimers();
-    expect(".o_command").toHaveCount(0);
+    expect(".app_command").toHaveCount(0);
     await edit("#");
-    expect(".o_command").toHaveCount(0);
+    expect(".app_command").toHaveCount(0);
     await advanceTime(500);
-    expect(".o_command").toHaveCount(2);
+    expect(".app_command").toHaveCount(2);
 });
 
 test("concurrency with custom debounce delay", async () => {
@@ -183,24 +183,24 @@ test("concurrency with custom debounce delay", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette .o_namespace").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette .app_namespace").toHaveCount(0);
 
     await fill("@");
     await animationFrame();
-    expect(".o_command_palette .o_namespace").toHaveText("@");
-    expect(queryAllTexts(".o_command")).toEqual([]);
+    expect(".app_command_palette .app_namespace").toHaveText("@");
+    expect(queryAllTexts(".app_command")).toEqual([]);
 
     await edit("#");
     await animationFrame();
-    expect(".o_command_palette .o_namespace").toHaveText("#");
+    expect(".app_command_palette .app_namespace").toHaveText("#");
     await advanceTime(500);
-    expect(queryAllTexts(".o_command")).toEqual(["Command#"]);
+    expect(queryAllTexts(".app_command")).toEqual(["Command#"]);
 
     await advanceTime(500);
-    expect(".o_command_palette .o_namespace").toHaveText("#");
-    expect(queryAllTexts(".o_command")).toEqual(["Command#"]);
+    expect(".app_command_palette .app_namespace").toHaveText("#");
+    expect(queryAllTexts(".app_command")).toEqual(["Command#"]);
 });
 
 test("custom placeholder", async () => {
@@ -226,15 +226,15 @@ test("custom placeholder", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
-    expect(".o_command_palette_search input").toHaveAttribute("placeholder", "default placeholder");
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command_palette_search input").toHaveAttribute("placeholder", "default placeholder");
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@");
     await runAllTimers();
-    expect(".o_command_palette_search input").toHaveAttribute("placeholder", "@ placeholder");
+    expect(".app_command_palette_search input").toHaveAttribute("placeholder", "@ placeholder");
 });
 
 test("add a footer", async () => {
@@ -247,16 +247,16 @@ test("add a footer", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_footer").toHaveCount(1);
-    expect(".o_command_palette_footer").toHaveText("My footer");
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_footer").toHaveCount(1);
+    expect(".app_command_palette_footer").toHaveText("My footer");
 });
 
 test("command with a Custom Component", async () => {
     class CustomComponent extends Component {
         static template = xml`
-            <div class="o_command_custom">
+            <div class="app_command_custom">
                 <span t-esc="props.name"/>
             </div>
         `;
@@ -287,11 +287,11 @@ test("command with a Custom Component", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2"]);
-    expect(queryAllTexts(".o_command .o_command_default")).toEqual(["Command2"]);
-    expect(queryAllTexts(".o_command .o_command_custom")).toEqual(["Command1"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2"]);
+    expect(queryAllTexts(".app_command .app_command_default")).toEqual(["Command2"]);
+    expect(queryAllTexts(".app_command .app_command_custom")).toEqual(["Command1"]);
 });
 
 test("multi namespace with provider", async () => {
@@ -331,17 +331,17 @@ test("multi namespace with provider", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command_palette .o_namespace").toHaveCount(0);
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command_palette .app_namespace").toHaveCount(0);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2"]);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@");
     await runAllTimers();
-    expect(".o_command_palette .o_namespace").toHaveText("@");
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command3", "Command4"]);
+    expect(".app_command_palette .app_namespace").toHaveText("@");
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command3", "Command4"]);
 });
 
 test("apply a fuzzysearch on the namespace default not on the others", async () => {
@@ -381,23 +381,23 @@ test("apply a fuzzysearch on the namespace default not on the others", async () 
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2"]);
-    await click(".o_command_palette_search input");
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2"]);
+    await click(".app_command_palette_search input");
     await edit("c1");
     await runAllTimers();
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1"]);
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1"]);
 
     await edit("@");
     await runAllTimers();
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command3", "Command4"]);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command3", "Command4"]);
     await edit("@c3");
     await runAllTimers();
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command3", "Command4"]);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command3", "Command4"]);
 });
 
 test("multi provider with the same namespace", async () => {
@@ -436,9 +436,9 @@ test("multi provider with the same namespace", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(4);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2", "Command3", "Command4"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(4);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2", "Command3", "Command4"]);
 });
 
 test("check the concurrency during a research", async () => {
@@ -471,10 +471,10 @@ test("check the concurrency during a research", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(2);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(2);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("b");
     await runAllTimers();
     await press("enter");
@@ -524,10 +524,10 @@ test("open the command palette with a searchValue already in the searchbar", asy
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command_palette_search input").toHaveValue("C1");
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command_palette_search input").toHaveValue("C1");
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1"]);
 });
 
 test("command palette keeps the same top position when its content changes", async () => {
@@ -562,14 +562,14 @@ test("command palette keeps the same top position when its content changes", asy
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(4);
-    expect(".o_command_palette").toHaveRect({ top: 120 });
-    await click(".o_command_palette_search input");
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(4);
+    expect(".app_command_palette").toHaveRect({ top: 120 });
+    await click(".app_command_palette_search input");
     await edit("z");
     await runAllTimers();
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette").toHaveRect({ top: 120 });
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette").toHaveRect({ top: 120 });
 });
 
 test("open the command palette with a namespace already in the searchbar", async () => {
@@ -610,10 +610,10 @@ test("open the command palette with a namespace already in the searchbar", async
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command_palette .o_namespace").toHaveText("@");
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command3", "Command4"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command_palette .app_namespace").toHaveText("@");
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command3", "Command4"]);
 });
 
 test("open the command palette with a searchValue with a namespace", async () => {
@@ -654,10 +654,10 @@ test("open the command palette with a searchValue with a namespace", async () =>
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command_palette .o_namespace").toHaveText("@");
-    expect(".o_command_palette_search input").toHaveValue("Test");
-    expect(queryAllTexts(".o_command")).toEqual(["Command3", "Command4"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command_palette .app_namespace").toHaveText("@");
+    expect(".app_command_palette_search input").toHaveValue("Test");
+    expect(queryAllTexts(".app_command")).toEqual(["Command3", "Command4"]);
 });
 
 test("open the command palette with a searchValue without namespace", async () => {
@@ -698,11 +698,11 @@ test("open the command palette with a searchValue without namespace", async () =
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command_palette .o_namespace").toHaveCount(0);
-    expect(".o_command_palette_search input").toHaveValue("Command1");
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command_palette .app_namespace").toHaveCount(0);
+    expect(".app_command_palette_search input").toHaveValue("Command1");
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1"]);
 });
 
 test("multi provider with categories", async () => {
@@ -768,34 +768,34 @@ test("multi provider with categories", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(3);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2", "Command3"]);
-    expect(".o_command_category").toHaveCount(3);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(3);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2", "Command3"]);
+    expect(".app_command_category").toHaveCount(3);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(1) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(1) .app_command > a > div > span:first-child")
     ).toEqual(["Command1"]);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(2) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(2) .app_command > a > div > span:first-child")
     ).toEqual(["Command2"]);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(3) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(3) .app_command > a > div > span:first-child")
     ).toEqual(["Command3"]);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@");
     await runAllTimers();
-    expect(".o_command").toHaveCount(4);
-    expect(queryAllTexts(".o_command")).toEqual(["Command6", "Command7", "Command5", "Command4"]);
-    expect(".o_command_category").toHaveCount(3);
+    expect(".app_command").toHaveCount(4);
+    expect(queryAllTexts(".app_command")).toEqual(["Command6", "Command7", "Command5", "Command4"]);
+    expect(".app_command_category").toHaveCount(3);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(1) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(1) .app_command > a > div > span:first-child")
     ).toEqual(["Command6", "Command7"]);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(2) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(2) .app_command > a > div > span:first-child")
     ).toEqual(["Command5"]);
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(3) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(3) .app_command > a > div > span:first-child")
     ).toEqual(["Command4"]);
 });
 
@@ -835,19 +835,19 @@ test("don't display by categories if there is a search value", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(3);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2", "Command3"]);
-    expect(".o_command_category").toHaveCount(3);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(3);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2", "Command3"]);
+    expect(".app_command_category").toHaveCount(3);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("c");
     await runAllTimers();
-    expect(".o_command").toHaveCount(3);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2", "Command3"]);
+    expect(".app_command").toHaveCount(3);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2", "Command3"]);
 
     expect(
-        queryAllTexts(".o_command_category:nth-of-type(1) .o_command > a > div > span:first-child")
+        queryAllTexts(".app_command_category:nth-of-type(1) .app_command > a > div > span:first-child")
     ).toEqual(["Command1", "Command2", "Command3"]);
 });
 
@@ -880,11 +880,11 @@ test("click on command", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2"]);
-    expect(".o_command.focused").toHaveText(commands[0].name);
-    await contains(".o_command.focused").click();
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2"]);
+    expect(".app_command.focused").toHaveText(commands[0].name);
+    await contains(".app_command.focused").click();
     expect.verifySteps(["C1"]);
 });
 
@@ -916,10 +916,10 @@ test("press enter on command", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1", "Command2"]);
-    expect(".o_command.focused").toHaveText(commands[0].name);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1", "Command2"]);
+    expect(".app_command.focused").toHaveText(commands[0].name);
     await press("arrowdown");
     await animationFrame();
     await press("enter");
@@ -951,14 +951,14 @@ test("keyboard navigation scroll", async () => {
     const isVisible = (el) => {
         // Returns the visibility of the element in the scrollable element
         const elementRect = queryOne(el).getBoundingClientRect();
-        const scrollableRect = queryOne(".o_command_palette_listbox").getBoundingClientRect();
+        const scrollableRect = queryOne(".app_command_palette_listbox").getBoundingClientRect();
         return elementRect.bottom <= scrollableRect.bottom && elementRect.top >= scrollableRect.top;
     };
 
     const getFocusedCommandBorderState = () => {
         // Returns the state of the element in relation to the borders
-        const elementRect = queryOne(".o_command.focused").getBoundingClientRect();
-        const scrollableRect = queryOne(".o_command_palette_listbox").getBoundingClientRect();
+        const elementRect = queryOne(".app_command.focused").getBoundingClientRect();
+        const scrollableRect = queryOne(".app_command_palette_listbox").getBoundingClientRect();
         return {
             top: elementRect.top === scrollableRect.top,
             bottom: elementRect.bottom === scrollableRect.bottom,
@@ -970,11 +970,11 @@ test("keyboard navigation scroll", async () => {
     // to assure the command palette is scrollable. The palette is only able to
     // display three rows of commands so we are sure we always have one row
     // element out of bounds
-    queryAll(".o_command").forEach((e) => (e.style.height = "50px"));
-    queryOne(".o_command_palette_listbox").style.maxHeight = "150px";
-    queryOne(".o_command_category").style.padding = "0";
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(4);
+    queryAll(".app_command").forEach((e) => (e.style.height = "50px"));
+    queryOne(".app_command_palette_listbox").style.maxHeight = "150px";
+    queryOne(".app_command_category").style.padding = "0";
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(4);
 
     expect(isVisible("#o_command_0")).toBe(true);
     expect(isVisible("#o_command_1")).toBe(true);
@@ -1103,31 +1103,31 @@ test("multi level command", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    await click(".o_command_palette_search input");
+    expect(".app_command_palette").toHaveCount(1);
+    await click(".app_command_palette_search input");
     await edit("empty");
     await runAllTimers();
-    expect(".o_command_palette_listbox_empty").toHaveText("Empty Default");
-    expect(".o_command_palette_search input").toHaveAttribute("placeholder", "placeholder test");
-    expect(".o_command_palette_footer").toHaveCount(1);
-    expect(".o_command_palette_footer").toHaveText("My footer");
+    expect(".app_command_palette_listbox_empty").toHaveText("Empty Default");
+    expect(".app_command_palette_search input").toHaveAttribute("placeholder", "placeholder test");
+    expect(".app_command_palette_footer").toHaveCount(1);
+    expect(".app_command_palette_footer").toHaveText("My footer");
 
     await edit("");
     await runAllTimers();
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command")).toEqual(["Command1"]);
-    expect(".o_command.focused").toHaveText(commands[0].name);
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command")).toEqual(["Command1"]);
+    expect(".app_command.focused").toHaveText(commands[0].name);
     await press("enter");
     await animationFrame();
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command")).toEqual(["Command lvl2"]);
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command")).toEqual(["Command lvl2"]);
 
     // check that the configuration has been correctly cleaned
     await edit("empty");
     await runAllTimers();
-    expect(".o_command_palette_listbox_empty").toHaveText("No result found");
-    expect(".o_command_palette_search input").toHaveAttribute("placeholder", "Search...");
-    expect(".o_command_palette_footer").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveText("No result found");
+    expect(".app_command_palette_search input").toHaveAttribute("placeholder", "Search...");
+    expect(".app_command_palette_footer").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -1141,12 +1141,12 @@ test("command palette dialog can be rendered and closed on outside click", async
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
+    expect(".app_command_palette").toHaveCount(1);
 
     // Close on outside click
     await contains(getFixture()).click();
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(0);
+    expect(".app_command_palette").toHaveCount(0);
 });
 
 test("navigate in the command palette with the arrows", async () => {
@@ -1180,27 +1180,27 @@ test("navigate in the command palette with the arrows", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command.focused").toHaveText(commands[0].name);
+    expect(".app_command.focused").toHaveText(commands[0].name);
 
     await press("arrowdown");
     await animationFrame();
-    expect(".o_command.focused").toHaveText(commands[1].name);
+    expect(".app_command.focused").toHaveText(commands[1].name);
 
     await press("arrowdown");
     await animationFrame();
-    expect(".o_command.focused").toHaveText(commands[2].name);
+    expect(".app_command.focused").toHaveText(commands[2].name);
 
     await press("arrowdown");
     await animationFrame();
-    expect(".o_command.focused").toHaveText(commands[0].name);
+    expect(".app_command.focused").toHaveText(commands[0].name);
 
     await press("arrowup");
     await animationFrame();
-    expect(".o_command.focused").toHaveText(commands[2].name);
+    expect(".app_command.focused").toHaveText(commands[2].name);
 
     await press("arrowup");
     await animationFrame();
-    expect(".o_command.focused").toHaveText(commands[1].name);
+    expect(".app_command.focused").toHaveText(commands[1].name);
 });
 
 test("navigate in the command palette with an empty list", async () => {
@@ -1219,18 +1219,18 @@ test("navigate in the command palette with an empty list", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
 
     await press("arrowdown");
     await animationFrame();
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
 
     await press("arrowup");
     await animationFrame();
-    expect(".o_command").toHaveCount(0);
-    expect(".o_command_palette_listbox_empty").toHaveCount(1);
+    expect(".app_command").toHaveCount(0);
+    expect(".app_command_palette_listbox_empty").toHaveCount(1);
 });
 
 test("bold the searchValue on the commands", async () => {
@@ -1271,17 +1271,17 @@ test("bold the searchValue on the commands", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(5);
-    expect(queryAllTexts(".o_command .fw-bolder")).toEqual([]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(5);
+    expect(queryAllTexts(".app_command .fw-bolder")).toEqual([]);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@test");
     await runAllTimers();
-    expect(".o_command").toHaveCount(5);
+    expect(".app_command").toHaveCount(5);
     expect(
-        queryAll(".o_command").map((command) =>
-            queryAllTexts(".o_command_name .fw-bolder", { root: command })
+        queryAll(".app_command").map((command) =>
+            queryAllTexts(".app_command_name .fw-bolder", { root: command })
         )
     ).toEqual([["Test"], ["test"], ["test"], ["Test"], ["TeSt", "Test", "TEST"]]);
 });
@@ -1312,28 +1312,28 @@ test("bold the searchValue on the commands with special char", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(2);
-    expect(queryAllTexts(".o_command")).toEqual(["Test&", "Research & Development"]);
-    expect(queryAllTexts(".o_command .fw-bolder")).toEqual([]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(2);
+    expect(queryAllTexts(".app_command")).toEqual(["Test&", "Research & Development"]);
+    expect(queryAllTexts(".app_command .fw-bolder")).toEqual([]);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("/a");
     await runAllTimers();
-    expect(".o_command").toHaveCount(2);
+    expect(".app_command").toHaveCount(2);
     expect(
-        queryAll(".o_command").map((command) =>
-            queryAllTexts(".o_command_name .fw-bolder", { root: command })
+        queryAll(".app_command").map((command) =>
+            queryAllTexts(".app_command_name .fw-bolder", { root: command })
         )
     ).toEqual([[], ["a"]]);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("/&");
     await runAllTimers();
-    expect(".o_command").toHaveCount(2);
+    expect(".app_command").toHaveCount(2);
     expect(
-        queryAll(".o_command").map((command) =>
-            queryAllTexts(".o_command_name .fw-bolder", { root: command })
+        queryAll(".app_command").map((command) =>
+            queryAllTexts(".app_command_name .fw-bolder", { root: command })
         )
     ).toEqual([["&"], ["&"]]);
 });
@@ -1359,10 +1359,10 @@ test("bold the searchValue on the commands with accents", async () => {
         config,
     });
     await animationFrame();
-    expect(".o_command_palette").toHaveCount(1);
-    expect(".o_command").toHaveCount(1);
-    expect(queryAllTexts(".o_command")).toEqual(["Cédric"]);
-    expect(queryAllTexts(".o_command .fw-bolder")).toEqual(["éd"]);
+    expect(".app_command_palette").toHaveCount(1);
+    expect(".app_command").toHaveCount(1);
+    expect(queryAllTexts(".app_command")).toEqual(["Cédric"]);
+    expect(queryAllTexts(".app_command .fw-bolder")).toEqual(["éd"]);
 });
 
 test("remove namespace with backspace", async () => {
@@ -1384,35 +1384,35 @@ test("remove namespace with backspace", async () => {
         config,
     });
     await animationFrame();
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@");
     await runAllTimers();
-    expect(".o_command_palette .o_namespace").toHaveText("@");
+    expect(".app_command_palette .app_namespace").toHaveText("@");
 
     // remove namespace "@" because the input is empty
     await press("backspace");
     await animationFrame();
-    expect(".o_command_palette .o_namespace").toHaveCount(0);
-    expect(".o_command_palette_search input").toHaveValue("");
+    expect(".app_command_palette .app_namespace").toHaveCount(0);
+    expect(".app_command_palette_search input").toHaveValue("");
 
     await edit("@NotEmpty");
     await runAllTimers();
-    expect(".o_command_palette .o_namespace").toHaveText("@");
-    expect(".o_command_palette_search input").toHaveValue("NotEmpty");
+    expect(".app_command_palette .app_namespace").toHaveText("@");
+    expect(".app_command_palette_search input").toHaveValue("NotEmpty");
 
     // Do not remove the namespace "@" because the input is not empty
     await press("backspace");
     await animationFrame();
-    expect(".o_command_palette .o_namespace").toHaveText("@");
+    expect(".app_command_palette .app_namespace").toHaveText("@");
 
     await edit("@");
     await runAllTimers();
-    expect(".o_command_palette .o_namespace").toHaveText("@");
+    expect(".app_command_palette .app_namespace").toHaveText("@");
 
     // Does not remove the namespace if the backspace is repeatedly applied.
     // You don't want to remove the namespace by pressing the "backspace" key
     await press("backspace", { repeat: true });
-    expect(".o_command_palette .o_namespace").toHaveText("@");
+    expect(".app_command_palette .app_namespace").toHaveText("@");
 });
 
 test("generate new session id when opened", async () => {
@@ -1439,7 +1439,7 @@ test("generate new session id when opened", async () => {
     await animationFrame();
     expect(lastSessionId).toBe(0);
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("a");
     await runAllTimers();
     expect(lastSessionId).toBe(0);
@@ -1485,20 +1485,20 @@ test("checks that href is correctly used", async () => {
         },
     });
     await animationFrame();
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("@");
     await runAllTimers();
     // Check that command has link inside it
-    expect(".o_command_palette .o_command:eq(0) a").toHaveAttribute("href", "https://www.odoo.com");
+    expect(".app_command_palette .app_command:eq(0) a").toHaveAttribute("href", "https://www.odoo.com");
     // Check that we get url when doing ctrl+enter on a command having a link inside it
     await press("control+enter");
     await animationFrame();
     expect.verifySteps(["https://www.odoo.com"]);
     // Check that command has no link inside it
-    expect(".o_command_palette .o_command:eq(1) a").not.toHaveAttribute("href");
+    expect(".app_command_palette .app_command:eq(1) a").not.toHaveAttribute("href");
     // Check that clicking on a command having a link inside it triggers the command action
     // instead of redirecting to the href (last step because it closes the command palette).
-    await contains(".o_command_palette .o_command:eq(0)").click();
+    await contains(".app_command_palette .app_command:eq(0)").click();
     expect.verifySteps(["command_with_link_clicked"]);
 });
 
@@ -1530,18 +1530,18 @@ test("searchValue must not change without edition", async () => {
 
     await animationFrame();
 
-    await click(".o_command_palette_search input");
+    await click(".app_command_palette_search input");
     await edit("abc");
-    expect(".o_command_palette_search input").toHaveValue("abc");
+    expect(".app_command_palette_search input").toHaveValue("abc");
 
     await edit("deb");
-    expect(".o_command_palette_search input").toHaveValue("deb");
+    expect(".app_command_palette_search input").toHaveValue("deb");
 
     provideDef.resolve();
-    expect(".o_command_palette_search input").toHaveValue("deb");
+    expect(".app_command_palette_search input").toHaveValue("deb");
 
     await runAllTimers();
-    expect(".o_command_palette_search input").toHaveValue("deb");
+    expect(".app_command_palette_search input").toHaveValue("deb");
 });
 
 test("display spinner while loading results from providers", async () => {
@@ -1562,15 +1562,15 @@ test("display spinner while loading results from providers", async () => {
     });
 
     await animationFrame();
-    expect(".o_command_palette_search i.oi.oi-search").toHaveCount(1);
-    expect(".o_command_palette_search i.fa.fa-circle-o-notch").toHaveCount(0);
-    await click(".o_command_palette_search input");
+    expect(".app_command_palette_search i.oi.oi-search").toHaveCount(1);
+    expect(".app_command_palette_search i.fa.fa-circle-o-notch").toHaveCount(0);
+    await click(".app_command_palette_search input");
     await edit("? blabla");
     await runAllTimers();
-    expect(".o_command_palette_search i.oi.oi-search").toHaveCount(0);
-    expect(".o_command_palette_search i.fa.fa-circle-o-notch").toHaveCount(1);
+    expect(".app_command_palette_search i.oi.oi-search").toHaveCount(0);
+    expect(".app_command_palette_search i.fa.fa-circle-o-notch").toHaveCount(1);
     provideDef.resolve();
     await animationFrame();
-    expect(".o_command_palette_search i.oi.oi-search").toHaveCount(1);
-    expect(".o_command_palette_search i.fa.fa-circle-o-notch").toHaveCount(0);
+    expect(".app_command_palette_search i.oi.oi-search").toHaveCount(1);
+    expect(".app_command_palette_search i.fa.fa-circle-o-notch").toHaveCount(0);
 });

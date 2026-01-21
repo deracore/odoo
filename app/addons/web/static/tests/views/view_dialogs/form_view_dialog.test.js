@@ -109,7 +109,7 @@ test("modifiers are considered on multiple <footer/> tags", async () => {
         message: "only the first button section should be visible",
     });
 
-    await click(".o_field_boolean input");
+    await click(".app_field_boolean input");
     await animationFrame();
     expect(queryAllTexts(".modal-footer button:visible")).toEqual(["Foo"], {
         message: "only the second button section should be visible",
@@ -138,7 +138,7 @@ test("formviewdialog buttons in footer are not duplicated", async () => {
     expect(".modal").toHaveCount(1);
     expect(".modal button.my_button").toHaveCount(1, { message: "should have 1 buttons in modal" });
 
-    await click(".o_field_x2many_list_row_add a");
+    await click(".app_field_x2many_list_row_add a");
     await animationFrame();
     await press("escape");
     await animationFrame();
@@ -214,7 +214,7 @@ test("Form dialog and subview with _view_ref contexts", async () => {
             </form>
         `,
     });
-    await click('.o_field_widget[name="instrument"] button.o_external_button');
+    await click('.app_field_widget[name="instrument"] button.app_external_button');
     await animationFrame();
 });
 
@@ -235,16 +235,16 @@ test("click on view buttons in a FormViewDialog", async () => {
         resId: 1,
     });
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .o_form_view button").toHaveCount(2);
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .app_form_view button").toHaveCount(2);
     expect.verifySteps(["get_views", "web_read"]);
-    await click(".o_dialog .o_form_view .btn1");
+    await click(".app_dialog .app_form_view .btn1");
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(1);
+    expect(".app_dialog .app_form_view").toHaveCount(1);
     expect.verifySteps(["method1", "web_read"]); // should re-read the record
-    await click(".o_dialog .o_form_view .btn2");
+    await click(".app_dialog .app_form_view .btn2");
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(0);
+    expect(".app_dialog .app_form_view").toHaveCount(0);
     expect.verifySteps(["method2"]); // should not read as we closed
 });
 
@@ -278,7 +278,7 @@ test("formviewdialog is not closed when button handlers return a rejected promis
     expect.verifyErrors(["rejected"]);
 
     // Close error modal
-    await click(waitFor(".o_error_dialog .btn:contains(Close)"));
+    await click(waitFor(".app_error_dialog .btn:contains(Close)"));
 
     // Click "save" inside the dialog (without rejection)
     reject = false;
@@ -297,12 +297,12 @@ test("FormViewDialog with remove button", async () => {
     });
     await animationFrame();
 
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .modal-footer .o_form_button_remove").toHaveCount(1);
-    await click(".o_dialog .modal-footer .o_form_button_remove");
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .modal-footer .app_form_button_remove").toHaveCount(1);
+    await click(".app_dialog .modal-footer .app_form_button_remove");
     await animationFrame();
     expect.verifySteps(["remove"]);
-    expect(".o_dialog .o_form_view").toHaveCount(0);
+    expect(".app_dialog .app_form_view").toHaveCount(0);
 });
 
 test("Buttons are set as disabled on click", async () => {
@@ -326,17 +326,17 @@ test("Buttons are set as disabled on click", async () => {
 
     await animationFrame();
 
-    await click(".o_dialog .o_content .o_field_char .o_input");
+    await click(".app_dialog .app_content .app_field_char .app_input");
     await edit("test");
     await animationFrame();
 
     await clickSave();
 
-    expect(".o_dialog .modal-footer .o_form_button_save").toHaveAttribute("disabled", "1");
+    expect(".app_dialog .modal-footer .app_form_button_save").toHaveAttribute("disabled", "1");
 
     def.resolve();
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(0);
+    expect(".app_dialog .app_form_view").toHaveCount(0);
 });
 
 test("FormViewDialog with discard button", async () => {
@@ -349,12 +349,12 @@ test("FormViewDialog with discard button", async () => {
     });
     await animationFrame();
 
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .modal-footer .o_form_button_cancel").toHaveCount(1);
-    await click(".o_dialog .modal-footer .o_form_button_cancel");
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .modal-footer .app_form_button_cancel").toHaveCount(1);
+    await click(".app_dialog .modal-footer .app_form_button_cancel");
     await animationFrame();
     expect.verifySteps(["discard"]);
-    expect(".o_dialog .o_form_view").toHaveCount(0);
+    expect(".app_dialog .app_form_view").toHaveCount(0);
 });
 
 test("Save a FormViewDialog when a required field is empty don't close the dialog", async () => {
@@ -408,10 +408,10 @@ test("new record has an expand button", async () => {
         resModel: "partner",
     });
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .modal-header .o_expand_button").toHaveCount(1);
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .modal-header .app_expand_button").toHaveCount(1);
     await fieldInput("foo").edit("new");
-    await click(".o_dialog .modal-header .o_expand_button");
+    await click(".app_dialog .modal-header .app_expand_button");
     await animationFrame();
     expect.verifySteps(["save", [1, "partner", "ir.actions.act_window", [[false, "form"]]]]);
 });
@@ -440,10 +440,10 @@ test("existing record has an expand button", async () => {
         context: { key: "val" },
     });
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .modal-header .o_expand_button").toHaveCount(1);
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .modal-header .app_expand_button").toHaveCount(1);
     await fieldInput("foo").edit("hola");
-    await click(".o_dialog .modal-header .o_expand_button");
+    await click(".app_dialog .modal-header .app_expand_button");
     await animationFrame();
     expect.verifySteps([
         "save",
@@ -483,13 +483,13 @@ test("expand button with save and new", async () => {
         isToMany: true,
     });
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .modal-header .o_expand_button").toHaveCount(1);
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .modal-header .app_expand_button").toHaveCount(1);
     await fieldInput("name").edit("Violoncelle");
-    await click(".o_dialog .modal-footer .o_form_button_save_new");
+    await click(".app_dialog .modal-footer .app_form_button_save_new");
     await animationFrame();
     await fieldInput("name").edit("Flute");
-    await click(".o_dialog .modal-header .o_expand_button");
+    await click(".app_dialog .modal-header .app_expand_button");
     await animationFrame();
     expect.verifySteps([
         "save",
@@ -507,8 +507,8 @@ test("FormViewDialog with canExpand set to false", async () => {
         canExpand: false,
     });
     await animationFrame();
-    expect(".o_dialog .o_form_view").toHaveCount(1);
-    expect(".o_dialog .modal-header .o_expand_button").toHaveCount(0);
+    expect(".app_dialog .app_form_view").toHaveCount(1);
+    expect(".app_dialog .modal-header .app_expand_button").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -524,21 +524,21 @@ test("close dialog with escape after modifying a field with onchange (no blur)",
     // must focus something else than body before opening the form view dialog, such that the ui
     // service has something to focus on dialog close, which will then blur the input and fire the
     // change event
-    await contains(".o_navbar_apps_menu button").focus();
-    expect(".o_navbar_apps_menu button").toBeFocused();
+    await contains(".app_navbar_apps_menu button").focus();
+    expect(".app_navbar_apps_menu button").toBeFocused();
 
     getService("dialog").add(FormViewDialog, {
         resModel: "partner",
         resId: 1,
     });
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
 
-    await contains(".o_field_widget[name=foo] input").edit("new value", { confirm: false });
+    await contains(".app_field_widget[name=foo] input").edit("new value", { confirm: false });
     await press("escape");
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
-    expect(".o_navbar_apps_menu button").toBeFocused();
+    expect(".app_dialog").toHaveCount(0);
+    expect(".app_navbar_apps_menu button").toBeFocused();
 });
 
 test.tags("desktop");
@@ -567,19 +567,19 @@ test("display a dialog if onchange result is a warning from within a dialog", as
         resId: 2,
     });
 
-    await contains(".o_field_widget[name=instrument] input").edit("tralala", { confirm: false });
+    await contains(".app_field_widget[name=instrument] input").edit("tralala", { confirm: false });
     await runAllTimers();
-    await contains(".o_field_widget[name=instrument] .o_m2o_dropdown_option_create_edit").click();
+    await contains(".app_field_widget[name=instrument] .app_m2o_dropdown_option_create_edit").click();
 
-    await waitFor(".modal.o_inactive_modal");
+    await waitFor(".modal.app_inactive_modal");
     expect(".modal").toHaveCount(2);
-    expect(".modal:not(.o_inactive_modal) .modal-body").toHaveText(
+    expect(".modal:not(.app_inactive_modal) .modal-body").toHaveText(
         "You must first select a partner"
     );
 
-    await contains(".modal:not(.o_inactive_modal) button").click();
+    await contains(".modal:not(.app_inactive_modal) button").click();
     expect(".modal").toHaveCount(1);
-    expect(".modal:not(.o_inactive_modal) .modal-title").toHaveText("Create Instruments");
+    expect(".modal:not(.app_inactive_modal) .modal-title").toHaveText("Create Instruments");
 
     expect.verifySteps(["onchange warning"]);
 });

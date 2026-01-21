@@ -202,7 +202,7 @@ class ResUserGroupIdsField extends Component {
 
     getExtraGroupsArch() {
         return `
-            <group string="${this.extraCategory.name}" class="o_extra_rights_group">
+            <group string="${this.extraCategory.name}" class="app_extra_rights_group">
                 <group>
                     ${this.extraCategory.privileges
                         .filter((cat, index) => index % 2 === 0)

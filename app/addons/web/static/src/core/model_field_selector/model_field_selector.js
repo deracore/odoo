@@ -35,7 +35,7 @@ export class ModelFieldSelector extends Component {
     setup() {
         this.fieldService = useService("field");
         this.popover = usePopover(this.constructor.components.Popover, {
-            popoverClass: "o_popover_field_selector",
+            popoverClass: "app_popover_field_selector",
             onClose: async () => {
                 if (this.newPath !== null) {
                     const fieldInfo = await this.fieldService.loadFieldInfo(

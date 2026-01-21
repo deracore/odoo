@@ -33,7 +33,7 @@ test("render only its target if no props is given", async () => {
             `;
     }
     await mountWithCleanup(Parent);
-    expect("div.o_actionswiper").toHaveCount(0);
+    expect("div.app_actionswiper").toHaveCount(0);
     expect("div.target-component").toHaveCount(1);
 });
 
@@ -48,8 +48,8 @@ test("only render the necessary divs", async () => {
             slots: {},
         },
     });
-    expect("div.o_actionswiper_right_swipe_area").toHaveCount(1);
-    expect("div.o_actionswiper_left_swipe_area").toHaveCount(0);
+    expect("div.app_actionswiper_right_swipe_area").toHaveCount(1);
+    expect("div.app_actionswiper_left_swipe_area").toHaveCount(0);
     await mountWithCleanup(ActionSwiper, {
         props: {
             onLeftSwipe: {
@@ -60,8 +60,8 @@ test("only render the necessary divs", async () => {
             slots: {},
         },
     });
-    expect("div.o_actionswiper_right_swipe_area").toHaveCount(1);
-    expect("div.o_actionswiper_left_swipe_area").toHaveCount(1);
+    expect("div.app_actionswiper_right_swipe_area").toHaveCount(1);
+    expect("div.app_actionswiper_left_swipe_area").toHaveCount(1);
 });
 
 test("render with the height of its content", async () => {
@@ -85,12 +85,12 @@ test("render with the height of its content", async () => {
         }
     }
     await mountWithCleanup(Parent);
-    expect(queryFirst(".o_actionswiper").scrollHeight).toBe(
+    expect(queryFirst(".app_actionswiper").scrollHeight).toBe(
         queryFirst(".target-component").scrollHeight,
         { message: "the swiper has the height of its content" }
     );
-    expect(queryFirst(".o_actionswiper").scrollHeight).toBeGreaterThan(
-        queryFirst(".o_actionswiper").clientHeight,
+    expect(queryFirst(".app_actionswiper").scrollHeight).toBeGreaterThan(
+        queryFirst(".app_actionswiper").clientHeight,
         { message: "the height of the swiper must make the parent div scrollable" }
     );
 });
@@ -115,8 +115,8 @@ test("can perform actions by swiping to the right", async () => {
         }
     }
     await mountWithCleanup(Parent);
-    const swiper = queryFirst(".o_actionswiper");
-    const targetContainer = queryFirst(".o_actionswiper_target_container");
+    const swiper = queryFirst(".app_actionswiper");
+    const targetContainer = queryFirst(".app_actionswiper_target_container");
     const dragHelper = await contains(swiper).drag({
         position: {
             clientX: 0,
@@ -147,7 +147,7 @@ test("can perform actions by swiping to the right", async () => {
     });
 
     // Touch ends once the half of the distance has been crossed
-    await swipeRight(".o_actionswiper");
+    await swipeRight(".app_actionswiper");
     // The action is performed AND the component is reset
     expect(targetContainer.style.transform).not.toInclude("translateX", {
         message: "target does not have a translate value",
@@ -186,8 +186,8 @@ test("can perform actions by swiping in both directions", async () => {
         }
     }
     await mountWithCleanup(Parent);
-    const swiper = queryFirst(".o_actionswiper");
-    const targetContainer = queryFirst(".o_actionswiper_target_container");
+    const swiper = queryFirst(".app_actionswiper");
+    const targetContainer = queryFirst(".app_actionswiper_target_container");
     const dragHelper = await contains(swiper).drag({
         position: {
             clientX: 0,
@@ -218,10 +218,10 @@ test("can perform actions by swiping in both directions", async () => {
     });
 
     // Touch ends once the half of the distance has been crossed to the left
-    await swipeLeft(".o_actionswiper");
+    await swipeLeft(".app_actionswiper");
     expect.verifySteps(["onLeftSwipe"]);
     // Touch ends once the half of the distance has been crossed to the right
-    await swipeRight(".o_actionswiper");
+    await swipeRight(".app_actionswiper");
 
     expect(targetContainer.style.transform).not.toInclude("translateX", {
         message: "target doesn't have translateX after all actions are performed",
@@ -265,11 +265,11 @@ test("invert the direction of swipes when language is rtl", async () => {
     }
     await mountWithCleanup(Parent);
     // Touch ends once the half of the distance has been crossed to the left
-    await swipeLeft(".o_actionswiper");
+    await swipeLeft(".app_actionswiper");
     await advanceTime(500);
     // In rtl languages, actions are permuted
     expect.verifySteps(["onRightSwipe"]);
-    await swipeRight(".o_actionswiper");
+    await swipeRight(".app_actionswiper");
     await advanceTime(500);
     // In rtl languages, actions are permuted
     expect.verifySteps(["onLeftSwipe"]);
@@ -315,8 +315,8 @@ test("swiping when the swiper contains scrollable areas", async () => {
     }
 
     await mountWithCleanup(Parent);
-    const swiper = queryFirst(".o_actionswiper");
-    const targetContainer = queryFirst(".o_actionswiper_target_container");
+    const swiper = queryFirst(".app_actionswiper");
+    const targetContainer = queryFirst(".app_actionswiper_target_container");
     const scrollable = queryFirst(".large-content");
     const largeText = queryFirst(".large-text", { root: scrollable });
     const clientYMiddleScrollBar = Math.floor(
@@ -485,7 +485,7 @@ test("preventing swipe on scrollable areas when language is rtl", async () => {
     }
 
     await mountWithCleanup(Parent);
-    const targetContainer = queryFirst(".o_actionswiper_target_container");
+    const targetContainer = queryFirst(".app_actionswiper_target_container");
     const scrollable = queryFirst(".large-content");
     const largeText = queryFirst(".large-text", { root: scrollable });
     const scrollableMiddleClientY = Math.floor(
@@ -622,9 +622,9 @@ test("swipeInvalid prop prevents swiping", async () => {
         }
     }
     await mountWithCleanup(Parent);
-    const targetContainer = queryFirst(".o_actionswiper_target_container");
+    const targetContainer = queryFirst(".app_actionswiper_target_container");
     // Touch ends once the half of the distance has been crossed
-    await swipeRight(".o_actionswiper");
+    await swipeRight(".app_actionswiper");
 
     expect(targetContainer.style.transform).not.toInclude("translateX", {
         message: "target doesn't have translateX after action is performed",
@@ -670,7 +670,7 @@ test("action should be done before a new render", async () => {
     }
 
     await mountWithCleanup(Parent);
-    await swipeRight(".o_actionswiper");
+    await swipeRight(".app_actionswiper");
     executingAction = true;
     await prom;
     await animationFrame();

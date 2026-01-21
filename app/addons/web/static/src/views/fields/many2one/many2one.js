@@ -332,7 +332,7 @@ export class KanbanMany2One extends Component {
 
     setup() {
         this.assignPopover = usePopover(KanbanMany2OneAssignPopover, {
-            popoverClass: "o_m2o_tags_avatar_field_popover",
+            popoverClass: "app_m2o_tags_avatar_field_popover",
         });
     }
 

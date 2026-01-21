@@ -167,7 +167,7 @@ export class GraphRenderer extends Component {
             }
             const tr = document.createElement("tr");
             const td = document.createElement("td");
-            tr.classList.add("o_show_more", "text-center", "fw-bold");
+            tr.classList.add("app_show_more", "text-center", "fw-bold");
             td.setAttribute("colspan", "2");
             td.innerText = _t("...");
             tr.appendChild(td);
@@ -739,7 +739,7 @@ export class GraphRenderer extends Component {
         }
         const viewContentTop = this.canvasRef.el.getBoundingClientRect().top;
         const legendTooltip = Object.assign(document.createElement("div"), {
-            className: "o_tooltip_legend popover p-3 pe-none position-absolute",
+            className: "app_tooltip_legend popover p-3 pe-none position-absolute",
             innerText: fullText,
         });
         legendTooltip.style.top = `${ev.clientY - viewContentTop}px`;

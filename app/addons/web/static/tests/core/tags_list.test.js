@@ -38,12 +38,12 @@ test("Can be rendered with different tags", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_tag").toHaveCount(3);
+    expect(".app_tag").toHaveCount(3);
 
-    await click(".o_tag:nth-of-type(2) .o_delete");
+    await click(".app_tag:nth-of-type(2) .app_delete");
     expect.verifySteps(["tag2 delete button has been clicked"]);
 
-    await click(".o_tag:nth-of-type(3)");
+    await click(".app_tag:nth-of-type(3)");
     expect.verifySteps(["tag3 has been clicked"]);
 });
 
@@ -69,9 +69,9 @@ test("Tags can be displayed with an image", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_tag").toHaveCount(2);
-    expect(".o_tag:nth-of-type(1) img").toHaveAttribute("data-src", "fake/url");
-    expect(".o_tag:nth-of-type(2) img").toHaveAttribute("data-src", "fake/url/2");
+    expect(".app_tag").toHaveCount(2);
+    expect(".app_tag:nth-of-type(1) img").toHaveAttribute("data-src", "fake/url");
+    expect(".app_tag:nth-of-type(2) img").toHaveAttribute("data-src", "fake/url/2");
 });
 
 test("Tags can be displayed with an icon", async () => {
@@ -96,9 +96,9 @@ test("Tags can be displayed with an icon", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_tag").toHaveCount(2);
-    expect(".o_tag:nth-of-type(1) i").toHaveClass("fa fa-trash");
-    expect(".o_tag:nth-of-type(2) i").toHaveClass("fa fa-check");
+    expect(".app_tag").toHaveCount(2);
+    expect(".app_tag:nth-of-type(1) i").toHaveClass("fa fa-trash");
+    expect(".app_tag:nth-of-type(2) i").toHaveClass("fa fa-check");
 });
 
 test("Limiting the visible tags displays a counter", async () => {
@@ -142,7 +142,7 @@ test("Limiting the visible tags displays a counter", async () => {
 
     const parent = await mountWithCleanup(Parent);
     // visibleItemsLimit = 3 -> displays 2 tags + 1 counter (4 tags left)
-    expect(".o_tag").toHaveCount(2);
+    expect(".app_tag").toHaveCount(2);
     expect(".rounded").toHaveText("+4", {
         message: "the counter displays 4 more items",
     });
@@ -161,13 +161,13 @@ test("Limiting the visible tags displays a counter", async () => {
     parent.state.visibleItemsLimit = 5;
     await animationFrame();
     // visibleItemsLimit = 5 -> displays 4 tags + 1 counter (2 tags left)
-    expect(".o_tag").toHaveCount(4);
+    expect(".app_tag").toHaveCount(4);
     expect(".rounded").toHaveText("+2");
 
     parent.state.visibleItemsLimit = 6;
     await animationFrame();
     // visibleItemsLimit = 6 -> displays 6 tags + 0 counter (0 tag left)
-    expect(".o_tag").toHaveCount(6);
+    expect(".app_tag").toHaveCount(6);
     expect(".rounded").toHaveCount(0);
 });
 
@@ -195,7 +195,7 @@ test("Tags with img have a backdrop only if they can be deleted", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_tag").toHaveCount(2);
-    expect(".o_tag:nth-of-type(1) .o_avatar_backdrop").toHaveCount(0);
-    expect(".o_tag:nth-of-type(2) .o_avatar_backdrop").toHaveCount(1);
+    expect(".app_tag").toHaveCount(2);
+    expect(".app_tag:nth-of-type(1) .app_avatar_backdrop").toHaveCount(0);
+    expect(".app_tag:nth-of-type(2) .app_avatar_backdrop").toHaveCount(1);
 });

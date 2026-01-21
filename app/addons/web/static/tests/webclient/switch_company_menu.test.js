@@ -28,7 +28,7 @@ function patchUserActiveCompanies(cids) {
 
 describe.current.tags("desktop");
 
-const clickConfirm = () => contains(".o_switch_company_menu_buttons button:first").click();
+const clickConfirm = () => contains(".app_switch_company_menu_buttons button:first").click();
 
 const openCompanyMenu = () => contains(".dropdown-toggle").click();
 
@@ -52,8 +52,8 @@ beforeEach(() => {
 test("basic rendering", async () => {
     await createSwitchCompanyMenu();
 
-    expect("div.o_switch_company_menu").toHaveCount(1);
-    expect("div.o_switch_company_menu").toHaveText("Hermit");
+    expect("div.app_switch_company_menu").toHaveCount(1);
+    expect("div.app_switch_company_menu").toHaveText("Hermit");
 
     await openCompanyMenu();
 
@@ -446,20 +446,20 @@ test("show confirm and reset buttons only when selection has changed", async () 
     await createSwitchCompanyMenu();
     await openCompanyMenu();
 
-    expect(".o_switch_company_menu_buttons").toHaveCount(0);
+    expect(".app_switch_company_menu_buttons").toHaveCount(0);
 
     await toggleCompany(1);
-    expect(".o_switch_company_menu_buttons button").toHaveCount(2);
+    expect(".app_switch_company_menu_buttons button").toHaveCount(2);
 
     await toggleCompany(1);
-    expect(".o_switch_company_menu_buttons").toHaveCount(0);
+    expect(".app_switch_company_menu_buttons").toHaveCount(0);
 });
 
 test("no search input when less that 10 companies", async () => {
     await createSwitchCompanyMenu();
 
     await openCompanyMenu();
-    expect(".o-dropdown--menu .visually-hidden input").toHaveCount(1);
+    expect(".app-dropdown--menu .visually-hidden input").toHaveCount(1);
 });
 
 test("show search input when more that 10 companies & search filters items but ignore case and spaces", async () => {
@@ -479,15 +479,15 @@ test("show search input when more that 10 companies & search filters items but i
     await createSwitchCompanyMenu();
 
     await openCompanyMenu();
-    expect(".o-dropdown--menu input").toHaveCount(1);
-    expect(".o-dropdown--menu input").toBeFocused();
-    expect(".o-dropdown--menu .o_switch_company_item").toHaveCount(10);
+    expect(".app-dropdown--menu input").toHaveCount(1);
+    expect(".app-dropdown--menu input").toBeFocused();
+    expect(".app-dropdown--menu .app_switch_company_item").toHaveCount(10);
 
     await edit("omcom");
     await animationFrame();
-    expect(".o-dropdown--menu .o_switch_company_item").toHaveCount(3);
+    expect(".app-dropdown--menu .app_switch_company_item").toHaveCount(3);
 
-    expect(queryAllTexts(".o-dropdown--menu .o_switch_company_item")).toEqual([
+    expect(queryAllTexts(".app-dropdown--menu .app_switch_company_item")).toEqual([
         "Random Company a",
         "Random Company aa",
         "Random Company ab",
@@ -498,15 +498,15 @@ test("when less than 10 companies, typing key makes the search input visible", a
     await createSwitchCompanyMenu();
     await openCompanyMenu();
 
-    expect(".o-dropdown--menu input").toHaveCount(1);
-    expect(".o-dropdown--menu input").toBeFocused();
-    expect(".o-dropdown--menu .visually-hidden input").toHaveCount(1);
+    expect(".app-dropdown--menu input").toHaveCount(1);
+    expect(".app-dropdown--menu input").toBeFocused();
+    expect(".app-dropdown--menu .visually-hidden input").toHaveCount(1);
 
     await edit("a");
     await animationFrame();
 
-    expect(".o-dropdown--menu input").toHaveValue("a");
-    expect(".o-dropdown--menu :not(.visually-hidden) input").toHaveCount(1);
+    expect(".app-dropdown--menu input").toHaveValue("a");
+    expect(".app-dropdown--menu :not(.visually-hidden) input").toHaveCount(1);
 });
 
 test.tags("focus required");
@@ -527,8 +527,8 @@ test("navigation with search input", async () => {
     await createSwitchCompanyMenu();
     await openCompanyMenu();
 
-    expect(".o-dropdown--menu input").toBeFocused();
-    expect(".o_switch_company_item.focus").toHaveCount(0);
+    expect(".app-dropdown--menu input").toBeFocused();
+    expect(".app_switch_company_item.focus").toHaveCount(0);
 
     const navigationSteps = [
         { hotkey: "arrowdown", focused: 1, selectedCompanies: [3] }, // Go to first item
@@ -560,13 +560,13 @@ test("navigation with search input", async () => {
         await animationFrame();
         await runAllTimers();
 
-        expect(`.o_popover .o-navigable:eq(${focused})`).toHaveClass("focus");
-        expect(`.o_popover .o-navigable:eq(${focused})`).toBeFocused();
+        expect(`.app_popover .app-navigable:eq(${focused})`).toHaveClass("focus");
+        expect(`.app_popover .app-navigable:eq(${focused})`).toBeFocused();
 
         if (selectedCompanies) {
             expect(
                 queryAllAttributes(
-                    ".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])",
+                    ".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])",
                     "data-company-id"
                 ).map(Number)
             ).toEqual(selectedCompanies);
@@ -577,7 +577,7 @@ test("navigation with search input", async () => {
     await animationFrame();
 
     expect(cookie.get("cids")).toEqual("3-2");
-    expect(".o_switch_company_item").toHaveCount(0);
+    expect(".app_switch_company_item").toHaveCount(0);
     expect.verifySteps(navigationSteps);
 });
 
@@ -595,17 +595,17 @@ test("select and de-select all", async () => {
     await contains("[role=menuitemcheckbox][title='Deselect all']").click();
     // No company is selected, there should be a empty check box
     expect("[role=menuitemcheckbox][title='Select all'] i").toHaveClass("fa-square-o");
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(0);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(0);
 
     await contains("[role=menuitemcheckbox][title='Select all']").click();
     // All companies are selected, there should be a checked check box
     expect("[role=menuitemcheckbox][title='Deselect all'] i").toHaveClass("fa-check-square");
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(5);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(5);
 
     await contains("[role=menuitemcheckbox][title='Deselect all']").click();
     // No company is selected, there should be a empty check box
     expect("[role=menuitemcheckbox][title='Select all'] i").toHaveClass("fa-square-o");
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(0);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(0);
 });
 
 test("de-select only changes visible companies", async () => {
@@ -615,7 +615,7 @@ test("de-select only changes visible companies", async () => {
     // Show search
     await edit(" ");
     await toggleCompany(4);
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(2);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(2);
 
     // Show search
     await contains("input").edit("m");
@@ -623,24 +623,24 @@ test("de-select only changes visible companies", async () => {
 
     // One company is selected, unselect all
     await contains("[role=menuitemcheckbox][title='Deselect all']").click();
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(0);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(0);
 
     // Hidden company is still selected
     await contains("input").clear();
     await animationFrame();
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(1);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(1);
 
     // Filter and select all visible companies
     await contains("input").edit("m");
     await animationFrame();
     await contains("[role=menuitemcheckbox][title='Select all']").click();
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(3);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(3);
 
     // Hidden company is unchanged
     await contains("input").clear();
     await animationFrame();
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(4);
-    expect(".o_switch_company_item:has([role=menuitemcheckbox][aria-checked=false])").toHaveCount(
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=true])").toHaveCount(4);
+    expect(".app_switch_company_item:has([role=menuitemcheckbox][aria-checked=false])").toHaveCount(
         1
     );
 });

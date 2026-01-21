@@ -257,7 +257,7 @@ export function setupQUnit() {
      */
     QUnit.done(async (result) => {
         await app.loader.checkErrorProm;
-        const moduleLoadingError = document.querySelector(".o_module_error");
+        const moduleLoadingError = document.querySelector(".app_module_error");
         if (moduleLoadingError) {
             errorMessages.unshift(moduleLoadingError.innerText);
         }

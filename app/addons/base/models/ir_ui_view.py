@@ -2072,7 +2072,7 @@ actual arch.
         for_ = node.get('for')
         if not for_:
             msg = _('Label tag must contain a "for". To match label style '
-                    'without corresponding field or button, use \'class="o_form_label"\'.')
+                    'without corresponding field or button, use \'class="app_form_label"\'.')
             self._raise_view_error(msg, node)
         else:
             name_manager.must_have_name(for_, '<label for="...">')

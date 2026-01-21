@@ -125,9 +125,9 @@ test("static statusbar widget on many2one field", async () => {
     });
     // search_read should only fetch field display_name
     expect.verifySteps(["display_name"]);
-    expect(".o_statusbar_status button:not(.dropdown-toggle)").toHaveCount(2);
-    expect(".o_statusbar_status button:disabled").toHaveCount(5);
-    expect('.o_statusbar_status button[data-value="4"]').toHaveClass("o_arrow_button_current");
+    expect(".app_statusbar_status button:not(.dropdown-toggle)").toHaveCount(2);
+    expect(".app_statusbar_status button:disabled").toHaveCount(5);
+    expect('.app_statusbar_status button[data-value="4"]').toHaveClass("app_arrow_button_current");
 });
 
 test("folded statusbar widget on selection field has selected value in the toggler", async () => {
@@ -154,7 +154,7 @@ test("folded statusbar widget on selection field has selected value in the toggl
         `,
     });
 
-    expect(".o_statusbar_status button.dropdown-toggle:contains(Red)").toHaveCount(1);
+    expect(".app_statusbar_status button.dropdown-toggle:contains(Red)").toHaveCount(1);
 });
 
 test("static statusbar widget on many2one field with domain", async () => {
@@ -195,20 +195,20 @@ test("clickable statusbar widget on many2one field", async () => {
         `,
     });
 
-    expect(".o_statusbar_status button[data-value='4']").toHaveClass("o_arrow_button_current");
-    expect(".o_statusbar_status button[data-value='4']").not.toBeEnabled();
+    expect(".app_statusbar_status button[data-value='4']").toHaveClass("app_arrow_button_current");
+    expect(".app_statusbar_status button[data-value='4']").not.toBeEnabled();
 
     expect(
-        ".o_statusbar_status button.btn:not(.dropdown-toggle):not(:disabled):not(.o_arrow_button_current)"
+        ".app_statusbar_status button.btn:not(.dropdown-toggle):not(:disabled):not(.app_arrow_button_current)"
     ).toHaveCount(2);
 
     await click(
-        ".o_statusbar_status button.btn:not(.dropdown-toggle):not(:disabled):not(.o_arrow_button_current):eq(1)"
+        ".app_statusbar_status button.btn:not(.dropdown-toggle):not(:disabled):not(.app_arrow_button_current):eq(1)"
     );
     await animationFrame();
 
-    expect(".o_statusbar_status button[data-value='1']").toHaveClass("o_arrow_button_current");
-    expect(".o_statusbar_status button[data-value='1']").not.toBeEnabled();
+    expect(".app_statusbar_status button[data-value='1']").toHaveClass("app_arrow_button_current");
+    expect(".app_statusbar_status button[data-value='1']").not.toBeEnabled();
 });
 
 test("statusbar with no status", async () => {
@@ -227,8 +227,8 @@ test("statusbar with no status", async () => {
         `,
     });
 
-    expect(".o_statusbar_status").not.toHaveClass("o_field_empty");
-    expect(".o_statusbar_status > :not(.d-none)").toHaveCount(0, {
+    expect(".app_statusbar_status").not.toHaveClass("app_field_empty");
+    expect(".app_statusbar_status > :not(.d-none)").toHaveCount(0, {
         message: "statusbar widget should be empty",
     });
 });
@@ -251,9 +251,9 @@ test("statusbar with tooltip for help text", async () => {
         `,
     });
 
-    expect(".o_statusbar_status").not.toHaveClass("o_field_empty");
-    expect(".o_field_statusbar").toHaveAttribute("data-tooltip-info");
-    const tooltipInfo = JSON.parse(queryAttribute(".o_field_statusbar", "data-tooltip-info"));
+    expect(".app_statusbar_status").not.toHaveClass("app_field_empty");
+    expect(".app_field_statusbar").toHaveAttribute("data-tooltip-info");
+    const tooltipInfo = JSON.parse(queryAttribute(".app_field_statusbar", "data-tooltip-info"));
     expect(tooltipInfo.field.help).toBe("some info about the field", {
         message: "tooltip text is present on the field",
     });
@@ -278,10 +278,10 @@ test("statusbar with required modifier", async () => {
         `,
     });
 
-    await click(".o_form_button_save");
+    await click(".app_form_button_save");
     await animationFrame();
 
-    expect(".o_form_editable").toHaveCount(1, { message: "view should still be in edit" });
+    expect(".app_form_editable").toHaveCount(1, { message: "view should still be in edit" });
     // should display an 'invalid fields' notificationaveCount(1, { message: "view should still be in edit" });
     expect.verifySteps(["Show error message"]);
 });
@@ -301,8 +301,8 @@ test("statusbar with no value in readonly on desktop", async () => {
         `,
     });
 
-    expect(".o_statusbar_status").not.toHaveClass("o_field_empty");
-    expect(".o_statusbar_status button:visible").toHaveCount(2);
+    expect(".app_statusbar_status").not.toHaveClass("app_field_empty");
+    expect(".app_statusbar_status button:visible").toHaveCount(2);
 });
 
 test.tags("mobile");
@@ -320,8 +320,8 @@ test("statusbar with no value in readonly on mobile", async () => {
         `,
     });
 
-    expect(".o_statusbar_status").not.toHaveClass("o_field_empty");
-    expect(".o_statusbar_status .dropdown-toggle:visible").toHaveCount(1);
+    expect(".app_statusbar_status").not.toHaveClass("app_field_empty");
+    expect(".app_statusbar_status .dropdown-toggle:visible").toHaveCount(1);
 });
 
 test("statusbar with domain but no value (create mode)", async () => {
@@ -342,7 +342,7 @@ test("statusbar with domain but no value (create mode)", async () => {
         `,
     });
 
-    expect(".o_statusbar_status button:disabled").toHaveCount(5);
+    expect(".app_statusbar_status button:disabled").toHaveCount(5);
 });
 
 test("clickable statusbar should change m2o fetching domain in edit mode", async () => {
@@ -364,10 +364,10 @@ test("clickable statusbar should change m2o fetching domain in edit mode", async
         `,
     });
 
-    expect(".o_statusbar_status button:not(.dropdown-toggle)").toHaveCount(3);
-    await click(".o_statusbar_status button:not(.dropdown-toggle):eq(-1)");
+    expect(".app_statusbar_status button:not(.dropdown-toggle)").toHaveCount(3);
+    await click(".app_statusbar_status button:not(.dropdown-toggle):eq(-1)");
     await animationFrame();
-    expect(".o_statusbar_status button:not(.dropdown-toggle)").toHaveCount(2);
+    expect(".app_statusbar_status button:not(.dropdown-toggle)").toHaveCount(2);
 });
 
 test.tags("desktop");
@@ -388,12 +388,12 @@ test("statusbar fold_field option and statusbar_visible attribute on desktop", a
         `,
     });
 
-    await click(".o_statusbar_status .dropdown-toggle:not(.d-none)");
+    await click(".app_statusbar_status .dropdown-toggle:not(.d-none)");
     await animationFrame();
 
-    expect(".o_statusbar_status:first button:visible").toHaveCount(3);
-    expect(".o_statusbar_status:last button:visible").toHaveCount(1);
-    expect(".o_statusbar_status button").not.toBeEnabled({
+    expect(".app_statusbar_status:first button:visible").toHaveCount(3);
+    expect(".app_statusbar_status:last button:visible").toHaveCount(1);
+    expect(".app_statusbar_status button").not.toBeEnabled({
         message: "no status bar buttons should be enabled",
     });
 });
@@ -416,12 +416,12 @@ test("statusbar fold_field option and statusbar_visible attribute on mobile", as
         `,
     });
 
-    await click(".o_statusbar_status .dropdown-toggle:not(.d-none)");
+    await click(".app_statusbar_status .dropdown-toggle:not(.d-none)");
     await animationFrame();
 
-    expect(".o_statusbar_status:first .dropdown-toggle:visible").toHaveCount(1);
-    expect(".o_statusbar_status:last .dropdown-toggle:visible").toHaveCount(1);
-    expect(".o_statusbar_status button").not.toBeEnabled({
+    expect(".app_statusbar_status:first .dropdown-toggle:visible").toHaveCount(1);
+    expect(".app_statusbar_status:last .dropdown-toggle:visible").toHaveCount(1);
+    expect(".app_statusbar_status button").not.toBeEnabled({
         message: "no status bar buttons should be enabled",
     });
 });
@@ -447,13 +447,13 @@ test("statusbar: choose an item from the folded menu on desktop", async () => {
         message: "default status is 'aaa'",
     });
 
-    expect(".o_statusbar_status .dropdown-toggle.o_arrow_button").toHaveText("...", {
+    expect(".app_statusbar_status .dropdown-toggle.app_arrow_button").toHaveText("...", {
         message: "button has the correct text",
     });
 
-    await click(".o_statusbar_status .dropdown-toggle:not(.d-none)");
+    await click(".app_statusbar_status .dropdown-toggle:not(.d-none)");
     await animationFrame();
-    await click(".o-dropdown--menu .dropdown-item");
+    await click(".app-dropdown--menu .dropdown-item");
     await animationFrame();
 
     expect("[aria-checked='true']").toHaveText("second record", {
@@ -482,13 +482,13 @@ test("statusbar: choose an item from the folded menu on mobile", async () => {
         message: "default status is 'aaa'",
     });
 
-    expect(".o_statusbar_status .dropdown-toggle:visible").toHaveText("aaa", {
+    expect(".app_statusbar_status .dropdown-toggle:visible").toHaveText("aaa", {
         message: "button has the correct text",
     });
 
-    await click(".o_statusbar_status .dropdown-toggle:not(.d-none)");
+    await click(".app_statusbar_status .dropdown-toggle:not(.d-none)");
     await animationFrame();
-    await click(".o-dropdown--menu .dropdown-item:nth-child(2)");
+    await click(".app-dropdown--menu .dropdown-item:nth-child(2)");
     await animationFrame();
 
     expect("[aria-checked='true']").toHaveText("second record", {
@@ -521,13 +521,13 @@ test("statusbar with dynamic domain", async () => {
         `,
     });
 
-    expect(".o_statusbar_status button:disabled").toHaveCount(6);
+    expect(".app_statusbar_status button:disabled").toHaveCount(6);
     expect(rpcCount).toBe(1, { message: "should have done 1 search_read rpc" });
-    await click(".o_field_widget[name='qux'] input");
+    await click(".app_field_widget[name='qux'] input");
     await edit(9.5, { confirm: "enter" });
     await runAllTimers();
     await animationFrame();
-    expect(".o_statusbar_status button:disabled").toHaveCount(5);
+    expect(".app_statusbar_status button:disabled").toHaveCount(5);
     expect(rpcCount).toBe(2, { message: "should have done 1 more search_read rpc" });
     await edit("hey", { confirm: "enter" });
     await animationFrame();
@@ -548,13 +548,13 @@ test(`statusbar edited by the smart action "Move to stage..."`, async () => {
         resId: 1,
     });
 
-    expect(".o_field_widget").toHaveCount(1);
+    expect(".app_field_widget").toHaveCount(1);
 
     await press(["control", "k"]);
     await animationFrame();
-    await click(`.o_command:contains("Move to Trululu")`);
+    await click(`.app_command:contains("Move to Trululu")`);
     await animationFrame();
-    expect(queryAllTexts(".o_command")).toEqual(["first record", "second record", "aaa"]);
+    expect(queryAllTexts(".app_command")).toEqual(["first record", "second record", "aaa"]);
     await click("#o_command_2");
     await animationFrame();
 });
@@ -573,10 +573,10 @@ test("smart actions are unavailable if readonly", async () => {
         resId: 1,
     });
 
-    expect(".o_field_widget").toHaveCount(1);
+    expect(".app_field_widget").toHaveCount(1);
     await press(["control", "k"]);
     await animationFrame();
-    const moveStages = queryAllTexts(".o_command");
+    const moveStages = queryAllTexts(".app_command");
     expect(moveStages).not.toInclude("Move to Trululu\nALT + SHIFT + X");
     expect(moveStages).not.toInclude("Move to next\nALT + X");
 });
@@ -595,7 +595,7 @@ test("hotkeys are unavailable if readonly", async () => {
         resId: 1,
     });
 
-    expect(".o_field_widget").toHaveCount(1);
+    expect(".app_field_widget").toHaveCount(1);
     await press(["alt", "shift", "x"]); // Move to stage...
     await animationFrame();
     expect(".modal").toHaveCount(0, { message: "command palette should not open" });
@@ -621,7 +621,7 @@ test("auto save record when field toggled", async () => {
     });
 
     await click(
-        ".o_statusbar_status button.btn:not(.dropdown-toggle):not(:disabled):not(.o_arrow_button_current):eq(-1)"
+        ".app_statusbar_status button.btn:not(.dropdown-toggle):not(:disabled):not(.app_arrow_button_current):eq(-1)"
     );
     await animationFrame();
     expect.verifySteps(["web_save"]);
@@ -656,13 +656,13 @@ test("For the same record, a single rpc is done to recover the specialData", asy
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
 
-    await click(".o_data_row .o_data_cell");
+    await click(".app_data_row .app_data_cell");
     await animationFrame();
     expect.verifySteps(["search_read"]);
 
-    await click(".o_back_button");
+    await click(".app_back_button");
     await animationFrame();
-    await click(".o_data_row .o_data_cell");
+    await click(".app_data_row .app_data_cell");
     await animationFrame();
     expect.verifySteps([]);
 });
@@ -697,14 +697,14 @@ test("open form with statusbar, leave and come back to another one with other do
     await getService("action").doAction(1);
 
     // open first record
-    await click(".o_data_row .o_data_cell");
+    await click(".app_data_row .app_data_cell");
     await animationFrame();
     expect.verifySteps(["search_read"]);
 
     // go back and open second record
-    await click(".o_back_button");
+    await click(".app_back_button");
     await animationFrame();
-    await click(".o_data_row:eq(1) .o_data_cell");
+    await click(".app_data_row:eq(1) .app_data_cell");
     await animationFrame();
     expect.verifySteps(["search_read"]);
 });
@@ -723,8 +723,8 @@ test("clickable statusbar with readonly modifier set to false is editable on des
             </form>
         `,
     });
-    expect(".o_statusbar_status button:visible").toHaveCount(2);
-    expect(".o_statusbar_status button[disabled][aria-checked='false']:visible").toHaveCount(0);
+    expect(".app_statusbar_status button:visible").toHaveCount(2);
+    expect(".app_statusbar_status button[disabled][aria-checked='false']:visible").toHaveCount(0);
 });
 
 test.tags("mobile");
@@ -741,11 +741,11 @@ test("clickable statusbar with readonly modifier set to false is editable on mob
             </form>
         `,
     });
-    expect(".o_statusbar_status .dropdown-toggle:visible").toHaveCount(1);
-    expect(".o_statusbar_status button[disabled][aria-checked='false']:visible").toHaveCount(0);
-    await click(".o_statusbar_status .dropdown-toggle:visible");
+    expect(".app_statusbar_status .dropdown-toggle:visible").toHaveCount(1);
+    expect(".app_statusbar_status button[disabled][aria-checked='false']:visible").toHaveCount(0);
+    await click(".app_statusbar_status .dropdown-toggle:visible");
     await animationFrame();
-    expect(".o-dropdown--menu .dropdown-item").toHaveCount(2);
+    expect(".app-dropdown--menu .dropdown-item").toHaveCount(2);
 });
 
 test.tags("desktop");
@@ -762,7 +762,7 @@ test("clickable statusbar with readonly modifier set to true is not editable on 
             </form>
         `,
     });
-    expect(".o_statusbar_status button[disabled]:visible").toHaveCount(2);
+    expect(".app_statusbar_status button[disabled]:visible").toHaveCount(2);
 });
 
 test.tags("mobile");
@@ -779,7 +779,7 @@ test("clickable statusbar with readonly modifier set to true is not editable on 
             </form>
         `,
     });
-    expect(".o_statusbar_status .dropdown-toggle[disabled]:visible").toHaveCount(1);
+    expect(".app_statusbar_status .dropdown-toggle[disabled]:visible").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -796,7 +796,7 @@ test("non-clickable statusbar with readonly modifier set to false is not editabl
             </form>
         `,
     });
-    expect(".o_statusbar_status button[disabled]:visible").toHaveCount(2);
+    expect(".app_statusbar_status button[disabled]:visible").toHaveCount(2);
 });
 
 test.tags("mobile");
@@ -813,7 +813,7 @@ test("non-clickable statusbar with readonly modifier set to false is not editabl
             </form>
         `,
     });
-    expect(".o_statusbar_status .dropdown-toggle[disabled]:visible").toHaveCount(1);
+    expect(".app_statusbar_status .dropdown-toggle[disabled]:visible").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -853,19 +853,19 @@ test("last status bar button have a border radius (no arrow shape) on the right 
             </form>
         `,
     });
-    await click(".o_statusbar_status .dropdown-toggle:not(.d-none)");
+    await click(".app_statusbar_status .dropdown-toggle:not(.d-none)");
     await animationFrame();
     await click(
         queryFirst(".dropdown-item", {
-            root: getDropdownMenu(".o_statusbar_status .dropdown-toggle:not(.d-none)"),
+            root: getDropdownMenu(".app_statusbar_status .dropdown-toggle:not(.d-none)"),
         })
     );
     await animationFrame();
 
-    expect(".o_statusbar_status button[data-value='3']").not.toHaveStyle({
+    expect(".app_statusbar_status button[data-value='3']").not.toHaveStyle({
         borderTopRightRadius: "0px",
     });
-    expect(".o_statusbar_status button[data-value='3']").toHaveClass("o_first");
+    expect(".app_statusbar_status button[data-value='3']").toHaveClass("app_first");
 });
 
 test.tags("desktop");
@@ -916,17 +916,17 @@ test("correctly load statusbar when dynamic domain changes", async () => {
             </form>
         `,
     });
-    expect(queryAllTexts(".o_statusbar_status button:not(.d-none)")).toEqual(["Stage Project 1"]);
+    expect(queryAllTexts(".app_statusbar_status button:not(.d-none)")).toEqual(["Stage Project 1"]);
     expect.verifySteps([["|", ["id", "=", 1], ["project_ids", "in", 1]]]);
     await click(`[name="project_id"] .dropdown input`);
     await animationFrame();
     await click(`[name="project_id"] .dropdown .dropdown-menu .ui-menu-item:contains("Project 2")`);
     await animationFrame();
 
-    expect(queryAllTexts(".o_statusbar_status button:not(.d-none)")).toEqual(["Stage Project 2"]);
+    expect(queryAllTexts(".app_statusbar_status button:not(.d-none)")).toEqual(["Stage Project 2"]);
     expect.verifySteps([["|", ["id", "=", 2], ["project_ids", "in", 2]]]);
     await clickSave();
-    expect(queryAllTexts(".o_statusbar_status button:not(.d-none)")).toEqual(["Stage Project 2"]);
+    expect(queryAllTexts(".app_statusbar_status button:not(.d-none)")).toEqual(["Stage Project 2"]);
     expect.verifySteps([]);
 });
 
@@ -952,17 +952,17 @@ test("statusbar is rendered correctly on small devices", async () => {
         `,
     });
     expect(
-        queryAll(".o_statusbar_status .o_arrow_button.dropdown-toggle", { visible: true })
+        queryAll(".app_statusbar_status .app_arrow_button.dropdown-toggle", { visible: true })
     ).toHaveCount(1);
-    expect(".o_statusbar_status .o_arrow_button.o_first:visible").toHaveCount(1);
-    expect(".o-dropdown--menu").toHaveCount(0, { message: "dropdown should be hidden" });
-    expect(".o_statusbar_status button.dropdown-toggle:visible").toHaveText("aaa");
+    expect(".app_statusbar_status .app_arrow_button.app_first:visible").toHaveCount(1);
+    expect(".app-dropdown--menu").toHaveCount(0, { message: "dropdown should be hidden" });
+    expect(".app_statusbar_status button.dropdown-toggle:visible").toHaveText("aaa");
 
     // open the dropdown
-    await contains(".o_statusbar_status .dropdown-toggle").click();
+    await contains(".app_statusbar_status .dropdown-toggle").click();
 
-    expect(".o-dropdown--menu").toHaveCount(1, { message: "dropdown should be visible" });
-    expect(".o-dropdown--menu .dropdown-item").toHaveCount(4);
+    expect(".app-dropdown--menu").toHaveCount(1, { message: "dropdown should be visible" });
+    expect(".app-dropdown--menu .dropdown-item").toHaveCount(4);
 });
 
 test.tags("mobile");
@@ -986,11 +986,11 @@ test("statusbar with no status on extra small screens", async () => {
         `,
     });
 
-    expect(".o_field_statusbar").not.toHaveClass("o_field_empty", {
-        message: "statusbar widget should have class o_field_empty in edit",
+    expect(".app_field_statusbar").not.toHaveClass("app_field_empty", {
+        message: "statusbar widget should have class app_field_empty in edit",
     });
-    expect(".o_statusbar_status button.dropdown-toggle:visible:disabled").toHaveCount(1);
-    expect(".o_statusbar_status button.dropdown-toggle:visible:disabled").toHaveText("More");
+    expect(".app_statusbar_status button.dropdown-toggle:visible:disabled").toHaveCount(1);
+    expect(".app_statusbar_status button.dropdown-toggle:visible:disabled").toHaveText("More");
 });
 
 test.tags("mobile");
@@ -1015,24 +1015,24 @@ test("clickable statusbar widget on mobile view", async () => {
     });
 
     // Open dropdown
-    click(queryFirst(".o_statusbar_status .dropdown-toggle", { visible: true }));
+    click(queryFirst(".app_statusbar_status .dropdown-toggle", { visible: true }));
     await animationFrame();
 
-    expect(".o-dropdown--menu .dropdown-item").toHaveCount(4);
+    expect(".app-dropdown--menu .dropdown-item").toHaveCount(4);
 
-    click(".o-dropdown--menu .dropdown-item");
+    click(".app-dropdown--menu .dropdown-item");
     await animationFrame();
 
-    expect(".o_arrow_button_current").toHaveText("first record");
+    expect(".app_arrow_button_current").toHaveText("first record");
     expect(
-        queryAll(".o_statusbar_status .o_arrow_button.dropdown-toggle", { visible: true })
+        queryAll(".app_statusbar_status .app_arrow_button.dropdown-toggle", { visible: true })
     ).toHaveCount(1);
 
     // Open second dropdown
-    click(queryFirst(".o_statusbar_status .dropdown-toggle", { visible: true }));
+    click(queryFirst(".app_statusbar_status .dropdown-toggle", { visible: true }));
     await animationFrame();
 
-    expect(".o-dropdown--menu .dropdown-item").toHaveCount(4);
+    expect(".app-dropdown--menu .dropdown-item").toHaveCount(4);
 });
 
 test('"status" with no stages does not crash command palette', async () => {
@@ -1065,7 +1065,7 @@ test('"status" with no stages does not crash command palette', async () => {
     await press(["control", "k"]);
     await animationFrame();
 
-    const commands = queryAllTexts(".o_command");
+    const commands = queryAllTexts(".app_command");
 
     expect(commands).not.toInclude("Move to next Stage");
 });
@@ -1134,37 +1134,37 @@ test("cache: update current status if it changed", async () => {
     });
 
     // populate the cache by visiting the 3 records
-    await contains(".o_kanban_record").click();
-    expect(".o_last_breadcrumb_item").toHaveText("first record");
+    await contains(".app_kanban_record").click();
+    expect(".app_last_breadcrumb_item").toHaveText("first record");
     await pagerNext();
-    expect(".o_last_breadcrumb_item").toHaveText("second record");
+    expect(".app_last_breadcrumb_item").toHaveText("second record");
     await pagerNext();
-    expect(".o_last_breadcrumb_item").toHaveText("third record");
+    expect(".app_last_breadcrumb_item").toHaveText("third record");
 
     // go back to kanban and drag the first record of stage 2 on top of stage 1 column
-    await contains(".o_breadcrumb .o_back_button").click();
-    const dragActions = await contains(".o_kanban_record:contains(second record)").drag();
-    await dragActions.moveTo(".o_kanban_record:contains(first record)");
+    await contains(".app_breadcrumb .app_back_button").click();
+    const dragActions = await contains(".app_kanban_record:contains(second record)").drag();
+    await dragActions.moveTo(".app_kanban_record:contains(first record)");
     await dragActions.drop();
-    expect(queryAllTexts(".o_kanban_record")).toEqual([
+    expect(queryAllTexts(".app_kanban_record")).toEqual([
         "second record",
         "first record",
         "third record",
     ]);
 
     // re-open last record and use to pager to reach the record we just moved
-    await contains(".o_kanban_record:contains(third record)").click();
+    await contains(".app_kanban_record:contains(third record)").click();
     await pagerPrevious();
     def = new Deferred();
     await pagerPrevious();
     // retrieved from the cache => former value
-    expect(".o_last_breadcrumb_item").toHaveText("second record");
-    expect('.o_statusbar_status button[data-value="2"]').toHaveClass("o_arrow_button_current");
+    expect(".app_last_breadcrumb_item").toHaveText("second record");
+    expect('.app_statusbar_status button[data-value="2"]').toHaveClass("app_arrow_button_current");
     def.resolve();
     await animationFrame();
     // updated when the rpc returns
-    expect(".o_last_breadcrumb_item").toHaveText("second record");
-    expect('.o_statusbar_status button[data-value="1"]').toHaveClass("o_arrow_button_current");
+    expect(".app_last_breadcrumb_item").toHaveText("second record");
+    expect('.app_statusbar_status button[data-value="1"]').toHaveClass("app_arrow_button_current");
 });
 
 test("[adjust] statusbar with a lot of stages, click to change stage", async () => {
@@ -1195,65 +1195,65 @@ test("[adjust] statusbar with a lot of stages, click to change stage", async () 
     });
 
     // initial rendering: there should be a dropdown before and a dropdown after
-    expect(".o_statusbar_status button:visible.dropdown-toggle").toHaveCount(2);
-    expect(queryAllTexts(".o_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
+    expect(".app_statusbar_status button:visible.dropdown-toggle").toHaveCount(2);
+    expect(queryAllTexts(".app_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
         "Stage with very long name 4",
         "Stage with very long name 3",
         "Stage with very long name 2",
     ]);
-    expect(".o_statusbar_status button[data-value='3']").toHaveClass("o_arrow_button_current");
-    await contains(".o_statusbar_status .o_last").click();
-    expect(queryAllTexts(".o-dropdown-item")).toEqual(["Stage with very long name 1"]);
-    await contains(".o_statusbar_status .o_first").click();
-    expect(queryAllTexts(".o-dropdown-item")).toEqual([
+    expect(".app_statusbar_status button[data-value='3']").toHaveClass("app_arrow_button_current");
+    await contains(".app_statusbar_status .app_last").click();
+    expect(queryAllTexts(".app-dropdown-item")).toEqual(["Stage with very long name 1"]);
+    await contains(".app_statusbar_status .app_first").click();
+    expect(queryAllTexts(".app-dropdown-item")).toEqual([
         "Stage with very long name 5",
         "Stage with very long name 6",
     ]);
 
     // choose the next value: there should still be one dropdown before and one after
-    await contains(".o_statusbar_status button[data-value='4']").click();
-    expect(".o_statusbar_status button:visible.dropdown-toggle").toHaveCount(2);
-    expect(queryAllTexts(".o_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
+    await contains(".app_statusbar_status button[data-value='4']").click();
+    expect(".app_statusbar_status button:visible.dropdown-toggle").toHaveCount(2);
+    expect(queryAllTexts(".app_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
         "Stage with very long name 5",
         "Stage with very long name 4",
         "Stage with very long name 3",
     ]);
-    expect(".o_statusbar_status button[data-value='4']").toHaveClass("o_arrow_button_current");
-    await contains(".o_statusbar_status .o_last").click();
-    expect(queryAllTexts(".o-dropdown-item")).toEqual([
+    expect(".app_statusbar_status button[data-value='4']").toHaveClass("app_arrow_button_current");
+    await contains(".app_statusbar_status .app_last").click();
+    expect(queryAllTexts(".app-dropdown-item")).toEqual([
         "Stage with very long name 1",
         "Stage with very long name 2",
     ]);
-    await contains(".o_statusbar_status .o_first").click();
-    expect(queryAllTexts(".o-dropdown-item")).toEqual(["Stage with very long name 6"]);
+    await contains(".app_statusbar_status .app_first").click();
+    expect(queryAllTexts(".app-dropdown-item")).toEqual(["Stage with very long name 6"]);
 
     // choose the next value: there should only be a dropdown before
-    await contains(".o_statusbar_status button[data-value='5']").click();
-    expect(".o_statusbar_status button:visible.dropdown-toggle").toHaveCount(1);
-    expect(queryAllTexts(".o_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
+    await contains(".app_statusbar_status button[data-value='5']").click();
+    expect(".app_statusbar_status button:visible.dropdown-toggle").toHaveCount(1);
+    expect(queryAllTexts(".app_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
         "Stage with very long name 6",
         "Stage with very long name 5",
         "Stage with very long name 4",
     ]);
-    expect(".o_statusbar_status button[data-value='5']").toHaveClass("o_arrow_button_current");
-    await contains(".o_statusbar_status .o_last").click();
-    expect(queryAllTexts(".o-dropdown-item")).toEqual([
+    expect(".app_statusbar_status button[data-value='5']").toHaveClass("app_arrow_button_current");
+    await contains(".app_statusbar_status .app_last").click();
+    expect(queryAllTexts(".app-dropdown-item")).toEqual([
         "Stage with very long name 1",
         "Stage with very long name 2",
         "Stage with very long name 3",
     ]);
 
     // select the first item from the dropdown before => there should only be a dropdown after
-    await contains(".o-dropdown-item:first").click();
-    expect(".o_statusbar_status button:visible.dropdown-toggle").toHaveCount(1);
-    expect(queryAllTexts(".o_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
+    await contains(".app-dropdown-item:first").click();
+    expect(".app_statusbar_status button:visible.dropdown-toggle").toHaveCount(1);
+    expect(queryAllTexts(".app_statusbar_status button:visible:not(.dropdown-toggle)")).toEqual([
         "Stage with very long name 3",
         "Stage with very long name 2",
         "Stage with very long name 1",
     ]);
-    expect(".o_statusbar_status button[data-value='1']").toHaveClass("o_arrow_button_current");
-    await contains(".o_statusbar_status .o_first").click();
-    expect(queryAllTexts(".o-dropdown-item")).toEqual([
+    expect(".app_statusbar_status button[data-value='1']").toHaveClass("app_arrow_button_current");
+    await contains(".app_statusbar_status .app_first").click();
+    expect(queryAllTexts(".app-dropdown-item")).toEqual([
         "Stage with very long name 4",
         "Stage with very long name 5",
         "Stage with very long name 6",

@@ -36,9 +36,9 @@ test("pager is correctly displayed", async () => {
         resModel: "foo",
         searchMenuTypes: [],
     });
-    expect(`.o_pager`).toHaveCount(1);
-    expect(".o_pager button.o_pager_next").toHaveCount(1);
-    expect(".o_pager button.o_pager_previous").toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
+    expect(".app_pager button.app_pager_next").toHaveCount(1);
+    expect(".app_pager button.app_pager_previous").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -61,7 +61,7 @@ test("pager is correctly displayed on desktop", async () => {
         resModel: "foo",
         searchMenuTypes: [],
     });
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(getPagerValue()).toEqual([1, 10]);
     expect(getPagerLimit()).toBe(50);
 });
@@ -88,16 +88,16 @@ test("pager is correctly updated", async () => {
         resModel: "foo",
         searchMenuTypes: [],
     });
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(component.state).toEqual({ offset: 0, limit: 10 });
 
     await pagerNext();
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(component.state).toEqual({ offset: 10, limit: 10 });
 
     component.state.offset = 20;
     await animationFrame();
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(component.state).toEqual({ offset: 20, limit: 10 });
 });
 
@@ -124,18 +124,18 @@ test("pager is correctly updated on desktop", async () => {
         resModel: "foo",
         searchMenuTypes: [],
     });
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(getPagerValue()).toEqual([1, 10]);
     expect(getPagerLimit()).toBe(50);
 
     await pagerNext();
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(getPagerValue()).toEqual([11, 20]);
     expect(getPagerLimit()).toBe(50);
 
     component.state.offset = 20;
     await animationFrame();
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
     expect(getPagerValue()).toEqual([21, 30]);
     expect(getPagerLimit()).toBe(50);
 });

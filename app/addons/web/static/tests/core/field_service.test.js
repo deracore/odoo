@@ -376,7 +376,7 @@ test("async method loadFields is protected", async () => {
     let callFieldService;
     class Child extends Component {
         static template = xml`
-            <div class="o_child_component" />
+            <div class="app_child_component" />
         `;
         static props = ["*"];
         setup() {
@@ -408,7 +408,7 @@ test("async method loadFields is protected", async () => {
     });
     const parent = await mountWithCleanup(Parent);
 
-    expect(".o_child_component").toHaveCount(1);
+    expect(".app_child_component").toHaveCount(1);
 
     callFieldService();
     expect.verifySteps(["loadFields called"]);

@@ -2,6 +2,6 @@ import { SELECTORS as treeEditorSELECTORS } from "@web/../tests/core/tree_editor
 
 export const SELECTORS = {
     ...treeEditorSELECTORS,
-    debugArea: ".o_domain_selector_debug_container textarea",
-    resetButton: ".o_domain_selector_row > button",
+    debugArea: ".app_domain_selector_debug_container textarea",
+    resetButton: ".app_domain_selector_row > button",
 };

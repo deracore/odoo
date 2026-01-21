@@ -1,5 +1,5 @@
-.o_field_percent_pie {
-    .o_pie {
+.app_field_percent_pie {
+    .app_pie {
         --PercentPieField-color-active: #{$o-action};
         --PercentPieField-color-static: #{rgba(#000, .15)};
 
@@ -9,10 +9,10 @@
     }
 }
 
-.o_field_percent_pie .o_pie_text {
+.app_field_percent_pie .app_pie_text {
     display: none;
 }
 
-.oe_stat_button .o_field_percent_pie .o_pie_text {
+.oe_stat_button .app_field_percent_pie .app_pie_text {
     display: block;
 }

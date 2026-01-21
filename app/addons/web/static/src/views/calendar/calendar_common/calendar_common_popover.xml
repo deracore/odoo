@@ -3,7 +3,7 @@
 
     <t t-name="web.CalendarCommonPopover">
         <t t-if="env.isSmall">
-            <Dialog title="props.record.title" contentClass="'o_calendar_color_'+ props.record.colorIndex">
+            <Dialog title="props.record.title" contentClass="'app_calendar_color_'+ props.record.colorIndex">
                 <t t-call="{{ constructor.subTemplates.body }}" />
                 <t t-set-slot="footer">
                     <t t-call="{{ constructor.subTemplates.footer }}" />
@@ -21,11 +21,11 @@
                 <i t-if="props.record.titleIcon" t-attf-class="me-2 {{props.record.titleIcon}}"/>
                 <span t-esc="props.record.title" t-att-data-tooltip="props.record.title"/>
             </span>
-            <span class="o_cw_popover_close ms-4 mt-2 me-2" t-on-click.stop="() => props.close()">
+            <span class="app_cw_popover_close ms-4 mt-2 me-2" t-on-click.stop="() => props.close()">
                 <i class="fc-close fc-icon fc-icon-x" />
             </span>
         </div>
-        <div class="o_cw_body">
+        <div class="app_cw_body">
             <t t-call="{{ constructor.subTemplates.body }}" />
             <div t-if="hasFooter" class="card-footer d-flex gap-1 border-top">
                 <t t-call="{{ constructor.subTemplates.footer }}" />
@@ -44,7 +44,7 @@
                 <span class="fw-bold ms-2" t-esc="time" /> <small t-if="timeDuration"><b t-esc="`(${timeDuration})`" /></small>
             </li>
         </ul>
-        <ul class="list-group list-group-flush o_cw_popover_fields_secondary">
+        <ul class="list-group list-group-flush app_cw_popover_fields_secondary">
             <Record resModel="props.model.resModel" resId="props.record.id" fields="props.model.fields" activeFields="activeFields" mode="'readonly'" values="props.record.rawRecord" t-slot-scope="slot">
                 <t t-foreach="Object.keys(props.model.popoverFieldNodes)" t-as="fieldId" t-key="fieldId">
                     <t t-set="fieldInfo" t-value="props.model.popoverFieldNodes[fieldId]"/>
@@ -59,7 +59,7 @@
                                     <t t-esc="fieldInfo.string" />
                                 </t>
                             </span>
-                            <div class="flex-grow-1 o_cw_popover_field overflow-hidden">
+                            <div class="flex-grow-1 app_cw_popover_field overflow-hidden">
                                 <Field name="fieldInfo.name" record="slot.record" fieldInfo="fieldInfo" type="fieldInfo.widget" />
                             </div>
                         </li>
@@ -71,13 +71,13 @@
 
     <t t-name="web.CalendarCommonPopover.footer">
         <t t-if="isEventEditable or isEventViewable">
-            <a href="#" class="btn btn-primary o_cw_popover_edit" t-on-click="onEditEvent">
+            <a href="#" class="btn btn-primary app_cw_popover_edit" t-on-click="onEditEvent">
                 <t t-if="isEventEditable">Edit</t>
                 <t t-else="">View</t>
             </a>
         </t>
         <t t-if="isEventDeletable">
-            <a href="#" class="btn btn-secondary o_cw_popover_delete" t-on-click="onDeleteEvent"><i class="fa fa-trash"/></a>
+            <a href="#" class="btn btn-secondary app_cw_popover_delete" t-on-click="onDeleteEvent"><i class="fa fa-trash"/></a>
         </t>
     </t>
 

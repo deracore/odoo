@@ -27,23 +27,23 @@ test("close popover when component is unmounted", async () => {
     comp2.popover.open(target, { id: "comp2" });
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(2);
-    expect(".o_popover #comp1").toHaveCount(1);
-    expect(".o_popover #comp2").toHaveCount(1);
+    expect(".app_popover").toHaveCount(2);
+    expect(".app_popover #comp1").toHaveCount(1);
+    expect(".app_popover #comp2").toHaveCount(1);
 
     destroy(comp1);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(1);
-    expect(".o_popover #comp1").toHaveCount(0);
-    expect(".o_popover #comp2").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
+    expect(".app_popover #comp1").toHaveCount(0);
+    expect(".app_popover #comp2").toHaveCount(1);
 
     destroy(comp2);
     await animationFrame();
 
-    expect(".o_popover").toHaveCount(0);
-    expect(".o_popover #comp1").toHaveCount(0);
-    expect(".o_popover #comp2").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
+    expect(".app_popover #comp1").toHaveCount(0);
+    expect(".app_popover #comp2").toHaveCount(0);
 });
 
 test("popover opened from another", async () => {
@@ -68,27 +68,27 @@ test("popover opened from another", async () => {
     expect(".popover-1").toHaveCount(1);
 
     await contains(".popover-1 .pop-open").click();
-    expect(".o_popover").toHaveCount(2);
+    expect(".app_popover").toHaveCount(2);
     expect(".popover-1").toHaveCount(1);
     expect(".popover-2").toHaveCount(1);
 
     await contains(".popover-2 .pop-open").click();
-    expect(".o_popover").toHaveCount(3);
+    expect(".app_popover").toHaveCount(3);
     expect(".popover-1").toHaveCount(1);
     expect(".popover-2").toHaveCount(1);
     expect(".popover-3").toHaveCount(1);
 
     await contains(".popover-3").click();
-    expect(".o_popover").toHaveCount(3);
+    expect(".app_popover").toHaveCount(3);
     expect(".popover-1").toHaveCount(1);
     expect(".popover-2").toHaveCount(1);
     expect(".popover-3").toHaveCount(1);
 
     await contains(".popover-2").click();
-    expect(".o_popover").toHaveCount(2);
+    expect(".app_popover").toHaveCount(2);
     expect(".popover-1").toHaveCount(1);
     expect(".popover-2").toHaveCount(1);
 
     await contains(document.body).click();
-    expect(".o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(0);
 });

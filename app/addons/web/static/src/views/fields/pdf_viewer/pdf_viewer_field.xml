@@ -3,7 +3,7 @@
 
     <t t-name="web.PdfViewerField">
         <t t-if="!props.readonly">
-            <div class="o_form_pdf_controls d-flex gap-1">
+            <div class="app_form_pdf_controls d-flex gap-1">
                 <t t-if="props.record.data[props.name]">
                     <FileUploader
                         acceptedFileExtensions="'.pdf'"
@@ -11,7 +11,7 @@
                     >
                         <t t-set-slot="toggler">
                             <button
-                                class="btn btn-secondary fa fa-pencil o_select_file_button"
+                                class="btn btn-secondary fa fa-pencil app_select_file_button"
                                 data-tooltip="Edit"
                                 aria-label="Edit"
                             />
@@ -23,7 +23,7 @@
                                 t-on-click="onFileDownload"
                             />
                         <button
-                            class="btn btn-secondary fa fa-trash o_clear_file_button"
+                            class="btn btn-secondary fa fa-trash app_clear_file_button"
                             data-tooltip="Clear"
                             aria-label="Clear"
                             t-on-click="onFileRemove"
@@ -31,7 +31,7 @@
                     </FileUploader>
                 </t>
                 <t t-else="">
-                    <label class="o_select_file_button btn btn-primary">
+                    <label class="app_select_file_button btn btn-primary">
                         <FileUploader
                             acceptedFileExtensions="'.pdf'"
                             onUploaded.bind="onFileUploaded"
@@ -45,7 +45,7 @@
             </div>
         </t>
         <t t-if="props.record.data[props.name]">
-            <iframe class="o_pdfview_iframe"
+            <iframe class="app_pdfview_iframe"
                 alt="PDF file"
                 t-att-src="url"
                 t-att-name="props.name"

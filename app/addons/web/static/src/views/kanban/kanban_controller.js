@@ -150,7 +150,7 @@ export class KanbanController extends Component {
                 };
                 if (this.env.isSmall && this.model.root.isGrouped) {
                     const columnScrollTops = [];
-                    const sel = ".o_kanban_group:not(.o_column_folded)";
+                    const sel = ".app_kanban_group:not(.app_column_folded)";
                     const columnEls = this.rootRef.el.querySelectorAll(sel);
                     const groups = this.model.root.groups;
                     for (const columnEl of columnEls) {
@@ -161,7 +161,7 @@ export class KanbanController extends Component {
                         }
                     }
                     state.scrollPositions = {
-                        scrollLeft: this.rootRef.el.querySelector(".o_renderer")?.scrollLeft || 0,
+                        scrollLeft: this.rootRef.el.querySelector(".app_renderer")?.scrollLeft || 0,
                         columnScrollTops,
                     };
                 }
@@ -175,12 +175,12 @@ export class KanbanController extends Component {
                         const { scrollPositions } = this.props.state || {};
                         if (scrollPositions) {
                             const { scrollLeft, columnScrollTops } = scrollPositions;
-                            this.rootRef.el.querySelector(".o_renderer").scrollLeft = scrollLeft;
+                            this.rootRef.el.querySelector(".app_renderer").scrollLeft = scrollLeft;
                             const groups = this.model.root.groups;
                             for (const [serverValue, scrollTop] of columnScrollTops) {
                                 const group = groups.find((g) => g.serverValue === serverValue);
                                 if (group) {
-                                    const sel = `.o_kanban_group[data-id=${group.id}]`;
+                                    const sel = `.app_kanban_group[data-id=${group.id}]`;
                                     this.rootRef.el.querySelector(sel).scrollTop = scrollTop;
                                 }
                             }
@@ -348,7 +348,7 @@ export class KanbanController extends Component {
     get className() {
         if (this.env.isSmall && this.model.root.isGrouped) {
             const classList = (this.props.className || "").split(" ");
-            classList.push("o_action_delegate_scroll");
+            classList.push("app_action_delegate_scroll");
             return classList.join(" ");
         }
         return this.props.className;
@@ -511,7 +511,7 @@ export class KanbanController extends Component {
             if (this.env.isSmall) {
                 this.rootRef.el.scrollTop = 0;
             } else {
-                this.rootRef.el.querySelector(".o_content").scrollTop = 0;
+                this.rootRef.el.querySelector(".app_content").scrollTop = 0;
             }
         }
     }
@@ -523,7 +523,7 @@ export class KanbanController extends Component {
     async onUpdatedPager() {}
 
     scrollTop() {
-        this.rootRef.el.querySelector(".o_content").scrollTo({ top: 0 });
+        this.rootRef.el.querySelector(".app_content").scrollTo({ top: 0 });
     }
 
     isQuickCreateField(field) {

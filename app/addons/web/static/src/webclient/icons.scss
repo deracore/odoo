@@ -75,13 +75,13 @@ $oi-sizes: (
     animation: fa-spin 1s infinite steps(8);
 }
 
-.o_barcode {
+.app_barcode {
     -webkit-mask: url('/web/static/img/barcode.svg') center/contain no-repeat;
     mask: url('/web/static/img/barcode.svg') center/contain no-repeat;
     background-color: $o-brand-primary;
 }
 
-.o_fa_stack {
+.app_fa_stack {
     display: grid;
     align-items: baseline;
     justify-items: center;

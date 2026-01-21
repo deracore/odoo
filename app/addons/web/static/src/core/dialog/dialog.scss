@@ -1,4 +1,4 @@
-.modal.o_technical_modal {
+.modal.app_technical_modal {
     .modal-content {
         .modal-header .modal-title {
             overflow: hidden;
@@ -14,7 +14,7 @@
             margin: 0; // Reset boostrap.
         }
 
-        button.o-default-button:not(:only-child) {
+        button.app-default-button:not(:only-child) {
             display: none;
         }
         
@@ -29,7 +29,7 @@
     }
 
     @include media-breakpoint-down(sm) {
-        &.o_modal_full {
+        &.app_modal_full {
             .modal-dialog {
                 margin: 0px;
                 height: 100%;
@@ -48,11 +48,11 @@
     }
 }
 
-.modal.o_inactive_modal {
+.modal.app_inactive_modal {
     z-index: $zindex-modal-backdrop - 1;
 }
 
-.o_dialog > .modal {
+.app_dialog > .modal {
     display: block;
 }
 
@@ -65,7 +65,7 @@
 
 @include media-breakpoint-down(md) {
     .modal {
-        &.o_modal_full .modal-content {
+        &.app_modal_full .modal-content {
             .modal-header {
                 align-items: center;
                 height: $o-navbar-height;

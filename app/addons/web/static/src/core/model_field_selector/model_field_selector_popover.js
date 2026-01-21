@@ -138,7 +138,7 @@ export class ModelFieldSelectorPopover extends Component {
         const rootRef = useRef("root");
         useEffect(() => {
             const focusedElement = rootRef.el.querySelector(
-                ".o_model_field_selector_popover_item.active"
+                ".app_model_field_selector_popover_item.active"
             );
             if (focusedElement) {
                 // current page can be empty (e.g. after a search)
@@ -149,7 +149,7 @@ export class ModelFieldSelectorPopover extends Component {
             () => {
                 if (this.props.showSearchInput) {
                     const searchInput = rootRef.el.querySelector(
-                        ".o_model_field_selector_popover_search .o_input"
+                        ".app_model_field_selector_popover_search .app_input"
                     );
                     searchInput.focus();
                 }

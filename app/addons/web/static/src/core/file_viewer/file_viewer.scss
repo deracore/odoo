@@ -1,34 +1,34 @@
-.o-FileViewer {
+.app-FileViewer {
     z-index: -1;
     outline: none;
 }
 
-.o-FileViewer-navigation {
+.app-FileViewer-navigation {
     width: 40px;
     height: 40px;
 }
 
-.o-FileViewer-header {
+.app-FileViewer-header {
     color: #fff;
     background-color: var(--FileViewer-toolbarBgColor, #{$o-gray-800});
     height: $o-navbar-height;
 }
 
-.o-FileViewer-main {
+.app-FileViewer-main {
     z-index: -1;
     padding: ($o-navbar-height * 1.125) 0;
 }
 
-.o-FileViewer-zoomer {
+.app-FileViewer-zoomer {
     padding: ($o-navbar-height * 1.125) 0;
 }
 
-.o-FileViewer-headerButton:hover {
+.app-FileViewer-headerButton:hover {
     background-color: rgba($white, 0.1);
     color: lighten($gray-400, 15%);
 }
 
-.o-FileViewer-toolbarButton {
+.app-FileViewer-toolbarButton {
     background-color: var(--FileViewer-toolbarBgColor, #{$o-gray-800});
     color: #fff;
 
@@ -37,12 +37,12 @@
     }
 }
 
-.o-FileViewer-view {
+.app-FileViewer-view {
     background-color: #000000;
     box-shadow: 0 0 40px #000000;
     outline: none;
 
-    &.o-isText {
+    &.app-isText {
         background: $white;
     }
 }

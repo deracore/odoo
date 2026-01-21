@@ -60,16 +60,16 @@ onRpc("ir.model", "display_name_for", function ({ args }) {
 
 test("model_selector: with no model", async () => {
     await mountModelSelector();
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(1);
-    expect("li.o-autocomplete--dropdown-item").toHaveText("No records");
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(1);
+    expect("li.app-autocomplete--dropdown-item").toHaveText("No records");
 });
 
 test("model_selector: displays model display names", async () => {
     await mountModelSelector(["model.1", "model.2", "model.3"]);
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(3);
-    const items = queryAll("li.o-autocomplete--dropdown-item");
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(3);
+    const items = queryAll("li.app-autocomplete--dropdown-item");
     expect(items[0]).toHaveText("Model 1");
     expect(items[1]).toHaveText("Model 2");
     expect(items[2]).toHaveText("Model 3");
@@ -82,9 +82,9 @@ test("model_selector: with 8 models, showing 5", async () => {
         undefined,
         5
     );
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(6);
-    expect("li.o-autocomplete--dropdown-item:eq(5)").toHaveText("Start typing...");
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(6);
+    expect("li.app-autocomplete--dropdown-item:eq(5)").toHaveText("Start typing...");
 });
 
 test("model_selector: with 8 models, showing 8", async () => {
@@ -98,8 +98,8 @@ test("model_selector: with 8 models, showing 8", async () => {
         "model.7",
         "model.8",
     ]);
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(8);
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(8);
 });
 
 test("model_selector: with more than 8 models, showing 8", async () => {
@@ -115,9 +115,9 @@ test("model_selector: with more than 8 models, showing 8", async () => {
         "model.9",
         "model.10",
     ]);
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(9);
-    expect("li.o-autocomplete--dropdown-item:eq(8)").toHaveText("Start typing...");
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(9);
+    expect("li.app-autocomplete--dropdown-item:eq(8)").toHaveText("Start typing...");
 });
 
 test("model_selector: with more than 8 models, showing 9", async () => {
@@ -138,9 +138,9 @@ test("model_selector: with more than 8 models, showing 9", async () => {
         undefined,
         9
     );
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(10);
-    expect("li.o-autocomplete--dropdown-item:eq(9)").toHaveText("Start typing...");
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(10);
+    expect("li.app-autocomplete--dropdown-item:eq(9)").toHaveText("Start typing...");
 });
 
 test("model_selector: with more than 8 models, showing all", async () => {
@@ -161,41 +161,41 @@ test("model_selector: with more than 8 models, showing all", async () => {
         undefined,
         10
     );
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(10);
-    expect("li.o-autocomplete--dropdown-item:eq(9)").toHaveText("Model 10");
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(10);
+    expect("li.app-autocomplete--dropdown-item:eq(9)").toHaveText("Model 10");
 });
 
 test("model_selector: search content is not applied when opening the autocomplete", async () => {
     await mountModelSelector(["model.1", "model.2"], "_2");
-    await contains(".o-autocomplete--input").click();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(2);
+    await contains(".app-autocomplete--input").click();
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(2);
 });
 
 test("model_selector: with search matching some records on technical name", async () => {
     await mountModelSelector(["model.1", "model.2"]);
-    await contains(".o-autocomplete--input").click();
-    await contains(".o-autocomplete--input").edit(".2", { confirm: false });
+    await contains(".app-autocomplete--input").click();
+    await contains(".app-autocomplete--input").edit(".2", { confirm: false });
     await runAllTimers();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(1);
-    expect("li.o-autocomplete--dropdown-item").toHaveText("Model 2");
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(1);
+    expect("li.app-autocomplete--dropdown-item").toHaveText("Model 2");
 });
 
 test("model_selector: with search matching some records on business name", async () => {
     await mountModelSelector(["model.1", "model.2"]);
-    await contains(".o-autocomplete--input").click();
-    await contains(".o-autocomplete--input").edit(" 2", { confirm: false });
+    await contains(".app-autocomplete--input").click();
+    await contains(".app-autocomplete--input").edit(" 2", { confirm: false });
     await runAllTimers();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(1);
-    expect("li.o-autocomplete--dropdown-item").toHaveText("Model 2");
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(1);
+    expect("li.app-autocomplete--dropdown-item").toHaveText("Model 2");
 });
 
 test("model_selector: with search matching no record", async () => {
     await mountModelSelector(["model.1", "model.2"]);
-    await contains(".o-autocomplete--input").edit("a random search query", { confirm: false });
+    await contains(".app-autocomplete--input").edit("a random search query", { confirm: false });
     await runAllTimers();
-    expect("li.o-autocomplete--dropdown-item").toHaveCount(1);
-    expect("li.o-autocomplete--dropdown-item").toHaveText("No records");
+    expect("li.app-autocomplete--dropdown-item").toHaveCount(1);
+    expect("li.app-autocomplete--dropdown-item").toHaveText("No records");
 });
 
 test("model_selector: select a model", async () => {
@@ -206,14 +206,14 @@ test("model_selector: select a model", async () => {
             technical: "model.2",
         });
     });
-    await contains(".o-autocomplete--input").click();
-    await contains(".o_model_selector_model_2").click();
+    await contains(".app-autocomplete--input").click();
+    await contains(".app_model_selector_model_2").click();
     expect.verifySteps(["model selected"]);
 });
 
 test("model_selector: with an initial value", async () => {
     await mountModelSelector(["model.1", "model.2", "model.3"], "Model 1");
-    expect(".o-autocomplete--input").toHaveValue("Model 1");
+    expect(".app-autocomplete--input").toHaveValue("Model 1");
 });
 
 test("model_selector: autofocus", async () => {
@@ -224,6 +224,6 @@ test("model_selector: autofocus", async () => {
             onModelSelected: () => {},
         },
     });
-    const input = queryAll("input.o-autocomplete--input")[0];
+    const input = queryAll("input.app-autocomplete--input")[0];
     expect(input).toBe(document.activeElement);
 });

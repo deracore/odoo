@@ -26,7 +26,7 @@ export class SettingsFormCompiler extends FormCompiler {
         params.anchors = [];
 
         const res = super.compileForm(...arguments);
-        res.classList.remove("o_form_nosheet");
+        res.classList.remove("app_form_nosheet");
 
         settingsPage.setAttribute("modules", JSON.stringify(params.modules));
 

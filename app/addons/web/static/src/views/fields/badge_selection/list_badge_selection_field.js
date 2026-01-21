@@ -20,7 +20,7 @@ export class ListBadgeSelectionField extends BadgeSelectionField {
             return mergeClasses({ "btn btn-secondary": this.value });
         }
         return mergeClasses({
-            "active o_badge_border": this.value === option[0],
+            "active app_badge_border": this.value === option[0],
             "btn-sm": this.props.size === "sm",
             "btn-lg": this.props.size === "lg",
         });

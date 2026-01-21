@@ -189,7 +189,7 @@
 
             if (this.debug) {
                 const style = document.createElement("style");
-                style.className = "o_module_error_banner";
+                style.className = "app_module_error_banner";
                 style.textContent = `
                     body::before {
                         font-weight: bold;

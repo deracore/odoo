@@ -124,7 +124,7 @@ export class ExportDataDialog extends Component {
         useSortable({
             // Params
             ref: this.draggableRef,
-            elements: ".o_export_field",
+            elements: ".app_export_field",
             enable: !this.state.isSmall,
             cursor: "grabbing",
             // Hooks

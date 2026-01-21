@@ -41,7 +41,7 @@ export class PropertiesField extends Component {
         this.dialogService = useService("dialog");
         this.popover = usePopover(PropertyDefinition, {
             closeOnClickAway: this.checkPopoverClose,
-            popoverClass: "o_property_field_popover",
+            popoverClass: "app_property_field_popover",
             position: "right",
             onClose: () => this.onCloseCurrentPopover?.(),
             fixedPosition: true,
@@ -145,7 +145,7 @@ export class PropertiesField extends Component {
                 if (this.openPropertyDefinition) {
                     const propertyName = this.openPropertyDefinition;
                     const labels = this.propertiesRef.el.querySelectorAll(
-                        `.o_property_field[property-name="${propertyName}"] .o_field_property_open_popover`
+                        `.app_property_field[property-name="${propertyName}"] .app_field_property_open_popover`
                     );
                     this.openPropertyDefinition = null;
                     const lastLabel = labels[labels.length - 1];
@@ -161,19 +161,19 @@ export class PropertiesField extends Component {
         useSortable({
             enable: () => !this.props.readonly && this.state.canChangeDefinition,
             ref: this.propertiesRef,
-            handle: ".o_field_property_label .oi-draggable",
+            handle: ".app_field_property_label .oi-draggable",
             // on mono-column layout, allow to move before a separator to make the usage more fluid
             elements:
                 this.renderedColumnsCount === 1
-                    ? "*:is(.o_property_field, .o_field_property_group_label)"
-                    : ".o_property_field",
-            groups: ".o_property_group",
+                    ? "*:is(.app_property_field, .app_field_property_group_label)"
+                    : ".app_property_field",
+            groups: ".app_property_group",
             connectGroups: true,
             cursor: "grabbing",
             onDragStart: ({ element, group }) => {
-                this.propertiesRef.el.classList.add("o_property_dragging");
-                element.classList.add("o_property_drag_item");
-                group.classList.add("o_property_drag_group");
+                this.propertiesRef.el.classList.add("app_property_dragging");
+                element.classList.add("app_property_drag_item");
+                group.classList.add("app_property_drag_group");
                 // without this, if we edit a char property, move it,
                 // the change will be reset when we drop the property
                 document.activeElement.blur();
@@ -185,9 +185,9 @@ export class PropertiesField extends Component {
                 if (!to && next) {
                     // we move the element at the first position inside a group
                     // or at the first position of a column
-                    if (next.classList.contains("o_field_property_group_label")) {
+                    if (next.classList.contains("app_field_property_group_label")) {
                         // mono-column layout, move before the separator
-                        next = next.closest(".o_property_group");
+                        next = next.closest(".app_property_group");
                     }
                     to = next.getAttribute("property-name");
                     moveBefore = !!to;
@@ -209,19 +209,19 @@ export class PropertiesField extends Component {
                 await this.onPropertyMoveTo(from, to, moveBefore);
             },
             onDragEnd: ({ element }) => {
-                this.propertiesRef.el.classList.remove("o_property_dragging");
-                element.classList.remove("o_property_drag_item");
-                const targetGroup = this.propertiesRef.el.querySelector(".o_property_drag_group");
+                this.propertiesRef.el.classList.remove("app_property_dragging");
+                element.classList.remove("app_property_drag_item");
+                const targetGroup = this.propertiesRef.el.querySelector(".app_property_drag_group");
                 if (targetGroup) {
-                    targetGroup.classList.remove("o_property_drag_group");
+                    targetGroup.classList.remove("app_property_drag_group");
                 }
             },
             onGroupEnter: ({ group }) => {
-                group.classList.add("o_property_drag_group");
+                group.classList.add("app_property_drag_group");
                 this._toggleSeparators([group.getAttribute("property-name")], false);
             },
             onGroupLeave: ({ group }) => {
-                group.classList.remove("o_property_drag_group");
+                group.classList.remove("app_property_drag_group");
             },
         });
 
@@ -229,12 +229,12 @@ export class PropertiesField extends Component {
         useSortable({
             enable: () => !this.props.readonly && this.state.canChangeDefinition,
             ref: this.propertiesRef,
-            handle: ".o_field_property_group_label .oi-draggable",
-            elements: ".o_property_group:not([property-name=''])",
+            handle: ".app_field_property_group_label .oi-draggable",
+            elements: ".app_property_group:not([property-name=''])",
             cursor: "grabbing",
             onDragStart: ({ element }) => {
-                this.propertiesRef.el.classList.add("o_property_dragging");
-                element.classList.add("o_property_drag_item");
+                this.propertiesRef.el.classList.add("app_property_dragging");
+                element.classList.add("app_property_drag_item");
                 document.activeElement.blur();
             },
             onDrop: async ({ element, previous }) => {
@@ -243,8 +243,8 @@ export class PropertiesField extends Component {
                 await this.onGroupMoveTo(from, to);
             },
             onDragEnd: ({ element }) => {
-                this.propertiesRef.el.classList.remove("o_property_dragging");
-                element.classList.remove("o_property_drag_item");
+                this.propertiesRef.el.classList.remove("app_property_dragging");
+                element.classList.remove("app_property_drag_item");
             },
         });
     }
@@ -373,7 +373,7 @@ export class PropertiesField extends Component {
      * @returns {boolean}
      */
     checkPopoverClose(target) {
-        if (target.closest(".o_datetime_picker")) {
+        if (target.closest(".app_datetime_picker")) {
             // selected a datetime, do not close the definition popover
             return false;
         }
@@ -383,12 +383,12 @@ export class PropertiesField extends Component {
             return false;
         }
 
-        if (target.closest(".o_tag_popover")) {
+        if (target.closest(".app_tag_popover")) {
             // tag color popover
             return false;
         }
 
-        if (target.closest(".o_model_field_selector_popover")) {
+        if (target.closest(".app_model_field_selector_popover")) {
             // domain selector
             return false;
         }
@@ -699,7 +699,7 @@ export class PropertiesField extends Component {
             )
         ) {
             // do not allow to add new field until we set a label on the previous one
-            this.propertiesRef.el.closest(".o_field_properties").classList.add("o_field_invalid");
+            this.propertiesRef.el.closest(".app_field_properties").classList.add("app_field_invalid");
 
             this.notification.add(_t("Please complete your properties before adding a new one"), {
                 type: "warning",
@@ -708,7 +708,7 @@ export class PropertiesField extends Component {
         }
         const count = propertiesDefinitions.length;
 
-        this.propertiesRef.el.closest(".o_field_properties").classList.remove("o_field_invalid");
+        this.propertiesRef.el.closest(".app_field_properties").classList.remove("app_field_invalid");
 
         const newName = this.generatePropertyName("char");
         propertiesDefinitions.push({
@@ -806,10 +806,10 @@ export class PropertiesField extends Component {
         this.movePopoverToProperty = null;
 
         const popover = document
-            .querySelector(".o_field_property_definition")
-            .closest(".o_popover");
+            .querySelector(".app_field_property_definition")
+            .closest(".app_popover");
         const target = document.querySelector(
-            `*[property-name="${propertyName}"] .o_field_property_open_popover`
+            `*[property-name="${propertyName}"] .app_field_property_open_popover`
         );
 
         reposition(popover, target, { position: "top", margin: 10 });

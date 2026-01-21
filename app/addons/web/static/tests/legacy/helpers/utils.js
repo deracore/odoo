@@ -490,21 +490,21 @@ export function click(
 export function clickCreate(htmlElement) {
     if (
         htmlElement.querySelectorAll(
-            ".o_control_panel_main_buttons .o_form_button_create"
+            ".app_control_panel_main_buttons .app_form_button_create"
         ).length
     ) {
         return click(
             htmlElement,
-            ".o_control_panel_main_buttons .o_form_button_create"
+            ".app_control_panel_main_buttons .app_form_button_create"
         );
     } else if (
         htmlElement.querySelectorAll(
-            ".o_control_panel_main_buttons .o_list_button_create"
+            ".app_control_panel_main_buttons .app_list_button_create"
         ).length
     ) {
         return click(
             htmlElement,
-            ".o_control_panel_main_buttons .o_list_button_create"
+            ".app_control_panel_main_buttons .app_list_button_create"
         );
     } else {
         throw new Error("No edit button found to be clicked.");
@@ -512,21 +512,21 @@ export function clickCreate(htmlElement) {
 }
 
 export function clickEdit(htmlElement) {
-    if (htmlElement.querySelectorAll(".o_list_button_edit").length) {
-        return click(htmlElement, ".o_list_button_edit");
+    if (htmlElement.querySelectorAll(".app_list_button_edit").length) {
+        return click(htmlElement, ".app_list_button_edit");
     } else {
         throw new Error("No edit button found to be clicked.");
     }
 }
 
 export async function clickSave(htmlElement) {
-    if (htmlElement.querySelectorAll(".o_form_status_indicator").length) {
-        await mouseEnter(htmlElement, ".o_form_status_indicator");
+    if (htmlElement.querySelectorAll(".app_form_status_indicator").length) {
+        await mouseEnter(htmlElement, ".app_form_status_indicator");
     }
-    if (htmlElement.querySelectorAll(".o_form_button_save").length) {
-        return click(htmlElement, ".o_form_button_save");
+    if (htmlElement.querySelectorAll(".app_form_button_save").length) {
+        return click(htmlElement, ".app_form_button_save");
     }
-    const listSaveButtons = htmlElement.querySelectorAll(".o_list_button_save");
+    const listSaveButtons = htmlElement.querySelectorAll(".app_list_button_save");
     if (listSaveButtons.length) {
         return listSaveButtons.length >= 2 ? click(listSaveButtons[1]) : click(listSaveButtons[0]);
     } else {
@@ -535,13 +535,13 @@ export async function clickSave(htmlElement) {
 }
 
 export async function clickDiscard(htmlElement) {
-    if (htmlElement.querySelectorAll(".o_form_status_indicator").length) {
-        await mouseEnter(htmlElement, ".o_form_status_indicator");
+    if (htmlElement.querySelectorAll(".app_form_status_indicator").length) {
+        await mouseEnter(htmlElement, ".app_form_status_indicator");
     }
-    if (htmlElement.querySelectorAll(".o_form_button_cancel").length) {
-        return click(htmlElement, ".o_form_button_cancel");
-    } else if ($(htmlElement).find(".o_list_button_discard:visible").length) {
-        return click($(htmlElement).find(".o_list_button_discard:visible").get(0));
+    if (htmlElement.querySelectorAll(".app_form_button_cancel").length) {
+        return click(htmlElement, ".app_form_button_cancel");
+    } else if ($(htmlElement).find(".app_list_button_discard:visible").length) {
+        return click($(htmlElement).find(".app_list_button_discard:visible").get(0));
     } else {
         throw new Error("No discard button found to be clicked.");
     }
@@ -626,7 +626,7 @@ export function editSelect(el, selector, value) {
 export async function editSelectMenu(el, selector, value) {
     const dropdown = el.querySelector(selector);
     await click(dropdown.querySelector(".dropdown-toggle"));
-    for (const item of Array.from(el.querySelectorAll(".o_select_menu_menu .dropdown-item"))) {
+    for (const item of Array.from(el.querySelectorAll(".app_select_menu_menu .dropdown-item"))) {
         if (item.textContent === value) {
             return click(item);
         }
@@ -1052,8 +1052,8 @@ export function getDropdownMenu(target, togglerSelector) {
             ? togglerSelector
             : target.querySelector(togglerSelector);
 
-    if (el && !el.classList.contains("o-dropdown")) {
-        el = el.querySelector(".o-dropdown");
+    if (el && !el.classList.contains("app-dropdown")) {
+        el = el.querySelector(".app-dropdown");
     }
     if (!el) {
         throw new Error(`getDropdownMenu: Could not find element "${togglerSelector}".`);
@@ -1098,7 +1098,7 @@ export function getNodesTextContent(nodes) {
  * Click to open the dropdown on a many2one
  */
 export async function clickOpenM2ODropdown(el, fieldName, selector) {
-    const m2oSelector = `${selector || ""} .o_field_many2one[name=${fieldName}] input`;
+    const m2oSelector = `${selector || ""} .app_field_many2one[name=${fieldName}] input`;
     const matches = el.querySelectorAll(m2oSelector);
     if (matches.length !== 1) {
         throw new Error(
@@ -1115,7 +1115,7 @@ export async function clickOpenM2ODropdown(el, fieldName, selector) {
  */
 // TO FIX
 export async function clickM2OHighlightedItem(el, fieldName, selector) {
-    const m2oSelector = `${selector || ""} .o_field_many2one[name=${fieldName}] input`;
+    const m2oSelector = `${selector || ""} .app_field_many2one[name=${fieldName}] input`;
     // const $dropdown = $(m2oSelector).autocomplete('widget');
     const matches = el.querySelectorAll(m2oSelector);
     if (matches.length !== 1) {
@@ -1129,9 +1129,9 @@ export async function clickM2OHighlightedItem(el, fieldName, selector) {
 
 // X2Many
 export async function addRow(target, selector) {
-    await click(target.querySelector(`${selector ? selector : ""} .o_field_x2many_list_row_add a`));
+    await click(target.querySelector(`${selector ? selector : ""} .app_field_x2many_list_row_add a`));
 }
 
 export async function removeRow(target, index) {
-    await click(target.querySelectorAll(".o_list_record_remove")[index]);
+    await click(target.querySelectorAll(".app_list_record_remove")[index]);
 }

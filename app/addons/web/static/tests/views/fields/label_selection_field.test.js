@@ -45,16 +45,16 @@ test("LabelSelectionField in form view", async () => {
         resId: 1,
     });
 
-    expect(".o_field_widget .badge.text-bg-warning").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveCount(1, {
         message: "should have a warning status label since selection is the second, blocked state",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveCount(0, {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveCount(0, {
         message: "should not have a default status since selection is the second, blocked state",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveCount(0, {
+    expect(".app_field_widget .badge.text-bg-success").toHaveCount(0, {
         message: "should not have a success status since selection is the second, blocked state",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
         message: "the label should say 'Blocked' since this is the label value for that state",
     });
 });
@@ -73,76 +73,76 @@ test("LabelSelectionField in editable list view", async () => {
             </list>`,
     });
 
-    expect(".o_field_widget .badge:not(:empty)").toHaveCount(3, {
+    expect(".app_field_widget .badge:not(:empty)").toHaveCount(3, {
         message: "should have three visible status labels",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveCount(1, {
         message: "should have one warning status label",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
         message: "the warning label should read 'Blocked'",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveCount(1, {
         message: "should have one default status label",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveText("Normal", {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveText("Normal", {
         message: "the default label should read 'Normal'",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-success").toHaveCount(1, {
         message: "should have one success status label",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveText("Done", {
+    expect(".app_field_widget .badge.text-bg-success").toHaveText("Done", {
         message: "the success label should read 'Done'",
     });
 
     // switch to edit mode and check the result
-    await click("tbody td:not(.o_list_record_selector)");
+    await click("tbody td:not(.app_list_record_selector)");
     await animationFrame();
 
-    expect(".o_field_widget .badge:not(:empty)").toHaveCount(3, {
+    expect(".app_field_widget .badge:not(:empty)").toHaveCount(3, {
         message: "should have three visible status labels",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveCount(1, {
         message: "should have one warning status label",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
         message: "the warning label should read 'Blocked'",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveCount(1, {
         message: "should have one default status label",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveText("Normal", {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveText("Normal", {
         message: "the default label should read 'Normal'",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-success").toHaveCount(1, {
         message: "should have one success status label",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveText("Done", {
+    expect(".app_field_widget .badge.text-bg-success").toHaveText("Done", {
         message: "the success label should read 'Done'",
     });
 
     // save and check the result
-    await click(".o_control_panel_main_buttons .o_list_button_save");
+    await click(".app_control_panel_main_buttons .app_list_button_save");
     await animationFrame();
-    expect(".o_field_widget .badge:not(:empty)").toHaveCount(3, {
+    expect(".app_field_widget .badge:not(:empty)").toHaveCount(3, {
         message: "should have three visible status labels",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveCount(1, {
         message: "should have one warning status label",
     });
-    expect(".o_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
+    expect(".app_field_widget .badge.text-bg-warning").toHaveText("Blocked", {
         message: "the warning label should read 'Blocked'",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveCount(1, {
         message: "should have one default status label",
     });
-    expect(".o_field_widget .badge.text-bg-secondary").toHaveText("Normal", {
+    expect(".app_field_widget .badge.text-bg-secondary").toHaveText("Normal", {
         message: "the default label should read 'Normal'",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveCount(1, {
+    expect(".app_field_widget .badge.text-bg-success").toHaveCount(1, {
         message: "should have one success status label",
     });
-    expect(".o_field_widget .badge.text-bg-success").toHaveText("Done", {
+    expect(".app_field_widget .badge.text-bg-success").toHaveText("Done", {
         message: "the success label should read 'Done'",
     });
 });

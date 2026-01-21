@@ -33,8 +33,8 @@ test("PercentageField in form view", async () => {
         resId: 1,
     });
 
-    expect(".o_field_widget[name=float_field] input").toHaveValue("44.4");
-    expect(".o_field_widget[name=float_field] span").toHaveText("%", {
+    expect(".app_field_widget[name=float_field] input").toHaveValue("44.4");
+    expect(".app_field_widget[name=float_field] span").toHaveText("%", {
         message: "The input should be followed by a span containing the percentage symbol.",
     });
 
@@ -44,7 +44,7 @@ test("PercentageField in form view", async () => {
 
     await clickSave();
 
-    expect(".o_field_widget input").toHaveValue("24");
+    expect(".app_field_widget input").toHaveValue("24");
 });
 
 test("PercentageField in form view without rounding error", async () => {

@@ -62,22 +62,22 @@
                             <button name="create_action" type="object"
                                     invisible="binding_model_id" icon="fa-plus-square"
                                     help="Display an option on related documents to print this report" class="oe_stat_button">
-                                    <div class="o_field_widget o_stat_info">
-                                        <span class="o_stat_text">Add to the 'Print' menu</span>
+                                    <div class="app_field_widget app_stat_info">
+                                        <span class="app_stat_text">Add to the 'Print' menu</span>
                                     </div>
                             </button>
                             <button name="unlink_action" type="object"
                                     invisible="not binding_model_id" icon="fa-minus-square"
                                     help="Remove the contextual action related to this report" class="oe_stat_button">
-                                    <div class="o_field_widget o_stat_info">
-                                        <span class="o_stat_text">Remove from the 'Print' menu</span>
+                                    <div class="app_field_widget app_stat_info">
+                                        <span class="app_stat_text">Remove from the 'Print' menu</span>
                                     </div>
                             </button>
                             <button name="associated_view" type="object"
                                     invisible="report_type not in ['qweb-pdf', 'qweb-html', 'qweb-text']" icon='fa-code'
                                     class="oe_stat_button">
-                                    <div class="o_field_widget o_stat_info">
-                                        <span class="o_stat_text">Qweb Views</span>
+                                    <div class="app_field_widget app_stat_info">
+                                        <span class="app_stat_text">Qweb Views</span>
                                     </div>
                             </button>
                         </div>
@@ -359,8 +359,8 @@
                                 class="oe_stat_button"
                                 icon="fa-database"
                             >
-                                <div class="o_stat_info">
-                                    <span class="o_stat_text">Parent Action</span>
+                                <div class="app_stat_info">
+                                    <span class="app_stat_text">Parent Action</span>
                                 </div>
                             </button>
                             <button
@@ -371,8 +371,8 @@
                                 class="oe_stat_button"
                                 icon="fa-refresh"
                             >
-                                <div class="o_stat_info">
-                                    <span class="o_stat_text">Scheduled Action</span>
+                                <div class="app_stat_info">
+                                    <span class="app_stat_text">Scheduled Action</span>
                                 </div>
                             </button>
                         </div>
@@ -415,7 +415,7 @@
                                 <field name="resource_ref" class="oe_inline" placeholder="Choose a value..." string="Custom Value" options="{'model_field': 'update_related_model_id', 'no_create': True, 'no_open': True}" invisible="update_field_id == False or value_field_to_show != 'resource_ref' or evaluation_type == 'equation' or update_m2m_operation == 'clear'"/>
                                 <field name="selection_value" class="oe_inline" placeholder="Choose a value..." options="{'no_create': True, 'no_open': True}" invisible="update_field_id == False or value_field_to_show != 'selection_value' or evaluation_type == 'equation'"/>
                                 <field name="update_boolean_value" class="oe_inline" invisible="evaluation_type != 'value' or value_field_to_show != 'update_boolean_value'" required="value_field_to_show == 'update_boolean_value'"/>
-                                <span invisible="update_field_id != False or evaluation_type != 'value'" class="o_actions_server_set_a_value text-muted">Set a value...</span>
+                                <span invisible="update_field_id != False or evaluation_type != 'value'" class="app_actions_server_set_a_value text-muted">Set a value...</span>
                                 <span invisible="evaluation_type != 'equation'">
                                     to this Python expression:
                                 </span>
@@ -522,7 +522,7 @@ env['res.partner'].create({'name': partner_name})
                     <field name="update_field_type"/>
                     <field name="update_m2m_operation"/>
                     <templates>
-                        <t t-name="card" class="o_draggable_norotate w-100 flex-row align-items-center gap-1">
+                        <t t-name="card" class="app_draggable_norotate w-100 flex-row align-items-center gap-1">
                             <field name="sequence" widget="handle" class="px-1" />
                             <!-- Icon section -->
                             <i

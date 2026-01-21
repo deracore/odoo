@@ -147,7 +147,7 @@ class BaseString(Field[str | typing.Literal[False]]):
                 translation_source_sha = sha256(source_term.encode()).hexdigest()
                 return (
                     '<span '
-                        f'''{'class="o_delay_translation" ' if delay_translation else ''}'''
+                        f'''{'class="app_delay_translation" ' if delay_translation else ''}'''
                         f'data-oe-model="{markup_escape(record._name)}" '
                         f'data-oe-id="{markup_escape(record.id)}" '
                         f'data-oe-field="{markup_escape(self.name)}" '

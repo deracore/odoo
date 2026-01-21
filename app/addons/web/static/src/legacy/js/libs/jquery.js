@@ -19,8 +19,8 @@ $.fn.extend({
      */
     appBounce: function (extraClass) {
         for (const el of this) {
-            el.classList.add('o_catch_attention', extraClass);
-            setTimeout(() => el.classList.remove('o_catch_attention', extraClass), 400);
+            el.classList.add('app_catch_attention', extraClass);
+            setTimeout(() => el.classList.remove('app_catch_attention', extraClass), 400);
         }
         return this;
     },

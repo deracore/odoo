@@ -39,7 +39,7 @@ export class ReportAction extends Component {
 
     onIframeLoaded(ev) {
         const iframeDocument = ev.target.contentWindow.document;
-        iframeDocument.body.classList.add("o_in_iframe", "container-fluid");
+        iframeDocument.body.classList.add("app_in_iframe", "container-fluid");
         iframeDocument.body.classList.remove("container");
     }
 

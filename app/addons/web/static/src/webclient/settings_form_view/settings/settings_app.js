@@ -20,10 +20,10 @@ export class SettingsApp extends Component {
                     const force =
                         this.state.search.value &&
                         !this.settingsAppRef.el.querySelector(
-                            ".o_settings_container:not(.d-none)"
+                            ".app_settings_container:not(.d-none)"
                         ) &&
                         !this.settingsAppRef.el.querySelector(
-                            ".o_setting_box.o_searchable_setting"
+                            ".app_setting_box.app_searchable_setting"
                         );
                     this.settingsAppRef.el.classList.toggle("d-none", force);
                 }

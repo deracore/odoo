@@ -1,7 +1,7 @@
 <templates xml:space="preserve">
     <t t-name="web.PropertiesGroupByItem">
         <AccordionItem
-            class="'o_add_custom_group_menu text-truncate'"
+            class="'app_add_custom_group_menu text-truncate'"
             description="props.item.description"
             selected="isActive">
             <t t-set="items" t-value="state.groupByItems"/>
@@ -14,7 +14,7 @@
                         selected="item.isActive">
                         <t t-foreach="item.options" t-as="option" t-key="option.id">
                             <t t-set="optionName" t-value="`${item.name}:${option.id}`"/>
-                            <CheckboxItem class="{ o_item_option: true, selected: option.isActive }"
+                            <CheckboxItem class="{ app_item_option: true, selected: option.isActive }"
                                 checked="option.isActive"
                                 closingMode="'none'"
                                 t-esc="option.description"
@@ -24,7 +24,7 @@
                     </AccordionItem>
                     <!-- Standard items without option -->
                     <CheckboxItem t-else=""
-                        class="{ o_menu_item: true, selected: item.isActive }"
+                        class="{ app_menu_item: true, selected: item.isActive }"
                         checked="item.isActive"
                         closingMode="'none'"
                         t-esc="description"

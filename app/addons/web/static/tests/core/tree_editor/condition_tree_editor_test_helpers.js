@@ -74,7 +74,7 @@ function getValue(root) {
     if (!root) {
         return null;
     }
-    const el = queryOne("input,select,span:not(.o_tag):not(.o_dropdown_button)", { root });
+    const el = queryOne("input,select,span:not(.app_tag):not(.app_dropdown_button)", { root });
     switch (el.tagName) {
         case "INPUT":
             return queryValue(el);
@@ -162,26 +162,26 @@ export class Stage extends models.Model {
 }
 
 export const SELECTORS = {
-    node: ".o_tree_editor_node",
-    row: ".o_tree_editor_row",
-    tree: ".o_tree_editor > .o_tree_editor_node",
-    connector: ".o_tree_editor_connector",
-    connectorValue: ".o_tree_editor_connector .o_tree_editor_connector_value",
-    connectorToggler: ".o_tree_editor_connector .o_tree_editor_connector_value button.o-dropdown",
-    condition: ".o_tree_editor_condition",
-    addNewRule: ".o_tree_editor_row > a",
-    buttonAddNewRule: ".o_tree_editor_node_control_panel > button[data-tooltip='Add rule']",
-    buttonAddBranch: ".o_tree_editor_node_control_panel > button[data-tooltip='Add nested rule']",
-    buttonDeleteNode: ".o_tree_editor_node_control_panel > button[data-tooltip='Delete rule']",
-    pathEditor: ".o_tree_editor_condition > .o_tree_editor_editor:nth-child(1)",
-    operatorEditor: ".o_tree_editor_condition > .o_tree_editor_editor:nth-child(2)",
-    valueEditor: ".o_tree_editor_condition > .o_tree_editor_editor:nth-child(3)",
-    editor: ".o_tree_editor_editor",
-    clearNotSupported: ".o_input .fa-times",
-    tag: ".o_input .o_tag",
+    node: ".app_tree_editor_node",
+    row: ".app_tree_editor_row",
+    tree: ".app_tree_editor > .app_tree_editor_node",
+    connector: ".app_tree_editor_connector",
+    connectorValue: ".app_tree_editor_connector .app_tree_editor_connector_value",
+    connectorToggler: ".app_tree_editor_connector .app_tree_editor_connector_value button.app-dropdown",
+    condition: ".app_tree_editor_condition",
+    addNewRule: ".app_tree_editor_row > a",
+    buttonAddNewRule: ".app_tree_editor_node_control_panel > button[data-tooltip='Add rule']",
+    buttonAddBranch: ".app_tree_editor_node_control_panel > button[data-tooltip='Add nested rule']",
+    buttonDeleteNode: ".app_tree_editor_node_control_panel > button[data-tooltip='Delete rule']",
+    pathEditor: ".app_tree_editor_condition > .app_tree_editor_editor:nth-child(1)",
+    operatorEditor: ".app_tree_editor_condition > .app_tree_editor_editor:nth-child(2)",
+    valueEditor: ".app_tree_editor_condition > .app_tree_editor_editor:nth-child(3)",
+    editor: ".app_tree_editor_editor",
+    clearNotSupported: ".app_input .fa-times",
+    tag: ".app_input .app_tag",
     toggleArchive: ".form-switch",
-    complexCondition: ".o_tree_editor_complex_condition",
-    complexConditionInput: ".o_tree_editor_complex_condition input",
+    complexCondition: ".app_tree_editor_complex_condition",
+    complexConditionInput: ".app_tree_editor_complex_condition input",
 };
 
 const CHILD_SELECTOR = ["connector", "condition", "complexCondition"]
@@ -218,7 +218,7 @@ export function getTreeEditorContent() {
 export function getCurrentPath(index, target) {
     const pathEditor = queryAt(SELECTORS.pathEditor, index, target);
     if (pathEditor) {
-        if (pathEditor.querySelector(".o_model_field_selector")) {
+        if (pathEditor.querySelector(".app_model_field_selector")) {
             return getModelFieldSelectorValues(pathEditor).join(" > ");
         }
         return queryText(pathEditor);
@@ -242,7 +242,7 @@ export function getCurrentValue(index, target) {
     const valueEditor = queryAt(SELECTORS.valueEditor, index, target);
     const value = getValue(valueEditor);
     if (valueEditor) {
-        const texts = queryAllTexts(`.o_tag`, { root: valueEditor });
+        const texts = queryAllTexts(`.app_tag`, { root: valueEditor });
         if (texts.length) {
             if (value) {
                 texts.push(value);
@@ -438,23 +438,23 @@ export async function toggleArchive() {
  * @param {number} [index=0]
  */
 export async function openModelFieldSelectorPopover(index = 0) {
-    await contains(`.o_model_field_selector:eq(${index})`).click();
+    await contains(`.app_model_field_selector:eq(${index})`).click();
 }
 
 export function getModelFieldSelectorValues(root) {
-    return queryAllTexts("span.o_model_field_selector_chain_part", { root });
+    return queryAllTexts("span.app_model_field_selector_chain_part", { root });
 }
 
 export function getDisplayedFieldNames() {
-    return queryAllTexts(".o_model_field_selector_popover_item_name");
+    return queryAllTexts(".app_model_field_selector_popover_item_name");
 }
 
 export function getTitle() {
-    return queryText(".o_model_field_selector_popover .o_model_field_selector_popover_title");
+    return queryText(".app_model_field_selector_popover .app_model_field_selector_popover_title");
 }
 
 export async function clickPrev() {
-    await contains(".o_model_field_selector_popover_prev_page").click();
+    await contains(".app_model_field_selector_popover_prev_page").click();
 }
 
 /**
@@ -462,9 +462,9 @@ export async function clickPrev() {
  * @param {Target} [target]
  */
 export async function followRelation(index, target) {
-    await contains(queryAt(".o_model_field_selector_popover_item_relation", index, target)).click();
+    await contains(queryAt(".app_model_field_selector_popover_item_relation", index, target)).click();
 }
 
 export function getFocusedFieldName() {
-    return queryText(".o_model_field_selector_popover_item.active");
+    return queryText(".app_model_field_selector_popover_item.active");
 }

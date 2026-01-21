@@ -19,7 +19,7 @@ import { SearchBar } from "../search_bar/search_bar";
 
 import { Component, useState, onMounted, useRef, useEffect } from "@app/owl";
 
-const STICKY_CLASS = "o_mobile_sticky";
+const STICKY_CLASS = "app_mobile_sticky";
 
 /**
  * @typedef EmbeddedAction
@@ -182,7 +182,7 @@ export class ControlPanel extends Component {
                 },
                 {
                     bypassEditableProtection: true,
-                    withOverlay: () => this.root.el.querySelector("nav.o_cp_switch_buttons"),
+                    withOverlay: () => this.root.el.querySelector("nav.app_cp_switch_buttons"),
                 }
             );
         }
@@ -246,7 +246,7 @@ export class ControlPanel extends Component {
         useSortable({
             enable: true,
             ref: this.root,
-            elements: ".o_draggable",
+            elements: ".app_draggable",
             cursor: "move",
             delay: 200,
             tolerance: 10,
@@ -655,7 +655,7 @@ export class ControlPanel extends Component {
      * @param {HTMLElement} params.element
      */
     _sortEmbeddedActionStart({ element, addClass }) {
-        addClass(element, "o_dragged_embedded_action");
+        addClass(element, "app_dragged_embedded_action");
     }
 
     /**
@@ -682,7 +682,7 @@ export class ControlPanel extends Component {
 
     dropdownifyButtons() {
         const adaptiveMenu = document.querySelector(
-            ".o-control-panel-adaptive-dropdown.dropdown-menu"
+            ".app-control-panel-adaptive-dropdown.dropdown-menu"
         );
         const meaningfulElements = this.getBoxedElements(adaptiveMenu.children);
         for (const el of meaningfulElements) {

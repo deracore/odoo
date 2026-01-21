@@ -57,7 +57,7 @@ export class CropOverlay extends Component {
     }
 
     computeOverlayPosition() {
-        const cropOverlayElement = this.cropContainerRef.el.querySelector(".o_crop_overlay");
+        const cropOverlayElement = this.cropContainerRef.el.querySelector(".app_crop_overlay");
         this.boundaryOverlay = cropOverlayElement.getBoundingClientRect();
     }
 
@@ -117,7 +117,7 @@ export class CropOverlay extends Component {
 
     pointerDown(event) {
         event.preventDefault();
-        if (event.target.matches(".o_crop_icon")) {
+        if (event.target.matches(".app_crop_icon")) {
             this.computeOverlayPosition();
             this.isMoving = true;
         }

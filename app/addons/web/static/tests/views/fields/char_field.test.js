@@ -141,15 +141,15 @@ defineModels([Currency, Partner, PartnerType, Product, Users]);
 test("char field in form view", async () => {
     await mountView({ type: "form", resModel: "res.partner", resId: 1 });
 
-    expect(".o_field_widget input[type='text']").toHaveCount(1, {
+    expect(".app_field_widget input[type='text']").toHaveCount(1, {
         message: "should have an input for the char field",
     });
-    expect(".o_field_widget input[type='text']").toHaveValue("yop", {
+    expect(".app_field_widget input[type='text']").toHaveValue("yop", {
         message: "input should contain field value in edit mode",
     });
     await fieldInput("name").edit("limbo");
     await clickSave();
-    expect(".o_field_widget input[type='text']").toHaveValue("limbo", {
+    expect(".app_field_widget input[type='text']").toHaveValue("limbo", {
         message: "the new value should be displayed",
     });
 });
@@ -164,8 +164,8 @@ test("basic rendering text field", async () => {
         arch: '<form><field name="description" widget="char"/></form>',
     });
 
-    expect(".o_field_widget input[type='text']").toHaveCount(1);
-    expect(".o_field_widget input[type='text']").toHaveValue("Description as text");
+    expect(".app_field_widget input[type='text']").toHaveCount(1);
+    expect(".app_field_widget input[type='text']").toHaveValue("Description as text");
 });
 
 test("setting a char field to empty string is saved as a false value", async () => {
@@ -200,16 +200,16 @@ test("char field in editable list view", async () => {
             </list>`,
     });
 
-    expect("tbody td:not(.o_list_record_selector)").toHaveCount(5, {
+    expect("tbody td:not(.app_list_record_selector)").toHaveCount(5, {
         message: "should have 5 cells",
     });
-    expect("tbody td:not(.o_list_record_selector):first").toHaveText("yop", {
+    expect("tbody td:not(.app_list_record_selector):first").toHaveText("yop", {
         message: "value should be displayed properly as text",
     });
 
-    const cellSelector = "tbody td:not(.o_list_record_selector)";
+    const cellSelector = "tbody td:not(.app_list_record_selector)";
     await contains(cellSelector).click();
-    expect(queryFirst(cellSelector).parentElement).toHaveClass("o_selected_row", {
+    expect(queryFirst(cellSelector).parentElement).toHaveClass("app_selected_row", {
         message: "should be set as edit mode",
     });
     expect(`${cellSelector} input`).toHaveValue("yop", {
@@ -217,8 +217,8 @@ test("char field in editable list view", async () => {
     });
     await fieldInput("name").edit("brolo", { confirm: false });
 
-    await contains(".o_list_button_save").click();
-    expect(cellSelector).not.toHaveClass("o_selected_row", {
+    await contains(".app_list_button_save").click();
+    expect(cellSelector).not.toHaveClass("app_selected_row", {
         message: "should not be in edit mode anymore",
     });
 });
@@ -275,22 +275,22 @@ test("char field translatable", async () => {
         }
         return true;
     });
-    expect("[name=name] input").toHaveClass("o_field_translate");
+    expect("[name=name] input").toHaveClass("app_field_translate");
     await contains("[name=name] input").click();
-    expect(".o_field_char .btn.o_field_translate").toHaveCount(1, {
+    expect(".app_field_char .btn.app_field_translate").toHaveCount(1, {
         message: "should have a translate button",
     });
-    expect(".o_field_char .btn.o_field_translate").toHaveText("EN", {
+    expect(".app_field_char .btn.app_field_translate").toHaveText("EN", {
         message: "the button should have as test the current language",
     });
-    await contains(".o_field_char .btn.o_field_translate").click();
+    await contains(".app_field_char .btn.app_field_translate").click();
     expect(".modal").toHaveCount(1, {
         message: "a translate modal should be visible",
     });
-    expect(".modal .o_translation_dialog .translation").toHaveCount(3, {
+    expect(".modal .app_translation_dialog .translation").toHaveCount(3, {
         message: "three rows should be visible",
     });
-    let translations = queryAll(".modal .o_translation_dialog .translation input");
+    let translations = queryAll(".modal .app_translation_dialog .translation input");
     expect(translations[0]).toHaveValue("yop", {
         message: "English translation should be filled",
     });
@@ -303,13 +303,13 @@ test("char field translatable", async () => {
     await contains(translations[0]).edit("bar");
     await contains(translations[2]).clear();
     await contains("footer .btn.btn-primary").click();
-    expect(".o_field_widget.o_field_char input").toHaveValue("bar", {
+    expect(".app_field_widget.app_field_char input").toHaveValue("bar", {
         message: "the new translation should be transfered to modified record",
     });
     await fieldInput("name").edit("baz");
-    await contains(".o_field_char .btn.o_field_translate").click();
+    await contains(".app_field_char .btn.app_field_translate").click();
 
-    translations = queryAll(".modal .o_translation_dialog .translation input");
+    translations = queryAll(".modal .app_translation_dialog .translation input");
     expect(translations[0]).toHaveValue("baz", {
         message: "Modified value should be used instead of translation",
     });
@@ -357,9 +357,9 @@ test("translation dialog should close if field is not there anymore", async () =
         ],
         { translation_type: "char", translation_show_source: false },
     ]);
-    expect("[name=name] input").toHaveClass("o_field_translate");
+    expect("[name=name] input").toHaveClass("app_field_translate");
     await contains("[name=name] input").click();
-    await contains(".o_field_char .btn.o_field_translate").click();
+    await contains(".app_field_char .btn.app_field_translate").click();
     expect(".modal").toHaveCount(1, {
         message: "a translate modal should be visible",
     });
@@ -425,20 +425,20 @@ test("html field translatable", async () => {
     // this will not affect the translate_fields effect until the record is
     // saved but is set for consistency of the test
     await fieldInput("name").edit("<p>first paragraph</p><p>second paragraph</p>");
-    await contains(".o_field_char .btn.o_field_translate").click();
+    await contains(".app_field_char .btn.app_field_translate").click();
     expect(".modal").toHaveCount(1, {
         message: "a translate modal should be visible",
     });
-    expect(".modal .o_translation_dialog .translation").toHaveCount(4, {
+    expect(".modal .app_translation_dialog .translation").toHaveCount(4, {
         message: "four rows should be visible",
     });
-    const enField = queryFirst(".modal .o_translation_dialog .translation input");
+    const enField = queryFirst(".modal .app_translation_dialog .translation input");
     expect(enField).toHaveValue("first paragraph", {
         message: "first part of english translation should be filled",
     });
     await contains(enField).edit("first paragraph modified");
     await contains(".modal button.btn-primary").click();
-    expect(".o_field_char input[type='text']").toHaveValue(
+    expect(".app_field_char input[type='text']").toHaveValue(
         "<p>first paragraph</p><p>second paragraph</p>",
         {
             message: "the new partial translation should not be transfered",
@@ -453,7 +453,7 @@ test("char field translatable in create mode", async () => {
 
     await mountView({ type: "form", resModel: "res.partner" });
 
-    expect(".o_field_char .btn.o_field_translate").toHaveCount(1, {
+    expect(".app_field_char .btn.app_field_translate").toHaveCount(1, {
         message: "should have a translate button in create mode",
     });
 });
@@ -462,7 +462,7 @@ test("char field does not allow html injections", async () => {
     await mountView({ type: "form", resModel: "res.partner", resId: 1 });
     await fieldInput("name").edit("<script>throw Error();</script>");
     await clickSave();
-    expect(".o_field_widget input").toHaveValue("<script>throw Error();</script>", {
+    expect(".app_field_widget input").toHaveValue("<script>throw Error();</script>", {
         message: "the value should have been properly escaped",
     });
 });
@@ -488,10 +488,10 @@ test("char field trim (or not) characters", async () => {
     await fieldInput("name").edit("  abc  ");
     await fieldInput("foo2").edit("  def  ");
     await clickSave();
-    expect(".o_field_widget[name='name'] input").toHaveValue("abc", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("abc", {
         message: "Name value should have been trimmed",
     });
-    expect(".o_field_widget[name='foo2'] input:only").toHaveValue("  def  ");
+    expect(".app_field_widget[name='foo2'] input:only").toHaveValue("  def  ");
 });
 
 test.tags("desktop");
@@ -516,21 +516,21 @@ test("input field: change value before pending onchange returns", async () => {
     let def;
     onRpc("onchange", () => def);
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    expect(".o_field_widget[name='name'] input").toHaveValue("My little Name Value", {
+    await contains(".app_field_x2many_list_row_add a").click();
+    expect(".app_field_widget[name='name'] input").toHaveValue("My little Name Value", {
         message: "should contain the default value",
     });
 
     def = new Deferred();
-    await contains(".o-autocomplete--input").click();
-    await contains(".o-autocomplete--dropdown-item").click();
+    await contains(".app-autocomplete--input").click();
+    await contains(".app-autocomplete--dropdown-item").click();
     await fieldInput("name").edit("tralala", { confirm: false });
-    expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "should contain tralala",
     });
     def.resolve();
     await animationFrame();
-    expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "should contain the same value as before onchange",
     });
 });
@@ -560,7 +560,7 @@ test("input field: change value before pending onchange returns (2)", async () =
 
     onRpc("onchange", () => def);
 
-    expect(".o_field_widget[name='name'] input").toHaveValue("yop", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("yop", {
         message: "should contain the correct value",
     });
 
@@ -570,13 +570,13 @@ test("input field: change value before pending onchange returns (2)", async () =
 
     def.resolve();
     await animationFrame();
-    expect(".o_field_widget[name='name'] input").toHaveValue("test", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("test", {
         message: "The onchage value should not be applied because the input is in edition",
     });
     await fieldInput("name").press("Enter");
-    await expect(".o_field_widget[name='name'] input").toHaveValue("test");
+    await expect(".app_field_widget[name='name'] input").toHaveValue("test");
     await fieldInput("int_field").edit("10");
-    await expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    await expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "The onchange value should be applied because the input is not in edition",
     });
 });
@@ -608,25 +608,25 @@ test("input field: change value before pending onchange returns (with fieldDebou
 
     onRpc("onchange", () => def);
 
-    await contains(".o_field_x2many_list_row_add a").click();
-    expect(".o_field_widget[name='name'] input").toHaveValue("My little Name Value", {
+    await contains(".app_field_x2many_list_row_add a").click();
+    expect(".app_field_widget[name='name'] input").toHaveValue("My little Name Value", {
         message: "should contain the default value",
     });
 
     def = new Deferred();
-    await contains(".o-autocomplete--input").click();
-    await contains(".o-autocomplete--dropdown-item").click();
+    await contains(".app-autocomplete--input").click();
+    await contains(".app-autocomplete--dropdown-item").click();
     await fieldInput("name").edit("tralala", { confirm: false });
-    expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "should contain tralala",
     });
-    expect(".o_field_widget[name='int_field'] input").toHaveValue("");
+    expect(".app_field_widget[name='int_field'] input").toHaveValue("");
     def.resolve();
     await animationFrame();
-    expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "should contain the same value as before onchange",
     });
-    expect(".o_field_widget[name='int_field'] input").toHaveValue("7", {
+    expect(".app_field_widget[name='int_field'] input").toHaveValue("7", {
         message: "should contain the value returned by the onchange",
     });
 });
@@ -636,7 +636,7 @@ test("onchange return value before editing input", async () => {
         obj.name = "yop";
     };
     await mountView({ type: "form", resModel: "res.partner", resId: 1 });
-    expect(".o_field_widget[name='name'] input").toHaveValue("yop");
+    expect(".app_field_widget[name='name'] input").toHaveValue("yop");
     await fieldInput("name").edit("tralala");
     await expect("[name='name'] input").toHaveValue("yop");
 });
@@ -664,21 +664,21 @@ test("input field: change value before pending onchange renaming", async () => {
 
     const def = new Deferred();
 
-    expect(".o_field_widget[name='name'] input").toHaveValue("yop", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("yop", {
         message: "should contain the correct value",
     });
-    await contains(".o-autocomplete--input").click();
-    await contains(".o-autocomplete--dropdown-item").click();
+    await contains(".app-autocomplete--input").click();
+    await contains(".app-autocomplete--dropdown-item").click();
     // set name before onchange
     await fieldInput("name").edit("tralala");
-    await expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    await expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "should contain tralala",
     });
 
     // complete the onchange
     def.resolve();
     await animationFrame();
-    expect(".o_field_widget[name='name'] input").toHaveValue("tralala", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("tralala", {
         message: "input should contain the same value as before onchange",
     });
 });
@@ -693,7 +693,7 @@ test("support autocomplete attribute", async () => {
             <field name="name" autocomplete="coucou"/>
         </form>`,
     });
-    expect(".o_field_widget[name='name'] input").toHaveAttribute("autocomplete", "coucou", {
+    expect(".app_field_widget[name='name'] input").toHaveAttribute("autocomplete", "coucou", {
         message: "attribute autocomplete should be set",
     });
 });
@@ -708,7 +708,7 @@ test("input autocomplete attribute set to none by default", async () => {
             <field name="name"/>
         </form>`,
     });
-    expect(".o_field_widget[name='name'] input").toHaveAttribute("autocomplete", "off", {
+    expect(".app_field_widget[name='name'] input").toHaveAttribute("autocomplete", "off", {
         message: "attribute autocomplete should be set to none by default",
     });
 });
@@ -723,10 +723,10 @@ test("support password attribute", async () => {
             <field name="name" password="True"/>
         </form>`,
     });
-    expect(".o_field_widget[name='name'] input").toHaveValue("yop", {
+    expect(".app_field_widget[name='name'] input").toHaveValue("yop", {
         message: "input value should be the password",
     });
-    expect(".o_field_widget[name='name'] input").toHaveAttribute("type", "password", {
+    expect(".app_field_widget[name='name'] input").toHaveAttribute("type", "password", {
         message: "input should be of type password",
     });
 });
@@ -742,11 +742,11 @@ test("input field: readonly password", async () => {
         </form>`,
     });
 
-    expect(".o_field_char").not.toHaveText("yop", {
+    expect(".app_field_char").not.toHaveText("yop", {
         message: "password field value should be visible in read mode",
     });
 
-    expect(".o_field_char").toHaveText("***", {
+    expect(".app_field_char").toHaveText("***", {
         message: "password field value should be hidden with '*' in read mode",
     });
 });
@@ -762,10 +762,10 @@ test("input field: change password value", async () => {
         </form>`,
     });
 
-    expect(".o_field_char input").toHaveAttribute("type", "password", {
+    expect(".app_field_char input").toHaveAttribute("type", "password", {
         message: "password field input value should with type 'password' in edit mode",
     });
-    expect(".o_field_char input").toHaveValue("yop", {
+    expect(".app_field_char input").toHaveValue("yop", {
         message: "password field input value should be the (hidden) password value",
     });
 });
@@ -781,10 +781,10 @@ test("input field: empty password", async () => {
             <field name="name" password="True"/>
         </form>`,
     });
-    expect(".o_field_char input").toHaveAttribute("type", "password", {
+    expect(".app_field_char input").toHaveAttribute("type", "password", {
         message: "password field input value should with type 'password' in edit mode",
     });
-    expect(".o_field_char input").toHaveValue("", {
+    expect(".app_field_char input").toHaveValue("", {
         message: "password field input value should be the (non-hidden, empty) password value",
     });
 });
@@ -808,15 +808,15 @@ test("input field: set and remove value, then wait for onchange", async () => {
             </field>
         </form>`,
     });
-    await contains(".o_field_x2many_list_row_add a").click();
-    expect(".o_field_widget[name=name] input").toHaveValue("");
+    await contains(".app_field_x2many_list_row_add a").click();
+    expect(".app_field_widget[name=name] input").toHaveValue("");
     await fieldInput("name").edit("test", { confirm: false });
     await fieldInput("name").clear({ confirm: false });
 
     // trigger the onchange by setting a product
-    await contains(".o-autocomplete--input").click();
-    await contains(".o-autocomplete--dropdown-item").click();
-    expect(".o_field_widget[name=name] input").toHaveValue("onchange value", {
+    await contains(".app-autocomplete--input").click();
+    await contains(".app-autocomplete--dropdown-item").click();
+    expect(".app_field_widget[name=name] input").toHaveValue("onchange value", {
         message: "input should contain correct value after onchange",
     });
 });
@@ -835,7 +835,7 @@ test("char field with placeholder", async () => {
             </sheet>
         </form>`,
     });
-    expect(".o_field_widget[name='name'] input").toHaveAttribute("placeholder", "Placeholder", {
+    expect(".app_field_widget[name='name'] input").toHaveAttribute("placeholder", "Placeholder", {
         message: "placeholder attribute should be set",
     });
 });
@@ -919,18 +919,18 @@ test("edit a char field should display the status indicator buttons without flic
         expect.step("onchange");
         return def;
     });
-    expect(".o_form_status_indicator_buttons").not.toBeVisible({
+    expect(".app_form_status_indicator_buttons").not.toBeVisible({
         message: "form view is not dirty",
     });
-    await contains(".o_data_cell").click();
+    await contains(".app_data_cell").click();
     await fieldInput("name").edit("a");
-    expect(".o_form_status_indicator_buttons").toBeVisible({
+    expect(".app_form_status_indicator_buttons").toBeVisible({
         message: "form view is dirty",
     });
     def.resolve();
     expect.verifySteps(["onchange"]);
     await animationFrame();
-    expect(".o_form_status_indicator_buttons").toBeVisible({
+    expect(".app_form_status_indicator_buttons").toBeVisible({
         message: "form view is dirty",
     });
     expect.verifySteps(["onchange"]);

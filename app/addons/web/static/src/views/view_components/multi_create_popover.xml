@@ -2,11 +2,11 @@
 <templates xml:space="preserve">
 
     <t t-name="web.MultiCreatePopover">
-        <div class="o_multi_create_popover">
-            <div class="popover-body o_form_view">
+        <div class="app_multi_create_popover">
+            <div class="popover-body app_form_view">
                 <div t-if="this.multiCreateData.timeRange" class="d-flex align-items-baseline gap-2">
                     <TimePicker
-                        inputCssClass="'o_input'"
+                        inputCssClass="'app_input'"
                         value="this.multiCreateData.timeRange.start"
                         onChange="(time) => this.setMultiCreateTimeRange({start: time})"
                         onInvalid="() => this.setMultiCreateTimeRange({start: null})"
@@ -14,7 +14,7 @@
                     />
                     <i class="fa fa-arrow-right"/>
                     <TimePicker
-                        inputCssClass="'o_input'"
+                        inputCssClass="'app_input'"
                         value="this.multiCreateData.timeRange.end"
                         onChange="(time) => this.setMultiCreateTimeRange({end: time})"
                         onInvalid="() => this.setMultiCreateTimeRange({end: null})"

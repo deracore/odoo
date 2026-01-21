@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="web.PropertyDefinition">
-        <div class="o_field_property_definition o_field_widget o_form_view d-block" t-ref="propertyDefinition">
+        <div class="app_field_property_definition app_field_widget app_form_view d-block" t-ref="propertyDefinition">
             <div class="d-flex justify-content-between px-3 border-bottom">
                 <div t-if="!env.isSmall" class="border-end py-1">
                     <button
@@ -18,19 +18,19 @@
                 <button t-else="" class="btn oi oi-arrow-left my-2" t-on-click="() => this.props.close()"/>
                 <button
                     t-if="!props.readonly and props.canChangeDefinition"
-                    class="btn pe-0 text-danger float-end o_field_property_definition_delete"
+                    class="btn pe-0 text-danger float-end app_field_property_definition_delete"
                     title="Remove Property"
                     t-on-click="props.onDelete">
                     <i class="fa fa-trash"/> Delete
                 </button>
             </div>
-            <div class="o_modal_container p-3 o_inner_group grid">
+            <div class="app_modal_container p-3 app_inner_group grid">
                 <div class="d-contents mb-3 mb-sm-0">
-                    <label class="o_form_label align-self-center text-900">Label</label>
+                    <label class="app_form_label align-self-center text-900">Label</label>
                     <h6 t-if="props.readonly" t-out="state.propertyDefinition.string"
                         class="text-truncate"/>
                     <input
-                        class="o_input o_field_property_definition_header"
+                        class="app_input app_field_property_definition_header"
                         type="text"
                         required=""
                         placeholder="Property Name"
@@ -42,10 +42,10 @@
                 </div>
                 <div class="d-contents mb-3 mb-sm-0">
                     <label t-att-for="getUniqueDomID('type')"
-                        class="o_form_label align-self-center text-900">
+                        class="app_form_label align-self-center text-900">
                         Field Type
                     </label>
-                    <div class="o_field_property_definition_type">
+                    <div class="app_field_property_definition_type">
                         <div
                             t-if="props.readonly"
                             class="d-flex align-items-center mb-2">
@@ -53,15 +53,15 @@
                                 t-attf-src="/web/static/src/views/fields/properties/icons/{{state.propertyDefinition.type}}.png"/>
                             <span t-out="state.typeLabel"/>
                         </div>
-                        <Dropdown t-else="" menuClass="'o_field_property_definition_type_menu'">
+                        <Dropdown t-else="" menuClass="'app_field_property_definition_type_menu'">
                             <button class="btn btn-link d-flex p-0 w-100" t-att-title="state.typeLabel">
-                                <div class="o_input_dropdown w-100 o_field_property_dropdown">
+                                <div class="app_input_dropdown w-100 app_field_property_dropdown">
                                     <img t-attf-src="/web/static/src/views/fields/properties/icons/{{state.propertyDefinition.type}}.png"
                                         class="position-relative z-1 me-n4"/>
-                                    <input type="text" class="dropdown text-start w-100 o_input py-1 align-middle"
+                                    <input type="text" class="dropdown text-start w-100 app_input py-1 align-middle"
                                         t-att-id="getUniqueDomID('type')"
                                         t-att-value="state.typeLabel" readonly=""/>
-                                    <span class="o_dropdown_button" />
+                                    <span class="app_dropdown_button" />
                                 </div>
                             </button>
                             <t t-set-slot="content">
@@ -89,7 +89,7 @@
                 </div>
                 <!-- Add / remove selection labels -->
                 <div t-if="state.propertyDefinition.type === 'selection'" class="d-contents mb-3 mb-sm-0">
-                    <label class="o_form_label text-900">Values</label>
+                    <label class="app_form_label text-900">Values</label>
                     <PropertyDefinitionSelection
                         readonly="props.readonly || !props.canChangeDefinition"
                         canChangeDefinition="props.canChangeDefinition"
@@ -100,7 +100,7 @@
                     />
                 </div>
                 <div t-if="state.propertyDefinition.type === 'tags'" class="d-contents mb-3 mb-sm-0">
-                    <label t-att-for="getUniqueDomID('tags')" class="o_form_label text-900">Tags</label>
+                    <label t-att-for="getUniqueDomID('tags')" class="app_form_label text-900">Tags</label>
                     <PropertyTags
                         id="getUniqueDomID('tags')"
                         selectedTags="propertyTagValues"
@@ -110,8 +110,8 @@
                         deleteAction="'tags'"
                         onTagsChange.bind="onTagsChange"/>
                 </div>
-                <div t-if="state.propertyDefinition.type === 'many2one' || state.propertyDefinition.type === 'many2many'" class="o_field_property_definition_model d-contents mb-3 mb-sm-0">
-                    <label t-att-for="getUniqueDomID('model')" class="o_form_label align-self-center text-900">Model</label>
+                <div t-if="state.propertyDefinition.type === 'many2one' || state.propertyDefinition.type === 'many2many'" class="app_field_property_definition_model d-contents mb-3 mb-sm-0">
+                    <label t-att-for="getUniqueDomID('model')" class="app_form_label align-self-center text-900">Model</label>
                     <span t-if="props.readonly">
                         <t t-if="state.resModelDescription" t-out="state.resModelDescription"/>
                     </span>
@@ -123,8 +123,8 @@
                     />
                 </div>
                 <div t-if="(state.propertyDefinition.type === 'many2one' || state.propertyDefinition.type === 'many2many')
-                    and state.propertyDefinition.comodel and state.propertyDefinition.comodel.length" class="o_field_property_definition_domain d-contents mb-3 mb-sm-0">
-                    <label class="o_form_label text-900">Domain</label>
+                    and state.propertyDefinition.comodel and state.propertyDefinition.comodel.length" class="app_field_property_definition_domain d-contents mb-3 mb-sm-0">
+                    <label class="app_form_label text-900">Domain</label>
                     <div>
                         <DomainSelector
                             resModel="state.propertyDefinition.comodel"
@@ -143,10 +143,10 @@
                         </div>
                     </div>
                 </div>
-                <div t-if="state.propertyDefinition.type === 'monetary'" class="o_field_property_definition_currency_field d-contents mb-3 mb-sm-0">
-                    <label t-att-for="getUniqueDomID('currency_field')" class="o_form_label text-900">Currency field</label>
+                <div t-if="state.propertyDefinition.type === 'monetary'" class="app_field_property_definition_currency_field d-contents mb-3 mb-sm-0">
+                    <label t-att-for="getUniqueDomID('currency_field')" class="app_form_label text-900">Currency field</label>
                     <div>
-                        <select class="o_input" t-att-value="this.state.propertyDefinition.currency_field" t-on-change="(ev) => this.onCurrencyFieldUpdate(ev.target.value)">
+                        <select class="app_input" t-att-value="this.state.propertyDefinition.currency_field" t-on-change="(ev) => this.onCurrencyFieldUpdate(ev.target.value)">
                             <t t-foreach="this.currencyFields" t-as="currencyField" t-key="currencyField.name">
                                 <option t-att-value="currencyField.name" t-out="currencyField.string"/>
                             </t>
@@ -156,8 +156,8 @@
                 <div t-if="!['tags', 'selection', 'separator'].includes(state.propertyDefinition.type)
                     and (!['many2one', 'many2many'].includes(state.propertyDefinition.type)
                     || (state.propertyDefinition.comodel and state.propertyDefinition.comodel.length))"
-                    class="o_field_property_definition_value d-contents mb-3 mb-sm-0">
-                    <label t-att-for="getUniqueDomID('default')" class="o_form_label align-self-center text-900">
+                    class="app_field_property_definition_value d-contents mb-3 mb-sm-0">
+                    <label t-att-for="getUniqueDomID('default')" class="app_form_label align-self-center text-900">
                         <t t-if="state.propertyDefinition.type === 'boolean'">Default State</t>
                         <t t-else="">Default Value</t>
                     </label>
@@ -177,10 +177,10 @@
                     />
                 </div>
                 <t t-if="state.propertyDefinition.type !== 'separator'">
-                    <div class="o_field_property_definition_suffix d-contents mb-3 mb-sm-0">
-                        <label class="o_form_label align-self-center text-900">Suffix</label>
+                    <div class="app_field_property_definition_suffix d-contents mb-3 mb-sm-0">
+                        <label class="app_form_label align-self-center text-900">Suffix</label>
                         <input
-                            class="o_input"
+                            class="app_input"
                             type="text"
                             placeholder=""
                             autocomplete="off"
@@ -190,8 +190,8 @@
                     </div>
                 </t>
                 <div t-if="state.propertyDefinition.type !== 'separator'"
-                    class="o_field_property_definition_kanban d-contents mb-3 mb-sm-0">
-                    <label t-att-for="getUniqueDomID('kanban')" class="o_form_label align-self-center text-900">
+                    class="app_field_property_definition_kanban d-contents mb-3 mb-sm-0">
+                    <label t-att-for="getUniqueDomID('kanban')" class="app_form_label align-self-center text-900">
                         Display in Cards
                         <sup class="text-info" title="Whether or not this Property Field is displayed in the Calendar, Cards &amp; Kanban views">?</sup>
                     </label>
@@ -202,19 +202,19 @@
                         onChange.bind="onViewInKanbanChange"
                     />
                 </div>
-                <div t-else="" class="o_field_property_definition_kanban d-contents mb-3 mb-sm-0">
+                <div t-else="" class="app_field_property_definition_kanban d-contents mb-3 mb-sm-0">
                     <t t-set="separatorId" t-value="getUniqueDomID('separator')"/>
-                    <label t-att-for="separatorId" class="o_form_label align-self-center text-900">
+                    <label t-att-for="separatorId" class="app_form_label align-self-center text-900">
                         Default State
                     </label>
-                    <div class="o_field_property_definition_fold text-nowrap d-inline-flex w-100 align-items-baseline">
-                        <label class="form-check o_radio_item p-0">
-                            <input type="radio" class="form-check-input o_radio_input" t-att-checked="!state.propertyDefinition.fold_by_default" t-attf-name="{{separatorId}}_separator" t-attf-id="{{separatorId}}_open" t-on-change="() => this.onFoldByDefaultChange(false)"/>
-                            <label class="form-check-label o_form_label ms-1" t-attf-for="{{separatorId}}_open">Open</label>
+                    <div class="app_field_property_definition_fold text-nowrap d-inline-flex w-100 align-items-baseline">
+                        <label class="form-check app_radio_item p-0">
+                            <input type="radio" class="form-check-input app_radio_input" t-att-checked="!state.propertyDefinition.fold_by_default" t-attf-name="{{separatorId}}_separator" t-attf-id="{{separatorId}}_open" t-on-change="() => this.onFoldByDefaultChange(false)"/>
+                            <label class="form-check-label app_form_label ms-1" t-attf-for="{{separatorId}}_open">Open</label>
                         </label>
-                        <label class="form-check o_radio_item">
-                            <input type="radio" class="form-check-input o_radio_input" t-att-checked="!!state.propertyDefinition.fold_by_default" t-attf-name="{{separatorId}}_separator" t-attf-id="{{separatorId}}_fold" t-on-change="() => this.onFoldByDefaultChange(true)"/>
-                            <label class="form-check-label o_form_label ms-1" t-attf-for="{{separatorId}}_fold">Fold</label>
+                        <label class="form-check app_radio_item">
+                            <input type="radio" class="form-check-input app_radio_input" t-att-checked="!!state.propertyDefinition.fold_by_default" t-attf-name="{{separatorId}}_separator" t-attf-id="{{separatorId}}_fold" t-on-change="() => this.onFoldByDefaultChange(true)"/>
+                            <label class="form-check-label app_form_label ms-1" t-attf-for="{{separatorId}}_fold">Fold</label>
                         </label>
                     </div>
                 </div>

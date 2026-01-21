@@ -82,7 +82,7 @@ export class TreeEditor extends Component {
     }
 
     get className() {
-        return `${this.props.readonly ? "o_read_mode" : "o_edit_mode"}`;
+        return `${this.props.readonly ? "app_read_mode" : "app_edit_mode"}`;
     }
 
     get isDebugMode() {
@@ -225,7 +225,7 @@ export class TreeEditor extends Component {
     }
 
     highlightNode(target) {
-        const nodeEl = target.closest(".o_tree_editor_node");
-        nodeEl.classList.toggle("o_hovered_button");
+        const nodeEl = target.closest(".app_tree_editor_node");
+        nodeEl.classList.toggle("app_hovered_button");
     }
 }

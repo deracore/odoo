@@ -26,7 +26,7 @@ class TestDatabaseManager(HttpCase):
         # check that basic existing db actions are present
         self.assertIn('.o_database_backup', res.text)
         self.assertIn('.o_database_duplicate', res.text)
-        self.assertIn('.o_database_delete', res.text)
+        self.assertIn('.app_database_delete', res.text)
 
         # check that basic db actions are present
         self.assertIn('.o_database_create', res.text)

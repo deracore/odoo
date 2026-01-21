@@ -252,7 +252,7 @@ describe("useAutofocus", () => {
         });
         await animationFrame();
 
-        expect(".o_command_palette").toHaveCount(1);
+        expect(".app_command_palette").toHaveCount(1);
         expect("input:first").not.toBeFocused();
 
         state.text = "a";

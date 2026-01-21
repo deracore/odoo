@@ -62,33 +62,33 @@ test("basic form view flow", async () => {
             </form>`,
     });
 
-    expect(".o_field_widget[name=user_id] input").toHaveValue("Aline");
-    expect('.o_m2o_avatar > img[data-src="/web/image/res.users/1/avatar_128"]').toHaveCount(1);
-    expect(".o_field_many2one_avatar > div").toHaveCount(1);
+    expect(".app_field_widget[name=user_id] input").toHaveValue("Aline");
+    expect('.app_m2o_avatar > img[data-src="/web/image/res.users/1/avatar_128"]').toHaveCount(1);
+    expect(".app_field_many2one_avatar > div").toHaveCount(1);
 
-    expect(".o_input_dropdown").toHaveCount(1);
-    expect(".o_input_dropdown input").toHaveValue("Aline");
-    expect(".o_external_button").toHaveCount(1);
-    expect('.o_m2o_avatar > img[data-src="/web/image/res.users/1/avatar_128"]').toHaveCount(1);
+    expect(".app_input_dropdown").toHaveCount(1);
+    expect(".app_input_dropdown input").toHaveValue("Aline");
+    expect(".app_external_button").toHaveCount(1);
+    expect('.app_m2o_avatar > img[data-src="/web/image/res.users/1/avatar_128"]').toHaveCount(1);
 
     await clickFieldDropdown("user_id");
-    expect(".o_field_many2one_selection .o_avatar_many2x_autocomplete").toHaveCount(2);
+    expect(".app_field_many2one_selection .app_avatar_many2x_autocomplete").toHaveCount(2);
     await clickFieldDropdownItem("user_id", "Christine");
 
-    expect('.o_m2o_avatar > img[data-src="/web/image/res.users/2/avatar_128"]').toHaveCount(1);
+    expect('.app_m2o_avatar > img[data-src="/web/image/res.users/2/avatar_128"]').toHaveCount(1);
     await clickSave();
 
-    expect(".o_field_widget[name=user_id] input").toHaveValue("Christine");
-    expect('.o_m2o_avatar > img[data-src="/web/image/res.users/2/avatar_128"]').toHaveCount(1);
+    expect(".app_field_widget[name=user_id] input").toHaveValue("Christine");
+    expect('.app_m2o_avatar > img[data-src="/web/image/res.users/2/avatar_128"]').toHaveCount(1);
 
-    await contains('.o_field_widget[name="user_id"] input').clear({ confirm: "blur" });
+    await contains('.app_field_widget[name="user_id"] input').clear({ confirm: "blur" });
 
-    expect(".o_m2o_avatar > img").toHaveCount(0);
-    expect(".o_m2o_avatar > .o_m2o_avatar_empty").toHaveCount(1);
+    expect(".app_m2o_avatar > img").toHaveCount(0);
+    expect(".app_m2o_avatar > .app_m2o_avatar_empty").toHaveCount(1);
     await clickSave();
 
-    expect(".o_m2o_avatar > img").toHaveCount(0);
-    expect(".o_m2o_avatar > .o_m2o_avatar_empty").toHaveCount(1);
+    expect(".app_m2o_avatar > img").toHaveCount(0);
+    expect(".app_m2o_avatar > .app_m2o_avatar_empty").toHaveCount(1);
 });
 
 test("onchange in form view flow", async () => {
@@ -114,18 +114,18 @@ test("onchange in form view flow", async () => {
             </form>`,
     });
 
-    expect(".o_field_widget[name=user_id]").toHaveText("Aline");
-    expect('.o_m2o_avatar > img[data-src="/web/image/res.users/1/avatar_128"]').toHaveCount(1);
+    expect(".app_field_widget[name=user_id]").toHaveText("Aline");
+    expect('.app_m2o_avatar > img[data-src="/web/image/res.users/1/avatar_128"]').toHaveCount(1);
 
     await contains("div[name=int_field] input").edit(1);
 
-    expect(".o_field_widget[name=user_id]").toHaveText("Christine");
-    expect('.o_m2o_avatar > img[data-src="/web/image/res.users/2/avatar_128"]').toHaveCount(1);
+    expect(".app_field_widget[name=user_id]").toHaveText("Christine");
+    expect('.app_m2o_avatar > img[data-src="/web/image/res.users/2/avatar_128"]').toHaveCount(1);
 
     await contains("div[name=int_field] input").edit(2);
 
-    expect(".o_field_widget[name=user_id]").toHaveText("");
-    expect(".o_m2o_avatar > img").toHaveCount(0);
+    expect(".app_field_widget[name=user_id]").toHaveText("");
+    expect(".app_m2o_avatar > img").toHaveCount(0);
 });
 
 test("basic list view flow", async () => {
@@ -135,13 +135,13 @@ test("basic list view flow", async () => {
         arch: '<list><field name="user_id" widget="many2one_avatar"/></list>',
     });
 
-    expect(queryAllTexts(".o_data_cell[name='user_id']")).toEqual([
+    expect(queryAllTexts(".app_data_cell[name='user_id']")).toEqual([
         "Aline",
         "Christine",
         "Aline",
         "",
     ]);
-    const imgs = queryAll(".o_m2o_avatar > img");
+    const imgs = queryAll(".app_m2o_avatar > img");
     expect(imgs[0]).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
     expect(imgs[1]).toHaveAttribute("data-src", "/web/image/res.users/2/avatar_128");
     expect(imgs[2]).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
@@ -154,21 +154,21 @@ test("basic flow in editable list view", async () => {
         arch: '<list editable="top"><field name="user_id" widget="many2one_avatar"/></list>',
     });
 
-    expect(queryAllTexts(".o_data_cell[name='user_id']")).toEqual([
+    expect(queryAllTexts(".app_data_cell[name='user_id']")).toEqual([
         "Aline",
         "Christine",
         "Aline",
         "",
     ]);
 
-    const imgs = queryAll(".o_m2o_avatar > img");
+    const imgs = queryAll(".app_m2o_avatar > img");
     expect(imgs[0]).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
     expect(imgs[1]).toHaveAttribute("data-src", "/web/image/res.users/2/avatar_128");
     expect(imgs[2]).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
 
-    await contains(".o_data_row .o_data_cell:eq(0)").click();
+    await contains(".app_data_row .app_data_cell:eq(0)").click();
 
-    expect(".o_m2o_avatar > img:eq(0)").toHaveAttribute(
+    expect(".app_m2o_avatar > img:eq(0)").toHaveAttribute(
         "data-src",
         "/web/image/res.users/1/avatar_128"
     );
@@ -181,7 +181,7 @@ test("Many2OneAvatar with placeholder", async () => {
         arch: '<form><field name="user_id" widget="many2one_avatar" placeholder="Placeholder"/></form>',
     });
 
-    expect(".o_field_widget[name='user_id'] input").toHaveAttribute("placeholder", "Placeholder");
+    expect(".app_field_widget[name='user_id'] input").toHaveAttribute("placeholder", "Placeholder");
 });
 
 test.tags("desktop");
@@ -202,9 +202,9 @@ test("click on many2one_avatar in a list view (multi_edit='1')", async () => {
             </list>`,
     });
 
-    await contains(".o_data_row:eq(0) .o_list_record_selector input").click();
-    await contains(".o_data_row .o_data_cell [name='user_id']").click();
-    expect(".o_data_row:eq(0)").toHaveClass("o_selected_row");
+    await contains(".app_data_row:eq(0) .app_list_record_selector input").click();
+    await contains(".app_data_row .app_data_cell [name='user_id']").click();
+    expect(".app_data_row:eq(0)").toHaveClass("app_selected_row");
 
     expect.verifySteps([]);
 });
@@ -226,8 +226,8 @@ test("click on many2one_avatar in an editable list view", async () => {
             </list>`,
     });
 
-    await contains(".o_data_row .o_data_cell [name='user_id']").click();
-    expect(".o_selected_row").toHaveCount(0);
+    await contains(".app_data_row .app_data_cell [name='user_id']").click();
+    expect(".app_selected_row").toHaveCount(0);
 
     expect.verifySteps(["openRecord"]);
 });
@@ -250,8 +250,8 @@ test("click on many2one_avatar in an editable list view (editable top)", async (
             </list>`,
     });
 
-    await contains(".o_data_row .o_data_cell [name='user_id']").click();
-    expect(".o_data_row:eq(0)").toHaveClass("o_selected_row");
+    await contains(".app_data_row .app_data_cell [name='user_id']").click();
+    expect(".app_data_row:eq(0)").toHaveClass("app_selected_row");
 
     expect.verifySteps([]);
 });
@@ -316,14 +316,14 @@ test("cancelling create dialog should clear value in the field", async () => {
             </list>`,
     });
 
-    await contains(".o_data_cell:eq(0)").click();
-    await contains(".o_field_widget[name=user_id] input").edit("yy", { confirm: false });
+    await contains(".app_data_cell:eq(0)").click();
+    await contains(".app_field_widget[name=user_id] input").edit("yy", { confirm: false });
     await runAllTimers();
     await clickFieldDropdownItem("user_id", "Create and edit...");
 
-    await contains(".o_form_button_cancel").click();
-    expect(".o_field_widget[name=user_id] input").toHaveValue("");
-    expect(".o_field_widget[name=user_id] span.o_m2o_avatar_empty").toHaveCount(1);
+    await contains(".app_form_button_cancel").click();
+    expect(".app_field_widget[name=user_id] input").toHaveValue("");
+    expect(".app_field_widget[name=user_id] span.app_m2o_avatar_empty").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -357,14 +357,14 @@ test("widget many2one_avatar in kanban view (load more dialog)", async () => {
 
     // open popover
     await contains(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > a.o_quick_assign"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > a.app_quick_assign"
     ).click();
 
     // load more
-    await contains(".o-overlay-container .o_m2o_dropdown_option_search_more").click();
-    await contains(".o_dialog .o_list_table .o_data_row .o_data_cell").click();
+    await contains(".app-overlay-container .app_m2o_dropdown_option_search_more").click();
+    await contains(".app_dialog .app_list_table .app_data_row .app_data_cell").click();
     expect(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > img"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > img"
     ).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
 });
 
@@ -386,25 +386,25 @@ test("widget many2one_avatar in kanban view", async () => {
     stepAllNetworkCalls();
 
     expect(
-        ".o_kanban_record:nth-child(1) .o_field_many2one_avatar .o_m2o_avatar > img"
+        ".app_kanban_record:nth-child(1) .app_field_many2one_avatar .app_m2o_avatar > img"
     ).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
     expect(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > .o_quick_assign"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > .app_quick_assign"
     ).toHaveCount(1);
     // open popover
     await contains(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > .o_quick_assign"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > .app_quick_assign"
     ).click();
-    expect(".o-overlay-container input").toBeFocused();
+    expect(".app-overlay-container input").toBeFocused();
     expect.verifySteps(["web_name_search"]);
     // select first input
-    await contains(".o-overlay-container .o-autocomplete--dropdown-item").click();
+    await contains(".app-overlay-container .app-autocomplete--dropdown-item").click();
     expect.verifySteps(["web_save"]);
     expect(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > img"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > img"
     ).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
     expect(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > .o_quick_assign"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > .app_quick_assign"
     ).toHaveCount(0);
 });
 
@@ -425,9 +425,9 @@ test("widget many2one_avatar in kanban view without access rights", async () => 
             </kanban>`,
     });
     expect(
-        ".o_kanban_record:nth-child(1) .o_field_many2one_avatar .o_m2o_avatar > img"
+        ".app_kanban_record:nth-child(1) .app_field_many2one_avatar .app_m2o_avatar > img"
     ).toHaveAttribute("data-src", "/web/image/res.users/1/avatar_128");
     expect(
-        ".o_kanban_record:nth-child(4) .o_field_many2one_avatar .o_m2o_avatar > .o_quick_assign"
+        ".app_kanban_record:nth-child(4) .app_field_many2one_avatar .app_m2o_avatar > .app_quick_assign"
     ).toHaveCount(0);
 });

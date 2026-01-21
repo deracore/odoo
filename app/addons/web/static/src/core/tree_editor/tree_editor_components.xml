@@ -2,12 +2,12 @@
 <templates xml:space="preserve">
 
     <t t-name="web.TreeEditor.Input">
-        <input type="text" class="o_input" t-att-value="props.startEmpty ? '' : props.value" t-att-placeholder="props.placeholder" t-on-change="(ev) => props.update(ev.target.value)" />
+        <input type="text" class="app_input" t-att-value="props.startEmpty ? '' : props.value" t-att-placeholder="props.placeholder" t-on-change="(ev) => props.update(ev.target.value)" />
     </t>
 
     <t t-name="web.TreeEditor.Select">
-        <select class="o_input pe-3 text-truncate" t-on-change="(ev) => props.update(deserialize(ev.target.value))">
-            <option class="o_select_placeholder" t-if="props.addBlankOption" hidden="true" t-esc="props.placeholder ? props.placeholder : ''"/>
+        <select class="app_input pe-3 text-truncate" t-on-change="(ev) => props.update(deserialize(ev.target.value))">
+            <option class="app_select_placeholder" t-if="props.addBlankOption" hidden="true" t-esc="props.placeholder ? props.placeholder : ''"/>
             <t t-foreach="props.options" t-as="option" t-key="serialize(option[0])">
                 <option class="text-black" t-att-value="serialize(option[0])" t-att-selected="!props.addBlankOption and option[0] === props.value" t-esc="option[1]" />
             </t>
@@ -52,7 +52,7 @@
     </t>
 
     <t t-name="web.TreeEditor.List">
-        <div class="o_input d-flex flex-wrap gap-1">
+        <div class="app_input d-flex flex-wrap gap-1">
             <TagsList tags="tags"/>
             <div class="flex-grow-1">
                 <t t-call="web.TreeEditor.Editor">

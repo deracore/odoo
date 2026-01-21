@@ -101,9 +101,9 @@ export class KanbanRenderer extends Component {
                 enable: () => this.canResequenceRecords,
                 // Params
                 ref: this.rootRef,
-                elements: ".o_draggable",
+                elements: ".app_draggable",
                 ignore: ".dropdown,select",
-                groups: () => this.props.list.isGrouped && ".o_kanban_group",
+                groups: () => this.props.list.isGrouped && ".app_kanban_group",
                 connectGroups: () => this.canMoveRecords,
                 cursor: "move",
                 placeholderClasses: ["visible", "opacity-50", "my-2"],
@@ -128,8 +128,8 @@ export class KanbanRenderer extends Component {
                 enable: () => this.canResequenceGroups,
                 // Params
                 ref: this.rootRef,
-                elements: ".o_group_draggable",
-                handle: ".o_column_title",
+                elements: ".app_group_draggable",
+                handle: ".app_column_title",
                 cursor: "move",
                 // Hooks
                 onDragStart: (params) => {
@@ -150,11 +150,11 @@ export class KanbanRenderer extends Component {
             ) {
                 return clickedEl.matches(
                     [
-                        ".o_kanban_renderer",
-                        ".o_kanban_group",
-                        ".o_kanban_header",
-                        ".o_column_quick_create",
-                        ".o_view_nocontent_smiling_face",
+                        ".app_kanban_renderer",
+                        ".app_kanban_group",
+                        ".app_kanban_header",
+                        ".app_column_quick_create",
+                        ".app_view_nocontent_smiling_face",
                     ].join(", ")
                 );
             }
@@ -170,7 +170,7 @@ export class KanbanRenderer extends Component {
                 if (model.useSampleModel || !model.hasData()) {
                     return;
                 }
-                const firstCard = this.rootRef.el.querySelector(".o_kanban_record");
+                const firstCard = this.rootRef.el.querySelector(".app_kanban_record");
                 if (firstCard) {
                     // Focus first kanban card
                     firstCard.focus();
@@ -181,11 +181,11 @@ export class KanbanRenderer extends Component {
         useHotkey(
             "Enter",
             ({ target }) => {
-                if (target.closest(".o_kanban_selection_active") !== null) {
+                if (target.closest(".app_kanban_selection_active") !== null) {
                     return;
                 }
 
-                if (!target.classList.contains("o_kanban_record")) {
+                if (!target.classList.contains("app_kanban_record")) {
                     return;
                 }
 
@@ -267,7 +267,7 @@ export class KanbanRenderer extends Component {
                     groupIdToFocus = groups[lastOpenedGroupIndex + 1].group.id;
                 }
                 const groupEl = this.rootRef.el.querySelector(
-                    `.o_kanban_group[data-id="${groupIdToFocus}"]`
+                    `.app_kanban_group[data-id="${groupIdToFocus}"]`
                 );
                 const rect = groupEl.getBoundingClientRect();
                 // Don't scroll if the group to focus is completely inside of the viewport
@@ -388,13 +388,13 @@ export class KanbanRenderer extends Component {
     getGroupClasses(group, isGroupProcessing) {
         const classes = [];
         if (!isGroupProcessing && this.canResequenceGroups && group.value) {
-            classes.push("o_group_draggable");
+            classes.push("app_group_draggable");
         }
         if (!group.count) {
-            classes.push("o_kanban_no_records");
+            classes.push("app_kanban_no_records");
         }
         if (!this.env.isSmall && group.isFolded) {
-            classes.push("o_column_folded", "flex-basis-0");
+            classes.push("app_column_folded", "flex-basis-0");
         }
         if (this.props.progressBarState && !group.isFolded) {
             const progressBarInfo = this.props.progressBarState.getGroupInfo(group);
@@ -402,7 +402,7 @@ export class KanbanRenderer extends Component {
                 const progressBar = progressBarInfo.bars.find(
                     (b) => b.value === progressBarInfo.activeBar
                 );
-                classes.push("o_kanban_group_show", `o_kanban_group_show_${progressBar.color}`);
+                classes.push("app_kanban_group_show", `o_kanban_group_show_${progressBar.color}`);
             }
         }
         return classes.join(" ");
@@ -555,7 +555,7 @@ export class KanbanRenderer extends Component {
     }
 
     onSpaceKeyPress(target, isRange) {
-        if (target.classList.contains("o_kanban_record")) {
+        if (target.classList.contains("app_kanban_record")) {
             const record = this.props.list.records.find((e) => e.id === target.dataset.id);
             this.toggleSelection(record, isRange);
         }
@@ -591,7 +591,7 @@ export class KanbanRenderer extends Component {
     async sortRecordDrop(dataRecordId, dataGroupId, { element, parent, previous }) {
         if (
             !this.props.list.isGrouped ||
-            parent.classList.contains("o_kanban_hover") ||
+            parent.classList.contains("app_kanban_hover") ||
             parent.dataset.id === element.parentElement.dataset.id
         ) {
             if (!this.props.list.records.find((r) => r.id === dataRecordId)) {
@@ -602,7 +602,7 @@ export class KanbanRenderer extends Component {
             }
             this.toggleProcessing(dataRecordId, true);
 
-            parent?.classList.remove("o_kanban_hover");
+            parent?.classList.remove("app_kanban_hover");
             while (previous && !previous.dataset.id) {
                 previous = previous.previousElementSibling;
             }
@@ -621,7 +621,7 @@ export class KanbanRenderer extends Component {
      * @param {HTMLElement} params.group
      */
     sortRecordGroupEnter({ group }) {
-        group.classList.add("o_kanban_hover");
+        group.classList.add("app_kanban_hover");
     }
 
     /**
@@ -629,7 +629,7 @@ export class KanbanRenderer extends Component {
      * @param {HTMLElement} params.group
      */
     sortRecordGroupLeave({ group }) {
-        group.classList.remove("o_kanban_hover");
+        group.classList.remove("app_kanban_hover");
     }
 
     /**
@@ -649,7 +649,7 @@ export class KanbanRenderer extends Component {
     sortStop({ element, group }) {
         element.classList.remove("shadow");
         if (group) {
-            group.classList.remove("o_kanban_hover");
+            group.classList.remove("app_kanban_hover");
         }
     }
 
@@ -662,13 +662,13 @@ export class KanbanRenderer extends Component {
      */
     focusNextCard(area, direction) {
         const { isGrouped } = this.props.list;
-        const closestCard = document.activeElement.closest(".o_kanban_record");
+        const closestCard = document.activeElement.closest(".app_kanban_record");
         if (!closestCard) {
             return;
         }
-        const groups = isGrouped ? [...area.querySelectorAll(".o_kanban_group")] : [area];
+        const groups = isGrouped ? [...area.querySelectorAll(".app_kanban_group")] : [area];
         const cards = [...groups]
-            .map((group) => [...group.querySelectorAll(".o_kanban_record")])
+            .map((group) => [...group.querySelectorAll(".app_kanban_record")])
             .filter((group) => group.length);
 
         let iGroup;

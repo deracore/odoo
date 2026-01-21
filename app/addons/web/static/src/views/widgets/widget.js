@@ -101,7 +101,7 @@ export class Widget extends Component {
 
     get classNames() {
         const classNames = {
-            o_widget: true,
+            app_widget: true,
             [`o_widget_${this.props.name}`]: true,
             [this.props.className]: Boolean(this.props.className),
         };

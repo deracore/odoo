@@ -1,11 +1,11 @@
-.o_record_selector, .o_multi_record_selector {
+.app_record_selector, .app_multi_record_selector {
     &:hover, &:focus-within {
-        .o_dropdown_button:after {
+        .app_dropdown_button:after {
             @include o-caret-down;
         }
     }
 
-    .o_record_autocomplete_with_caret {
+    .app_record_autocomplete_with_caret {
         display: flex;
         min-width: 100%;
         position: relative;

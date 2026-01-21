@@ -11,7 +11,7 @@ export class IrUiViewAceField extends AceField {
 export const irUiViewAceField = {
     ...aceField,
     component: IrUiViewAceField,
-    additionalClasses: ["o_field_ace"],
+    additionalClasses: ["app_field_ace"],
 };
 
 registry.category("fields").add("code_ir_ui_view", irUiViewAceField);

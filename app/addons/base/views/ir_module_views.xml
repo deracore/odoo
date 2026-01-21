@@ -48,7 +48,7 @@
             <field name="name">ir.module.module.form</field>
             <field name="model">ir.module.module</field>
             <field name="arch" type="xml">
-                <form create="0" edit="0" string="Module" class="o_module_form">
+                <form create="0" edit="0" string="Module" class="app_module_form">
                     <link rel="stylesheet" href="/base/static/src/css/description.css"></link>
                     <sheet>
                     <field name="icon_image" widget="image" class="oe_avatar"/>
@@ -150,7 +150,7 @@
             <field name="name">Apps Kanban</field>
             <field name="model">ir.module.module</field>
             <field name="arch" type="xml">
-                <kanban create="false" can_open="0" class="o_modules_kanban">
+                <kanban create="false" can_open="0" class="app_modules_kanban">
                   <field name="to_buy"/>
                   <field name="name"/>
                   <field name="state"/>
@@ -200,7 +200,7 @@
             <field name="context">{'search_default_app':1}</field>
             <field name="search_view_id" ref="view_module_filter"/>
             <field name="help" type="html">
-              <p class="o_view_nocontent_empty_folder">
+              <p class="app_view_nocontent_empty_folder">
                 No module found!
               </p><p>
                 You should try other search criteria.

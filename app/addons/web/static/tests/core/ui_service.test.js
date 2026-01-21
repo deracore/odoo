@@ -12,30 +12,30 @@ describe.current.tags("desktop");
 
 test("block and unblock once ui with ui service", async () => {
     await mountWithCleanup(MainComponentsContainer);
-    expect(".o_blockUI").toHaveCount(0);
+    expect(".app_blockUI").toHaveCount(0);
     getService("ui").block();
     await animationFrame();
-    expect(".o_blockUI").toHaveCount(1);
+    expect(".app_blockUI").toHaveCount(1);
     getService("ui").unblock();
     await animationFrame();
-    expect(".o_blockUI").toHaveCount(0);
+    expect(".app_blockUI").toHaveCount(0);
 });
 
 test("use block and unblock several times to block ui with ui service", async () => {
     await mountWithCleanup(MainComponentsContainer);
-    expect(".o_blockUI").toHaveCount(0);
+    expect(".app_blockUI").toHaveCount(0);
     getService("ui").block();
     getService("ui").block();
     getService("ui").block();
     await animationFrame();
-    expect(".o_blockUI").toHaveCount(1);
+    expect(".app_blockUI").toHaveCount(1);
     getService("ui").unblock();
     getService("ui").unblock();
     await animationFrame();
-    expect(".o_blockUI").toHaveCount(1);
+    expect(".app_blockUI").toHaveCount(1);
     getService("ui").unblock();
     await animationFrame();
-    expect(".o_blockUI").toHaveCount(0);
+    expect(".app_blockUI").toHaveCount(0);
 });
 
 test("a component can be the  UI active element: simple usage", async () => {

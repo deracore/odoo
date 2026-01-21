@@ -99,20 +99,20 @@ test("basic search panel rendering", async () => {
         searchViewId: false,
     });
 
-    expect(".o_search_panel .o-dropdown").toHaveCount(1);
-    expect(".o_search_panel .o-dropdown").toHaveText("category");
+    expect(".app_search_panel .app-dropdown").toHaveCount(1);
+    expect(".app_search_panel .app-dropdown").toHaveText("category");
 
-    await contains(".o_search_panel .o-dropdown").click();
-    expect(".o_search_panel_section.o_search_panel_category").toHaveCount(1);
-    expect(".o_search_panel_category_value").toHaveCount(3);
-    expect(queryAllTexts(".o_search_panel_field li")).toEqual(["All", "gold", "silver"]);
+    await contains(".app_search_panel .app-dropdown").click();
+    expect(".app_search_panel_section.app_search_panel_category").toHaveCount(1);
+    expect(".app_search_panel_category_value").toHaveCount(3);
+    expect(queryAllTexts(".app_search_panel_field li")).toEqual(["All", "gold", "silver"]);
 
-    await contains(".o_search_panel_category_value:nth-of-type(2) header").click();
-    expect(".o_search_panel .o-dropdown").toHaveText("gold");
-    expect(".o_search_panel a").toHaveCount(1);
+    await contains(".app_search_panel_category_value:nth-of-type(2) header").click();
+    expect(".app_search_panel .app-dropdown").toHaveText("gold");
+    expect(".app_search_panel a").toHaveCount(1);
 
-    await contains(".o_search_panel a").click();
-    expect(".o_search_panel .o-dropdown").toHaveText("category");
+    await contains(".app_search_panel a").click();
+    expect(".app_search_panel .app-dropdown").toHaveText("category");
 });
 
 test("Dropdown closes on category selection", async () => {
@@ -127,10 +127,10 @@ test("Dropdown closes on category selection", async () => {
         searchViewId: false,
     });
 
-    expect(".o-dropdown--menu").toHaveCount(0);
-    await contains(".o_search_panel .o-dropdown").click();
-    expect(".o-dropdown--menu").toHaveCount(1);
+    expect(".app-dropdown--menu").toHaveCount(0);
+    await contains(".app_search_panel .app-dropdown").click();
+    expect(".app-dropdown--menu").toHaveCount(1);
 
-    await contains(".o_search_panel_category_value:nth-of-type(2) header").click();
-    expect(".o-dropdown--menu").toHaveCount(0);
+    await contains(".app_search_panel_category_value:nth-of-type(2) header").click();
+    expect(".app-dropdown--menu").toHaveCount(0);
 });

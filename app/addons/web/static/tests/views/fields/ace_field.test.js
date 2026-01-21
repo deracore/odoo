@@ -44,7 +44,7 @@ test("AceEditorField on text fields works", async () => {
     });
     expect(window).toInclude("ace", { message: "the ace library should be loaded" });
     expect(`div.ace_content`).toHaveCount(1);
-    expect(".o_field_code").toHaveText(/yop/);
+    expect(".app_field_code").toHaveText(/yop/);
 });
 
 test("AceEditorField mark as dirty as soon at onchange", async () => {
@@ -61,14 +61,14 @@ test("AceEditorField mark as dirty as soon at onchange", async () => {
     // edit the foo field
     ace.edit(aceEditor).setValue("blip");
     await animationFrame();
-    expect(`.o_form_status_indicator_buttons`).toHaveCount(1);
-    expect(`.o_form_status_indicator_buttons`).not.toHaveClass("invisible");
+    expect(`.app_form_status_indicator_buttons`).toHaveCount(1);
+    expect(`.app_form_status_indicator_buttons`).not.toHaveClass("invisible");
 
     // revert edition
     ace.edit(aceEditor).setValue("yop");
     await animationFrame();
-    expect(`.o_form_status_indicator_buttons`).toHaveCount(1);
-    expect(`.o_form_status_indicator_buttons`).toHaveClass("invisible");
+    expect(`.app_form_status_indicator_buttons`).toHaveCount(1);
+    expect(`.app_form_status_indicator_buttons`).toHaveClass("invisible");
 });
 
 test("AceEditorField on html fields works", async () => {
@@ -83,7 +83,7 @@ test("AceEditorField on html fields works", async () => {
         type: "form",
         arch: `<form><field name="html_field" widget="code" /></form>`,
     });
-    expect(".o_field_code").toHaveText(/My little HTML Test/);
+    expect(".app_field_code").toHaveText(/My little HTML Test/);
     expect.verifySteps(["get_views", "web_read"]);
 
     // Modify foo and save
@@ -113,12 +113,12 @@ test("AceEditorField is updated on value change", async () => {
         type: "form",
         arch: `<form><field name="foo" widget="code"/></form>`,
     });
-    expect(".o_field_code").toHaveText(/yop/);
+    expect(".app_field_code").toHaveText(/yop/);
 
     await pagerNext();
     await animationFrame();
     await animationFrame();
-    expect(".o_field_code").toHaveText(/blip/);
+    expect(".app_field_code").toHaveText(/blip/);
 });
 
 test("leaving an untouched record with an unset ace field should not write", async () => {
@@ -182,9 +182,9 @@ test("Save and Discard buttons are displayed when necessary", async () => {
     });
 
     await editAce("a");
-    expect(`.o_form_status_indicator_buttons`).toHaveCount(1);
-    expect(`.o_form_status_indicator_buttons`).not.toHaveClass("invisible");
+    expect(`.app_form_status_indicator_buttons`).toHaveCount(1);
+    expect(`.app_form_status_indicator_buttons`).not.toHaveClass("invisible");
     await clickSave();
-    expect(`.o_form_status_indicator_buttons`).toHaveCount(1);
-    expect(`.o_form_status_indicator_buttons`).toHaveClass("invisible");
+    expect(`.app_form_status_indicator_buttons`).toHaveCount(1);
+    expect(`.app_form_status_indicator_buttons`).toHaveClass("invisible");
 });

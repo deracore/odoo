@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Little eye
     document.body.addEventListener("mousedown", function (ev) {
-        if (ev.target.classList.contains("o_little_eye")) {
+        if (ev.target.classList.contains("app_little_eye")) {
             const closestInputGroup = ev.target.closest(".input-group");
             if (closestInputGroup) {
                 const formControl = closestInputGroup.querySelector(".form-control");
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // db modal
     document.body.addEventListener("click", function (ev) {
-        if (ev.target.classList.contains("o_database_action")) {
+        if (ev.target.classList.contains("app_database_action")) {
             ev.preventDefault();
             const db = ev.target.getAttribute("data-db");
             const target = ev.target.getAttribute("data-bs-target");
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             const modal = Modal.getOrCreateInstance(modalEl);
             modal.hide();
-            if (modalEl.classList.contains("o_database_backup")) {
+            if (modalEl.classList.contains("app_database_backup")) {
                 if (!document.querySelector(".alert-backup-long")) {
                     const listGroup = document.querySelector(".list-group");
                     if (listGroup) {

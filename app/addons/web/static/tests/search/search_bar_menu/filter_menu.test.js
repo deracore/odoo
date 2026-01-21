@@ -43,7 +43,7 @@ test("simple rendering with no filter", async () => {
         searchMenuTypes: ["filter"],
     });
     await toggleSearchBarMenu();
-    expect(".o_menu_item").toHaveCount(1);
+    expect(".app_menu_item").toHaveCount(1);
     expect(".dropdown-divider").toHaveCount(0);
     expect(".dropdown-item").toHaveCount(1);
     expect(`.dropdown-item`).toHaveText("Custom Filter...");
@@ -61,11 +61,11 @@ test("simple rendering with a single filter", async () => {
         `,
     });
     await toggleSearchBarMenu();
-    expect(`.o_menu_item`).toHaveCount(2);
-    expect(`.o_menu_item[role=menuitemcheckbox]`).toHaveCount(1);
-    expect(queryFirst`.o_menu_item`).toHaveProperty("ariaChecked", "false");
+    expect(`.app_menu_item`).toHaveCount(2);
+    expect(`.app_menu_item[role=menuitemcheckbox]`).toHaveCount(1);
+    expect(queryFirst`.app_menu_item`).toHaveProperty("ariaChecked", "false");
     expect(`.dropdown-divider`).toHaveCount(1);
-    expect(`.o_menu_item:nth-of-type(2)`).toHaveText("Custom Filter...");
+    expect(`.app_menu_item:nth-of-type(2)`).toHaveText("Custom Filter...");
 });
 
 test(`toggle a "simple" filter in filter menu works`, async () => {
@@ -83,13 +83,13 @@ test(`toggle a "simple" filter in filter menu works`, async () => {
     expect(getFacetTexts()).toEqual([]);
     expect(isItemSelected("Foo")).toBe(false);
     expect(searchBar.env.searchModel.domain).toEqual([]);
-    expect(".o_menu_item[role=menuitemcheckbox]").toHaveCount(1);
-    expect(queryFirst`.o_menu_item`).toHaveProperty("ariaChecked", "false");
+    expect(".app_menu_item[role=menuitemcheckbox]").toHaveCount(1);
+    expect(queryFirst`.app_menu_item`).toHaveProperty("ariaChecked", "false");
 
     await toggleMenuItem("Foo");
-    expect(queryFirst`.o_menu_item`).toHaveProperty("ariaChecked", "true");
+    expect(queryFirst`.app_menu_item`).toHaveProperty("ariaChecked", "true");
     expect(getFacetTexts()).toEqual(["Foo"]);
-    expect(`.o_searchview .o_searchview_facet .o_searchview_facet_label`).toHaveCount(1);
+    expect(`.app_searchview .app_searchview_facet .app_searchview_facet_label`).toHaveCount(1);
     expect(isItemSelected("Foo")).toBe(true);
     expect(searchBar.env.searchModel.domain).toEqual([["foo", "=", "qsdf"]]);
 
@@ -124,7 +124,7 @@ test("filter by a date field using period works", async () => {
     ]);
     expect(isItemSelected("Date")).toBe(true);
     expect(isOptionSelected("Date", "March")).toBe(true);
-    expect(queryAllTexts`.o-dropdown--menu .o_item_option`).toEqual([
+    expect(queryAllTexts`.app-dropdown--menu .app_item_option`).toEqual([
         "March",
         "February",
         "January",
@@ -600,8 +600,8 @@ test("arch order of groups of filters preserved", async () => {
         `,
     });
     await toggleSearchBarMenu();
-    expect(`.o_filter_menu .o_menu_item`).toHaveCount(12);
-    expect(queryAllTexts`.o_filter_menu .o_menu_item:not(.o_add_custom_filter)`).toEqual(
+    expect(`.app_filter_menu .app_menu_item`).toHaveCount(12);
+    expect(queryAllTexts`.app_filter_menu .app_menu_item:not(.app_add_custom_filter)`).toEqual(
         "1,2,3,4,5,6,7,8,9,10,11".split(",")
     );
 });
@@ -614,14 +614,14 @@ test("Open 'Custom Filter' dialog", async () => {
         searchViewArch: `<search></search>`,
     });
     await toggleSearchBarMenu();
-    expect(queryAllTexts`.o_filter_menu .dropdown-item`).toEqual(["Custom Filter..."]);
+    expect(queryAllTexts`.app_filter_menu .dropdown-item`).toEqual(["Custom Filter..."]);
     expect(".modal").toHaveCount(0);
 
     await openAddCustomFilterDialog();
     expect(".modal").toHaveCount(1);
     expect(".modal header").toHaveText("Custom Filter");
-    expect(".modal .o_domain_selector").toHaveCount(1);
-    expect(".modal .o_domain_selector .o_tree_editor_condition").toHaveCount(1);
+    expect(".modal .app_domain_selector").toHaveCount(1);
+    expect(".modal .app_domain_selector .app_tree_editor_condition").toHaveCount(1);
     expect(queryAllTexts`.modal footer button`).toEqual(["Search", "Discard"]);
 });
 
@@ -634,8 +634,8 @@ test("Default leaf in 'Custom Filter' dialog is based on ID (if no special field
     });
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    expect(".modal .o_domain_selector .o_tree_editor_condition").toHaveCount(1);
-    expect(".o_tree_editor_condition .o_model_field_selector_chain_part").toHaveCount(1);
+    expect(".modal .app_domain_selector .app_tree_editor_condition").toHaveCount(1);
+    expect(".app_tree_editor_condition .app_model_field_selector_chain_part").toHaveCount(1);
     expect(getCurrentPath()).toBe("Id");
 });
 
@@ -650,8 +650,8 @@ test("Default leaf in 'Custom Filter' dialog is based on first special field (if
     });
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    expect(".modal .o_domain_selector .o_tree_editor_condition").toHaveCount(1);
-    expect(".o_tree_editor_condition .o_model_field_selector_chain_part").toHaveCount(1);
+    expect(".modal .app_domain_selector .app_tree_editor_condition").toHaveCount(1);
+    expect(".app_tree_editor_condition .app_model_field_selector_chain_part").toHaveCount(1);
     expect(getCurrentPath()).toBe("Country");
 });
 
@@ -664,15 +664,15 @@ test("Default connector is '|' (any)", async () => {
     });
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    expect(".modal .o_domain_selector .o_tree_editor_condition").toHaveCount(1);
-    expect(".o_tree_editor_condition .o_model_field_selector_chain_part").toHaveCount(1);
+    expect(".modal .app_domain_selector .app_tree_editor_condition").toHaveCount(1);
+    expect(".app_tree_editor_condition .app_model_field_selector_chain_part").toHaveCount(1);
     expect(getCurrentPath()).toBe("Id");
     expect(SELECTORS.connectorValue).toHaveCount(1);
 
     await addNewRule();
     expect(SELECTORS.connectorValue).toHaveCount(1);
     expect(SELECTORS.connectorValue).toHaveText("any");
-    expect(".modal .o_domain_selector .o_tree_editor_condition").toHaveCount(2);
+    expect(".modal .app_domain_selector .app_tree_editor_condition").toHaveCount(2);
 });
 
 test("Add a custom filter", async () => {
@@ -694,7 +694,7 @@ test("Add a custom filter", async () => {
     expect(searchBar.env.searchModel.domain).toEqual([["foo", "=", "abc"]]);
 
     await toggleSearchBarMenu();
-    expect(".o_filter_menu .o_menu_item:not(.o_add_custom_filter)").toHaveCount(1);
+    expect(".app_filter_menu .app_menu_item:not(.app_add_custom_filter)").toHaveCount(1);
 
     await openAddCustomFilterDialog();
     await addNewRule();
@@ -717,7 +717,7 @@ test("Add a custom filter", async () => {
 
     // open again the search menu -> the custom filter should not be displayed
     await toggleSearchBarMenu();
-    expect(".o_filter_menu .o_menu_item:not(.o_add_custom_filter)").toHaveCount(1);
+    expect(".app_filter_menu .app_menu_item:not(.app_add_custom_filter)").toHaveCount(1);
 });
 
 test("Add a custom filter containing an expression", async () => {
@@ -735,7 +735,7 @@ test("Add a custom filter containing an expression", async () => {
 
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(
+    await contains(`.app_domain_selector_debug_container textarea`).edit(
         `[("foo", "in", [uid, 1, "a"])]`
     );
     await contains(".modal footer button").click();
@@ -760,7 +760,7 @@ test("Add a custom filter containing a between operator", async () => {
 
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(
+    await contains(`.app_domain_selector_debug_container textarea`).edit(
         `[("id", "between", [0, 10])]`
     );
     await contains(".modal footer button").click();
@@ -780,7 +780,7 @@ test("consistent display of ! in debug mode", async () => {
     });
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(
+    await contains(`.app_domain_selector_debug_container textarea`).edit(
         `["!", "|", ("foo", "=", 1 ), ("id", "=", 2)]`
     );
     expect(SELECTORS.connectorValue).toHaveText("none");
@@ -806,12 +806,12 @@ test("display of (not) set in facets", async () => {
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
     await openModelFieldSelectorPopover();
-    await contains(".o_model_field_selector_popover_item_name:contains(Boolean)").click();
+    await contains(".app_model_field_selector_popover_item_name:contains(Boolean)").click();
     await contains(".modal footer button").click();
     expect(getFacetTexts()).toEqual([`Boolean ${label("set")}`]);
     expect(searchBar.env.searchModel.domain).toEqual([["boolean", "!=", false]]);
 
-    await contains(".o_searchview_facet_label").click();
+    await contains(".app_searchview_facet_label").click();
     await selectOperator("not set");
     await contains(".modal footer button").click();
     expect(getFacetTexts()).toEqual([`Boolean ${label("not set")}`]);
@@ -838,9 +838,9 @@ test("Add a custom filter: notification on invalid domain", async () => {
 
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(`[(uid, uid, uid)]`);
+    await contains(`.app_domain_selector_debug_container textarea`).edit(`[(uid, uid, uid)]`);
     await contains(".modal footer button").click();
-    expect(".modal .o_domain_selector").toHaveCount(1);
+    expect(".modal .app_domain_selector").toHaveCount(1);
     expect.verifySteps(["notification"]);
 });
 
@@ -860,7 +860,7 @@ test("display names in facets", async () => {
     });
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(
+    await contains(`.app_domain_selector_debug_container textarea`).edit(
         `[("bar", "=", 1 ), ("bar", "in", [2, 5555]), ("bar", "!=", false), ("id", "=", 2)]`
     );
     await contains(".modal footer button").click();
@@ -912,7 +912,7 @@ test("display names in facets (with a property)", async () => {
     });
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(
+    await contains(`.app_domain_selector_debug_container textarea`).edit(
         `[("properties.m2o", "=", 1)]`
     );
     await contains(".modal footer button").click();
@@ -977,16 +977,16 @@ test("group by properties", async () => {
     // definition is fetched only when we open the properties menu
     expect.verifySteps([]);
 
-    await contains(".o_searchview_dropdown_toggler").click();
+    await contains(".app_searchview_dropdown_toggler").click();
     // definition is fetched only when we open the properties menu
     expect.verifySteps([]);
-    expect(queryAllTexts`.o_menu_item`).toEqual(["Properties"]);
+    expect(queryAllTexts`.app_menu_item`).toEqual(["Properties"]);
 
-    await contains(".o_accordion_toggle").click();
+    await contains(".app_accordion_toggle").click();
     await animationFrame();
     // now that we open the properties we fetch the definition
     expect.verifySteps(["definitionFetched"]);
-    expect(queryAllTexts`.o_accordion_values .dropdown-item`).toEqual([
+    expect(queryAllTexts`.app_accordion_values .dropdown-item`).toEqual([
         "My Text (First Parent)",
         "My Partner (First Parent)",
         "My Datetime (First Parent)",
@@ -994,8 +994,8 @@ test("group by properties", async () => {
     ]);
 
     // open the datetime item
-    await contains(queryAll`.o_accordion_values .dropdown-item`[2]).click();
-    expect(queryAllTexts`.o_accordion_values .o_accordion_values .dropdown-item`).toEqual([
+    await contains(queryAll`.app_accordion_values .dropdown-item`[2]).click();
+    expect(queryAllTexts`.app_accordion_values .app_accordion_values .dropdown-item`).toEqual([
         "Year",
         "Quarter",
         "Month",
@@ -1005,7 +1005,7 @@ test("group by properties", async () => {
     expect(searchBar.env.searchModel.groupBy).toEqual([]);
     expect(getFacetTexts()).toEqual([]);
 
-    await contains(queryAll`.o_accordion_values .o_accordion_values .dropdown-item`[1]).click();
+    await contains(queryAll`.app_accordion_values .app_accordion_values .dropdown-item`[1]).click();
     await animationFrame();
     expect(searchBar.env.searchModel.groupBy).toEqual(["properties.my_datetime:quarter"]);
     expect(getFacetTexts()).toEqual(["My Datetime: Quarter"]);
@@ -1026,7 +1026,7 @@ test("shorten descriptions of long lists", async function () {
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
     const values = new Array(500).fill(42525245);
-    await contains(`.o_domain_selector_debug_container textarea`).edit(
+    await contains(`.app_domain_selector_debug_container textarea`).edit(
         `[("id", "in", [${values}])]`
     );
     await contains(".modal footer button").click();
@@ -1046,7 +1046,7 @@ test(`"in range" facets`, async () => {
     await openAddCustomFilterDialog();
     await openModelFieldSelectorPopover();
     await contains(
-        ".o_model_field_selector_popover .o_model_field_selector_popover_item_name:contains(Birthday)"
+        ".app_model_field_selector_popover .app_model_field_selector_popover_item_name:contains(Birthday)"
     ).click();
     await addNewRule();
     await selectValue("custom range");
@@ -1081,7 +1081,7 @@ test(`Custom filter with "&"" as value`, async function () {
 
     await toggleSearchBarMenu();
     await openAddCustomFilterDialog();
-    await contains(`.o_domain_selector_debug_container textarea`).edit(`[("foo", "ilike", "&")]`);
+    await contains(`.app_domain_selector_debug_container textarea`).edit(`[("foo", "ilike", "&")]`);
     await contains(".modal footer button").click();
     expect(getFacetTexts()).toEqual([`Foo contains &`]);
     expect(searchBar.env.searchModel.domain).toEqual([["foo", "ilike", "&"]]);

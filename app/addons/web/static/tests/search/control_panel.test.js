@@ -26,13 +26,13 @@ defineModels([Foo]);
 test("simple rendering", async () => {
     await mountWithSearch(ControlPanel, { resModel: "foo" });
 
-    expect(`.o_control_panel_breadcrumbs`).toHaveCount(1);
-    expect(`.o_control_panel_actions`).toHaveCount(1);
-    expect(`.o_control_panel_actions > *`).toHaveCount(0);
-    expect(`.o_control_panel_navigation`).toHaveCount(1);
-    expect(`.o_control_panel_navigation > *`).toHaveCount(0);
-    expect(`.o_cp_switch_buttons`).toHaveCount(0);
-    expect(`.o_breadcrumb`).toHaveCount(1);
+    expect(`.app_control_panel_breadcrumbs`).toHaveCount(1);
+    expect(`.app_control_panel_actions`).toHaveCount(1);
+    expect(`.app_control_panel_actions > *`).toHaveCount(0);
+    expect(`.app_control_panel_navigation`).toHaveCount(1);
+    expect(`.app_control_panel_navigation > *`).toHaveCount(0);
+    expect(`.app_cp_switch_buttons`).toHaveCount(0);
+    expect(`.app_breadcrumb`).toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -56,7 +56,7 @@ test("breadcrumbs", async () => {
         }
     );
 
-    const breadcrumbItems = queryAll(`.o_breadcrumb li.breadcrumb-item, .o_breadcrumb .active`);
+    const breadcrumbItems = queryAll(`.app_breadcrumb li.breadcrumb-item, .app_breadcrumb .active`);
     expect(breadcrumbItems).toHaveCount(2);
     expect(breadcrumbItems[0]).toHaveText("Previous");
     expect(breadcrumbItems[1]).toHaveText("Current");
@@ -78,16 +78,16 @@ test("view switcher", async () => {
             ],
         }
     );
-    expect(`.o_control_panel_navigation .o_cp_switch_buttons`).toHaveCount(1);
-    expect(`.o_switch_view`).toHaveCount(2);
+    expect(`.app_control_panel_navigation .app_cp_switch_buttons`).toHaveCount(1);
+    expect(`.app_switch_view`).toHaveCount(2);
 
-    const views = queryAll`.o_switch_view`;
+    const views = queryAll`.app_switch_view`;
     expect(views[0]).toHaveAttribute("data-tooltip", "List");
     expect(views[0]).toHaveClass("active");
-    expect(`.o_switch_view:eq(0) .oi-view-list`).toHaveCount(1);
+    expect(`.app_switch_view:eq(0) .oi-view-list`).toHaveCount(1);
     expect(views[1]).toHaveAttribute("data-tooltip", "Kanban");
     expect(views[1]).not.toHaveClass("active");
-    expect(`.o_switch_view:eq(1) .oi-view-kanban`).toHaveCount(1);
+    expect(`.app_switch_view:eq(1) .oi-view-kanban`).toHaveCount(1);
 
     getService("action").switchView = (viewType) => expect.step(viewType);
     await click(views[1]);
@@ -106,13 +106,13 @@ test("view switcher (middle click)", async () => {
             ],
         }
     );
-    expect(`.o_control_panel_navigation .o_cp_switch_buttons`).toHaveCount(1);
-    expect(`.o_switch_view`).toHaveCount(2);
+    expect(`.app_control_panel_navigation .app_cp_switch_buttons`).toHaveCount(1);
+    expect(`.app_switch_view`).toHaveCount(2);
 
     getService("action").switchView = (viewType, props, options) =>
         expect.step(`${viewType} -- ${JSON.stringify(props)} -- ${JSON.stringify(options)}`);
 
-    await contains(".o_switch_view.o_kanban").click({ ctrlKey: true });
+    await contains(".app_switch_view.app_kanban").click({ ctrlKey: true });
     expect.verifySteps([`kanban -- {} -- {"newWindow":true}`]);
 });
 
@@ -129,7 +129,7 @@ test("views aria labels", async () => {
         }
     );
 
-    const views = queryAll`.o_switch_view`;
+    const views = queryAll`.app_switch_view`;
     expect(views[0]).toHaveAttribute("aria-label", "List View");
     expect(views[1]).toHaveAttribute("aria-label", "Kanban View");
 });
@@ -146,9 +146,9 @@ test("view switcher on mobile", async () => {
             ],
         }
     );
-    expect(`.o_control_panel_navigation .o_cp_switch_buttons`).toHaveCount(1);
+    expect(`.app_control_panel_navigation .app_cp_switch_buttons`).toHaveCount(1);
 
-    await click(".o_control_panel_navigation .o_cp_switch_buttons .dropdown-toggle");
+    await click(".app_control_panel_navigation .app_cp_switch_buttons .dropdown-toggle");
     await animationFrame();
 
     expect(`.dropdown-item`).toHaveCount(2);
@@ -175,11 +175,11 @@ test("pager", async () => {
     });
 
     await mountWithSearch(ControlPanel, { resModel: "foo" }, { pagerProps });
-    expect(`.o_pager`).toHaveCount(1);
+    expect(`.app_pager`).toHaveCount(1);
 
     pagerProps.total = 0;
     await animationFrame();
-    expect(`.o_pager`).toHaveCount(0);
+    expect(`.app_pager`).toHaveCount(0);
 });
 
 test("view switcher hotkey cycles through views", async () => {
@@ -194,15 +194,15 @@ test("view switcher hotkey cycles through views", async () => {
             [false, "kanban"],
         ],
     });
-    expect(`.o_list_view`).toHaveCount(1);
+    expect(`.app_list_view`).toHaveCount(1);
 
     await press(["alt", "shift", "v"]);
     await animationFrame();
-    expect(`.o_kanban_view`).toHaveCount(1);
+    expect(`.app_kanban_view`).toHaveCount(1);
 
     await press(["alt", "shift", "v"]);
     await animationFrame();
-    expect(`.o_list_view`).toHaveCount(1);
+    expect(`.app_list_view`).toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -220,18 +220,18 @@ test("hotkey overlay not overlapped by active view button", async () => {
     });
 
     await keyDown("alt");
-    expect(`.o_cp_switch_buttons .o_web_hotkey_overlay`).toHaveCount(1);
-    expect(`.o_switch_view.active`).toHaveCount(1);
+    expect(`.app_cp_switch_buttons .app_web_hotkey_overlay`).toHaveCount(1);
+    expect(`.app_switch_view.active`).toHaveCount(1);
 
     const hotkeyZIndex = Number(
-        getComputedStyle(queryFirst(`.o_cp_switch_buttons .o_web_hotkey_overlay`)).zIndex
+        getComputedStyle(queryFirst(`.app_cp_switch_buttons .app_web_hotkey_overlay`)).zIndex
     );
-    const buttonZIndex = Number(getComputedStyle(queryFirst(`.o_switch_view.active`)).zIndex);
+    const buttonZIndex = Number(getComputedStyle(queryFirst(`.app_switch_view.active`)).zIndex);
 
     expect(hotkeyZIndex).toBeGreaterThan(buttonZIndex);
 
     await keyUp("alt");
-    expect(`.o_cp_switch_buttons .o_web_hotkey_overlay`).toHaveCount(0);
+    expect(`.app_cp_switch_buttons .app_web_hotkey_overlay`).toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -255,10 +255,10 @@ test("control panel layout buttons in dialog", async () => {
         target: "new",
         views: [[false, "list"]],
     });
-    expect(`.o_list_view`).toHaveCount(1);
-    await contains(".o_data_cell").click();
+    expect(`.app_list_view`).toHaveCount(1);
+    await contains(".app_data_cell").click();
     expect(".modal-footer button:visible").toHaveCount(2);
-    expect(".o_control_panel_main_buttons button").toHaveCount(0, {
+    expect(".app_control_panel_main_buttons button").toHaveCount(0, {
         message: "layout buttons are not replicated in the control panel when inside a dialog",
     });
 });
@@ -284,12 +284,12 @@ test("Control panel is shown/hide on top when scrolling", async () => {
     target.style.overflow = "auto";
     target.scrollTo({ top: 50 });
     await animationFrame();
-    expect(".o_control_panel").toHaveClass("o_mobile_sticky", {
+    expect(".app_control_panel").toHaveClass("app_mobile_sticky", {
         message: "control panel becomes sticky when the target is not on top",
     });
     target.scrollTo({ top: -50 });
     await animationFrame();
-    expect(".o_control_panel").not.toHaveClass("o_mobile_sticky", {
+    expect(".app_control_panel").not.toHaveClass("app_mobile_sticky", {
         message: "control panel is not sticky anymore",
     });
 });

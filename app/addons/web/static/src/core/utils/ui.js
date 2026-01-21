@@ -190,13 +190,13 @@ export function getPreviousTabableElement(container = document.body) {
 export function addLoadingEffect(btnEl) {
     // Note that pe-none is used alongside "disabled" so that the behavior is
     // the same on links not using the "btn" class -> pointer-events disabled.
-    btnEl.classList.add("o_btn_loading", "disabled", "pe-none");
+    btnEl.classList.add("app_btn_loading", "disabled", "pe-none");
     btnEl.disabled = true;
     const loaderEl = document.createElement("span");
     loaderEl.classList.add("fa", "fa-circle-o-notch", "fa-spin", "me-2");
     btnEl.prepend(loaderEl);
     return () => {
-        btnEl.classList.remove("o_btn_loading", "disabled", "pe-none");
+        btnEl.classList.remove("app_btn_loading", "disabled", "pe-none");
         btnEl.disabled = false;
         loaderEl.remove();
     };

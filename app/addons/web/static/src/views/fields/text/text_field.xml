@@ -8,10 +8,10 @@
         <t t-else="">
             <div t-ref="div">
                 <textarea
-                    class="o_input"
+                    class="app_input"
                     t-att-class="{
-                        'o_field_translate': isTranslatable,
-                        'o_field_placeholder': props.dynamicPlaceholder,
+                        'app_field_translate': isTranslatable,
+                        'app_field_placeholder': props.dynamicPlaceholder,
                     }"
                     t-att-id="props.id"
                     t-att-placeholder="props.placeholder"
@@ -19,7 +19,7 @@
                     t-ref="textarea"
                     t-on-blur="onBlur"
                 />
-                <div class="o_field_input_buttons">
+                <div class="app_field_input_buttons">
                     <TranslationButton
                         t-if="isTranslatable"
                         fieldName="props.name"

@@ -18,14 +18,14 @@ test("Simple rendering with a single dialog", async () => {
         static template = xml`<Dialog title="'Welcome'">content</Dialog>`;
         static props = ["*"];
     }
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     getService("dialog").add(CustomDialog);
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Welcome");
-    await click(".o_dialog button");
+    await click(".app_dialog button");
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
 });
 
 test("Simple rendering and close a single dialog", async () => {
@@ -34,20 +34,20 @@ test("Simple rendering and close a single dialog", async () => {
         static template = xml`<Dialog title="'Welcome'">content</Dialog>`;
         static props = ["*"];
     }
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const removeDialog = getService("dialog").add(CustomDialog);
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Welcome");
 
     removeDialog();
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
 
     // Call a second time, the close on the dialog.
     // As the dialog is already close, this call is just ignored. No error should be raised.
     removeDialog();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
 });
 
 test("rendering with two dialogs", async () => {
@@ -56,19 +56,19 @@ test("rendering with two dialogs", async () => {
         static template = xml`<Dialog title="props.title">content</Dialog>`;
         static props = ["*"];
     }
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     getService("dialog").add(CustomDialog, { title: "Hello" });
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Hello");
 
     getService("dialog").add(CustomDialog, { title: "Sauron" });
     await animationFrame();
-    expect(".o_dialog").toHaveCount(2);
+    expect(".app_dialog").toHaveCount(2);
     expect(queryAllTexts("header .modal-title")).toEqual(["Hello", "Sauron"]);
-    await click(".o_dialog button");
+    await click(".app_dialog button");
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Sauron");
 });
 
@@ -80,19 +80,19 @@ test("multiple dialogs can become the UI active element", async () => {
     }
     getService("dialog").add(CustomDialog, { title: "Hello" });
     await animationFrame();
-    expect(queryOne(".o_dialog:not(.o_inactive_modal) .modal")).toBe(
+    expect(queryOne(".app_dialog:not(.app_inactive_modal) .modal")).toBe(
         getService("ui").activeElement
     );
 
     getService("dialog").add(CustomDialog, { title: "Sauron" });
     await animationFrame();
-    expect(queryOne(".o_dialog:not(.o_inactive_modal) .modal")).toBe(
+    expect(queryOne(".app_dialog:not(.app_inactive_modal) .modal")).toBe(
         getService("ui").activeElement
     );
 
     getService("dialog").add(CustomDialog, { title: "Rafiki" });
     await animationFrame();
-    expect(queryOne(".o_dialog:not(.o_inactive_modal) .modal")).toBe(
+    expect(queryOne(".app_dialog:not(.app_inactive_modal) .modal")).toBe(
         getService("ui").activeElement
     );
 });
@@ -124,15 +124,15 @@ test("a popover with an autofocus child can become the UI active element", async
 
     getService("dialog").add(CustomDialog, { title: "Hello" });
     await animationFrame();
-    expect(queryOne(".o_dialog:not(.o_inactive_modal) .modal")).toBe(
+    expect(queryOne(".app_dialog:not(.app_inactive_modal) .modal")).toBe(
         getService("ui").activeElement
     );
     expect(".btn.test").toBeFocused();
 
     await click(".btn.test");
     await animationFrame();
-    expect(queryOne(".o_popover")).toBe(getService("ui").activeElement);
-    expect(".o_popover input").toBeFocused();
+    expect(queryOne(".app_popover")).toBe(getService("ui").activeElement);
+    expect(".app_popover input").toBeFocused();
 });
 
 test("Interactions between multiple dialogs", async () => {
@@ -140,7 +140,7 @@ test("Interactions between multiple dialogs", async () => {
         const active = [];
         const names = [];
         for (let i = 0; i < modals.length; i++) {
-            active[i] = !modals[i].classList.contains("o_inactive_modal");
+            active[i] = !modals[i].classList.contains("app_inactive_modal");
             names[i] = modals[i].querySelector(".modal-title").textContent;
         }
         return { active, names };
@@ -159,30 +159,30 @@ test("Interactions between multiple dialogs", async () => {
     getService("dialog").add(CustomDialog, { title: "Rafiki" });
     await animationFrame();
 
-    expect(".o_dialog").toHaveCount(3);
-    let res = activity(queryAll(".o_dialog"));
+    expect(".app_dialog").toHaveCount(3);
+    let res = activity(queryAll(".app_dialog"));
     expect(res.active).toEqual([false, false, true]);
     expect(res.names).toEqual(["Hello", "Sauron", "Rafiki"]);
 
     await press("Escape", { bubbles: true });
     await animationFrame();
 
-    expect(".o_dialog").toHaveCount(2);
-    res = activity(queryAll(".o_dialog"));
+    expect(".app_dialog").toHaveCount(2);
+    res = activity(queryAll(".app_dialog"));
     expect(res.active).toEqual([false, true]);
     expect(res.names).toEqual(["Hello", "Sauron"]);
 
-    await click(".o_dialog:not(.o_inactive_modal) button");
+    await click(".app_dialog:not(.app_inactive_modal) button");
     await animationFrame();
 
-    expect(".o_dialog").toHaveCount(1);
-    res = activity(queryAll(".o_dialog"));
+    expect(".app_dialog").toHaveCount(1);
+    res = activity(queryAll(".app_dialog"));
     expect(res.active).toEqual([true]);
     expect(res.names).toEqual(["Hello"]);
 
-    await click(".o_dialog:not(.o_inactive_modal) button");
+    await click(".app_dialog:not(.app_inactive_modal) button");
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
 });
 
 test("dialog component crashes", async () => {
@@ -200,7 +200,7 @@ test("dialog component crashes", async () => {
     getService("dialog").add(FailingDialog);
     await animationFrame();
 
-    expect(".modal .o_error_dialog").toHaveCount(1);
+    expect(".modal .app_error_dialog").toHaveCount(1);
     expect.verifyErrors(["Error: Some Error"]);
 });
 
@@ -210,25 +210,25 @@ test("two dialogs, close the first one, closeAll", async () => {
         static template = xml`<Dialog title="props.title">content</Dialog>`;
         static props = ["*"];
     }
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const close = getService("dialog").add(CustomDialog, { title: "Hello" });
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Hello");
 
     getService("dialog").add(CustomDialog, { title: "Sauron" });
     await animationFrame();
-    expect(".o_dialog").toHaveCount(2);
+    expect(".app_dialog").toHaveCount(2);
     expect(queryAllTexts("header .modal-title")).toEqual(["Hello", "Sauron"]);
 
     close();
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Sauron");
 
     getService("dialog").closeAll();
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
 });
 
 test("two dialogs, close the first one twice, then closeAll", async () => {
@@ -237,7 +237,7 @@ test("two dialogs, close the first one twice, then closeAll", async () => {
         static template = xml`<Dialog title="props.title">content</Dialog>`;
         static props = ["*"];
     }
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     getService("dialog").add(
         CustomDialog,
         { title: "Hello" },
@@ -246,7 +246,7 @@ test("two dialogs, close the first one twice, then closeAll", async () => {
         }
     );
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Hello");
     expect(document.body).toHaveClass("modal-open");
 
@@ -258,19 +258,19 @@ test("two dialogs, close the first one twice, then closeAll", async () => {
         }
     );
     await animationFrame();
-    expect(".o_dialog").toHaveCount(2);
+    expect(".app_dialog").toHaveCount(2);
     expect(queryAllTexts("header .modal-title")).toEqual(["Hello", "Sauron"]);
 
     close();
     close();
     await animationFrame();
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Hello");
     expect(document.body).toHaveClass("modal-open");
     expect.verifySteps(["close dialog 2"]);
 
     getService("dialog").closeAll();
     await animationFrame();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     expect.verifySteps(["close dialog 1"]);
 });

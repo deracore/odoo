@@ -43,16 +43,16 @@ export async function startWebClient(Webclient) {
 
     const classList = document.body.classList;
     if (localization.direction === "rtl") {
-        classList.add("o_rtl");
+        classList.add("app_rtl");
     }
     if (user.userId === 1) {
-        classList.add("o_is_superuser");
+        classList.add("app_is_superuser");
     }
     if (env.debug) {
-        classList.add("o_debug");
+        classList.add("app_debug");
     }
     if (hasTouch()) {
-        classList.add("o_touch_device");
+        classList.add("app_touch_device");
     }
     // delete app.debug; // FIXME: some legacy code rely on this
     app.isReady = true;

@@ -12,7 +12,7 @@
             <field name='name'>base.partner.merge.automatic.wizard.form</field>
             <field name='model'>base.partner.merge.automatic.wizard</field>
             <field name='arch' type='xml'>
-                <form string='Automatic Merge Wizard' class="o_partner_merge_wizard">
+                <form string='Automatic Merge Wizard' class="app_partner_merge_wizard">
                     <sheet>
                         <group invisible="state != 'finished'">
                             <h2 colspan="2">There are no more contacts to merge for this request</h2>

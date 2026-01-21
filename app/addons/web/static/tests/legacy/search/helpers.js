@@ -167,7 +167,7 @@ export async function toggleMenu(el, menuFinder) {
 }
 
 export async function toggleMenuItem(el, itemFinder) {
-    const item = findItem(el, `.o_menu_item`, itemFinder);
+    const item = findItem(el, `.app_menu_item`, itemFinder);
     if (item.classList.contains("dropdown-toggle")) {
         await mouseEnter(item);
     } else {
@@ -176,8 +176,8 @@ export async function toggleMenuItem(el, itemFinder) {
 }
 
 export async function toggleMenuItemOption(el, itemFinder, optionFinder) {
-    const item = findItem(el, `.o_menu_item`, itemFinder);
-    const option = findItem(item.parentNode, ".o_item_option", optionFinder);
+    const item = findItem(el, `.app_menu_item`, itemFinder);
+    const option = findItem(item.parentNode, ".app_item_option", optionFinder);
     if (option.classList.contains("dropdown-toggle")) {
         await mouseEnter(option);
     } else {
@@ -186,27 +186,27 @@ export async function toggleMenuItemOption(el, itemFinder, optionFinder) {
 }
 
 export function isItemSelected(el, itemFinder) {
-    const item = findItem(el, `.o_menu_item`, itemFinder);
+    const item = findItem(el, `.app_menu_item`, itemFinder);
     return item.classList.contains("selected");
 }
 
 export function isOptionSelected(el, itemFinder, optionFinder) {
-    const item = findItem(el, `.o_menu_item`, itemFinder);
-    const option = findItem(item.parentNode, ".o_item_option", optionFinder);
+    const item = findItem(el, `.app_menu_item`, itemFinder);
+    const option = findItem(item.parentNode, ".app_item_option", optionFinder);
     return option.classList.contains("selected");
 }
 
 export function getMenuItemTexts(target) {
     const el = getNode(target);
-    return [...el.querySelectorAll(`.dropdown-menu .o_menu_item`)].map((e) => e.innerText.trim());
+    return [...el.querySelectorAll(`.dropdown-menu .app_menu_item`)].map((e) => e.innerText.trim());
 }
 
 export function getVisibleButtons(el) {
     return [
         ...$(el).find(
             [
-                "div.o_control_panel_breadcrumbs button:visible", // button in the breadcrumbs
-                "div.o_control_panel_actions button:visible", // buttons for list selection
+                "div.app_control_panel_breadcrumbs button:visible", // button in the breadcrumbs
+                "div.app_control_panel_actions button:visible", // buttons for list selection
             ].join(",")
         ),
     ];
@@ -215,14 +215,14 @@ export function getVisibleButtons(el) {
 /** Filter menu */
 
 export async function openAddCustomFilterDialog(el) {
-    await click(findItem(el, `.o_filter_menu .o_menu_item.o_add_custom_filter`));
+    await click(findItem(el, `.app_filter_menu .app_menu_item.app_add_custom_filter`));
 }
 
 /** Group by menu */
 
 export async function selectGroup(el, fieldName) {
-    el.querySelector(".o_add_custom_group_menu").value = fieldName;
-    await triggerEvent(el, ".o_add_custom_group_menu", "change");
+    el.querySelector(".app_add_custom_group_menu").value = fieldName;
+    await triggerEvent(el, ".app_add_custom_group_menu", "change");
 }
 
 export async function groupByMenu(el, fieldName) {
@@ -233,81 +233,81 @@ export async function groupByMenu(el, fieldName) {
 /** Favorite menu */
 
 export async function deleteFavorite(el, favoriteFinder) {
-    const favorite = findItem(el, `.o_favorite_menu .o_menu_item`, favoriteFinder);
+    const favorite = findItem(el, `.app_favorite_menu .app_menu_item`, favoriteFinder);
     await click(findItem(favorite, "i.fa-trash-o"));
 }
 
 export async function toggleSaveFavorite(el) {
-    await click(findItem(el, `.o_favorite_menu .o_add_favorite`));
+    await click(findItem(el, `.app_favorite_menu .app_add_favorite`));
 }
 
 export async function editFavoriteName(el, name) {
     const input = findItem(
         el,
-        `.o_favorite_menu .o_add_favorite + .o_accordion_values input[type="text"]`
+        `.app_favorite_menu .app_add_favorite + .app_accordion_values input[type="text"]`
     );
     input.value = name;
     await triggerEvents(input, null, ["input", "change"]);
 }
 
 export async function saveFavorite(el) {
-    await click(findItem(el, `.o_favorite_menu .o_add_favorite + .o_accordion_values button`));
+    await click(findItem(el, `.app_favorite_menu .app_add_favorite + .app_accordion_values button`));
 }
 
 /** Search bar */
 
 export function getFacetTexts(target) {
     const el = getNode(target);
-    return [...el.querySelectorAll(`div.o_searchview_facet`)].map((facet) =>
+    return [...el.querySelectorAll(`div.app_searchview_facet`)].map((facet) =>
         facet.innerText.trim()
     );
 }
 
 export async function removeFacet(el, facetFinder = 0) {
-    const facet = findItem(el, `div.o_searchview_facet`, facetFinder);
-    await click(facet.querySelector(".o_facet_remove"));
+    const facet = findItem(el, `div.app_searchview_facet`, facetFinder);
+    await click(facet.querySelector(".app_facet_remove"));
 }
 
 export async function editSearch(el, value) {
-    const input = findItem(el, `.o_searchview input`);
+    const input = findItem(el, `.app_searchview input`);
     input.value = value;
     await triggerEvent(input, null, "input");
 }
 
 export async function validateSearch(el) {
-    const input = findItem(el, `.o_searchview input`);
+    const input = findItem(el, `.app_searchview input`);
     await triggerEvent(input, null, "keydown", { key: "Enter" });
 }
 
 /** Switch View */
 
 export async function switchView(el, viewType) {
-    await click(findItem(el, `button.o_switch_view.o_${viewType}`));
+    await click(findItem(el, `button.app_switch_view.app_${viewType}`));
 }
 
 /** Pager */
 
 export function getPagerValue(el) {
-    const valueEl = findItem(el, ".o_pager .o_pager_value");
+    const valueEl = findItem(el, ".app_pager .app_pager_value");
     return valueEl.innerText.trim().split("-").map(Number);
 }
 
 export function getPagerLimit(el) {
-    const limitEl = findItem(el, ".o_pager .o_pager_limit");
+    const limitEl = findItem(el, ".app_pager .app_pager_limit");
     return Number(limitEl.innerText.trim());
 }
 
 export async function pagerNext(el) {
-    await click(findItem(el, ".o_pager button.o_pager_next"));
+    await click(findItem(el, ".app_pager button.app_pager_next"));
 }
 
 export async function pagerPrevious(el) {
-    await click(findItem(el, ".o_pager button.o_pager_previous"));
+    await click(findItem(el, ".app_pager button.app_pager_previous"));
 }
 
 export async function editPager(el, value) {
-    await click(findItem(el, ".o_pager .o_pager_value"));
-    await editInput(getNode(el), ".o_pager .o_pager_value.o_input", value);
+    await click(findItem(el, ".app_pager .app_pager_value"));
+    await editInput(getNode(el), ".app_pager .app_pager_value.app_input", value);
 }
 
 /////////////////////////////////////
@@ -319,10 +319,10 @@ export async function editPager(el, value) {
  * @returns {Promise}
  */
 export async function toggleActionMenu(el) {
-    await click(el.querySelector(".o_cp_action_menus .dropdown-toggle"));
+    await click(el.querySelector(".app_cp_action_menus .dropdown-toggle"));
 }
 
 /** SearchBarMenu */
 export async function toggleSearchBarMenu(el) {
-    await click(findItem(el, `.o_searchview_dropdown_toggler`));
+    await click(findItem(el, `.app_searchview_dropdown_toggler`));
 }

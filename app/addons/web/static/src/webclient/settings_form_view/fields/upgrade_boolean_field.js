@@ -35,7 +35,7 @@ export class UpgradeBooleanField extends BooleanField {
 export const upgradeBooleanField = {
     ...booleanField,
     component: UpgradeBooleanField,
-    additionalClasses: [...(booleanField.additionalClasses || []), "o_field_boolean"],
+    additionalClasses: [...(booleanField.additionalClasses || []), "app_field_boolean"],
 };
 
 registry.category("fields").add("upgrade_boolean", upgradeBooleanField);

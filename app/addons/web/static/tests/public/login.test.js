@@ -18,7 +18,7 @@ test("add and remove loading effect", async () => {
     // etc. for this test.
     const ev = new Event("submit");
     queryOne(".oe_login_form").dispatchEvent(ev);
-    expect("button").toHaveClass(["o_btn_loading", "disabled"]);
+    expect("button").toHaveClass(["app_btn_loading", "disabled"]);
     ev.preventDefault();
-    expect("button").not.toHaveClass(["o_btn_loading", "disabled"]);
+    expect("button").not.toHaveClass(["app_btn_loading", "disabled"]);
 });

@@ -1,15 +1,15 @@
-.o_error_dialog {
+.app_error_dialog {
     @include media-breakpoint-up(md) {
         padding: 1rem;
 
-        .o_error_detail {
+        .app_error_detail {
             > div pre {
                 max-height: 40vh;
             }
         }
     }
 
-    .o_error_detail {
+    .app_error_detail {
         > div {
             overflow: auto;
             pre {

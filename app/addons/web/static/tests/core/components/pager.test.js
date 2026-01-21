@@ -32,8 +32,8 @@ test("basic interactions", async () => {
         },
     });
 
-    await contains(".o_pager button.o_pager_next:enabled").click();
-    await contains(".o_pager button.o_pager_previous:enabled").click();
+    await contains(".app_pager button.app_pager_next:enabled").click();
+    await contains(".app_pager button.app_pager_previous:enabled").click();
 
     expect.verifySteps(["offset: 4, limit: 4", "offset: 0, limit: 4"]);
 });
@@ -51,12 +51,12 @@ test("basic interactions on desktop", async () => {
         },
     });
 
-    expect(".o_pager_counter .o_pager_value").toHaveText("1-4");
+    expect(".app_pager_counter .app_pager_value").toHaveText("1-4");
 
-    await click(".o_pager button.o_pager_next");
+    await click(".app_pager button.app_pager_next");
     await animationFrame();
 
-    expect(".o_pager_counter .o_pager_value").toHaveText("5-8");
+    expect(".app_pager_counter .app_pager_value").toHaveText("5-8");
 });
 
 test.tags("mobile");
@@ -73,29 +73,29 @@ test("basic interactions on mobile", async () => {
         },
     });
 
-    expect(".o_pager_indicator").toHaveCount(0);
+    expect(".app_pager_indicator").toHaveCount(0);
 
-    await click(".o_pager button.o_pager_next");
+    await click(".app_pager button.app_pager_next");
     await animationFrame();
     await animationFrame(); // transition
 
-    expect(".o_pager_indicator").toHaveCount(1);
-    expect(".o_pager_indicator .o_pager_value").toHaveText("5-8");
+    expect(".app_pager_indicator").toHaveCount(1);
+    expect(".app_pager_indicator .app_pager_value").toHaveText("5-8");
     await runAllTimers();
     await animationFrame();
 
-    expect(".o_pager_indicator").toHaveCount(0);
+    expect(".app_pager_indicator").toHaveCount(0);
 
-    await click(".o_pager button.o_pager_previous");
+    await click(".app_pager button.app_pager_previous");
     await animationFrame();
     await animationFrame(); // transition
 
-    expect(".o_pager_indicator").toHaveCount(1);
-    expect(".o_pager_indicator .o_pager_value").toHaveText("1-4");
+    expect(".app_pager_indicator").toHaveCount(1);
+    expect(".app_pager_indicator .app_pager_value").toHaveText("1-4");
     await runAllTimers();
     await animationFrame();
 
-    expect(".o_pager_indicator").toHaveCount(0);
+    expect(".app_pager_indicator").toHaveCount(0);
 });
 
 test.tags("desktop");
@@ -111,19 +111,19 @@ test("edit the pager", async () => {
         },
     });
 
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
 
     expect("input").toHaveCount(1);
-    expect(".o_pager_counter .o_pager_value").toHaveValue("1-4");
+    expect(".app_pager_counter .app_pager_value").toHaveValue("1-4");
 
-    await contains("input.o_pager_value").edit("1-6");
+    await contains("input.app_pager_value").edit("1-6");
     await click(document.body);
     await animationFrame();
     await animationFrame();
 
     expect("input").toHaveCount(0);
-    expect(".o_pager_counter .o_pager_value").toHaveText("1-6");
+    expect(".app_pager_counter .app_pager_value").toHaveText("1-6");
 });
 
 test.tags("desktop");
@@ -139,17 +139,17 @@ test("keydown on pager with same value", async () => {
         },
     });
 
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
 
     expect("input").toHaveCount(1);
-    expect(".o_pager_counter .o_pager_value").toHaveValue("1-4");
+    expect(".app_pager_counter .app_pager_value").toHaveValue("1-4");
     expect.verifySteps([]);
 
     await press("Enter");
     await animationFrame();
     expect("input").toHaveCount(0);
-    expect(".o_pager_counter .o_pager_value").toHaveText("1-4");
+    expect(".app_pager_counter .app_pager_value").toHaveText("1-4");
     expect.verifySteps(["pager-changed"]);
 });
 
@@ -167,16 +167,16 @@ test("pager value formatting", async () => {
         },
     });
 
-    expect(".o_pager_counter .o_pager_value").toHaveText("1-4");
+    expect(".app_pager_counter .app_pager_value").toHaveText("1-4");
 
     async function inputAndAssert(inputValue, expected) {
-        await click(".o_pager_counter .o_pager_value");
+        await click(".app_pager_counter .app_pager_value");
         await animationFrame();
-        await contains("input.o_pager_value").edit(inputValue);
+        await contains("input.app_pager_value").edit(inputValue);
         await click(document.body);
         await animationFrame();
         await animationFrame();
-        expect(".o_pager_counter .o_pager_value").toHaveText(expected);
+        expect(".app_pager_counter .app_pager_value").toHaveText(expected);
     }
 
     await inputAndAssert("4-4", "4");
@@ -208,13 +208,13 @@ test("pager disabling", async () => {
     });
 
     // Click and check button is disabled
-    await click(".o_pager button.o_pager_next");
+    await click(".app_pager button.app_pager_next");
     await animationFrame();
-    expect(".o_pager button.o_pager_next").toHaveAttribute("disabled");
+    expect(".app_pager button.app_pager_next").toHaveAttribute("disabled");
 
-    await click(".o_pager button.o_pager_previous");
+    await click(".app_pager button.app_pager_previous");
     await animationFrame();
-    expect(".o_pager button.o_pager_previous").toHaveAttribute("disabled");
+    expect(".app_pager button.app_pager_previous").toHaveAttribute("disabled");
 });
 
 test.tags("desktop");
@@ -237,16 +237,16 @@ test("pager disabling on desktop", async () => {
         },
     });
 
-    await click(".o_pager button.o_pager_next");
+    await click(".app_pager button.app_pager_next");
     await animationFrame();
     // Try to edit the pager value
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
 
     expect("button").toHaveCount(2);
     expect("button:nth-child(1)").toHaveAttribute("disabled");
     expect("button:nth-child(2)").toHaveAttribute("disabled");
-    expect("span.o_pager_value").toHaveCount(1);
+    expect("span.app_pager_value").toHaveCount(1);
 
     reloadPromise.resolve();
     await animationFrame();
@@ -255,12 +255,12 @@ test("pager disabling on desktop", async () => {
     expect("button").toHaveCount(2);
     expect("button:nth-child(1)").not.toHaveAttribute("disabled");
     expect("button:nth-child(2)").not.toHaveAttribute("disabled");
-    expect(".o_pager_counter .o_pager_value").toHaveText("5-8");
+    expect(".app_pager_counter .app_pager_value").toHaveText("5-8");
 
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
 
-    expect("input.o_pager_value").toHaveCount(1);
+    expect("input.app_pager_value").toHaveCount(1);
 });
 
 test.tags("desktop");
@@ -275,7 +275,7 @@ test("desktop input interaction", async () => {
             },
         },
     });
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
 
     expect("input").toHaveCount(1);
@@ -300,15 +300,15 @@ test("updateTotal props: click on total", async () => {
         },
     });
 
-    expect(".o_pager_value").toHaveText("1-5");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("1-5");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await click(".o_pager_limit_fetch");
+    await click(".app_pager_limit_fetch");
     await animationFrame();
-    expect(".o_pager_value").toHaveText("1-5");
-    expect(".o_pager_limit").toHaveText("25");
-    expect(".o_pager_limit").not.toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("1-5");
+    expect(".app_pager_limit").toHaveText("25");
+    expect(".app_pager_limit").not.toHaveClass("app_pager_limit_fetch");
 });
 
 test.tags("desktop");
@@ -332,27 +332,27 @@ test("updateTotal props: click next", async () => {
         },
     });
 
-    expect(".o_pager_value").toHaveText("1-5");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("1-5");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await contains(".o_pager_next:enabled").click();
+    await contains(".app_pager_next:enabled").click();
 
-    expect(".o_pager_value").toHaveText("6-10");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("6-10");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await contains(".o_pager_next:enabled").click();
+    await contains(".app_pager_next:enabled").click();
 
-    expect(".o_pager_value").toHaveText("11-15");
-    expect(".o_pager_limit").toHaveText("15+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("11-15");
+    expect(".app_pager_limit").toHaveText("15+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await contains(".o_pager_next:enabled").click();
+    await contains(".app_pager_next:enabled").click();
 
-    expect(".o_pager_value").toHaveText("16-18");
-    expect(".o_pager_limit").toHaveText("18");
-    expect(".o_pager_limit").not.toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("16-18");
+    expect(".app_pager_limit").toHaveText("18");
+    expect(".app_pager_limit").not.toHaveClass("app_pager_limit_fetch");
 });
 
 test.tags("desktop");
@@ -376,30 +376,30 @@ test("updateTotal props: edit input", async () => {
         },
     });
 
-    expect(".o_pager_value").toHaveText("1-5");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("1-5");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
-    await contains("input.o_pager_value").edit("3-8");
+    await contains("input.app_pager_value").edit("3-8");
     await click(document.body);
     await animationFrame();
     await animationFrame();
 
-    expect(".o_pager_value").toHaveText("3-8");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("3-8");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await click(".o_pager_value");
+    await click(".app_pager_value");
     await animationFrame();
-    await contains("input.o_pager_value").edit("3-20");
+    await contains("input.app_pager_value").edit("3-20");
     await click(document.body);
     await animationFrame();
     await animationFrame();
-    expect(".o_pager_value").toHaveText("3-18");
-    expect(".o_pager_limit").toHaveText("18");
-    expect(".o_pager_limit").not.toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("3-18");
+    expect(".app_pager_limit").toHaveText("18");
+    expect(".app_pager_limit").not.toHaveClass("app_pager_limit_fetch");
 });
 
 test.tags("desktop");
@@ -416,16 +416,16 @@ test("updateTotal props: can use next even if single page", async () => {
         },
     });
 
-    expect(".o_pager_value").toHaveText("1-5");
-    expect(".o_pager_limit").toHaveText("5+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("1-5");
+    expect(".app_pager_limit").toHaveText("5+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await click(".o_pager_next");
+    await click(".app_pager_next");
     await animationFrame();
 
-    expect(".o_pager_value").toHaveText("6-10");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("6-10");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 });
 
 test.tags("desktop");
@@ -446,15 +446,15 @@ test("updateTotal props: click previous", async () => {
         },
     });
 
-    expect(".o_pager_value").toHaveText("1-5");
-    expect(".o_pager_limit").toHaveText("10+");
-    expect(".o_pager_limit").toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("1-5");
+    expect(".app_pager_limit").toHaveText("10+");
+    expect(".app_pager_limit").toHaveClass("app_pager_limit_fetch");
 
-    await click(".o_pager_previous");
+    await click(".app_pager_previous");
     await animationFrame();
     await animationFrame(); // double call to updateProps
 
-    expect(".o_pager_value").toHaveText("21-23");
-    expect(".o_pager_limit").toHaveText("23");
-    expect(".o_pager_limit").not.toHaveClass("o_pager_limit_fetch");
+    expect(".app_pager_value").toHaveText("21-23");
+    expect(".app_pager_limit").toHaveText("23");
+    expect(".app_pager_limit").not.toHaveClass("app_pager_limit_fetch");
 });

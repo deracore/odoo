@@ -4,12 +4,12 @@
     <t t-name="web.CalendarQuickCreate">
         <Dialog size="'sm'" title="dialogTitle">
             <div class="o-calendar-quick-create mb-3">
-                <label for="title" class="col-form-label o_form_label">
+                <label for="title" class="col-form-label app_form_label">
                     Name:
                 </label>
                 <input
                     type="text"
-                    class="o_input o_required_modifier o-calendar-quick-create--input"
+                    class="app_input app_required_modifier o-calendar-quick-create--input"
                     name="title"
                     t-ref="title"
                     t-on-keyup="onInputKeyup"

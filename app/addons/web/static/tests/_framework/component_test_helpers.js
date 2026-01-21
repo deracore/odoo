@@ -78,11 +78,11 @@ export function findComponent(parent, predicate) {
  */
 export function getDropdownMenu(togglerSelector) {
     if (getMockEnv().isSmall) {
-        return queryFirst(".o-dropdown--menu", { eq: -1 });
+        return queryFirst(".app-dropdown--menu", { eq: -1 });
     }
     let el = queryFirst(togglerSelector);
-    if (el && !el.classList.contains("o-dropdown")) {
-        el = el.querySelector(".o-dropdown");
+    if (el && !el.classList.contains("app-dropdown")) {
+        el = el.querySelector(".app-dropdown");
     }
     if (!el) {
         throw new Error(`getDropdownMenu: Could not find element "${togglerSelector}".`);
@@ -117,7 +117,7 @@ export async function mountWithCleanup(ComponentClass, options) {
         containerEnv,
         customDirectives = defaultCustomDirectives,
         env,
-        fixtureClassName = "o_web_client",
+        fixtureClassName = "app_web_client",
         getTemplate = defaultGetTemplate,
         globalValues = defaultGlobalValues,
         noMainContainer,

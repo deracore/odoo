@@ -34,9 +34,9 @@ export class RibbonWidget extends Component {
     get classes() {
         let classes = this.props.bgClass;
         if (this.props.text.length > 15) {
-            classes += " o_small";
+            classes += " app_small";
         } else if (this.props.text.length > 10) {
-            classes += " o_medium";
+            classes += " app_medium";
         }
         return classes;
     }

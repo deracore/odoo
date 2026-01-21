@@ -23,7 +23,7 @@ test("BooleanIcon field in form view", async () => {
                 <field name="foo" widget="boolean_icon" options="{'icon': 'fa-trash'}" />
             </form>`,
     });
-    expect(".o_field_boolean_icon button").toHaveCount(2);
+    expect(".app_field_boolean_icon button").toHaveCount(2);
     expect("[name='bar'] button").toHaveAttribute("data-tooltip", "Bar field");
     expect("[name='bar'] button").toHaveClass("btn-primary fa-recycle");
     expect("[name='foo'] button").toHaveClass("btn-outline-secondary fa-trash");

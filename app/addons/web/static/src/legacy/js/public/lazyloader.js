@@ -73,7 +73,7 @@ function waitLazy() {
     }
     waitingLazy = true;
 
-    document.body.classList.add('o_lazy_js_waiting');
+    document.body.classList.add('app_lazy_js_waiting');
 
     // TODO should probably find the wrapwrap another way but in future versions
     // the element will be gone anyway.
@@ -89,7 +89,7 @@ function waitLazy() {
             // this was added as a stable fix/imp, but this is a compromise: on
             // next page visits, the cache should limit to effect of the lazy
             // loading anyway.
-            return !el.classList.contains('o_no_wait_lazy_js')
+            return !el.classList.contains('app_no_wait_lazy_js')
                 // ... we also allow do not consider links with a href which is
                 // not "#". They could be linked to handlers that prevent their
                 // default behavior but we consider that following the link
@@ -108,7 +108,7 @@ function waitLazy() {
         }
     }
 
-    for (const formEl of document.querySelectorAll('form:not(.o_no_wait_lazy_js)')) {
+    for (const formEl of document.querySelectorAll('form:not(.app_no_wait_lazy_js)')) {
         registerLoadingEffectHandler(formEl, 'submit', ev => {
             ev.preventDefault();
             ev.stopImmediatePropagation();
@@ -124,7 +124,7 @@ function stopWaitingLazy() {
     }
     waitingLazy = false;
 
-    document.body.classList.remove('o_lazy_js_waiting');
+    document.body.classList.remove('app_lazy_js_waiting');
 
     for (const { el, type, handler } of loadingEffectHandlers) {
         el.removeEventListener(type, handler, {capture: true});

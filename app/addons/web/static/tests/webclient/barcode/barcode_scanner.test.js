@@ -75,7 +75,7 @@ test("Barcode scanner crop overlay", async () => {
 
     const firstBarcodeFound = scanBarcode(env);
     await videoReady;
-    await contains(".o_crop_icon").dragAndDrop(".o_crop_container", {
+    await contains(".app_crop_icon").dragAndDrop(".app_crop_container", {
         relative: true,
         position: {
             x: 0,
@@ -156,17 +156,17 @@ test("Closing barcode scanner before camera loads should not throw an error", as
     scanBarcode(env);
 
     await animationFrame();
-    expect(".o-barcode-modal").toHaveCount(1)
+    expect(".app-barcode-modal").toHaveCount(1)
 
     await press("escape");
 
     await animationFrame();
-    expect(".o-barcode-modal").toHaveCount(0)
+    expect(".app-barcode-modal").toHaveCount(0)
 
     cameraReady.resolve();
 
     await animationFrame()
-    expect(".o_error_dialog").toHaveCount(0)
+    expect(".app_error_dialog").toHaveCount(0)
 });
 
 test("Closing barcode scanner while video is loading should not cause errors", async () => {
@@ -185,13 +185,13 @@ test("Closing barcode scanner while video is loading should not cause errors", a
     scanBarcode(env);
 
     await animationFrame();
-    expect(".o-barcode-modal").toHaveCount(1)
+    expect(".app-barcode-modal").toHaveCount(1)
 
     await press("escape");
 
     await animationFrame();
-    expect(".o-barcode-modal").toHaveCount(0)
+    expect(".app-barcode-modal").toHaveCount(0)
 
     await animationFrame()
-    expect(".o_error_dialog").toHaveCount(0)
+    expect(".app_error_dialog").toHaveCount(0)
 });

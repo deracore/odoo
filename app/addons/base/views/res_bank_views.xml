@@ -16,17 +16,17 @@
                         <group>
                             <group name="address_details">
                                 <label for="street" string="Bank Address"/>
-                                <div class="o_address_format">
-                                    <field name="street" placeholder="Street..." class="o_address_street"/>
-                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                                    <field name="city" placeholder="City" class="o_address_city"/>
-                                    <field name="state" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
-                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                                    <field name="country" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                <div class="app_address_format">
+                                    <field name="street" placeholder="Street..." class="app_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="app_address_street"/>
+                                    <field name="city" placeholder="City" class="app_address_city"/>
+                                    <field name="state" class="app_address_state" placeholder="State" options='{"no_open": True}'/>
+                                    <field name="zip" placeholder="ZIP" class="app_address_zip"/>
+                                    <field name="country" placeholder="Country" class="app_address_country" options='{"no_open": True, "no_create": True}'/>
                                 </div>
                             </group>
                             <group name="communication_details">
-                                <field name="phone" class="o_force_ltr"/>
+                                <field name="phone" class="app_force_ltr"/>
                                 <field name="email" widget="email"/>
                             </group>
                         </group>
@@ -65,7 +65,7 @@
             <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="res_bank_view_search"/>
             <field name="help" type="html">
-              <p class="o_view_nocontent_smiling_face">
+              <p class="app_view_nocontent_smiling_face">
                 Create a Bank
               </p><p>
                 Banks are the financial institutions at which you and your contacts have their accounts.
@@ -143,7 +143,7 @@
             <field name="res_model">res.partner.bank</field>
             <field name="view_mode">list,form</field>
             <field name="help" type="html">
-              <p class="o_view_nocontent_smiling_face">
+              <p class="app_view_nocontent_smiling_face">
                 Create a Bank Account
               </p><p>
                 From here you can manage all bank accounts linked to you and your contacts.

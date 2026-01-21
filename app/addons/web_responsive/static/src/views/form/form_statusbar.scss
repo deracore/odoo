@@ -1,0 +1,22 @@
+/* Copyright 2023 Taras Shabaranskyi
+ * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
+
+.app_xxl_form_view {
+    .app_form_sheet_bg {
+        overflow: unset;
+
+        .app_form_sheet {
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $o-brand-app;
+                border-radius: 6px;
+            }
+        }
+    }
+}

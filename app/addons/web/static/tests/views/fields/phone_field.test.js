@@ -36,9 +36,9 @@ test("PhoneField in form view on normal screens (readonly)", async () => {
             </form>`,
         resId: 1,
     });
-    expect(".o_field_phone a").toHaveCount(1);
-    expect(".o_field_phone a").toHaveText("yop");
-    expect(".o_field_phone a").toHaveAttribute("href", "tel:yop");
+    expect(".app_field_phone a").toHaveCount(1);
+    expect(".app_field_phone a").toHaveText("yop");
+    expect(".app_field_phone a").toHaveAttribute("href", "tel:yop");
 });
 
 test("PhoneField in form view on normal screens (edit)", async () => {
@@ -57,9 +57,9 @@ test("PhoneField in form view on normal screens (edit)", async () => {
     });
     expect(`input[type="tel"]`).toHaveCount(1);
     expect(`input[type="tel"]`).toHaveValue("yop");
-    expect(".o_field_phone a").toHaveCount(1);
-    expect(".o_field_phone a").toHaveText("Call");
-    expect(".o_field_phone a").toHaveAttribute("href", "tel:yop");
+    expect(".app_field_phone a").toHaveCount(1);
+    expect(".app_field_phone a").toHaveText("Call");
+    expect(".app_field_phone a").toHaveAttribute("href", "tel:yop");
 
     // change value in edit mode
     await click(`input[type="tel"]`);
@@ -77,26 +77,26 @@ test("PhoneField in editable list view on normal screens", async () => {
         resModel: "partner",
         arch: '<list editable="bottom"><field name="foo" widget="phone"/></list>',
     });
-    expect("tbody td:not(.o_list_record_selector).o_data_cell").toHaveCount(2);
-    expect("tbody td:not(.o_list_record_selector) a:first").toHaveText("yop");
-    expect(".o_field_widget a.o_form_uri").toHaveCount(2);
+    expect("tbody td:not(.app_list_record_selector).app_data_cell").toHaveCount(2);
+    expect("tbody td:not(.app_list_record_selector) a:first").toHaveText("yop");
+    expect(".app_field_widget a.app_form_uri").toHaveCount(2);
 
     // Edit a line and check the result
-    const cell = queryFirst("tbody td:not(.o_list_record_selector)");
+    const cell = queryFirst("tbody td:not(.app_list_record_selector)");
     await click(cell);
     await animationFrame();
-    expect(cell.parentElement).toHaveClass("o_selected_row");
-    expect(`tbody td:not(.o_list_record_selector) input`).toHaveValue("yop");
+    expect(cell.parentElement).toHaveClass("app_selected_row");
+    expect(`tbody td:not(.app_list_record_selector) input`).toHaveValue("yop");
 
-    await click(`tbody td:not(.o_list_record_selector) input`);
+    await click(`tbody td:not(.app_list_record_selector) input`);
     await edit("new");
     await animationFrame();
-    await click(".o_control_panel_main_buttons .o_list_button_save");
+    await click(".app_control_panel_main_buttons .app_list_button_save");
     await animationFrame();
 
-    expect(".o_selected_row").toHaveCount(0);
-    expect("tbody td:not(.o_list_record_selector) a:first").toHaveText("new");
-    expect(".o_field_widget a.o_form_uri").toHaveCount(2);
+    expect(".app_selected_row").toHaveCount(0);
+    expect("tbody td:not(.app_list_record_selector) a:first").toHaveText("new");
+    expect(".app_field_widget a.app_form_uri").toHaveCount(2);
 });
 
 test("use TAB to navigate to a PhoneField", async () => {
@@ -114,9 +114,9 @@ test("use TAB to navigate to a PhoneField", async () => {
             </form>`,
     });
 
-    await pointerDown(".o_field_widget[name=name] input");
+    await pointerDown(".app_field_widget[name=name] input");
 
-    expect(".o_field_widget[name=name] input").toBeFocused();
+    expect(".app_field_widget[name=name] input").toBeFocused();
     expect(queryOne`[name="foo"] input:only`).toBe(getNextTabableElement());
 });
 
@@ -134,7 +134,7 @@ test("phone field with placeholder", async () => {
                 </sheet>
             </form>`,
     });
-    expect(".o_field_widget[name='foo'] input").toHaveProperty("placeholder", "Placeholder");
+    expect(".app_field_widget[name='foo'] input").toHaveProperty("placeholder", "Placeholder");
 });
 
 test("placeholder_field shows as placeholder", async () => {
@@ -149,7 +149,7 @@ test("placeholder_field shows as placeholder", async () => {
             <field name="char"/>
         </form>`,
     });
-    expect(`.o_field_phone input`).toHaveAttribute("placeholder", "My Placeholder");
+    expect(`.app_field_phone input`).toHaveAttribute("placeholder", "My Placeholder");
 });
 
 test("unset and readonly PhoneField", async () => {
@@ -167,7 +167,7 @@ test("unset and readonly PhoneField", async () => {
                 </sheet>
             </form>`,
     });
-    expect(".o_field_widget[name='foo'] a").toHaveCount(0);
+    expect(".app_field_widget[name='foo'] a").toHaveCount(0);
 });
 
 test("href is correctly formatted", async () => {
@@ -187,8 +187,8 @@ test("href is correctly formatted", async () => {
         resId: 1,
     });
 
-    expect(".o_field_phone a").toHaveText("+12 345 67 89 00");
-    expect(".o_field_phone a").toHaveAttribute("href", "tel:+12345678900");
+    expect(".app_field_phone a").toHaveText("+12 345 67 89 00");
+    expect(".app_field_phone a").toHaveAttribute("href", "tel:+12345678900");
 });
 
 test("New record, fill in phone field, then click on call icon and save", async () => {
@@ -206,16 +206,16 @@ test("New record, fill in phone field, then click on call icon and save", async 
             </form>`,
     });
 
-    await contains(".o_field_widget[name=name] input").edit("TEST");
-    await contains(".o_field_widget[name=foo] input").edit("+12345678900");
+    await contains(".app_field_widget[name=name] input").edit("TEST");
+    await contains(".app_field_widget[name=foo] input").edit("+12345678900");
 
     await click(`input[type="tel"]`);
 
-    expect(`.o_form_status_indicator_buttons`).not.toHaveClass("invisible");
+    expect(`.app_form_status_indicator_buttons`).not.toHaveClass("invisible");
 
     await clickSave();
 
-    expect(".o_field_widget[name=name] input").toHaveValue("TEST");
-    expect(".o_field_widget[name=foo] input").toHaveValue("+12345678900");
-    expect(`.o_form_status_indicator_buttons`).toHaveClass("invisible");
+    expect(".app_field_widget[name=name] input").toHaveValue("TEST");
+    expect(".app_field_widget[name=foo] input").toHaveValue("+12345678900");
+    expect(`.app_form_status_indicator_buttons`).toHaveClass("invisible");
 });

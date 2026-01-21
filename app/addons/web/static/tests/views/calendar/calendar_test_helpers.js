@@ -246,7 +246,7 @@ export function findDateCell(date) {
  * @returns {HTMLElement}
  */
 export function findEvent(eventId) {
-    return queryFirst(`.o_event[data-event-id="${eventId}"]`);
+    return queryFirst(`.app_event[data-event-id="${eventId}"]`);
 }
 
 /**
@@ -270,7 +270,7 @@ export function findTimeRow(time) {
  * @returns {HTMLElement}
  */
 export function findFilterPanelSection(sectionName) {
-    return queryFirst(`.o_calendar_filter[data-name="${sectionName}"]`);
+    return queryFirst(`.app_calendar_filter[data-name="${sectionName}"]`);
 }
 
 /**
@@ -280,7 +280,7 @@ export function findFilterPanelSection(sectionName) {
  */
 export function findFilterPanelFilter(sectionName, filterValue) {
     const root = findFilterPanelSection(sectionName);
-    return queryFirst(`.o_calendar_filter_item[data-value="${filterValue}"]`, { root });
+    return queryFirst(`.app_calendar_filter_item[data-value="${filterValue}"]`, { root });
 }
 
 /**
@@ -289,7 +289,7 @@ export function findFilterPanelFilter(sectionName, filterValue) {
  */
 export function findFilterPanelSectionFilter(sectionName) {
     const root = findFilterPanelSection(sectionName);
-    return queryFirst(`.o_calendar_filter_items_checkall`, { root });
+    return queryFirst(`.app_calendar_filter_items_checkall`, { root });
 }
 
 /**
@@ -299,7 +299,7 @@ export function findFilterPanelSectionFilter(sectionName) {
 export async function pickDate(date) {
     const day = date.split("-")[2];
     const iDay = parseInt(day, 10) - 1;
-    await click(`.o_datetime_picker .o_date_item_cell:not(.o_out_of_range):eq(${iDay})`);
+    await click(`.app_datetime_picker .app_date_item_cell:not(.app_out_of_range):eq(${iDay})`);
     await animationFrame();
 }
 
@@ -348,7 +348,7 @@ export function expandCalendarView() {
     do {
         tmpElement = tmpElement.parentElement;
         tmpElement.classList.add("h-100");
-    } while (!tmpElement.classList.contains("o_view_controller"));
+    } while (!tmpElement.classList.contains("app_view_controller"));
 }
 
 /**
@@ -439,7 +439,7 @@ export async function closeCwPopOver() {
     if (getMockEnv().isSmall) {
         await contains(`.oi-arrow-left`).click();
     } else {
-        await contains(`.o_cw_popover_close`).click();
+        await contains(`.app_cw_popover_close`).click();
     }
 }
 /**
@@ -512,7 +512,7 @@ export async function moveEventToTime(eventId, dateTime) {
 }
 
 export async function selectHourOnPicker(selectedValue) {
-    await click(".o_time_picker_input:eq(0)");
+    await click(".app_time_picker_input:eq(0)");
     await animationFrame();
     await edit(selectedValue, { confirm: "enter" });
     await animationFrame();
@@ -639,19 +639,19 @@ export async function resizeEventToDate(eventId, date) {
  * @returns {Promise<void>}
  */
 export async function changeScale(scale) {
-    await contains(`.o_view_scale_selector .scale_button_selection`).click();
-    await contains(`.o-dropdown--menu .o_scale_button_${scale}`).click();
+    await contains(`.app_view_scale_selector .scale_button_selection`).click();
+    await contains(`.app-dropdown--menu .app_scale_button_${scale}`).click();
 }
 
 export async function displayCalendarPanel() {
     if (getMockEnv().isSmall) {
-        await contains(".o_calendar_container .o_other_calendar_panel").click();
+        await contains(".app_calendar_container .app_other_calendar_panel").click();
     }
 }
 
 export async function hideCalendarPanel() {
     if (getMockEnv().isSmall) {
-        await contains(".o_calendar_container .o_other_calendar_panel").click();
+        await contains(".app_calendar_container .app_other_calendar_panel").click();
     }
 }
 
@@ -662,13 +662,13 @@ export async function hideCalendarPanel() {
 export async function navigate(direction) {
     if (getMockEnv().isSmall) {
         if (direction === "next") {
-            await swipeLeft(".o_calendar_widget");
+            await swipeLeft(".app_calendar_widget");
         } else {
-            await swipeRight(".o_calendar_widget");
+            await swipeRight(".app_calendar_widget");
         }
         await advanceFrame(16);
     } else {
-        await contains(`.o_calendar_navigation_buttons .o_calendar_button_${direction}`).click();
+        await contains(`.app_calendar_navigation_buttons .app_calendar_button_${direction}`).click();
     }
 }
 
@@ -678,7 +678,7 @@ export async function navigate(direction) {
  * @returns {Promise<void>}
  */
 export async function toggleFilter(sectionName, filterValue) {
-    const otherCalendarPanel = queryFirst(".o_other_calendar_panel");
+    const otherCalendarPanel = queryFirst(".app_other_calendar_panel");
     if (otherCalendarPanel) {
         click(otherCalendarPanel);
         await animationFrame();
@@ -704,7 +704,7 @@ export async function toggleFilter(sectionName, filterValue) {
  * @returns {Promise<void>}
  */
 export async function toggleSectionFilter(sectionName) {
-    const otherCalendarPanel = queryFirst(".o_other_calendar_panel");
+    const otherCalendarPanel = queryFirst(".app_other_calendar_panel");
     if (otherCalendarPanel) {
         await click(otherCalendarPanel);
         await animationFrame();
@@ -732,7 +732,7 @@ export async function toggleSectionFilter(sectionName) {
  */
 export async function removeFilter(sectionName, filterValue) {
     const root = findFilterPanelFilter(sectionName, filterValue);
-    const button = queryFirst(`.o_remove`, { root });
+    const button = queryFirst(`.app_remove`, { root });
 
     instantScrollTo(button);
 

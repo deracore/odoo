@@ -43,10 +43,10 @@ test("simple rendering with no favorite (without ability to save)", async () => 
     );
 
     await toggleSearchBarMenu();
-    expect(`.o_favorite_menu .fa.fa-star`).toHaveCount(1);
-    expect(`.o_favorite_menu .o_dropdown_title`).toHaveText(/^favorites$/i);
-    expect(`.o_favorite_menu`).toHaveCount(1);
-    expect(`.o_favorite_menu .o_menu_item`).toHaveCount(0);
+    expect(`.app_favorite_menu .fa.fa-star`).toHaveCount(1);
+    expect(`.app_favorite_menu .app_dropdown_title`).toHaveText(/^favorites$/i);
+    expect(`.app_favorite_menu`).toHaveCount(1);
+    expect(`.app_favorite_menu .app_menu_item`).toHaveCount(0);
 });
 
 test("simple rendering with no favorite", async () => {
@@ -63,11 +63,11 @@ test("simple rendering with no favorite", async () => {
     );
 
     await toggleSearchBarMenu();
-    expect(`.o_favorite_menu .fa.fa-star`).toHaveCount(1);
-    expect(`.o_favorite_menu .o_dropdown_title`).toHaveText(/^favorites$/i);
-    expect(`.o_favorite_menu`).toHaveCount(1);
-    expect(`.o_favorite_menu .dropdown-divider`).toHaveCount(0);
-    expect(`.o_favorite_menu .o_add_favorite`).toHaveCount(1);
+    expect(`.app_favorite_menu .fa.fa-star`).toHaveCount(1);
+    expect(`.app_favorite_menu .app_dropdown_title`).toHaveText(/^favorites$/i);
+    expect(`.app_favorite_menu`).toHaveCount(1);
+    expect(`.app_favorite_menu .dropdown-divider`).toHaveCount(0);
+    expect(`.app_favorite_menu .app_add_favorite`).toHaveCount(1);
 });
 
 test("edit an active favorite", async () => {
@@ -106,12 +106,12 @@ test("edit an active favorite", async () => {
     expect(getFacetTexts()).toEqual(["My favorite"]);
 
     await toggleSearchBarMenu();
-    const favorite = queryFirst`.o_favorite_menu .dropdown-item`;
+    const favorite = queryFirst`.app_favorite_menu .dropdown-item`;
     expect(favorite).toHaveText("My favorite");
     expect(favorite).toHaveAttribute("role", "menuitemcheckbox");
     expect(favorite).toHaveProperty("ariaChecked", "true");
     expect(getFacetTexts()).toEqual(["My favorite"]);
-    expect(queryFirst`.o_favorite_menu .o_menu_item`).toHaveClass("selected");
+    expect(queryFirst`.app_favorite_menu .app_menu_item`).toHaveClass("selected");
 
     await editFavorite("My favorite");
     expect.verifySteps(["edit favorite"]);
@@ -188,7 +188,7 @@ test(`toggle favorite correctly clears filter, groupbys and field "options"`, as
 
     // activate the unique existing favorite
     await toggleSearchBarMenu();
-    const favorite = queryFirst`.o_favorite_menu .dropdown-item`;
+    const favorite = queryFirst`.app_favorite_menu .dropdown-item`;
     expect(favorite).toHaveText("My favorite");
     expect(favorite).toHaveAttribute("role", "menuitemcheckbox");
     expect(favorite).toHaveProperty("ariaChecked", "false");
@@ -224,9 +224,9 @@ test("edit a favorite with a groupby", async () => {
     expect(getFacetTexts()).toEqual(["My favorite"]);
 
     await toggleSearchBarMenu();
-    expect(`.o_group_by_menu .o_menu_item:not(.o_add_custom_group_menu)`).toHaveCount(0);
+    expect(`.app_group_by_menu .app_menu_item:not(.app_add_custom_group_menu)`).toHaveCount(0);
 
-    await contains(`.o_searchview_facet_label`).click();
+    await contains(`.app_searchview_facet_label`).click();
     expect(`.modal`).toHaveCount(1);
 
     await editValue("abcde");
@@ -235,7 +235,7 @@ test("edit a favorite with a groupby", async () => {
     expect(getFacetTexts()).toEqual(["Foo contains abcde", "Bar"]);
 
     await toggleSearchBarMenu();
-    expect(`.o_group_by_menu .o_menu_item:not(.o_add_custom_group_menu)`).toHaveCount(0);
+    expect(`.app_group_by_menu .app_menu_item:not(.app_add_custom_group_menu)`).toHaveCount(0);
 });
 
 test("shared favorites are partially shown if there is more than 4", async () => {
@@ -259,9 +259,9 @@ test("shared favorites are partially shown if there is more than 4", async () =>
         activateFavorite: false,
     });
     await toggleSearchBarMenu();
-    expect(".o_favorite_menu .o_favorite_item").toHaveCount(3);
-    expect(".o_favorite_menu .o_expand_shared_favorites").toHaveCount(1);
-    await contains(".o_favorite_menu .o_expand_shared_favorites").click();
-    expect(".o_favorite_menu .o_expand_shared_favorites").toHaveCount(0);
-    expect(".o_favorite_menu .o_favorite_item").toHaveCount(5);
+    expect(".app_favorite_menu .app_favorite_item").toHaveCount(3);
+    expect(".app_favorite_menu .app_expand_shared_favorites").toHaveCount(1);
+    await contains(".app_favorite_menu .app_expand_shared_favorites").click();
+    expect(".app_favorite_menu .app_expand_shared_favorites").toHaveCount(0);
+    expect(".app_favorite_menu .app_favorite_item").toHaveCount(5);
 });

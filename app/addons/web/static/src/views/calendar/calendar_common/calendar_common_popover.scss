@@ -1,7 +1,7 @@
 // Variables
 $o-cw-popup-avatar-size: 16px;
 
-.o_cw_popover {
+.app_cw_popover {
     width: 448px;
     z-index: $zindex-modal - 1;
     font-size: $font-size-base;
@@ -18,15 +18,15 @@ $o-cw-popup-avatar-size: 16px;
         background: none;
     }
 
-    .o_cw_popover_close {
+    .app_cw_popover_close {
         cursor: pointer;
     }
 
-    .o_calendar_avatars {
+    .app_calendar_avatars {
         line-height: 1;
     }
 
-    .o_calendar_avatars img {
+    .app_calendar_avatars img {
         margin-right: 0.4rem;
         width: $o-cw-popup-avatar-size;
         height: $o-cw-popup-avatar-size;
@@ -38,11 +38,11 @@ $o-cw-popup-avatar-size: 16px;
         border: none;
     }
 
-    .o_cw_popover_field .o_field_widget {
+    .app_cw_popover_field .app_field_widget {
         @include o-text-overflow(block);
     }
 
-    .o_cw_popover_fields_secondary {
+    .app_cw_popover_fields_secondary {
         max-height: 170px; // Fallback for old browsers
         max-height: 25vh;
         overflow: auto;
@@ -59,7 +59,7 @@ $o-cw-popup-avatar-size: 16px;
 
     .fc-rtl & {
         text-align: right;
-        .o_calendar_avatars {
+        .app_calendar_avatars {
             > div {
                 justify-content: flex-end;
             }
@@ -95,7 +95,7 @@ $o-web-calendar-colors: o-build-web-calendar-colors();
 
 
 @for $i from 1 through length($o-web-calendar-colors) {
-    .modal.o_technical_modal.o_modal_full .modal-dialog .modal-content.o_calendar_color_#{$i - 1} {
+    .modal.app_technical_modal.app_modal_full .modal-dialog .modal-content.app_calendar_color_#{$i - 1} {
         .modal-header {
             background-color: map-get(nth($o-web-calendar-colors, $i), "color-subtle");
 
@@ -105,7 +105,7 @@ $o-web-calendar-colors: o-build-web-calendar-colors();
         }
     }
 
-    .o_cw_popover.o_calendar_color_#{$i - 1} {
+    .app_cw_popover.app_calendar_color_#{$i - 1} {
         $-calendar-colors-map: nth($o-web-calendar-colors, $i);
         .card-header,
         .card-header .popover-header {

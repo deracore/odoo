@@ -2,12 +2,12 @@ import { Interaction } from "@web/public/interaction";
 import { registry } from "@web/core/registry";
 
 export class CapsLockWarning extends Interaction {
-    static selector = ".o_caps_lock_warning";
+    static selector = ".app_caps_lock_warning";
     dynamicContent = {
-        ".o_caps_lock_warning_text": {
+        ".app_caps_lock_warning_text": {
             "t-att-class": () => ({ "d-none": this.isWarningHidden }),
         },
-        ".o_caps_lock_warning input[type='password']": {
+        ".app_caps_lock_warning input[type='password']": {
             "t-on-keydown": this._onInputKeyDown,
         },
     };

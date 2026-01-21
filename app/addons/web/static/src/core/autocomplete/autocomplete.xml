@@ -6,7 +6,7 @@
             <input
                 type="text"
                 t-att-id="props.id"
-                class="o-autocomplete--input o_input pe-3 text-truncate"
+                class="o-autocomplete--input app_input pe-3 text-truncate"
                 t-att-autocomplete="props.autocomplete"
                 t-att-placeholder="props.placeholder"
                 role="combobox"
@@ -40,7 +40,7 @@
                                     t-attf-id="{{props.id or 'autocomplete'}}_{{source_index}}_loading"
                                     role="option"
                                     href="#"
-                                    class="o_loading dropdown-item ui-menu-item-wrapper"
+                                    class="app_loading dropdown-item ui-menu-item-wrapper"
                                     aria-selected="true"
                                 >
                                     <i class="fa fa-spin fa-circle-o-notch" /> <t t-esc="source.placeholder" />

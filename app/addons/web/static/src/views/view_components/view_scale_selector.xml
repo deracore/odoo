@@ -2,9 +2,9 @@
 <templates xml:space="preserve">
 
     <t t-name="web.ViewScaleSelector">
-        <div t-if="Object.keys(props.scales).length > 1" t-att-class="`btn-group o_view_scale_selector ${props.dropdownClass || ''}`">
+        <div t-if="Object.keys(props.scales).length > 1" t-att-class="`btn-group app_view_scale_selector ${props.dropdownClass || ''}`">
             <Dropdown>
-                <button class="btn btn-secondary scale_button_selection o-dropdown-caret" data-hotkey="v">
+                <button class="btn btn-secondary scale_button_selection app-dropdown-caret" data-hotkey="v">
                     <t t-esc="props.scales[props.currentScale].description" />
                 </button>
                 <t t-set-slot="content">

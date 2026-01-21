@@ -134,7 +134,7 @@ export class Dropdown extends Component {
             getItems: () => {
                 if (this.state.isOpen && this.menuRef.el) {
                     return this.menuRef.el.querySelectorAll(
-                        ":scope .o-navigable, :scope .o-dropdown"
+                        ":scope .app-navigable, :scope .app-dropdown"
                     );
                 } else {
                     return [];
@@ -157,8 +157,8 @@ export class Dropdown extends Component {
             onClose: () => this.state.close(),
             onPositioned: (el, { direction }) => this.setTargetDirectionClass(direction),
             popoverClass: mergeClasses(
-                "o-dropdown--menu dropdown-menu mx-0",
-                { "o-dropdown--menu-submenu": this.hasParent },
+                "app-dropdown--menu dropdown-menu mx-0",
+                { "app-dropdown--menu-submenu": this.hasParent },
                 this.props.menuClass
             ),
             role: "menu",
@@ -171,7 +171,7 @@ export class Dropdown extends Component {
         if (this.isBottomSheet) {
             Object.assign(options, {
                 useBottomSheet: true,
-                class: mergeClasses("o-dropdown--menu dropdown-menu show", this.props.menuClass),
+                class: mergeClasses("app-dropdown--menu dropdown-menu show", this.props.menuClass),
             });
         }
         this.popover = usePopover(DropdownPopover, options);
@@ -267,21 +267,21 @@ export class Dropdown extends Component {
         target.ariaExpanded = false;
         const optionalClasses = [];
         const requiredClasses = [];
-        optionalClasses.push("o-dropdown");
+        optionalClasses.push("app-dropdown");
 
         if (this.hasParent) {
-            requiredClasses.push("o-dropdown--has-parent");
+            requiredClasses.push("app-dropdown--has-parent");
         }
 
         const tagName = target.tagName.toLowerCase();
         if (!["input", "textarea", "table", "thead", "tbody", "tr", "th", "td"].includes(tagName)) {
             optionalClasses.push("dropdown-toggle");
             if (this.hasParent) {
-                optionalClasses.push("o-dropdown-item", "dropdown-item");
+                optionalClasses.push("app-dropdown-item", "dropdown-item");
                 requiredClasses.push("o-navigable");
 
-                if (!target.classList.contains("o-dropdown--no-caret")) {
-                    requiredClasses.push("o-dropdown-caret");
+                if (!target.classList.contains("app-dropdown--no-caret")) {
+                    requiredClasses.push("app-dropdown-caret");
                 }
             }
         }

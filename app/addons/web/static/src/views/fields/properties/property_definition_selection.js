@@ -34,7 +34,7 @@ export class PropertyDefinitionSelection extends Component {
                 return;
             }
             const inputs = this.propertyDefinitionSelectionRef.el.querySelectorAll(
-                ".o_field_property_selection_option input"
+                ".app_field_property_selection_option input"
             );
             if (inputs && inputs.length && !inputs[this.state.newOption.index].value) {
                 inputs[this.state.newOption.index].focus();
@@ -44,8 +44,8 @@ export class PropertyDefinitionSelection extends Component {
         useSortable({
             enable: () => this.props.canChangeDefinition && !this.props.readonly,
             ref: this.propertyDefinitionSelectionRef,
-            handle: ".o_field_property_selection_drag",
-            elements: ".o_field_property_selection_option",
+            handle: ".app_field_property_selection_drag",
+            elements: ".app_field_property_selection_option",
             cursor: "grabbing",
             onDrop: async ({ element, previous }) => {
                 const movedOption = element.getAttribute("option-name");
@@ -192,12 +192,12 @@ export class PropertyDefinitionSelection extends Component {
 
             if (event.key === "ArrowUp" && optionIndex > 0) {
                 const previousInput = event.target
-                    .closest(".o_field_property_selection_option")
+                    .closest(".app_field_property_selection_option")
                     .previousElementSibling.querySelector("input");
                 previousInput.focus();
             } else if (event.key === "ArrowDown" && optionIndex < this.optionsVisible.length - 1) {
                 const nextInput = event.target
-                    .closest(".o_field_property_selection_option")
+                    .closest(".app_field_property_selection_option")
                     .nextElementSibling.querySelector("input");
                 nextInput.focus();
             }
@@ -257,7 +257,7 @@ export class PropertyDefinitionSelection extends Component {
             activeEl.tagName === "INPUT"
         ) {
             const optionName = activeEl
-                .closest(".o_field_property_selection_option")
+                .closest(".app_field_property_selection_option")
                 .getAttribute("option-name");
             const editedOptionIndex = options.findIndex((option) => option[0] === optionName);
             // we might be editing the value and drag and drop something else just after

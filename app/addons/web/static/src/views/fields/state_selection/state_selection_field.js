@@ -24,7 +24,7 @@ export class StateSelectionField extends Component {
     };
 
     setup() {
-        this.colorPrefix = "o_status_";
+        this.colorPrefix = "app_status_";
         this.colors = {
             blocked: "red",
             done: "green",

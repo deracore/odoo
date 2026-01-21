@@ -3,7 +3,7 @@
     <t t-name="web.DateTimePickerPopover">
         <DateTimePicker t-props="props.pickerProps">
             <t t-set-slot="buttons">
-                <div class="o_datetime_buttons d-flex gap-2">
+                <div class="app_datetime_buttons d-flex gap-2">
                     <button
                         class="btn btn-sm btn-secondary"
                         title="Clear"

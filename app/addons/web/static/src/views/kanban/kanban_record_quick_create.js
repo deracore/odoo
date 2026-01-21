@@ -30,9 +30,9 @@ const DEFAULT_QUICK_CREATE_FIELDS = {
 };
 
 const ACTION_SELECTORS = [
-    ".o_kanban_quick_add",
-    ".o_kanban_load_more button",
-    ".o-kanban-button-new",
+    ".app_kanban_quick_add",
+    ".app_kanban_load_more button",
+    ".app-kanban-button-new",
 ];
 
 export class KanbanQuickCreateController extends Component {
@@ -102,7 +102,7 @@ export class KanbanQuickCreateController extends Component {
                 const target = this.mousedownTarget || ev.target;
                 // accounts for clicking on datetime picker and legacy autocomplete
                 const gotClickedInside =
-                    target.closest(".o_datetime_picker") ||
+                    target.closest(".app_datetime_picker") ||
                     target.closest(".ui-autocomplete") ||
                     this.rootRef.el.contains(target);
                 if (!gotClickedInside) {
@@ -135,7 +135,7 @@ export class KanbanQuickCreateController extends Component {
 
         const keys = Object.keys(this.model.root.activeFields);
         if (keys.length === 1 && keys[0] === "display_name") {
-            const isValid = await this.model.root.checkValidity(); // needed to put the class o_field_invalid in the field
+            const isValid = await this.model.root.checkValidity(); // needed to put the class app_field_invalid in the field
             if (isValid) {
                 try {
                     [resId] = await this.model.orm.call(
@@ -203,7 +203,7 @@ export class KanbanQuickCreateController extends Component {
     }
 
     get className() {
-        return "o_kanban_quick_create o_field_highlight shadow";
+        return "app_kanban_quick_create app_field_highlight shadow";
     }
 }
 

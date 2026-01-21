@@ -540,9 +540,9 @@ describe(parseUrl(import.meta.url), () => {
 
         test("comma-separated long selector: no match", async () => {
             await mountForTest(/* xml */ `
-                <div class="o_we_customize_panel">
+                <div class="app_we_customize_panel">
                     <we-customizeblock-option class="snippet-option-ImageTools">
-                        <div class="o_we_so_color_palette o_we_widget_opened">
+                        <div class="app_we_so_color_palette app_we_widget_opened">
                             idk
                         </div>
                         <we-select data-name="shape_img_opt">
@@ -552,14 +552,14 @@ describe(parseUrl(import.meta.url), () => {
                 </div>
             `);
             expectSelector(
-                `.o_we_customize_panel:not(:has(.o_we_so_color_palette.o_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] we-select[data-name="shape_img_opt"] we-toggler`,
-                `.o_we_customize_panel:not(:has(.o_we_so_color_palette.o_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] [title='we-select[data-name="shape_img_opt"] we-toggler']`
+                `.app_we_customize_panel:not(:has(.app_we_so_color_palette.app_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] we-select[data-name="shape_img_opt"] we-toggler`,
+                `.app_we_customize_panel:not(:has(.app_we_so_color_palette.app_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] [title='we-select[data-name="shape_img_opt"] we-toggler']`
             ).toEqualNodes("");
         });
 
         test("comma-separated long selector: match first", async () => {
             await mountForTest(/* xml */ `
-                <div class="o_we_customize_panel">
+                <div class="app_we_customize_panel">
                     <we-customizeblock-option class="snippet-option-ImageTools">
                         <we-select data-name="shape_img_opt">
                             <we-toggler></we-toggler>
@@ -568,14 +568,14 @@ describe(parseUrl(import.meta.url), () => {
                 </div>
             `);
             expectSelector(
-                `.o_we_customize_panel:not(:has(.o_we_so_color_palette.o_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] we-select[data-name="shape_img_opt"] we-toggler`,
-                `.o_we_customize_panel:not(:has(.o_we_so_color_palette.o_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] [title='we-select[data-name="shape_img_opt"] we-toggler']`
+                `.app_we_customize_panel:not(:has(.app_we_so_color_palette.app_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] we-select[data-name="shape_img_opt"] we-toggler`,
+                `.app_we_customize_panel:not(:has(.app_we_so_color_palette.app_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] [title='we-select[data-name="shape_img_opt"] we-toggler']`
             ).toEqualNodes("we-toggler");
         });
 
         test("comma-separated long selector: match second", async () => {
             await mountForTest(/* xml */ `
-                <div class="o_we_customize_panel">
+                <div class="app_we_customize_panel">
                     <we-customizeblock-option class="snippet-option-ImageTools">
                         <div title='we-select[data-name="shape_img_opt"] we-toggler'>
                             idk
@@ -584,17 +584,17 @@ describe(parseUrl(import.meta.url), () => {
                 </div>
             `);
             expectSelector(
-                `.o_we_customize_panel:not(:has(.o_we_so_color_palette.o_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] we-select[data-name="shape_img_opt"] we-toggler`,
-                `.o_we_customize_panel:not(:has(.o_we_so_color_palette.o_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] [title='we-select[data-name="shape_img_opt"] we-toggler']`
+                `.app_we_customize_panel:not(:has(.app_we_so_color_palette.app_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] we-select[data-name="shape_img_opt"] we-toggler`,
+                `.app_we_customize_panel:not(:has(.app_we_so_color_palette.app_we_widget_opened)) we-customizeblock-option[class='snippet-option-ImageTools'] [title='we-select[data-name="shape_img_opt"] we-toggler']`
             ).toEqualNodes("div[title]");
         });
 
         test("comma-separated :contains", async () => {
             await mountForTest(/* xml */ `
-                <div class="o_menu_sections">
+                <div class="app_menu_sections">
                     <a class="dropdown-item">Products</a>
                 </div>
-                <nav class="o_burger_menu_content">
+                <nav class="app_burger_menu_content">
                     <ul>
                         <li data-menu-xmlid="sale.menu_product_template_action">
                             Products
@@ -603,7 +603,7 @@ describe(parseUrl(import.meta.url), () => {
                 </nav>
             `);
             expectSelector(
-                `.o_menu_sections .dropdown-item:contains('Products'), nav.o_burger_menu_content li[data-menu-xmlid='sale.menu_product_template_action']`
+                `.app_menu_sections .dropdown-item:contains('Products'), nav.app_burger_menu_content li[data-menu-xmlid='sale.menu_product_template_action']`
             ).toEqualNodes(".dropdown-item,li");
         });
 
@@ -694,14 +694,14 @@ describe(parseUrl(import.meta.url), () => {
                         >
                     </li>
                     <li
-                        class="o-autocomplete--dropdown-item ui-menu-item block o_m2o_dropdown_option o_m2o_dropdown_option_search_more"
+                        class="o-autocomplete--dropdown-item ui-menu-item block app_m2o_dropdown_option app_m2o_dropdown_option_search_more"
                     >
                         <a href="#" class="dropdown-item ui-menu-item-wrapper truncate"
                             >Search More...</a
                         >
                     </li>
                     <li
-                        class="o-autocomplete--dropdown-item ui-menu-item block o_m2o_dropdown_option o_m2o_dropdown_option_create_edit"
+                        class="o-autocomplete--dropdown-item ui-menu-item block app_m2o_dropdown_option app_m2o_dropdown_option_create_edit"
                     >
                         <a href="#" class="dropdown-item ui-menu-item-wrapper truncate"
                             >Create and edit...</a
@@ -727,15 +727,15 @@ describe(parseUrl(import.meta.url), () => {
 
         test(":contains with brackets", async () => {
             await mountForTest(/* xml */ `
-                <div class="o_content">
-                    <div class="o_field_widget" name="messages">
-                        <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                <div class="app_content">
+                    <div class="app_field_widget" name="messages">
+                        <table class="app_list_view table table-sm table-hover table-striped app_list_view_ungrouped">
                             <tbody>
-                                <tr class="o_data_row">
-                                    <td class="o_list_record_selector">
+                                <tr class="app_data_row">
+                                    <td class="app_list_record_selector">
                                         bbb
                                     </td>
-                                    <td class="o_data_cell o_required_modifier">
+                                    <td class="app_data_cell app_required_modifier">
                                         <span>
                                             [test_trigger] Mitchell Admin
                                         </span>
@@ -748,20 +748,20 @@ describe(parseUrl(import.meta.url), () => {
             `);
 
             expectSelector(
-                `.o_content:has(.o_field_widget[name=messages]):has(td:text(bbb)):has(td:contains(/^\\[test_trigger\\] Mitchell Admin/))`
-            ).toEqualNodes(".o_content");
+                `.app_content:has(.app_field_widget[name=messages]):has(td:text(bbb)):has(td:contains(/^\\[test_trigger\\] Mitchell Admin/))`
+            ).toEqualNodes(".app_content");
         });
 
         test(":eq in the middle of a selector", async () => {
             await mountForTest(/* xml */ `
                 <ul>
-                    <li class="oe_overlay o_draggable"></li>
-                    <li class="oe_overlay o_draggable"></li>
-                    <li class="oe_overlay o_draggable oe_active"></li>
-                    <li class="oe_overlay o_draggable"></li>
+                    <li class="oe_overlay app_draggable"></li>
+                    <li class="oe_overlay app_draggable"></li>
+                    <li class="oe_overlay app_draggable oe_active"></li>
+                    <li class="oe_overlay app_draggable"></li>
                 </ul>
             `);
-            expectSelector(`.oe_overlay.o_draggable:eq(2).oe_active`).toEqualNodes(
+            expectSelector(`.oe_overlay.app_draggable:eq(2).oe_active`).toEqualNodes(
                 "li:nth-child(3)"
             );
         });
@@ -782,39 +782,39 @@ describe(parseUrl(import.meta.url), () => {
         test("multiple + combinators", async () => {
             await mountForTest(/* xml */ `
                 <div class="s_cover">
-                    <span class="o_text_highlight">
-                        <span class="o_text_highlight_item">
-                            <span class="o_text_highlight_path_underline" />
+                    <span class="app_text_highlight">
+                        <span class="app_text_highlight_item">
+                            <span class="app_text_highlight_path_underline" />
                         </span>
                         <br />
-                        <span class="o_text_highlight_item">
-                            <span class="o_text_highlight_path_underline" />
+                        <span class="app_text_highlight_item">
+                            <span class="app_text_highlight_path_underline" />
                         </span>
                     </span>
                 </div>
             `);
 
             expectSelector(`
-                .s_cover span.o_text_highlight:has(
-                    .o_text_highlight_item
+                .s_cover span.app_text_highlight:has(
+                    .app_text_highlight_item
                     + br
-                    + .o_text_highlight_item
+                    + .app_text_highlight_item
                 )
-            `).toEqualNodes(".o_text_highlight");
+            `).toEqualNodes(".app_text_highlight");
         });
 
         test(":last", async () => {
             await mountForTest(/* xml */ `
-                <div class="o_field_widget" name="messages">
-                    <table class="o_list_view table table-sm table-hover table-striped o_list_view_ungrouped">
+                <div class="app_field_widget" name="messages">
+                    <table class="app_list_view table table-sm table-hover table-striped app_list_view_ungrouped">
                         <tbody>
-                            <tr class="o_data_row">
-                                <td class="o_list_record_remove">
+                            <tr class="app_data_row">
+                                <td class="app_list_record_remove">
                                     <button class="btn">Remove</button>
                                 </td>
                             </tr>
-                            <tr class="o_data_row">
-                                <td class="o_list_record_remove">
+                            <tr class="app_data_row">
+                                <td class="app_list_record_remove">
                                     <button class="btn">Remove</button>
                                 </td>
                             </tr>
@@ -823,8 +823,8 @@ describe(parseUrl(import.meta.url), () => {
                 </div>
             `);
             expectSelector(
-                `.o_field_widget[name=messages] .o_data_row td.o_list_record_remove button:visible:last`
-            ).toEqualNodes(".o_data_row:last-child button");
+                `.app_field_widget[name=messages] .app_data_row td.app_list_record_remove button:visible:last`
+            ).toEqualNodes(".app_data_row:last-child button");
         });
 
         test("select :contains & :value", async () => {

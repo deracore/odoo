@@ -6,7 +6,7 @@ import { mockDate, mockTimeZone } from "@app/hoot-mock";
 describe.current.tags("headless");
 
 class TestComponent extends Component {
-    static template = xml`<div class="o_test_component"/>`;
+    static template = xml`<div class="app_test_component"/>`;
     static props = ["*"];
 }
 

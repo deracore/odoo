@@ -25,15 +25,15 @@ test("simple rendering", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog header .modal-title").toHaveCount(1, {
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog header .modal-title").toHaveCount(1, {
         message: "the header is rendered by default",
     });
     expect("header .modal-title").toHaveText("Wow(l) Effect");
-    expect(".o_dialog main").toHaveCount(1, { message: "a dialog has always a main node" });
+    expect(".app_dialog main").toHaveCount(1, { message: "a dialog has always a main node" });
     expect("main").toHaveText("Hello!");
-    expect(".o_dialog footer").toHaveCount(1, { message: "the footer is rendered by default" });
-    expect(".o_dialog footer:visible").toHaveCount(0, { message: "the footer is hidden if empty" });
+    expect(".app_dialog footer").toHaveCount(1, { message: "the footer is rendered by default" });
+    expect(".app_dialog footer:visible").toHaveCount(0, { message: "the footer is hidden if empty" });
 });
 
 test("hotkeys work on dialogs", async () => {
@@ -89,9 +89,9 @@ test("simple rendering with two dialogs", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(2);
+    expect(".app_dialog").toHaveCount(2);
     expect(queryAllTexts("header .modal-title")).toEqual(["First Title", "Second Title"]);
-    expect(queryAllTexts(".o_dialog .modal-body")).toEqual(["Hello!", "Hello again!"]);
+    expect(queryAllTexts(".app_dialog .modal-body")).toEqual(["Hello!", "Hello again!"]);
 });
 
 test("click on the button x triggers the service close", async () => {
@@ -112,8 +112,8 @@ test("click on the button x triggers the service close", async () => {
         },
     });
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
-    await contains(".o_dialog header button[aria-label='Close']").click();
+    expect(".app_dialog").toHaveCount(1);
+    await contains(".app_dialog header button[aria-label='Close']").click();
     expect.verifySteps(["dismiss", 'close {"dismiss":true}']);
 });
 
@@ -140,9 +140,9 @@ test("click on the button x triggers the close and dismiss defined by a Child co
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
 
-    await contains(".o_dialog header button[aria-label='Close']").click();
+    await contains(".app_dialog header button[aria-label='Close']").click();
     expect.verifySteps(["dismiss", "close"]);
 });
 
@@ -180,15 +180,15 @@ test("render custom footer buttons is possible", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog footer button").toHaveCount(2);
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog footer button").toHaveCount(2);
 });
 
 test("embed an arbitrary component in a dialog is possible", async () => {
     expect.assertions(4);
     class SubComponent extends Component {
         static template = xml`
-            <div class="o_subcomponent" t-esc="props.text" t-on-click="_onClick"/>
+            <div class="app_subcomponent" t-esc="props.text" t-on-click="_onClick"/>
         `;
         static props = ["*"];
         _onClick() {
@@ -210,10 +210,10 @@ test("embed an arbitrary component in a dialog is possible", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog main .o_subcomponent").toHaveCount(1);
-    expect(".o_subcomponent").toHaveText("Wow(l) Effect");
-    await contains(".o_subcomponent").click();
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog main .app_subcomponent").toHaveCount(1);
+    expect(".app_subcomponent").toHaveText("Wow(l) Effect");
+    await contains(".app_subcomponent").click();
     expect.verifySteps(["subcomponent-clicked", "message received by parent"]);
 });
 
@@ -228,10 +228,10 @@ test("dialog without header/footer", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog header").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog header").toHaveCount(0);
     expect("main").toHaveCount(1, { message: "a dialog has always a main node" });
-    expect(".o_dialog footer").toHaveCount(0);
+    expect(".app_dialog footer").toHaveCount(0);
 });
 
 test("dialog size can be chosen", async () => {
@@ -250,11 +250,11 @@ test("dialog size can be chosen", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(4);
-    expect(".o_dialog .modal-dialog.modal-xl .xl").toHaveCount(1);
-    expect(".o_dialog .modal-dialog.modal-lg .lg").toHaveCount(1);
-    expect(".o_dialog .modal-dialog.modal-md .md").toHaveCount(1);
-    expect(".o_dialog .modal-dialog.modal-sm .sm").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(4);
+    expect(".app_dialog .modal-dialog.modal-xl .xl").toHaveCount(1);
+    expect(".app_dialog .modal-dialog.modal-lg .lg").toHaveCount(1);
+    expect(".app_dialog .modal-dialog.modal-md .md").toHaveCount(1);
+    expect(".app_dialog .modal-dialog.modal-sm .sm").toHaveCount(1);
 });
 
 test("dialog can be rendered on fullscreen", async () => {
@@ -268,8 +268,8 @@ test("dialog can be rendered on fullscreen", async () => {
     }
     await makeDialogMockEnv();
     await mountWithCleanup(Parent);
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog .modal").toHaveClass("o_modal_full");
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog .modal").toHaveClass("app_modal_full");
 });
 
 test("can be the UI active element", async () => {

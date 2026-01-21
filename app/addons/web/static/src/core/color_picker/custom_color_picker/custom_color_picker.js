@@ -237,7 +237,7 @@ export class CustomColorPicker extends Component {
     _updateUI() {
         // Update inputs
         for (const [color, value] of Object.entries(this.colorComponents)) {
-            const input = this.el.querySelector(`.o_${color}_input`);
+            const input = this.el.querySelector(`.app_${color}_input`);
             if (input) {
                 input.value = value;
             }
@@ -660,9 +660,9 @@ export class CustomColorPicker extends Component {
                 return;
             case "hsl":
                 this._updateHsl(
-                    parseInt(this.el.querySelector(".o_hue_input").value),
-                    parseInt(this.el.querySelector(".o_saturation_input").value),
-                    parseInt(this.el.querySelector(".o_lightness_input").value)
+                    parseInt(this.el.querySelector(".app_hue_input").value),
+                    parseInt(this.el.querySelector(".app_saturation_input").value),
+                    parseInt(this.el.querySelector(".app_lightness_input").value)
                 );
                 break;
         }

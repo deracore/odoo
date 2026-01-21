@@ -8,18 +8,18 @@ import { animationFrame, runAllTimers } from "@app/hoot-mock";
 test("displays the pager indicator", async () => {
     patchWithCleanup(transitionConfig, { disabled: true });
     await mountWithCleanup(PagerIndicator, { noMainContainer: true });
-    expect(".o_pager_indicator").toHaveCount(0, {
+    expect(".app_pager_indicator").toHaveCount(0, {
         message: "the pager indicator should not be displayed",
     });
     pagerBus.trigger(PAGER_UPDATED_EVENT, { value: "1-4", total: 10 });
     await animationFrame();
-    expect(".o_pager_indicator").toHaveCount(1, {
+    expect(".app_pager_indicator").toHaveCount(1, {
         message: "the pager indicator should be displayed",
     });
-    expect(".o_pager_indicator").toHaveText("1-4 / 10");
+    expect(".app_pager_indicator").toHaveText("1-4 / 10");
     await runAllTimers();
     await animationFrame();
-    expect(".o_pager_indicator").toHaveCount(0, {
+    expect(".app_pager_indicator").toHaveCount(0, {
         message: "the pager indicator should not be displayed",
     });
 });

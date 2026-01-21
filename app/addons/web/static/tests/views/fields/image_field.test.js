@@ -99,10 +99,10 @@ test("ImageField is correctly rendered", async () => {
         `,
     });
 
-    expect(".o_field_widget[name='document']").toHaveClass("o_field_image", {
+    expect(".app_field_widget[name='document']").toHaveClass("app_field_image", {
         message: "the widget should have the correct class",
     });
-    expect(".o_field_widget[name='document'] img").toHaveCount(1, {
+    expect(".app_field_widget[name='document'] img").toHaveCount(1, {
         message: "the widget should contain an image",
     });
     expect('div[name="document"] img').toHaveAttribute(
@@ -110,13 +110,13 @@ test("ImageField is correctly rendered", async () => {
         `data:image/png;base64,${MY_IMAGE}`,
         { message: "the image should have the correct src" }
     );
-    expect(".o_field_widget[name='document'] img").toHaveClass("img-fluid", {
+    expect(".app_field_widget[name='document'] img").toHaveClass("img-fluid", {
         message: "the image should have the correct class",
     });
-    expect(".o_field_widget[name='document'] img").toHaveAttribute("width", "90", {
+    expect(".app_field_widget[name='document'] img").toHaveAttribute("width", "90", {
         message: "the image should correctly set its attributes",
     });
-    expect(".o_field_widget[name='document'] img").toHaveStyle(
+    expect(".app_field_widget[name='document'] img").toHaveStyle(
         {
             maxWidth: "90px",
             width: "90px",
@@ -126,13 +126,13 @@ test("ImageField is correctly rendered", async () => {
             message: "the image should correctly set its attributes",
         }
     );
-    expect(".o_field_image .o_select_file_button").toHaveCount(1, {
+    expect(".app_field_image .app_select_file_button").toHaveCount(1, {
         message: "the image can be edited",
     });
-    expect(".o_field_image .o_clear_file_button").toHaveCount(1, {
+    expect(".app_field_image .app_clear_file_button").toHaveCount(1, {
         message: "the image can be deleted",
     });
-    expect("input.o_input_file").toHaveAttribute("accept", "image/*", {
+    expect("input.app_input_file").toHaveAttribute("accept", "image/*", {
         message:
             'the default value for the attribute "accept" on the "image" widget must be "image/*"',
     });
@@ -149,7 +149,7 @@ test("ImageField with img_class option", async () => {
             </form>`,
     });
 
-    expect(".o_field_image img").toHaveClass("my_custom_class");
+    expect(".app_field_image img").toHaveClass("my_custom_class");
 });
 
 test("ImageField with alt attribute", async () => {
@@ -163,7 +163,7 @@ test("ImageField with alt attribute", async () => {
             </form>`,
     });
 
-    expect(".o_field_widget[name='document'] img").toHaveAttribute("alt", "something", {
+    expect(".app_field_widget[name='document'] img").toHaveAttribute("alt", "something", {
         message: "the image should correctly set its alt attribute",
     });
 });
@@ -184,12 +184,12 @@ test("ImageField on a many2one", async () => {
             </form>`,
     });
 
-    expect(".o_field_widget[name=parent_id] img").toHaveCount(1);
+    expect(".app_field_widget[name=parent_id] img").toHaveCount(1);
     expect('div[name="parent_id"] img').toHaveAttribute(
         "data-src",
         `${getOrigin()}/web/image/partner/1/document?unique=1486375200000`
     );
-    expect(".o_field_widget[name='parent_id'] img").toHaveAttribute("alt", "first record");
+    expect(".app_field_widget[name='parent_id'] img").toHaveAttribute("alt", "first record");
 });
 
 test("url should not use the record last updated date when the field is related", async () => {
@@ -217,7 +217,7 @@ test("url should not use the record last updated date when the field is related"
         true
     );
 
-    await click(".o_field_widget[name='foo'] input");
+    await click(".app_field_widget[name='foo'] input");
     await edit("grrr");
     await animationFrame();
 
@@ -294,10 +294,10 @@ test("ImageField is correctly replaced when given an incorrect value", async () 
     manuallyDispatchProgrammaticEvent(queryFirst('div[name="document"] img'), "error");
     await animationFrame();
 
-    expect('.o_field_widget[name="document"]').toHaveClass("o_field_image", {
+    expect('.app_field_widget[name="document"]').toHaveClass("app_field_image", {
         message: "the widget should have the correct class",
     });
-    expect(".o_field_widget[name='document'] img").toHaveCount(1, {
+    expect(".app_field_widget[name='document'] img").toHaveCount(1, {
         message: "the widget should contain an image",
     });
     expect('div[name="document"] img').toHaveAttribute(
@@ -305,20 +305,20 @@ test("ImageField is correctly replaced when given an incorrect value", async () 
         "/web/static/img/placeholder.png",
         { message: "the image should have the correct src" }
     );
-    expect(".o_field_widget[name='document'] img").toHaveClass("img-fluid", {
+    expect(".app_field_widget[name='document'] img").toHaveClass("img-fluid", {
         message: "the image should have the correct class",
     });
-    expect(".o_field_widget[name='document'] img").toHaveAttribute("width", "90", {
+    expect(".app_field_widget[name='document'] img").toHaveAttribute("width", "90", {
         message: "the image should correctly set its attributes",
     });
-    expect(".o_field_widget[name='document'] img").toHaveStyle("maxWidth: 90px", {
+    expect(".app_field_widget[name='document'] img").toHaveStyle("maxWidth: 90px", {
         message: "the image should correctly set its attributes",
     });
 
-    expect(".o_field_image .o_select_file_button").toHaveCount(1, {
+    expect(".app_field_image .app_select_file_button").toHaveCount(1, {
         message: "the image can be edited",
     });
-    expect(".o_field_image .o_clear_file_button").toHaveCount(0, {
+    expect(".app_field_image .app_clear_file_button").toHaveCount(0, {
         message: "the image cannot be deleted as it has not been uploaded",
     });
 });
@@ -348,7 +348,7 @@ test("ImageField preview is updated when an image is uploaded", async () => {
     // Whitebox: replace the event target before the event is handled by the field so that we can modify
     // the files that it will take into account. This relies on the fact that it reads the files from
     // event.target and not from a direct reference to the input element.
-    await click(".o_select_file_button");
+    await click(".app_select_file_button");
     await setInputFiles(imageFile);
     // It can take some time to encode the data as a base64 url
     await runAllTimers();
@@ -388,7 +388,7 @@ test("clicking save manually after uploading new image should change the unique 
             </form>
         `,
     });
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
 
     await click("input[type=file]", { visible: false });
     await setFiles(
@@ -403,7 +403,7 @@ test("clicking save manually after uploading new image should change the unique 
         `data:image/png;base64,${MY_IMAGE}`
     );
 
-    await click(".o_field_widget[name='foo'] input");
+    await click(".app_field_widget[name='foo'] input");
     await edit("grrr");
     await animationFrame();
     expect("div[name=document] img").toHaveAttribute(
@@ -412,7 +412,7 @@ test("clicking save manually after uploading new image should change the unique 
     );
 
     await clickSave();
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659692220000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659692220000");
 
     // Change the image again. After clicking save, it should have the correct new url.
     await click("input[type=file]", { visible: false });
@@ -429,7 +429,7 @@ test("clicking save manually after uploading new image should change the unique 
     );
 
     await clickSave();
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659695820000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659695820000");
 });
 
 test("save record with image field modified by onchange", async () => {
@@ -460,7 +460,7 @@ test("save record with image field modified by onchange", async () => {
             </form>
         `,
     });
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
     await click("[name='foo'] input");
     await edit("grrr", { confirm: "enter" });
     await animationFrame();
@@ -470,7 +470,7 @@ test("save record with image field modified by onchange", async () => {
     );
 
     await clickSave();
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659692220000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659692220000");
 });
 
 test("ImageField: option accepted_file_extensions", async () => {
@@ -485,7 +485,7 @@ test("ImageField: option accepted_file_extensions", async () => {
         `,
     });
     // The view must be in edit mode
-    expect("input.o_input_file").toHaveAttribute("accept", ".png,.jpeg", {
+    expect("input.app_input_file").toHaveAttribute("accept", ".png,.jpeg", {
         message: "the input should have the correct ``accept`` attribute",
     });
 });
@@ -504,7 +504,7 @@ test("ImageField: set 0 width/height in the size option", async () => {
         `,
     });
 
-    const imgs = queryAll(".o_field_widget img");
+    const imgs = queryAll(".app_field_widget img");
 
     expect([imgs[0].attributes.width, imgs[0].attributes.height]).toEqual([undefined, undefined], {
         message: "if both size are set to 0, both attributes are undefined",
@@ -549,12 +549,12 @@ test("ImageField: zoom and zoom_delay options (readonly)", async () => {
         `,
     });
     // data-tooltip attribute is used by the tooltip service
-    expect(".o_field_image img").toHaveAttribute(
+    expect(".app_field_image img").toHaveAttribute(
         "data-tooltip-info",
         `{"url":"data:image/png;base64,${MY_IMAGE}"}`,
         { message: "shows a tooltip on hover" }
     );
-    expect(".o_field_image img").toHaveAttribute("data-tooltip-delay", "600", {
+    expect(".app_field_image img").toHaveAttribute("data-tooltip-delay", "600", {
         message: "tooltip has the right delay",
     });
 });
@@ -574,12 +574,12 @@ test("ImageField: zoom and zoom_delay options (edit)", async () => {
         `,
     });
 
-    expect(".o_field_image img").toHaveAttribute(
+    expect(".app_field_image img").toHaveAttribute(
         "data-tooltip-info",
         `{"url":"${getOrigin()}/web/image/partner/1/document?unique=1659688620000"}`,
         { message: "tooltip show the full image from the field value" }
     );
-    expect(".o_field_image img").toHaveAttribute("data-tooltip-delay", "600", {
+    expect(".app_field_image img").toHaveAttribute("data-tooltip-delay", "600", {
         message: "tooltip has the right delay",
     });
 });
@@ -598,12 +598,12 @@ test("ImageField displays the right images with zoom and preview_image options (
             </form>
         `,
     });
-    expect(".o_field_image img").toHaveAttribute(
+    expect(".app_field_image img").toHaveAttribute(
         "data-tooltip-info",
         `{"url":"${getOrigin()}/web/image/partner/1/document?unique=1659688620000"}`,
         { message: "tooltip show the full image from the field value" }
     );
-    expect(".o_field_image img").toHaveAttribute("data-tooltip-delay", "600", {
+    expect(".app_field_image img").toHaveAttribute("data-tooltip-delay", "600", {
         message: "tooltip has the right delay",
     });
 });
@@ -639,10 +639,10 @@ test("ImageField in subviews is loaded correctly", async () => {
     });
 
     expect(`img[data-src="data:image/png;base64,${MY_IMAGE}"]`).toHaveCount(1);
-    expect(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)").toHaveCount(1);
+    expect(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)").toHaveCount(1);
 
     // Actual flow: click on an element of the m2m to get its form view
-    await click(".o_kanban_record:not(.o_kanban_ghost):not(.o-kanban-button-new)");
+    await click(".app_kanban_record:not(.app_kanban_ghost):not(.app-kanban-button-new)");
     await animationFrame();
     expect(".modal").toHaveCount(1, { message: "The modal should have opened" });
 
@@ -669,7 +669,7 @@ test("ImageField in x2many list is loaded correctly", async () => {
         `,
     });
 
-    expect("tr.o_data_row").toHaveCount(1, {
+    expect("tr.app_data_row").toHaveCount(1, {
         message: "There should be one record in the many2many",
     });
     expect(`img[data-src="data:image/gif;base64,${PRODUCT_IMAGE}"]`).toHaveCount(1, {
@@ -693,10 +693,10 @@ test("ImageField with required attribute", async () => {
 
     await clickSave();
 
-    expect(".o_form_view .o_form_editable").toHaveCount(1, {
+    expect(".app_form_view .app_form_editable").toHaveCount(1, {
         message: "form view should still be editable",
     });
-    expect(".o_field_widget").toHaveClass("o_field_invalid", {
+    expect(".app_field_widget").toHaveClass("app_field_invalid", {
         message: "image field should be displayed as invalid",
     });
 });
@@ -730,7 +730,7 @@ test("ImageField is reset when changing record", async () => {
     );
 
     await clickSave();
-    await click(".o_control_panel_main_buttons .o_form_button_create");
+    await click(".app_control_panel_main_buttons .app_form_button_create");
     await runAllTimers();
     await animationFrame();
     expect("img[alt='Binary file']").toHaveAttribute(
@@ -774,23 +774,23 @@ test("unique in url doesn't change on onchange", async () => {
     });
 
     expect.verifySteps(["get_views", "web_read"]);
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
 
     expect.verifySteps([]);
     // same unique as before
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
 
-    await click(".o_field_widget[name='foo'] input");
+    await click(".app_field_widget[name='foo'] input");
     await edit("grrr", { confirm: "enter" });
     await animationFrame();
     expect.verifySteps(["onchange"]);
     // also same unique
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
 
     await clickSave();
     expect.verifySteps(["web_save"]);
 
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659692220000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659692220000");
 });
 
 test("unique in url change on record change", async () => {
@@ -814,9 +814,9 @@ test("unique in url change on record change", async () => {
         `,
     });
 
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
     await pagerNext();
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659692220000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659692220000");
 });
 
 test("unique in url does not change on record change if reload option is set to false", async () => {
@@ -836,12 +836,12 @@ test("unique in url does not change on record change if reload option is set to 
             </form>
         `,
     });
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
     await contains("div[name='write_date'] > div > button").click();
     await edit("2022-08-05 08:39:00", { confirm: "enter" });
     await animationFrame();
     await clickSave();
-    expect(getUnique(queryFirst(".o_field_image img"))).toBe("1659688620000");
+    expect(getUnique(queryFirst(".app_field_image img"))).toBe("1659688620000");
 });
 
 test("convert image to webp", async () => {
@@ -897,7 +897,7 @@ test("ImageField with width attribute in list", async () => {
         `,
     });
 
-    expect(".o_data_row").toHaveCount(3);
-    expect(".o_field_widget[name=document] img").toHaveCount(3);
-    expect(queryAllProperties(".o_list_table th[data-name=document]", "offsetWidth")).toEqual([39]);
+    expect(".app_data_row").toHaveCount(3);
+    expect(".app_field_widget[name=document] img").toHaveCount(3);
+    expect(queryAllProperties(".app_list_table th[data-name=document]", "offsetWidth")).toEqual([39]);
 });

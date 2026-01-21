@@ -69,9 +69,9 @@ test("profiling qweb view field renders delay and query", async function (assert
     await runAllTimers();
 
     expect("[name='qweb'] .ace_gutter .ace_gutter-cell").toHaveCount(3);
-    expect("[name='qweb'] .ace_gutter .ace_gutter-cell .o_info").toHaveCount(1);
-    expect("[name='qweb'] .ace_gutter .ace_gutter-cell .o_info .o_delay").toHaveText("0.1");
-    expect("[name='qweb'] .ace_gutter .ace_gutter-cell .o_info .o_query").toHaveText("9");
-    expect("[name='qweb'] .o_select_view_profiling .o_delay").toHaveText("0.1 ms");
-    expect("[name='qweb'] .o_select_view_profiling .o_query").toHaveText("9 query");
+    expect("[name='qweb'] .ace_gutter .ace_gutter-cell .app_info").toHaveCount(1);
+    expect("[name='qweb'] .ace_gutter .ace_gutter-cell .app_info .app_delay").toHaveText("0.1");
+    expect("[name='qweb'] .ace_gutter .ace_gutter-cell .app_info .app_query").toHaveText("9");
+    expect("[name='qweb'] .app_select_view_profiling .app_delay").toHaveText("0.1 ms");
+    expect("[name='qweb'] .app_select_view_profiling .app_query").toHaveText("9 query");
 });

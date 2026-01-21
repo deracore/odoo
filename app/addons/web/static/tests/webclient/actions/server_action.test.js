@@ -72,8 +72,8 @@ test("can execute server actions from db ID", async () => {
 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(2, { additionalContext: { someKey: 44 } });
-    expect(".o_control_panel").toHaveCount(1, { message: "should have rendered a control panel" });
-    expect(".o_kanban_view").toHaveCount(1, { message: "should have rendered a kanban view" });
+    expect(".app_control_panel").toHaveCount(1, { message: "should have rendered a control panel" });
+    expect(".app_kanban_view").toHaveCount(1, { message: "should have rendered a kanban view" });
     expect.verifySteps([
         "/web/webclient/translations",
         "/web/webclient/load_menus",
@@ -109,14 +109,14 @@ test("handle server actions returning false", async function (assert) {
         expect.step("close handler");
     }
     await getService("action").doAction(5, { onClose });
-    expect(".o_technical_modal .o_form_view").toHaveCount(1, {
+    expect(".app_technical_modal .app_form_view").toHaveCount(1, {
         message: "should have rendered a form view in a modal",
     });
 
     // execute a server action that returns false
     await getService("action").doAction(2);
     await animationFrame();
-    expect(".o_technical_modal").toHaveCount(0, { message: "should have closed the modal" });
+    expect(".app_technical_modal").toHaveCount(0, { message: "should have closed the modal" });
     expect.verifySteps([
         "/web/webclient/translations",
         "/web/webclient/load_menus",
@@ -147,5 +147,5 @@ test("action with html help returned by a server action", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(2);
 
-    expect(".o_kanban_view .o_nocontent_help p").toHaveText("I am not a helper");
+    expect(".app_kanban_view .app_nocontent_help p").toHaveText("I am not a helper");
 });

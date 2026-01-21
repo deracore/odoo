@@ -2,11 +2,11 @@
 <templates xml:space="preserve">
 
     <t t-name="web.TreeEditor">
-        <div class="o_tree_editor w-100" aria-atomic="true" t-att-class="className">
-            <div t-attf-class="o_tree_editor_node d-flex flex-column #{props.readonly ? (props.isSubTree ? 'gap-0' : 'gap-2') : 'gap-1'}">
+        <div class="app_tree_editor w-100" aria-atomic="true" t-att-class="className">
+            <div t-attf-class="app_tree_editor_node d-flex flex-column #{props.readonly ? (props.isSubTree ? 'gap-0' : 'gap-2') : 'gap-1'}">
                 <t t-set="ancestors" t-value="[]"/>
                 <t t-set="node" t-value="tree" />
-                <div class="o_tree_editor_row o_tree_editor_connector d-flex align-items-center flex-wrap" t-att-class="{'ps-4': props.isSubTree}">
+                <div class="app_tree_editor_row app_tree_editor_connector d-flex align-items-center flex-wrap" t-att-class="{'ps-4': props.isSubTree}">
                     <div class="d-flex flex-grow-1 align-items-center">
                         <t t-if="node.children.length">
                             <span t-if="!props.isSubTree">Match</span>
@@ -25,7 +25,7 @@
                 </div>
                 <t t-if="node.children.length" t-call="web.TreeEditor.connector.children" />
                 <t t-if="!props.readonly">
-                    <div class="o_tree_editor_row d-flex align-items-center" t-att-class="{ 'ps-4': addPadding || props.isSubTree }">
+                    <div class="app_tree_editor_row d-flex align-items-center" t-att-class="{ 'ps-4': addPadding || props.isSubTree }">
                         <a href="#" role="button" t-on-click="() => this.addNewCondition(node)">New Rule</a>
                     </div>
                 </t>
@@ -34,7 +34,7 @@
     </t>
 
     <t t-name="web.TreeEditor.controls">
-        <div class="o_tree_editor_node_control_panel d-flex" role="toolbar" aria-label="Domain node">
+        <div class="app_tree_editor_node_control_panel d-flex" role="toolbar" aria-label="Domain node">
             <t t-if="node.type !== 'connector'">
                 <button
                     t-if="ancestors.length === 1"
@@ -87,13 +87,13 @@
             </t>
         </t>
         <t t-if="props.readonly">
-            <div class="o_tree_editor_connector_value px-1">
+            <div class="app_tree_editor_connector_value px-1">
                 <strong class="text-primary" t-esc="title"/>
             </div>
         </t>
         <t t-else="">
-            <div class="o_tree_editor_connector_value px-1" aria-atomic="true">
-                <button class="btn o-dropdown o-dropdown-caret p-0 opacity-75" t-on-click="() => this.updateConnector(node)">
+            <div class="app_tree_editor_connector_value px-1" aria-atomic="true">
+                <button class="btn app-dropdown app-dropdown-caret p-0 opacity-75" t-on-click="() => this.updateConnector(node)">
                     <strong class="text-primary" t-esc="title"/>
                 </button>
             </div>
@@ -102,7 +102,7 @@
 
     <t t-name="web.TreeEditor.connector.children">
         <t t-foreach="node.children" t-as="child" t-key="child.type + '_' + child_index">
-            <div class="o_tree_editor_node" t-att-class="{ 'ps-4': addPadding || props.isSubTree }">
+            <div class="app_tree_editor_node" t-att-class="{ 'ps-4': addPadding || props.isSubTree }">
                 <t t-call="web.TreeEditor.{{ child.type }}">
                     <t t-set="ancestors" t-value="[...ancestors, node]" />
                     <t t-set="parent" t-value="node" />
@@ -113,7 +113,7 @@
     </t>
 
     <t t-name="web.TreeEditor.connector">
-        <div class="o_tree_editor_row o_tree_editor_connector d-flex align-items-center">
+        <div class="app_tree_editor_row app_tree_editor_connector d-flex align-items-center">
             <div class="d-flex flex-grow-1">
                 <t t-call="web.TreeEditor.connector.value" />
                 <span>of:</span>
@@ -128,7 +128,7 @@
     </t>
 
     <t t-name="web.TreeEditor.condition">
-        <div class="o_tree_editor_row d-flex align-items-center">
+        <div class="app_tree_editor_row d-flex align-items-center">
             <t t-if="props.readonly">
                 <t t-call="web.TreeEditor.condition:readonly" />
             </t>
@@ -150,7 +150,7 @@
 
     <t t-name="web.TreeEditor.condition:readonly">
         <t t-set="description" t-value="getConditionDescription(node)" />
-        <div class="o_tree_editor_condition d-flex gap-1 px-2 border bg-100">
+        <div class="app_tree_editor_condition d-flex gap-1 px-2 border bg-100">
             <div class="fw-bolder text-nowrap" t-esc="description.pathDescription" />
             <div class="fst-italic text-nowrap" t-esc="description.operatorDescription" />
             <t t-if="description.valueDescription">
@@ -169,8 +169,8 @@
 
     <t t-name="web.TreeEditor.Editor">
         <t t-if="!info.isSupported(value)">
-            <div t-attf-class="o_tree_editor_editor #{_classes}">
-                <div class="o_input d-flex align-items-center">
+            <div t-attf-class="app_tree_editor_editor #{_classes}">
+                <div class="app_input d-flex align-items-center">
                     <span class="flex-grow-1 text-truncate" t-esc="info.stringify(value)" />
                     <i role="alert" class="fa fa-exclamation-triangle text-warning mx-2" t-att-data-tooltip="(typeof info.message === 'function') ? info.message(value) : info.message" />
                     <i class="fa fa-times" data-tooltip="Clear" t-on-click="() => update(info.defaultValue())" />
@@ -178,14 +178,14 @@
             </div>
         </t>
         <t t-elif="info.component">
-            <div t-attf-class="o_tree_editor_editor #{_classes}">
+            <div t-attf-class="app_tree_editor_editor #{_classes}">
                 <t t-component="info.component" t-props="info.extractProps({ update, value, displayPlaceholder })" />
             </div>
         </t>
     </t>
 
     <t t-name="web.TreeEditor.condition:editable">
-        <div class="o_tree_editor_condition d-flex flex-grow-1 align-items-end gap-2">
+        <div class="app_tree_editor_condition d-flex flex-grow-1 align-items-end gap-2">
             <t t-call="web.TreeEditor.Editor">
                 <t t-set="_classes" t-value="'col col-md-4 pe-0'" />
                 <t t-set="info" t-value="getPathEditorInfo()" />
@@ -208,9 +208,9 @@
     </t>
 
     <t t-name="web.TreeEditor.complex_condition">
-        <div class="o_tree_editor_row d-flex align-items-center">
-            <div class="o_tree_editor_complex_condition flex-grow-1">
-                <input class="o_input w-100" t-att-value="node.value" t-att-readonly="props.readonly or !isDebugMode" t-on-change="(ev) => this.updateComplexCondition(node, ev.target.value)" />
+        <div class="app_tree_editor_row d-flex align-items-center">
+            <div class="app_tree_editor_complex_condition flex-grow-1">
+                <input class="app_input w-100" t-att-value="node.value" t-att-readonly="props.readonly or !isDebugMode" t-on-change="(ev) => this.updateComplexCondition(node, ev.target.value)" />
             </div>
             <t t-call="web.TreeEditor.controls" />
         </div>

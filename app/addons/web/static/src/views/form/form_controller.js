@@ -312,11 +312,11 @@ export class FormController extends Component {
                     if (
                         !isInEdition &&
                         !this.rootRef.el
-                            .querySelector(".o_content")
+                            .querySelector(".app_content")
                             .contains(document.activeElement)
                     ) {
                         const elementToFocus = this.rootRef.el.querySelector(
-                            ".o_content button.btn-primary"
+                            ".app_content button.btn-primary"
                         );
                         if (elementToFocus) {
                             elementToFocus.focus();
@@ -695,14 +695,14 @@ export class FormController extends Component {
         const result = {};
         const { size } = this.ui;
         if (size <= SIZES.XS) {
-            result.o_xxs_form_view = true;
+            result.app_xxs_form_view = true;
         } else if (!this.env.inDialog && size === SIZES.XXL) {
-            result["o_xxl_form_view h-100"] = true;
+            result["app_xxl_form_view h-100"] = true;
         }
         if (this.props.className) {
             result[this.props.className] = true;
         }
-        result["o_field_highlight"] = size < SIZES.SM || hasTouch();
+        result["app_field_highlight"] = size < SIZES.SM || hasTouch();
         return result;
     }
 }

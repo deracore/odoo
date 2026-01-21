@@ -97,7 +97,7 @@ export class FormRenderer extends Component {
                             elementToFocus ||
                             rootEl.querySelector(
                                 focusableSelectors
-                                    .map((sel) => `.o_content .o_field_widget ${sel}`)
+                                    .map((sel) => `.app_content .app_field_widget ${sel}`)
                                     .join(", ")
                             );
                     }

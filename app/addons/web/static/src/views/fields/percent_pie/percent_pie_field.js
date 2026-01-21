@@ -26,7 +26,7 @@ export const percentPieField = {
     component: PercentPieField,
     displayName: _t("PercentPie"),
     supportedTypes: ["float", "integer"],
-    additionalClasses: ["o_field_percent_pie"],
+    additionalClasses: ["app_field_percent_pie"],
     extractProps: ({ string }) => ({ string }),
 };
 

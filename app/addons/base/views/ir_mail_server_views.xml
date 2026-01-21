@@ -24,7 +24,7 @@
                                         <label for="max_email_size"
                                                string="Convert attachments to links for emails over"/>
                                         <field name="max_email_size" class="oe_inline mx-1"/>
-                                        <span class="o_form_label">MB</span>
+                                        <span class="app_form_label">MB</span>
                                     </div>
                                     <button class="btn btn-link pt-0" type="object" name="action_retrieve_max_email_size">
                                         <i class="fa fa-gear"/> Detect Max Limit
@@ -110,7 +110,7 @@
             <field name="search_view_id" ref="view_ir_mail_server_search"/>
             <field name="help" type="html">
                 <div>
-                    <b class="o_view_nocontent_smiling_face">
+                    <b class="app_view_nocontent_smiling_face">
                         No Outgoing Servers yet
                     </b>
                 </div>

@@ -145,8 +145,8 @@ describe("DebugMenu", () => {
             env,
             props: { close: () => {} },
         });
-        expect(".o_dialog").toHaveCount(1);
-        expect(".o_dialog .o_debug_manager .fa-bug").toHaveCount(0);
+        expect(".app_dialog").toHaveCount(1);
+        expect(".app_dialog .app_debug_manager .fa-bug").toHaveCount(0);
     });
 
     test("Display the DebugMenu correctly in a ActionDialog if debug mode is enabled", async () => {
@@ -189,9 +189,9 @@ describe("DebugMenu", () => {
             env,
             props: { close: () => {} },
         });
-        expect(".o_dialog").toHaveCount(1);
-        expect(".o_dialog .o_debug_manager .fa-bug").toHaveCount(1);
-        await contains(".o_dialog .o_debug_manager button").click();
+        expect(".app_dialog").toHaveCount(1);
+        expect(".app_dialog .app_debug_manager .fa-bug").toHaveCount(1);
+        await contains(".app_dialog .app_debug_manager button").click();
         expect(".dropdown-menu .dropdown-item").toHaveCount(2);
         // Check that global debugManager elements are not displayed (global_1)
         const items = queryAll(".dropdown-menu .dropdown-item");
@@ -243,10 +243,10 @@ describe("DebugMenu", () => {
         registry.category("debug").category("default").add("openViewItem", openViewItem);
 
         await mountWithCleanup(WebClient);
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item").click();
-        expect(".modal .o_list_view").toHaveCount(1);
-        await contains(".modal .o_list_view .o_data_row td").click();
+        expect(".modal .app_list_view").toHaveCount(1);
+        await contains(".modal .app_list_view .app_data_row td").click();
         expect(".modal").toHaveCount(0);
         expect(".some_view").toHaveCount(1);
     });
@@ -266,7 +266,7 @@ describe("DebugMenu", () => {
             views: [[false, "list"]],
         });
 
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Computed Arch')").click();
         expect(".modal").toHaveCount(1);
         expect(".modal-body").toHaveText(`<list><field name="name"/></list>`);
@@ -287,17 +287,17 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[false, "pivot"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('View: Pivot')").click();
 
         expect(".breadcrumb-item").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveText("Edit View");
-        expect(".o_field_widget[name=id]").toHaveText("18");
-        await click(".breadcrumb .o_back_button");
+        expect(".app_breadcrumb .active").toHaveCount(1);
+        expect(".app_breadcrumb .active").toHaveText("Edit View");
+        expect(".app_field_widget[name=id]").toHaveText("18");
+        await click(".breadcrumb .app_back_button");
         await animationFrame();
-        expect(".o_breadcrumb .active").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveText("Partners");
+        expect(".app_breadcrumb .active").toHaveCount(1);
+        expect(".app_breadcrumb .active").toHaveText("Partners");
     });
 
     test("can edit a search view", async () => {
@@ -317,12 +317,12 @@ describe("DebugMenu", () => {
             search_view_id: [293, "some_search_view"],
             views: [[false, "list"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('SearchView')").click();
         expect(".breadcrumb-item").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveText("Edit View");
-        expect(".o_field_widget[name=id]").toHaveText("293");
+        expect(".app_breadcrumb .active").toHaveCount(1);
+        expect(".app_breadcrumb .active").toHaveText("Edit View");
+        expect(".app_field_widget[name=id]").toHaveText("293");
     });
 
     test("edit search view on action without search_view_id", async () => {
@@ -342,12 +342,12 @@ describe("DebugMenu", () => {
             search_view_id: false,
             views: [[false, "list"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('SearchView')").click();
         expect(".breadcrumb-item").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveText("Edit View");
-        expect(".o_field_widget[name=id]").toHaveText("293");
+        expect(".app_breadcrumb .active").toHaveCount(1);
+        expect(".app_breadcrumb .active").toHaveText("Edit View");
+        expect(".app_field_widget[name=id]").toHaveText("293");
     });
 
     test("cannot edit the control panel of a form view contained in a dialog without control panel.", async () => {
@@ -365,7 +365,7 @@ describe("DebugMenu", () => {
             views: [[false, "form"]],
         });
 
-        await contains(".o_dialog .o_debug_manager button").click();
+        await contains(".app_dialog .app_debug_manager button").click();
         expect(".dropdown-menu .dropdown-item:contains('SearchView')").toHaveCount(0);
     });
 
@@ -388,7 +388,7 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[24, "form"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Set Default Values')").click();
         expect(".modal").toHaveCount(1);
         expect(".modal select#formview_default_fields").toHaveCount(1);
@@ -421,7 +421,7 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[25, "form"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Set Default Values')").click();
         expect(".modal").toHaveCount(1);
         await contains(".modal .modal-footer button").click();
@@ -453,7 +453,7 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[26, "form"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Set Default Values')").click();
         expect(".modal").toHaveCount(1);
 
@@ -502,7 +502,7 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[false, "form"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains(/^Data/)").click();
         expect(".modal").toHaveCount(1);
         const data = queryText(".modal-body pre");
@@ -553,7 +553,7 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[false, "form"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Metadata')").click();
         expect(".modal").toHaveCount(1);
         const contentModal = queryAll(".modal-body table tr th, .modal-body table tr td");
@@ -637,7 +637,7 @@ describe("DebugMenu", () => {
                 type: "ir.actions.act_window",
                 views: [[18, "form"]],
             });
-            await contains(".o_debug_manager button").click();
+            await contains(".app_debug_manager button").click();
             await contains(".dropdown-menu .dropdown-item:contains('Set Default Values')").click();
             expect(".modal").toHaveCount(1);
 
@@ -679,12 +679,12 @@ describe("DebugMenu", () => {
             views: [[false, "form"]],
         });
 
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Model:')").click();
 
         expect(".breadcrumb-item").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveCount(1);
-        expect(".o_breadcrumb .active").toHaveText("Partner");
+        expect(".app_breadcrumb .active").toHaveCount(1);
+        expect(".app_breadcrumb .active").toHaveText("Partner");
     });
 
     test("set defaults: settings default value with a very long value", async () => {
@@ -744,7 +744,7 @@ describe("DebugMenu", () => {
             type: "ir.actions.act_window",
             views: [[false, "form"]],
         });
-        await contains(".o_debug_manager button").click();
+        await contains(".app_debug_manager button").click();
         await contains(".dropdown-menu .dropdown-item:contains('Set Default Values')").click();
         expect(".modal").toHaveCount(1);
 

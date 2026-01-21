@@ -1,7 +1,7 @@
 @include media-breakpoint-down(md) {
 
-    .o_calendar_renderer {
-        .o_actionswiper, .o_actionswiper_overflow_container, .o_actionswiper_target_container {
+    .app_calendar_renderer {
+        .app_actionswiper, .app_actionswiper_overflow_container, .app_actionswiper_target_container {
             height: 100%;
         }
         .fc-view {

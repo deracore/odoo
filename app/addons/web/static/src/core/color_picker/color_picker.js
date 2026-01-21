@@ -268,7 +268,7 @@ export class ColorPicker extends Component {
 
     colorPickerNavigation(ev) {
         const { target, key } = ev;
-        if (!target.classList.contains("o_color_button")) {
+        if (!target.classList.contains("app_color_button")) {
             return;
         }
         if (!["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"].includes(key)) {
@@ -294,18 +294,18 @@ export class ColorPicker extends Component {
                     key === "ArrowUp"
                         ? target.parentElement.previousElementSibling
                         : target.parentElement.nextElementSibling;
-                if (row?.matches(".o_color_section, .o_colorpicker_section")) {
+                if (row?.matches(".app_color_section, .app_colorpicker_section")) {
                     targetBtn = row.children[buttonIndex];
                 }
             }
         }
-        if (targetBtn && targetBtn.classList.contains("o_color_button")) {
+        if (targetBtn && targetBtn.classList.contains("app_color_button")) {
             targetBtn.focus();
         }
     }
 
     isColorButton(targetEl) {
-        return targetEl.tagName === "BUTTON" && !targetEl.matches(".o_colorpicker_ignore");
+        return targetEl.tagName === "BUTTON" && !targetEl.matches(".app_colorpicker_ignore");
     }
 }
 
@@ -354,5 +354,5 @@ export function useColorPicker(refName, props, options = {}) {
  * @returns {boolean}
  */
 function isColorCombination(color) {
-    return color.startsWith("o_cc");
+    return color.startsWith("app_cc");
 }

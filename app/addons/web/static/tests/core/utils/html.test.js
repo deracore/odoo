@@ -330,10 +330,10 @@ test("appmark", () => {
         `<span class="text-muted">test</span> something else <span class="text-muted">test</span>`
     );
     expect(appmark("`test`").toString()).toBe(
-        `<span class="o_tag position-relative d-inline-flex align-items-center mw-100 o_badge badge rounded-pill lh-1 o_tag_color_0">test</span>`
+        `<span class="app_tag position-relative d-inline-flex align-items-center mw-100 app_badge badge rounded-pill lh-1 app_tag_color_0">test</span>`
     );
     expect(appmark("`test` something else `test`").toString()).toBe(
-        `<span class="o_tag position-relative d-inline-flex align-items-center mw-100 o_badge badge rounded-pill lh-1 o_tag_color_0">test</span> something else <span class="o_tag position-relative d-inline-flex align-items-center mw-100 o_badge badge rounded-pill lh-1 o_tag_color_0">test</span>`
+        `<span class="app_tag position-relative d-inline-flex align-items-center mw-100 app_badge badge rounded-pill lh-1 app_tag_color_0">test</span> something else <span class="app_tag position-relative d-inline-flex align-items-center mw-100 app_badge badge rounded-pill lh-1 app_tag_color_0">test</span>`
     );
     expect(appmark("test\ttest2").toString()).toBe(
         `test<span style="margin-left: 2em"></span>test2`

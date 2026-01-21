@@ -355,7 +355,7 @@ export class View extends Component {
 
         const sample = archXmlDoc.getAttribute("sample");
         const className = computeViewClassName(type, archXmlDoc, [
-            "o_view_controller",
+            "app_view_controller",
             ...(props.className || "").split(" "),
         ]);
 

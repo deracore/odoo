@@ -2,10 +2,10 @@
 <templates xml:space="preserve">
 
     <t t-name="web.CustomFavoriteItem">
-        <AccordionItem class="'o_add_favorite text-truncate'" description.translate="Save current search">
+        <AccordionItem class="'app_add_favorite text-truncate'" description.translate="Save current search">
             <div class="px-3 py-1">
                 <input type="text"
-                    class="o_input my-1"
+                    class="app_input my-1"
                     t-ref="description"
                     t-model.trim="state.description"
                     t-on-keydown="onInputKeydown"
@@ -15,10 +15,10 @@
                 </CheckBox>
             </div>
             <div class="px-3 pb-2 d-flex gap-2">
-                <button class="o_save_favorite btn btn-primary w-100" t-on-click="saveFavorite">
+                <button class="app_save_favorite btn btn-primary w-100" t-on-click="saveFavorite">
                     Save
                 </button>
-                <button class="o_edit_favorite btn btn-secondary w-100" t-on-click="editFavorite">
+                <button class="app_edit_favorite btn btn-secondary w-100" t-on-click="editFavorite">
                     Edit
                 </button>
             </div>

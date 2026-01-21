@@ -133,18 +133,18 @@ test("report actions can close modals and reload views", async () => {
 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(5, { onClose: () => expect.step("on_close") });
-    expect(".o_technical_modal .o_form_view").toHaveCount(1, {
+    expect(".app_technical_modal .app_form_view").toHaveCount(1, {
         message: "should have rendered a form view in a modal",
     });
 
     await getService("action").doAction(7, { onClose: () => expect.step("on_printed") });
-    expect(".o_technical_modal .o_form_view").toHaveCount(1, {
+    expect(".app_technical_modal .app_form_view").toHaveCount(1, {
         message: "The modal should still exist",
     });
 
     await getService("action").doAction(11);
     await animationFrame();
-    expect(".o_technical_modal .o_form_view").toHaveCount(0, {
+    expect(".app_technical_modal .app_form_view").toHaveCount(0, {
         message: "the modal should have been closed after the action report",
     });
     expect.verifySteps(["/report/download", "on_printed", "/report/download", "on_close"]);
@@ -206,7 +206,7 @@ test("should open the report client action if wkhtmltopdf is broken", async () =
 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(7);
-    expect(".o_content iframe").toHaveCount(1, {
+    expect(".app_content iframe").toHaveCount(1, {
         message: "should have opened the report client action",
     });
     // the control panel has the content twice and a d-none class is toggled depending the screen size
@@ -257,7 +257,7 @@ test("send context in case of html report", async () => {
 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(12);
-    expect(".o_content iframe").toHaveCount(1, { message: "should have opened the client action" });
+    expect(".app_content iframe").toHaveCount(1, { message: "should have opened the client action" });
     expect.verifySteps([
         "/web/webclient/translations",
         "/web/webclient/load_menus",
@@ -377,19 +377,19 @@ test("custom handlers can close modals", async () => {
     });
 
     await getService("action").doAction(5);
-    await waitFor(".o_technical_modal .o_form_view");
-    expect(".o_technical_modal .o_form_view").toHaveCount(1, {
+    await waitFor(".app_technical_modal .app_form_view");
+    expect(".app_technical_modal .app_form_view").toHaveCount(1, {
         message: "should have rendered a form view in a modal",
     });
 
     await getService("action").doAction(7);
-    expect(".o_technical_modal .o_form_view").toHaveCount(1, {
+    expect(".app_technical_modal .app_form_view").toHaveCount(1, {
         message: "The modal should still exist",
     });
 
     await getService("action").doAction(11);
     await animationFrame();
-    expect(".o_technical_modal .o_form_view").toHaveCount(0, {
+    expect(".app_technical_modal .app_form_view").toHaveCount(0, {
         message: "the modal should have been closed after the custom handler",
     });
     expect.verifySteps([
@@ -447,7 +447,7 @@ test("context is correctly passed to the client action report", async (assert) =
     await getService("action").doAction(action);
     expect.verifySteps(["/report/html/ennio.morricone/99"]);
 
-    await contains(".o_control_panel_main_buttons button[title='Print']").click();
+    await contains(".app_control_panel_main_buttons button[title='Print']").click();
     expect.verifySteps(["/report/check_wkhtmltopdf", "/report/download"]);
 });
 

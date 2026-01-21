@@ -17,11 +17,11 @@
 
     <t t-name="web.CalendarYearPopover.popover">
         <div class="position-absolute" style="top: .75rem; right: 1rem;">
-            <span class="o_cw_popover_close" t-on-click.stop="() => props.close()">
+            <span class="app_cw_popover_close" t-on-click.stop="() => props.close()">
                 <i class="fc-close fc-icon fc-icon-x" />
             </span>
         </div>
-        <div class="o_cw_body popover-body d-flex flex-column gap-2">
+        <div class="app_cw_body popover-body d-flex flex-column gap-2">
             <t t-call="{{ constructor.subTemplates.body }}" />
             <t t-if="props.model.canCreate">
                 <t t-call="{{ constructor.subTemplates.footer }}" />
@@ -40,7 +40,7 @@
 
     <t t-name="web.CalendarYearPopover.footer">
         <t t-if="props.model.canCreate">
-            <a href="#" class="btn-link o_cw_popover_create" t-on-click.prevent="onCreateButtonClick">
+            <a href="#" class="btn-link app_cw_popover_create" t-on-click.prevent="onCreateButtonClick">
                 <i class="fa fa-plus" />
                 Create
             </a>
@@ -57,7 +57,7 @@
             href="#"
             t-on-click.prevent="() => this.onRecordClick(record)"
             t-attf-style="{{ getRecordStyle(record) }}"
-            t-attf-class="o_cw_popover_link d-flex align-items-center gap-1 {{ getRecordClass(record) }} {{record.startHour ? 'o_event_dot' : 'o_event_allday'}}"
+            t-attf-class="app_cw_popover_link d-flex align-items-center gap-1 {{ getRecordClass(record) }} {{record.startHour ? 'app_event_dot' : 'app_event_allday'}}"
             t-att-data-id="record.id"
             t-att-data-title="record.title"
         >

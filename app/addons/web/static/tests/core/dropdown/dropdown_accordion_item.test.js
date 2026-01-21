@@ -15,14 +15,14 @@ test("accordion can be rendered", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect("div.o_accordion").toHaveCount(1);
-    expect(".o_accordion button.o_accordion_toggle").toHaveCount(1);
-    expect(".o_accordion_values").toHaveCount(0);
+    expect("div.app_accordion").toHaveCount(1);
+    expect(".app_accordion button.app_accordion_toggle").toHaveCount(1);
+    expect(".app_accordion_values").toHaveCount(0);
 
-    await click("button.o_accordion_toggle");
+    await click("button.app_accordion_toggle");
     await animationFrame();
-    expect(".o_accordion_values").toHaveCount(1);
-    expect(queryOne(".o_accordion_values").innerHTML).toBe(`<h5>In accordion</h5>`);
+    expect(".app_accordion_values").toHaveCount(1);
+    expect(queryOne(".app_accordion_values").innerHTML).toBe(`<h5>In accordion</h5>`);
 });
 
 test("dropdown with accordion keyboard navigation", async () => {
@@ -45,7 +45,7 @@ test("dropdown with accordion keyboard navigation", async () => {
     }
 
     await mountWithCleanup(Parent);
-    await click(".o-dropdown.dropdown-toggle");
+    await click(".app-dropdown.dropdown-toggle");
     await animationFrame();
 
     expect(".dropdown-menu > .focus").toHaveCount(0);

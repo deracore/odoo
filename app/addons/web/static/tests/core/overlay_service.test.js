@@ -7,7 +7,7 @@ import { MainComponentsContainer } from "@web/core/main_components_container";
 
 test("simple case", async () => {
     await mountWithCleanup(MainComponentsContainer);
-    expect(".o-overlay-container").toHaveCount(1);
+    expect(".app-overlay-container").toHaveCount(1);
 
     class MyComp extends Component {
         static template = xml`
@@ -18,11 +18,11 @@ test("simple case", async () => {
 
     const remove = getService("overlay").add(MyComp, {});
     await animationFrame();
-    expect(".o-overlay-container .overlayed").toHaveCount(1);
+    expect(".app-overlay-container .overlayed").toHaveCount(1);
 
     remove();
     await animationFrame();
-    expect(".o-overlay-container .overlayed").toHaveCount(0);
+    expect(".app-overlay-container .overlayed").toHaveCount(0);
 });
 
 test("shadow DOM overlays are visible when registered before main component is mounted", async () => {
@@ -44,7 +44,7 @@ test("shadow DOM overlays are visible when registered before main component is m
     await mountWithCleanup(MainComponentsContainer, { target: root.shadowRoot });
     await animationFrame();
 
-    expect("#my-root-id:shadow .o-overlay-container .overlayed").toHaveCount(1);
+    expect("#my-root-id:shadow .app-overlay-container .overlayed").toHaveCount(1);
 });
 
 test("onRemove callback", async () => {
@@ -76,20 +76,20 @@ test("multiple overlays", async () => {
     const remove3 = getService("overlay").add(MyComp, { className: "o3" });
     await animationFrame();
     expect(".overlayed").toHaveCount(3);
-    expect(".o-overlay-container :nth-child(1) .overlayed").toHaveClass("o1");
-    expect(".o-overlay-container :nth-child(2) .overlayed").toHaveClass("o2");
-    expect(".o-overlay-container :nth-child(3) .overlayed").toHaveClass("o3");
+    expect(".app-overlay-container :nth-child(1) .overlayed").toHaveClass("o1");
+    expect(".app-overlay-container :nth-child(2) .overlayed").toHaveClass("o2");
+    expect(".app-overlay-container :nth-child(3) .overlayed").toHaveClass("o3");
 
     remove1();
     await animationFrame();
     expect(".overlayed").toHaveCount(2);
-    expect(".o-overlay-container :nth-child(1) .overlayed").toHaveClass("o2");
-    expect(".o-overlay-container :nth-child(2) .overlayed").toHaveClass("o3");
+    expect(".app-overlay-container :nth-child(1) .overlayed").toHaveClass("o2");
+    expect(".app-overlay-container :nth-child(2) .overlayed").toHaveClass("o3");
 
     remove2();
     await animationFrame();
     expect(".overlayed").toHaveCount(1);
-    expect(".o-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
+    expect(".app-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
 
     remove3();
     await animationFrame();
@@ -110,20 +110,20 @@ test("sequence", async () => {
     const remove3 = getService("overlay").add(MyComp, { className: "o3" }, { sequence: 40 });
     await animationFrame();
     expect(".overlayed").toHaveCount(3);
-    expect(".o-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
-    expect(".o-overlay-container :nth-child(2) .overlayed").toHaveClass("o1");
-    expect(".o-overlay-container :nth-child(3) .overlayed").toHaveClass("o2");
+    expect(".app-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
+    expect(".app-overlay-container :nth-child(2) .overlayed").toHaveClass("o1");
+    expect(".app-overlay-container :nth-child(3) .overlayed").toHaveClass("o2");
 
     remove1();
     await animationFrame();
     expect(".overlayed").toHaveCount(2);
-    expect(".o-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
-    expect(".o-overlay-container :nth-child(2) .overlayed").toHaveClass("o2");
+    expect(".app-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
+    expect(".app-overlay-container :nth-child(2) .overlayed").toHaveClass("o2");
 
     remove2();
     await animationFrame();
     expect(".overlayed").toHaveCount(1);
-    expect(".o-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
+    expect(".app-overlay-container :nth-child(1) .overlayed").toHaveClass("o3");
 
     remove3();
     await animationFrame();
@@ -149,6 +149,6 @@ test("allow env as option", async () => {
     getService("overlay").add(MyComp, {}, { env: { A: "foo", B: "bar" } });
     await animationFrame();
 
-    expect(".o-overlay-container li:nth-child(1)").toHaveText("A=blip");
-    expect(".o-overlay-container li:nth-child(2)").toHaveText("B=bar");
+    expect(".app-overlay-container li:nth-child(1)").toHaveText("A=blip");
+    expect(".app-overlay-container li:nth-child(2)").toHaveText("B=bar");
 });

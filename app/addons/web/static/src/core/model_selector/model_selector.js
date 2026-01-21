@@ -72,7 +72,7 @@ export class ModelSelector extends Component {
             if (this.models.length - visibleModels.length > 0) {
                 visibleModels.push({
                     label: _t("Start typing..."),
-                    cssClass: "o_m2o_start_typing",
+                    cssClass: "app_m2o_start_typing",
                 });
             }
             return visibleModels;
@@ -86,7 +86,7 @@ export class ModelSelector extends Component {
         if (!options.length) {
             options.push({
                 label: _t("No records"),
-                cssClass: "o_m2o_no_result",
+                cssClass: "app_m2o_no_result",
             });
         }
         return options;

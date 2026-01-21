@@ -1792,7 +1792,7 @@ export class Matcher {
      * @example
      *  expect("inline").toHaveClass("btn btn-primary");
      * @example
-     *  expect("body").toHaveClass(["o_webclient", "o_dark"]);
+     *  expect("body").toHaveClass(["app_webclient", "app_dark"]);
      */
     toHaveClass(className, options) {
         this._ensureArguments(arguments, ["string", "string[]"]);
@@ -1832,9 +1832,9 @@ export class Matcher {
      * @param {number} [amount]
      * @param {ExpectOptions} [options]
      * @example
-     *  expect(".o_webclient").toHaveCount(1);
+     *  expect(".app_webclient").toHaveCount(1);
      * @example
-     *  expect(".o_form_view .o_field_widget").toHaveCount();
+     *  expect(".app_form_view .app_field_widget").toHaveCount();
      * @example
      *  expect("ul > li").toHaveCount(4);
      */

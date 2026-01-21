@@ -24,7 +24,7 @@
             <t t-elif="props.type === 'integer'">
                 <input
                     t-att-id="props.id"
-                    class="o_input o_field_property_input"
+                    class="app_input app_field_property_input"
                     type="text"
                     autocomplete="off"
                     t-att-value="displayValue"
@@ -34,7 +34,7 @@
             <t t-elif="props.type === 'float'">
                 <input
                     t-att-id="props.id"
-                    class="o_input o_field_property_input"
+                    class="app_input app_field_property_input"
                     type="text"
                     autocomplete="off"
                     t-att-value="displayValue"
@@ -43,15 +43,15 @@
             </t>
             <t t-elif="this.props.type === 'monetary'">
                 <div class="text-nowrap d-inline-flex w-100 align-items-baseline position-relative">
-                    <span class="o_input position-absolute pe-none d-flex w-100">
+                    <span class="app_input position-absolute pe-none d-flex w-100">
                         <span t-if="this.currency?.position === 'before'" t-out="this.currency.symbol + this.nbsp"/>
-                        <span class="opacity-0 d-inline-block overflow-hidden mw-100 o_monetary_ghost_value" t-out="displayValue"/>
+                        <span class="opacity-0 d-inline-block overflow-hidden mw-100 app_monetary_ghost_value" t-out="displayValue"/>
                         <span t-if="this.currency?.position === 'after'" t-out="this.nbsp + this.currency.symbol"/>
                     </span>
                     <span class="opacity-0" t-if="this.currency?.position === 'before'" t-out="this.currency.symbol + this.nbsp"/>
                     <input
                         t-att-id="props.id"
-                        class="o_input o_field_property_input flex-grow-1 flex-shrink-1"
+                        class="app_input app_field_property_input flex-grow-1 flex-shrink-1"
                         type="text"
                         autocomplete="off"
                         t-att-value="displayValue"
@@ -61,7 +61,7 @@
                 </div>
             </t>
             <t t-elif="props.type === 'selection'">
-                <select class="o_input" t-on-change="event => this.onValueChange(event.target.value)"
+                <select class="app_input" t-on-change="event => this.onValueChange(event.target.value)"
                     t-att-id="props.id">
                     <option t-att-value="false" />
                     <t t-foreach="props.selection || []" t-as="option" t-key="option[0]">
@@ -86,17 +86,17 @@
             </t>
             <div
                 t-elif="props.type === 'many2one'"
-                class="o_field_property_many2one_value d-flex flex-row align-items-center"
+                class="app_field_property_many2one_value d-flex flex-row align-items-center"
                 t-att-class="{'avatar': showAvatar}">
                 <t t-if="props.comodel">
                     <t t-set="hasAccess" t-value="!propertyValue || propertyValue.display_name"/>
                     <img t-if="showAvatar and propertyValue.id and hasAccess"
                         t-attf-src="/web/image/{{props.comodel}}/{{propertyValue.id}}/avatar_128"
-                        class="o_avatar rounded me-1"/>
+                        class="app_avatar rounded me-1"/>
                     <t t-if="props.readonly || !hasAccess">
                         <a
                             t-if="clickableRelational || !hasAccess"
-                            t-attf-class="o_form_uri {{propertyValue and propertyValue.display_name ? '' : 'disabled'}}"
+                            t-attf-class="app_form_uri {{propertyValue and propertyValue.display_name ? '' : 'disabled'}}"
                             t-att-href="propertyValue.id ? `#id=${propertyValue.id}&amp;model=${props.comodel}` : '#'"
                             t-on-click.prevent="onMany2oneClick">
                             <t t-if="hasAccess" t-out="propertyValue.display_name"/>
@@ -123,7 +123,7 @@
                     <button
                         t-if="!props.readonly and propertyValue and propertyValue.id and hasAccess"
                         type="button"
-                        class="btn btn-secondary oi oi-arrow-right o_external_button o_properties_external_button py-0"
+                        class="btn btn-secondary oi oi-arrow-right app_external_button app_properties_external_button py-0"
                         tabindex="-1"
                         draggable="false"
                         aria-label="Internal link"
@@ -133,8 +133,8 @@
                 </t>
             </div>
             <t t-elif="props.type === 'many2many'">
-                <div t-if="props.comodel" class="o_field_property_many2many_value d-flex flex-wrap flex-row gap-1 ms-0 pe-1 w-100 "
-                    t-attf-class="o_field_widget o_field_many2many_tags {{showAvatar ? 'avatar' : ''}} {{props.readonly ? 'readonly' : ''}}">
+                <div t-if="props.comodel" class="app_field_property_many2many_value d-flex flex-wrap flex-row gap-1 ms-0 pe-1 w-100 "
+                    t-attf-class="app_field_widget app_field_many2many_tags {{showAvatar ? 'avatar' : ''}} {{props.readonly ? 'readonly' : ''}}">
                     <!-- Copy many2many tags style without duplicating all CSS -->
                     <TagsList tags="propertyValue"/>
                     <Many2XAutocomplete
@@ -161,7 +161,7 @@
             </t>
             <t t-else="">
                 <input
-                    class="o_input"
+                    class="app_input"
                     t-att-id="props.id"
                     type="text"
                     autocomplete="off"

@@ -94,7 +94,7 @@ test("Many2OneBarcode component should display the barcode icon", async () => {
                 </form>
         `,
     });
-    expect(".o_barcode").toHaveCount(1);
+    expect(".app_barcode").toHaveCount(1);
 });
 
 test("barcode button with single results", async () => {
@@ -125,9 +125,9 @@ test("barcode button with single results", async () => {
         `,
     });
 
-    expect(".o_barcode").toHaveCount(1);
+    expect(".app_barcode").toHaveCount(1);
 
-    await contains(".o_barcode").click();
+    await contains(".app_barcode").click();
     await clickSave();
 
     expect.verifySteps(["vibrate:100"]);
@@ -160,18 +160,18 @@ test("barcode button with multiple results on desktop", async () => {
             </form>`,
     });
 
-    expect(".o_barcode").toHaveCount(1);
+    expect(".app_barcode").toHaveCount(1);
 
-    await contains(".o_barcode").click();
+    await contains(".app_barcode").click();
     await runAllTimers();
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(1);
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(1);
 
     expect(
-        ".o-autocomplete--dropdown-menu .o-autocomplete--dropdown-item.ui-menu-item:not(.o_m2o_dropdown_option)"
+        ".app-autocomplete--dropdown-menu .app-autocomplete--dropdown-item.ui-menu-item:not(.app_m2o_dropdown_option)"
     ).toHaveCount(2);
 
     await contains(
-        ".o-autocomplete--dropdown-menu .o-autocomplete--dropdown-item:nth-child(1)"
+        ".app-autocomplete--dropdown-menu .app-autocomplete--dropdown-item:nth-child(1)"
     ).click();
     await clickSave();
     expect.verifySteps(["vibrate:100"]);
@@ -202,18 +202,18 @@ test("barcode button with multiple results on mobile", async () => {
         arch: `<form><field name="product_id" options="{'can_scan_barcode': True}"/></form>`,
     });
 
-    expect(".o_barcode").toHaveCount(1, { message: "has scanner barcode button" });
+    expect(".app_barcode").toHaveCount(1, { message: "has scanner barcode button" });
 
-    await contains(".o_barcode").click();
+    await contains(".app_barcode").click();
 
     expect(".modal-dialog.modal-lg").toHaveCount(1, {
         message: "there should be one modal opened in full screen",
     });
-    expect(".modal-dialog.modal-lg .o_kanban_record:not(.o_kanban_ghost)").toHaveCount(2, {
+    expect(".modal-dialog.modal-lg .app_kanban_record:not(.app_kanban_ghost)").toHaveCount(2, {
         message: "there should be 2 records displayed",
     });
 
-    await contains(".o_kanban_record:nth-child(1)").click();
+    await contains(".app_kanban_record:nth-child(1)").click();
     await clickSave();
     expect.verifySteps(["vibrate:100"]);
 });
@@ -234,15 +234,15 @@ test("many2one with barcode show all records", async () => {
     });
 
     // Select one product
-    await contains(".o_barcode").click();
+    await contains(".app_barcode").click();
 
     // Click on the input to show all records
-    await contains(".o_input_dropdown > input").click();
+    await contains(".app_input_dropdown > input").click();
 
     expect(".modal-dialog.modal-lg").toHaveCount(1, {
         message: "there should be one modal opened in full screen",
     });
-    expect(".modal-dialog.modal-lg .o_kanban_record:not(.o_kanban_ghost)").toHaveCount(3, {
+    expect(".modal-dialog.modal-lg .app_kanban_record:not(.app_kanban_ghost)").toHaveCount(3, {
         message: "there should be 3 records displayed",
     });
     expect.verifySteps(["vibrate:100"]);

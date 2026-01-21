@@ -2,7 +2,7 @@
 <templates>
 
     <t t-name="web.ReportAction">
-        <div class="o_action">
+        <div class="app_action">
             <Layout display="{ controlPanel: {} }">
                 <t t-set-slot="control-panel-create-button">
                     <button t-on-click="print" type="button" class="btn btn-primary" title="Print">Print</button>

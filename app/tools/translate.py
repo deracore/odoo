@@ -158,7 +158,7 @@ def translate_xml_node(node, callback, parse, serialize):
             # The introduction of a translation `<span>` in the middle of their
             # hierarchy breaks their functionalities. We need to force them to
             # be translated as a whole using the `o_translate_inline` class.
-            "o_translate_inline" in node.attrib.get("class", "").split()
+            "app_translate_inline" in node.attrib.get("class", "").split()
             or node.tag in TRANSLATED_ELEMENTS
             and not any(key.startswith("t-") or key.endswith(".translate") for key in node.attrib)
             and all(translatable(child) for child in node)

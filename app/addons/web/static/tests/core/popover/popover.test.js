@@ -27,7 +27,7 @@ test("popover can have custom class", async () => {
         },
     });
 
-    expect(".o_popover.custom-popover").toHaveCount(1);
+    expect(".app_popover.custom-popover").toHaveCount(1);
 });
 
 test("popover can have more than one custom class", async () => {
@@ -40,7 +40,7 @@ test("popover can have more than one custom class", async () => {
         },
     });
 
-    expect(".o_popover.custom-popover.popover-custom").toHaveCount(1);
+    expect(".app_popover.custom-popover.popover-custom").toHaveCount(1);
 });
 
 test("popover is rendered nearby target (default)", async () => {
@@ -251,8 +251,8 @@ test("within iframe", async () => {
     });
 
     expect.verifySteps(["bottom"]);
-    expect(".o_popover").toHaveCount(1);
-    expect(":iframe .o_popover").toHaveCount(0);
+    expect(".app_popover").toHaveCount(1);
+    expect(":iframe .app_popover").toHaveCount(0);
 
     // The popover should be rendered in the correct position
     const marginTop = queryRect(".popover-arrow").height;
@@ -306,7 +306,7 @@ test("within iframe -- wrong element class", async () => {
         },
     });
 
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
     expect.verifySteps(['validate target props: "true"']);
 });
 
@@ -333,7 +333,7 @@ test("popover fixed position", async () => {
         },
     });
 
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
     expect.verifySteps(["onPositioned"]);
 
     // force the DOM update
@@ -365,9 +365,9 @@ test("popover with arrow and onPositioned", async () => {
     });
 
     expect.verifySteps(["onPositioned (from override)", "onPositioned (from props)"]);
-    expect(".o_popover").toHaveClass("o_popover popover mw-100 bs-popover-auto");
-    expect(".o_popover").toHaveAttribute("data-popper-placement", "bottom");
-    expect(".o_popover > .popover-arrow").toHaveClass("position-absolute z-n1");
+    expect(".app_popover").toHaveClass("app_popover popover mw-100 bs-popover-auto");
+    expect(".app_popover").toHaveAttribute("data-popper-placement", "bottom");
+    expect(".app_popover > .popover-arrow").toHaveClass("position-absolute z-n1");
 });
 
 test("popover closes when navigating", async () => {
@@ -386,7 +386,7 @@ test("popover closes when navigating", async () => {
         },
     });
 
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
 
     history.back(); // Head back
     await animationFrame();
@@ -422,7 +422,7 @@ test("popover position is updated when the content dimensions change", async () 
         },
     });
 
-    expect(".o_popover").toHaveCount(1);
+    expect(".app_popover").toHaveCount(1);
     expect.verifySteps(["onPositioned"]);
     await contains("#popover button").click();
     expect("#popover span").toHaveCount(1);

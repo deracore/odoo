@@ -484,7 +484,7 @@ export class Many2XAutocomplete extends Component {
 
     buildCreateSuggestion(request) {
         return {
-            cssClass: "o_m2o_dropdown_option o_m2o_dropdown_option_create",
+            cssClass: "app_m2o_dropdown_option app_m2o_dropdown_option_create",
             data: { slotName: "createItem" },
             label: _t('Create "%s"', request),
             onSelect: async () => {
@@ -499,7 +499,7 @@ export class Many2XAutocomplete extends Component {
 
     buildCreateEditSuggestion(request) {
         return {
-            cssClass: "o_m2o_dropdown_option o_m2o_dropdown_option_create_edit",
+            cssClass: "app_m2o_dropdown_option app_m2o_dropdown_option_create_edit",
             data: { slotName: "createEditItem" },
             label: request.length > 0 ? _t("Create and edit...") : _t("Create..."),
             onSelect: () => this.slowCreate(request),
@@ -508,7 +508,7 @@ export class Many2XAutocomplete extends Component {
 
     buildNoRecordsSuggestion() {
         return {
-            cssClass: "o_m2o_no_result",
+            cssClass: "app_m2o_no_result",
             data: { slotName: "noRecordsItem" },
             label: _t("No records"),
         };
@@ -527,7 +527,7 @@ export class Many2XAutocomplete extends Component {
 
     buildSearchMoreSuggestion(request) {
         return {
-            cssClass: "o_m2o_dropdown_option o_m2o_dropdown_option_search_more",
+            cssClass: "app_m2o_dropdown_option app_m2o_dropdown_option_search_more",
             data: { slotName: "searchMoreItem" },
             label: this.SearchMoreButtonLabel,
             onSelect: this.onSearchMore.bind(this, request),
@@ -536,7 +536,7 @@ export class Many2XAutocomplete extends Component {
 
     buildStartTypingSuggestion() {
         return {
-            cssClass: "o_m2o_start_typing",
+            cssClass: "app_m2o_start_typing",
             data: { slotName: "startTypingItem" },
             label:
                 this.props.searchThreshold > 1
@@ -731,7 +731,7 @@ export class X2ManyFieldDialog extends Component {
                         }
                         elementToFocus =
                             elementToFocus ||
-                            this.modalRef.el.querySelector(".o_field_widget input");
+                            this.modalRef.el.querySelector(".app_field_widget input");
                     } else {
                         elementToFocus = this.modalRef.el.querySelector("button.btn-primary");
                     }

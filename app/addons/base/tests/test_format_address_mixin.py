@@ -4,7 +4,7 @@ from app.addons.base.tests.test_views import ViewCase
 class FormatAddressCase(ViewCase):
     def assertAddressView(self, model):
         # pe_partner_address_form
-        address_arch = """<form><div class="o_address_format"><field name="city"/></div></form>"""
+        address_arch = """<form><div class="app_address_format"><field name="city"/></div></form>"""
         address_view = self.View.create({
             'name': 'view',
             'model': model,
@@ -13,7 +13,7 @@ class FormatAddressCase(ViewCase):
         })
 
         # view can be created without address_view
-        form_arch = """<form><field name="id"/><div class="o_address_format"><field name="street"/></div></form>"""
+        form_arch = """<form><field name="id"/><div class="app_address_format"><field name="street"/></div></form>"""
         view = self.View.create({
             'name': 'view',
             'model': model,
@@ -30,7 +30,7 @@ class FormatAddressCase(ViewCase):
         arch = self.env[model].get_view(view.id)['arch']
         self.assertNotIn('"street"', arch)
         self.assertIn('"city"', arch)
-        self.assertRegex(arch, r'<form>.*<div class="o_address_format">.*</div>.*</form>')
+        self.assertRegex(arch, r'<form>.*<div class="app_address_format">.*</div>.*</form>')
         # no_address_format context
         arch = self.env[model].with_context(no_address_format=True).get_view(view.id)['arch']
         self.assertIn('"street"', arch)

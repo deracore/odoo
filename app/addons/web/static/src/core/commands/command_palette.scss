@@ -1,4 +1,4 @@
-.o_command_palette {
+.app_command_palette {
     $-app-icon-size: 1.8rem;
     top: 120px;
     position: absolute;
@@ -10,7 +10,7 @@
     &_listbox {
         max-height: 50vh;
 
-        .o_command {
+        .app_command {
             &.focused {
                 background: rgba($o-component-active-bg, .65);
             }
@@ -30,22 +30,22 @@
 
     }
 
-    .o_favorite {
+    .app_favorite {
         color: $o-main-favorite-color;
     }
 
-    .o_app_icon {
+    .app_app_icon {
         height: $-app-icon-size;
         width: $-app-icon-size;
     }
-    .o_command{
+    .app_command{
         cursor: pointer;
         .text-ellipsis {
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
         }
-        .o_command_focus {
+        .app_command_focus {
             white-space: nowrap;
             opacity: 0.9;
         }

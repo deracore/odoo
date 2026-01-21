@@ -610,9 +610,9 @@ REMOVE_CLASS = u"""
         <div class="modal-dialog modal-lg">
             <div class="modal-content openerp">
                 <div class="modal-header"> 
-                    <h4 class="modal-title">DERACore Error<span class="o_subtitle text-muted"></span></h4>
+                    <h4 class="modal-title">DERACore Error<span class="app_subtitle text-muted"></span></h4>
                 </div>
-                <div class="o_error_detail modal-body">
+                <div class="app_error_detail modal-body">
                     <pre>An error occurred in a modal and I will send you back the html to try opening one on your end</pre>
                 </div>
             </div>

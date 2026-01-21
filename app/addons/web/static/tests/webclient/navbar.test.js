@@ -36,7 +36,7 @@ beforeEach(async () => {
 test.tags("desktop");
 test("can be rendered", async () => {
     await mountWithCleanup(NavBar);
-    expect(".o_navbar_apps_menu button.dropdown-toggle").toHaveCount(1, {
+    expect(".app_navbar_apps_menu button.dropdown-toggle").toHaveCount(1, {
         message: "1 apps menu toggler present",
     });
 });
@@ -44,9 +44,9 @@ test("can be rendered", async () => {
 test.tags("desktop");
 test("dropdown menu can be toggled", async () => {
     await mountWithCleanup(NavBar);
-    await contains(".o_navbar_apps_menu button.dropdown-toggle").click();
+    await contains(".app_navbar_apps_menu button.dropdown-toggle").click();
     expect(".dropdown-menu").toHaveCount(1);
-    await contains(".o_navbar_apps_menu button.dropdown-toggle").click();
+    await contains(".app_navbar_apps_menu button.dropdown-toggle").click();
     expect(".dropdown-menu").toHaveCount(0);
 });
 
@@ -54,16 +54,16 @@ test.tags("desktop");
 test("href attribute on apps menu items", async () => {
     defineMenus([{ id: 1, actionID: 339 }]);
     await mountWithCleanup(NavBar);
-    await contains(".o_navbar_apps_menu button.dropdown-toggle").click();
-    expect(".o-dropdown--menu .dropdown-item").toHaveAttribute("href", "/app/action-339");
+    await contains(".app_navbar_apps_menu button.dropdown-toggle").click();
+    expect(".app-dropdown--menu .dropdown-item").toHaveAttribute("href", "/app/action-339");
 });
 
 test.tags("desktop");
 test("href attribute with path on apps menu items", async () => {
     defineMenus([{ id: 1, actionID: 339, actionPath: "my-path" }]);
     await mountWithCleanup(NavBar);
-    await contains(".o_navbar_apps_menu button.dropdown-toggle").click();
-    expect(".o-dropdown--menu .dropdown-item").toHaveAttribute("href", "/app/my-path");
+    await contains(".app_navbar_apps_menu button.dropdown-toggle").click();
+    expect(".app-dropdown--menu .dropdown-item").toHaveAttribute("href", "/app/my-path");
 });
 
 test.tags("desktop");
@@ -82,9 +82,9 @@ test("many sublevels in app menu items", async () => {
     await makeMockEnv();
     getService("menu").setCurrentMenu(1);
     await mountWithCleanup(NavBar);
-    await contains(".o_menu_sections .o-dropdown").click();
+    await contains(".app_menu_sections .app-dropdown").click();
     expect(
-        queryAll(".o-dropdown--menu > *").map((el) => ({
+        queryAll(".app-dropdown--menu > *").map((el) => ({
             text: el.innerText,
             paddingLeft: el.style.paddingLeft,
             tagName: el.tagName,
@@ -117,8 +117,8 @@ test("data-menu-xmlid attribute on AppsMenu items", async () => {
     await mountWithCleanup(NavBar);
 
     // check apps
-    await contains(".o_navbar_apps_menu button.dropdown-toggle").click();
-    expect(queryAllAttributes(".o-dropdown--menu a", "data-menu-xmlid")).toEqual(["wowl", null], {
+    await contains(".app_navbar_apps_menu button.dropdown-toggle").click();
+    expect(queryAllAttributes(".app-dropdown--menu a", "data-menu-xmlid")).toEqual(["wowl", null], {
         message:
             "menu items should have the correct data-menu-xmlid attribute (only the first is set)",
     });
@@ -126,22 +126,22 @@ test("data-menu-xmlid attribute on AppsMenu items", async () => {
     // check menus
     getService("menu").setCurrentMenu(1);
     await animationFrame();
-    expect(".o_menu_sections .dropdown-item[data-menu-xmlid=menu_3]").toHaveCount(1);
+    expect(".app_menu_sections .dropdown-item[data-menu-xmlid=menu_3]").toHaveCount(1);
 
     // check sub menus toggler
-    expect(".o_menu_sections button.dropdown-toggle[data-menu-xmlid=menu_4]").toHaveCount(1);
+    expect(".app_menu_sections button.dropdown-toggle[data-menu-xmlid=menu_4]").toHaveCount(1);
 
     // check sub menus
-    await contains(".o_menu_sections .dropdown-toggle").click();
-    expect(".o-dropdown--menu .dropdown-item[data-menu-xmlid=menu_5]").toHaveCount(1);
+    await contains(".app_menu_sections .dropdown-toggle").click();
+    expect(".app-dropdown--menu .dropdown-item[data-menu-xmlid=menu_5]").toHaveCount(1);
 });
 
 test.tags("desktop");
 test("navbar can display current active app", async () => {
     await mountWithCleanup(NavBar);
     // Open apps menu
-    await contains(".o_navbar_apps_menu button.dropdown-toggle").click();
-    expect(".o-dropdown--menu .dropdown-item:not(.focus)").toHaveCount(1, {
+    await contains(".app_navbar_apps_menu button.dropdown-toggle").click();
+    expect(".app-dropdown--menu .dropdown-item:not(.focus)").toHaveCount(1, {
         message:
             "should not show the current active app as the menus service has not loaded an app yet",
     });
@@ -149,7 +149,7 @@ test("navbar can display current active app", async () => {
     // Activate an app
     getService("menu").setCurrentMenu(1);
     await animationFrame();
-    expect(".o-dropdown--menu .dropdown-item.focus").toHaveCount(1, {
+    expect(".app-dropdown--menu .dropdown-item.focus").toHaveCount(1, {
         message: "should show the current active app",
     });
 });
@@ -189,10 +189,10 @@ test("navbar can display systray items ordered based on their sequence", async (
     systrayRegistry.add("addon.myitem4", { Component: MyItem4 });
 
     await mountWithCleanup(NavBar);
-    expect(".o_menu_systray:eq(0) li").toHaveCount(4, {
+    expect(".app_menu_systray:eq(0) li").toHaveCount(4, {
         message: "four systray items should be displayed",
     });
-    expect(queryAllTexts(".o_menu_systray:eq(0) li")).toEqual([
+    expect(queryAllTexts(".app_menu_systray:eq(0) li")).toEqual([
         "my item 3",
         "my item 4",
         "my item 2",
@@ -226,7 +226,7 @@ test("navbar updates after adding a systray item", async () => {
         },
     });
     await mountWithCleanup(NavBar);
-    expect(".o_menu_systray:eq(0) li").toHaveCount(2, {
+    expect(".app_menu_systray:eq(0) li").toHaveCount(2, {
         message: "2 systray items should be displayed",
     });
 });
@@ -267,16 +267,16 @@ test("can adapt with 'more' menu sections behavior", async () => {
     getService("menu").setCurrentMenu(1);
     await mountWithCleanup(MyNavbar);
 
-    expect(".o_menu_sections > *:not(.o_menu_sections_more):visible").toHaveCount(3, {
+    expect(".app_menu_sections > *:not(.app_menu_sections_more):visible").toHaveCount(3, {
         message: "should have 3 menu sections displayed (that are not the 'more' menu)",
     });
-    expect(".o_menu_sections_more").toHaveCount(0);
+    expect(".app_menu_sections_more").toHaveCount(0);
 
     // Force minimal width
     await resize({ width: 0 });
     await waitNavbarAdaptation();
 
-    expect(".o_menu_sections").not.toBeVisible({
+    expect(".app_menu_sections").not.toBeVisible({
         message: "no menu section should be displayed",
     });
 
@@ -284,10 +284,10 @@ test("can adapt with 'more' menu sections behavior", async () => {
     await resize({ width: 1366 });
     await waitNavbarAdaptation();
 
-    expect(".o_menu_sections > *:not(.o_menu_sections_more):not(.d-none)").toHaveCount(3, {
+    expect(".app_menu_sections > *:not(.app_menu_sections_more):not(.d-none)").toHaveCount(3, {
         message: "should have 3 menu sections displayed (that are not the 'more' menu)",
     });
-    expect(".o_menu_sections_more").toHaveCount(0, { message: "the 'more' menu should not exist" });
+    expect(".app_menu_sections_more").toHaveCount(0, { message: "the 'more' menu should not exist" });
     expect.verifySteps([
         "adapt -> hide 0/3 sections",
         "adapt -> hide 3/3 sections",
@@ -337,7 +337,7 @@ test("'more' menu sections adaptations do not trigger render in some cases", asy
     const navbar = await mountWithCleanup(MyNavbar);
 
     expect(navbar.currentAppSections).toHaveLength(0, { message: "0 app sub menus" });
-    expect(".o_navbar").toHaveRect({ width: 600 });
+    expect(".app_navbar").toHaveRect({ width: 600 });
     expect(adaptCount).toBe(1);
     expect(adaptRenderCount).toBe(0, {
         message: "during adapt, render not triggered as the navbar has no app sub menus",
@@ -346,7 +346,7 @@ test("'more' menu sections adaptations do not trigger render in some cases", asy
     await resize({ width: 0 });
     await waitNavbarAdaptation();
 
-    expect(".o_navbar").toHaveRect({ width: 0 });
+    expect(".app_navbar").toHaveRect({ width: 0 });
     expect(adaptCount).toBe(2);
     expect(adaptRenderCount).toBe(0, {
         message: "during adapt, render not triggered as the navbar has no app sub menus",
@@ -446,28 +446,28 @@ test("'more' menu sections properly updated on app change", async () => {
     // Force minimal width
     await resize({ width: 0 });
     await waitNavbarAdaptation();
-    expect(".o_menu_sections > *:not(.d-none)").toHaveCount(1, {
+    expect(".app_menu_sections > *:not(.d-none)").toHaveCount(1, {
         message: "only one menu section should be displayed",
     });
-    expect(".o_menu_sections_more:not(.d-none)").toHaveCount(1, {
+    expect(".app_menu_sections_more:not(.d-none)").toHaveCount(1, {
         message: "the displayed menu section should be the 'more' menu",
     });
 
     // Open the more menu
-    await contains(".o_menu_sections_more .dropdown-toggle").click();
+    await contains(".app_menu_sections_more .dropdown-toggle").click();
     expect(queryAllTexts(".dropdown-menu > *")).toEqual(
         ["Section 10", "Section 11", "Section 12", "Section 120", "Section 121", "Section 122"],
         { message: "'more' menu should contain first app sections" }
     );
     // Close the more menu
-    await contains(".o_menu_sections_more .dropdown-toggle").click();
+    await contains(".app_menu_sections_more .dropdown-toggle").click();
 
     // Set App2 menu
     getService("menu").setCurrentMenu(2);
     await animationFrame();
 
     // Open the more menu
-    await contains(".o_menu_sections_more .dropdown-toggle").click();
+    await contains(".app_menu_sections_more .dropdown-toggle").click();
     expect(queryAllTexts(".dropdown-menu > *")).toEqual(
         ["Section 20", "Section 21", "Section 22", "Section 220", "Section 221", "Section 222"],
         { message: "'more' menu should contain second app sections" }

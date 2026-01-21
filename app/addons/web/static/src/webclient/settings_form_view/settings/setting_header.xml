@@ -2,10 +2,10 @@
 <templates xml:space="preserve">
     <t t-name="web.HeaderSetting">
         <div t-att-class="classNames">
-            <label t-if="labelString" class="o_form_label" t-att-for="props.fieldId">
+            <label t-if="labelString" class="app_form_label" t-att-for="props.fieldId">
                 <t t-esc="labelString"/>
             </label>
-            <div class="input-group align-items-baseline w-auto o_field_highlight">
+            <div class="input-group align-items-baseline w-auto app_field_highlight">
                 <t t-slot="fieldSlot"/>
                 <t t-slot="default"/>
             </div>

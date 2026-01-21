@@ -18,7 +18,7 @@ const viewData = {
 test("notification alert should be displayed when notification denied", async () => {
     mockPermission("notifications", "denied");
     await mountView(viewData);
-    expect(".o_widget_notification_alert .alert").toHaveCount(1, {
+    expect(".app_widget_notification_alert .alert").toHaveCount(1, {
         message: "notification alert should be displayed when notification denied",
     });
 });
@@ -26,7 +26,7 @@ test("notification alert should be displayed when notification denied", async ()
 test("notification alert should not be displayed when notification granted", async () => {
     mockPermission("notifications", "granted");
     await mountView(viewData);
-    expect(".o_widget_notification_alert .alert").toHaveCount(0, {
+    expect(".app_widget_notification_alert .alert").toHaveCount(0, {
         message: "notification alert should not be displayed when notification granted",
     });
 });
@@ -34,7 +34,7 @@ test("notification alert should not be displayed when notification granted", asy
 test("notification alert should not be displayed when notification default", async () => {
     mockPermission("notifications", "default");
     await mountView(viewData);
-    expect(".o_widget_notification_alert .alert").toHaveCount(0, {
+    expect(".app_widget_notification_alert .alert").toHaveCount(0, {
         message: "notification alert should not be displayed when notification default",
     });
 });

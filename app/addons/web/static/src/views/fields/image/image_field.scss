@@ -1,4 +1,4 @@
-.o_field_image {
+.app_field_image {
 
     > div {
         height: 100%;
@@ -18,7 +18,7 @@
         height: 26px;
     }
 
-    .o_mobile_controls {
+    .app_mobile_controls {
         button {
             width: 30px;
             height: 30px;
@@ -26,12 +26,12 @@
         }
     }
 
-    &.o_field_invalid img {
+    &.app_field_invalid img {
         border: 1px solid map-get($theme-colors, 'danger');
     }
 }
 
-.o_image_zoom {
+.app_image_zoom {
     img {
         max-width: 100%;
         max-height: 50vh;

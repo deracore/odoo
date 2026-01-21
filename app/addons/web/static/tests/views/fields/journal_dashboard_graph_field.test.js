@@ -106,22 +106,22 @@ test("JournalDashboardGraphField is rendered correctly", async () => {
             </kanban>`,
         domain: [["id", "in", [1, 2]]],
     });
-    expect(".o_dashboard_graph canvas").toHaveCount(2, {
+    expect(".app_dashboard_graph canvas").toHaveCount(2, {
         message: "there should be two graphs rendered",
     });
-    expect(".o_kanban_record:nth-child(1) .o_graph_barchart").toHaveCount(1, {
+    expect(".app_kanban_record:nth-child(1) .app_graph_barchart").toHaveCount(1, {
         message: "graph of first record should be a barchart",
     });
-    expect(".o_kanban_record:nth-child(2) .o_graph_linechart").toHaveCount(1, {
+    expect(".app_kanban_record:nth-child(2) .app_graph_linechart").toHaveCount(1, {
         message: "graph of second record should be a linechart",
     });
 
     // reload kanban
-    await click("input.o_searchview_input");
+    await click("input.app_searchview_input");
     await press("Enter");
     await animationFrame();
 
-    expect(".o_dashboard_graph canvas").toHaveCount(2, {
+    expect(".app_dashboard_graph canvas").toHaveCount(2, {
         message: "there should be two graphs rendered",
     });
 });
@@ -142,12 +142,12 @@ test("rendering of a JournalDashboardGraphField in an updated grouped kanban vie
         domain: [["id", "in", [1, 2]]],
     });
     const kanban = findComponent(view, (component) => component instanceof KanbanController);
-    expect(".o_dashboard_graph canvas").toHaveCount(2, {
+    expect(".app_dashboard_graph canvas").toHaveCount(2, {
         message: "there should be two graph rendered",
     });
     await reload(kanban, { groupBy: ["selection"], domain: [["int_field", "=", 10]] });
 
-    expect(".o_dashboard_graph canvas").toHaveCount(1, {
+    expect(".app_dashboard_graph canvas").toHaveCount(1, {
         message: "there should be one graph rendered",
     });
 });

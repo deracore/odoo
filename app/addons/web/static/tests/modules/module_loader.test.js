@@ -121,6 +121,6 @@ test("define: dependency cycle", async () => {
             "The following modules could not be loaded because they have unmet dependencies, this is a secondary error which is likely caused by one of the above problems:",
             ["a", "b", "c"],
         ],
-        ["APPENDCHILD", "STYLE", "o_module_error_banner"],
+        ["APPENDCHILD", "STYLE", "app_module_error_banner"],
     ]);
 });

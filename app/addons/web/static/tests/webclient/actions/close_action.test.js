@@ -78,13 +78,13 @@ test("close the currently opened dialog", async () => {
     await mountWithCleanup(WebClient);
     // execute an action in target="new"
     await getService("action").doAction(5);
-    expect(".o_technical_modal .o_form_view").toHaveCount(1);
+    expect(".app_technical_modal .app_form_view").toHaveCount(1);
     // execute an 'ir.actions.act_window_close' action
     await getService("action").doAction({
         type: "ir.actions.act_window_close",
     });
     await animationFrame();
-    expect(".o_technical_modal .o_form_view").toHaveCount(0);
+    expect(".app_technical_modal .app_form_view").toHaveCount(0);
 });
 
 test("close dialog by clicking on the header button", async () => {
@@ -94,9 +94,9 @@ test("close dialog by clicking on the header button", async () => {
         expect.step("on_close");
     }
     await getService("action").doAction(5, { onClose });
-    expect(".o_dialog").toHaveCount(1);
-    await contains(".o_dialog .modal-header button").click();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(1);
+    await contains(".app_dialog .modal-header button").click();
+    expect(".app_dialog").toHaveCount(0);
     expect.verifySteps(["on_close"]);
 
     // execute an 'ir.actions.act_window_close' action
@@ -155,9 +155,9 @@ test("history back called within on_close", async () => {
     await mountWithCleanup(WebClient);
 
     await getService("action").doAction(1);
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_kanban_view").toHaveCount(1);
     await getService("action").doAction(3);
-    expect(".o_list_view").toHaveCount(1);
+    expect(".app_list_view").toHaveCount(1);
 
     function onClose() {
         list.env.config.historyBack();
@@ -169,8 +169,8 @@ test("history back called within on_close", async () => {
     await contains(".modal-header button.btn-close").click();
     // await nextTick();
     expect(".modal").toHaveCount(0);
-    expect(".o_list_view").toHaveCount(0);
-    expect(".o_kanban_view").toHaveCount(1);
+    expect(".app_list_view").toHaveCount(0);
+    expect(".app_kanban_view").toHaveCount(1);
     expect.verifySteps(["on_close"]);
 });
 
@@ -189,14 +189,14 @@ test("web client is not deadlocked when a view crashes", async () => {
     await getService("action").doAction(3);
     // open first record in form view. this will crash and will not
     // display a form view
-    await contains(".o_list_view .o_data_cell").click();
+    await contains(".app_list_view .app_data_cell").click();
     readOnFirstRecordDef.reject(new Error("not working as intended"));
     await animationFrame();
     expect.verifyErrors(["not working as intended"]);
 
-    expect(".o_list_view").toHaveCount(1, { message: "there should still be a list view in dom" });
+    expect(".app_list_view").toHaveCount(1, { message: "there should still be a list view in dom" });
     // open another record, the read will not crash
-    await contains(".o_list_view .o_data_row:eq(1) .o_data_cell").click();
-    expect(".o_list_view").toHaveCount(0, { message: "there should not be a list view in dom" });
-    expect(".o_form_view").toHaveCount(1, { message: "there should be a form view in dom" });
+    await contains(".app_list_view .app_data_row:eq(1) .app_data_cell").click();
+    expect(".app_list_view").toHaveCount(0, { message: "there should not be a list view in dom" });
+    expect(".app_form_view").toHaveCount(1, { message: "there should be a form view in dom" });
 });

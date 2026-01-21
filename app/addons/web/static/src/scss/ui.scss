@@ -1,5 +1,5 @@
-:root .o_hidden {
-    // Add `:root` as parent selector to increase '.o_hidden' hierarchy.
+:root .app_hidden {
+    // Add `:root` as parent selector to increase '.app_hidden' hierarchy.
     // The aim is to ensure that it overrides any bootstrap default layout
     // class (eg. d-flex).
     // TODO: After migrating to BTS5 review how layout/visibility classes
@@ -7,12 +7,12 @@
     display: none!important;
 }
 
-.o_disabled {
+.app_disabled {
     pointer-events: none;
     opacity: $o-opacity-disabled;
 }
 
-.o_btn_loading {
+.app_btn_loading {
     opacity: $btn-disabled-opacity;
 
     .fa:not(.fa-spin) {
@@ -20,30 +20,30 @@
     }
 }
 
-.o_text_overflow {
+.app_text_overflow {
     @include o-text-overflow;
 }
 
 .dropdown-menu {
-    max-height: $o-dropdown-max-height;
+    max-height: $app-dropdown-max-height;
     overflow: auto;
     background-clip: border-box;
 
-    &:not(.o-hb-select-dropdown) {
+    &:not(.app-hb-select-dropdown) {
         scrollbar-width: thin;
     }
 }
 .dropdown-toggle {
     white-space: nowrap;
 
-    &.o-no-caret {
+    &.app-no-caret {
         &::before, &::after {
             content: normal;
         }
     }
 }
 
-.o_catch_attention {
+.app_catch_attention {
     position: relative;
     z-index: 1;
     animation: catchAttention 200ms ease 0s infinite normal;
@@ -60,7 +60,7 @@
 // @param {color}  --treeEntry--beforeAfter-color - Lines color
 // @param {color}  --treeEntry--beforeAfter-left - Lines left position
 // ----------------------------------------------------------------------------
-.o_treeEntry {
+.app_treeEntry {
     $-padding-h: var(--treeEntry-padding-h, #{map-get($spacers, 4)});
     $-padding-v: var(--treeEntry-padding-v, #{map-get($spacers, 2)});
 
@@ -117,10 +117,10 @@
     }
 }
 
-span.o_force_ltr {
+span.app_force_ltr {
     display: inline;
 }
-.o_force_ltr {
+.app_force_ltr {
     unicode-bidi: embed; // ensure element has level of embedding for direction
     /*rtl:ignore*/
     direction: ltr;
@@ -131,31 +131,31 @@ span.o_force_ltr {
 [type="url"],
 [type="email"],
 [type="number"],
-.o_force_ltr {
+.app_force_ltr {
   text-align: end !important;
 }
 */
 
-.o_image_24_cover {
+.app_image_24_cover {
     width: 24px;
     height: 24px;
     object-fit: cover;
 }
 
-.o_image_40_cover {
+.app_image_40_cover {
     width: 40px;
     height: 40px;
     object-fit: cover;
 }
 
-.o_image_64_cover {
+.app_image_64_cover {
     width: 64px;
     height: 64px;
     object-fit: cover;
 }
 
 // Keep ratio but avoid cropping (so part of the background becomes visible).
-.o_image_64_contain {
+.app_image_64_contain {
     width: 64px;
     height: 64px;
     object-fit: contain;
@@ -163,7 +163,7 @@ span.o_force_ltr {
 
 // When having a square is not necessary, the image will take less space if any
 // of its width or height is smaller than 64px.
-.o_image_64_max {
+.app_image_64_max {
     max-width: 64px;
     max-height: 64px;
 }
@@ -172,14 +172,14 @@ span.o_force_ltr {
 // list view is rendered as a page and not as a modal.
 
 .modal {
-    .o_cp_action_menus {
-        .o-dropdown:has(.fa-cog) {
+    .app_cp_action_menus {
+        .app-dropdown:has(.fa-cog) {
             display: none;
         }
     }
 }
 
-.o_ui_app_icon {
+.app_ui_app_icon {
     width: var(--oi-font-size, 1em);
 
     :not(:hover) > & {
@@ -187,12 +187,12 @@ span.o_force_ltr {
     }
  }
 
-.o_button_area {
+.app_button_area {
     @include o-position-absolute(0, 0, 0, 0);
 }
 
 // Remove default user-agent styles on buttons
-.o_btn_reset {
+.app_btn_reset {
     appearance: none;
     margin: unset;
     padding: unset;

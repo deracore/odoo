@@ -21,7 +21,7 @@ describe.current.tags("desktop");
 
 test("ErrorDialog with traceback", async () => {
     freezeTime();
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const env = await makeDialogMockEnv();
     await mountWithCleanup(ErrorDialog, {
         env,
@@ -33,14 +33,14 @@ test("ErrorDialog with traceback", async () => {
             close() {},
         },
     });
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Oops!");
     expect("main button").toHaveText("See technical details");
     expect(queryAllTexts("footer button")).toEqual(["Close"]);
     expect("main p").toHaveText(
         "Something went wrong... If you really are stuck, share the report with your friendly support service"
     );
-    expect("div.o_error_detail").toHaveCount(0);
+    expect("div.app_error_detail").toHaveCount(0);
     await click("main button");
     await animationFrame();
     expect(queryAllTexts("main .clearfix p")).toEqual([
@@ -49,8 +49,8 @@ test("ErrorDialog with traceback", async () => {
         "Occured on 2019-03-11 09:30:00 GMT",
     ]);
     expect("main .clearfix code").toHaveText("ERROR_NAME");
-    expect("div.o_error_detail").toHaveCount(1);
-    expect("div.o_error_detail pre").toHaveText("This is a traceback string");
+    expect("div.app_error_detail").toHaveCount(1);
+    expect("div.app_error_detail pre").toHaveText("This is a traceback string");
 });
 
 test("Client ErrorDialog with traceback", async () => {
@@ -66,14 +66,14 @@ test("Client ErrorDialog with traceback", async () => {
             close() {},
         },
     });
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Oops!");
     expect("main button").toHaveText("See technical details");
     expect(queryAllTexts("footer button")).toEqual(["Close"]);
     expect("main p").toHaveText(
         "Something went wrong... If you really are stuck, share the report with your friendly support service"
     );
-    expect("div.o_error_detail").toHaveCount(0);
+    expect("div.app_error_detail").toHaveCount(0);
     await click("main button");
     await animationFrame();
     expect(queryAllTexts("main .clearfix p")).toEqual([
@@ -82,8 +82,8 @@ test("Client ErrorDialog with traceback", async () => {
         "Occured on 2019-03-11 09:30:00 GMT",
     ]);
     expect("main .clearfix code").toHaveText("ERROR_NAME");
-    expect("div.o_error_detail").toHaveCount(1);
-    expect("div.o_error_detail pre").toHaveText("This is a traceback string");
+    expect("div.app_error_detail").toHaveCount(1);
+    expect("div.app_error_detail pre").toHaveText("This is a traceback string");
 });
 
 test("button clipboard copy error traceback", async () => {
@@ -141,7 +141,7 @@ test("Display a tooltip on clicking copy button", async () => {
 });
 
 test("WarningDialog", async () => {
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const env = await makeDialogMockEnv();
     await mountWithCleanup(WarningDialog, {
         env,
@@ -152,11 +152,11 @@ test("WarningDialog", async () => {
             close() {},
         },
     });
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Invalid Operation");
-    expect(".o_error_dialog").toHaveCount(1);
+    expect(".app_error_dialog").toHaveCount(1);
     expect("main").toHaveText("Some strange unreadable message");
-    expect(".o_dialog footer button").toHaveText("Close");
+    expect(".app_dialog footer button").toHaveText("Close");
 });
 
 test("RedirectWarningDialog", async () => {
@@ -165,7 +165,7 @@ test("RedirectWarningDialog", async () => {
             expect.step(actionId);
         },
     });
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const env = await makeDialogMockEnv();
     await mountWithCleanup(RedirectWarningDialog, {
         env,
@@ -182,7 +182,7 @@ test("RedirectWarningDialog", async () => {
             },
         },
     });
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("DERAcore Warning");
     expect("main").toHaveText("Some strange unreadable message");
     expect(queryAllTexts("footer button")).toEqual(["Buy book on cryptography", "Close"]);
@@ -197,15 +197,15 @@ test("RedirectWarningDialog", async () => {
 });
 
 test("Error504Dialog", async () => {
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const env = await makeDialogMockEnv();
     await mountWithCleanup(Error504Dialog, { env, props: { close() {} } });
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("Request timeout");
     expect("main p").toHaveText(
         "The operation was interrupted. This usually means that the current operation is taking too much time."
     );
-    expect(".o_dialog footer button").toHaveText("Close");
+    expect(".app_dialog footer button").toHaveText("Close");
 });
 
 test("SessionExpiredDialog", async () => {
@@ -214,17 +214,17 @@ test("SessionExpiredDialog", async () => {
             expect.step("location reload");
         },
     });
-    expect(".o_dialog").toHaveCount(0);
+    expect(".app_dialog").toHaveCount(0);
     const env = await makeDialogMockEnv();
     await mountWithCleanup(SessionExpiredDialog, { env, props: { close() {} } });
-    expect(".o_dialog").toHaveCount(1);
-    expect(".o_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
+    expect(".app_dialog").toHaveCount(1);
     expect("header .modal-title").toHaveText("DERAcore Session Expired");
     expect("main p").toHaveText(
         "Your DERAcore session expired. The current page is about to be refreshed."
     );
-    expect(".o_dialog footer button").toHaveText("Close");
-    await click(".o_dialog footer button");
+    expect(".app_dialog footer button").toHaveText("Close");
+    await click(".app_dialog footer button");
     await animationFrame();
     expect.verifySteps(["location reload"]);
 });

@@ -36,9 +36,9 @@ test("Simple render", async () => {
         resModel: "res.config.settings",
     });
     expect(router.current).toEqual({});
-    expect(".o_widget_res_config_dev_tool").toHaveCount(1);
+    expect(".app_widget_res_config_dev_tool").toHaveCount(1);
     expect(queryAllTexts`#developer_tool h2`).toEqual(["Developer Tools"]);
-    expect(queryAllTexts`#developer_tool .o_setting_right_pane .d-block`).toEqual([
+    expect(queryAllTexts`#developer_tool .app_setting_right_pane .d-block`).toEqual([
         "Activate the developer mode",
         "Activate the developer mode (with assets)",
         "Activate the developer mode (with tests assets)",
@@ -150,7 +150,7 @@ test("Activate the developer modeddd (with tests assets)", async () => {
     });
     expect(router.current).toEqual({ debug: "assets,tests" });
 
-    expect(queryAllTexts`#developer_tool .o_setting_right_pane .d-block`).toEqual([
+    expect(queryAllTexts`#developer_tool .app_setting_right_pane .d-block`).toEqual([
         "Deactivate the developer mode",
     ]);
 

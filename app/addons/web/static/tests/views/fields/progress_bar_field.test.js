@@ -67,12 +67,12 @@ test("ProgressBarField: max_value should update", async () => {
         resId: 1,
     });
 
-    expect(".o_progressbar").toHaveText("10\n/\n2");
-    await click(".o_field_widget[name=name] input");
+    expect(".app_progressbar").toHaveText("10\n/\n2");
+    await click(".app_field_widget[name=name] input");
     await edit("new name", { confirm: "enter" });
     await clickSave();
     await animationFrame();
-    expect(".o_progressbar").toHaveText("999\n/\n5");
+    expect(".app_progressbar").toHaveText("999\n/\n5");
 });
 
 test("ProgressBarField: value should update in edit mode when typing in input", async () => {
@@ -91,14 +91,14 @@ test("ProgressBarField: value should update in edit mode when typing in input", 
         resId: 1,
     });
 
-    expect(queryValue(".o_progressbar_value .o_input") + queryText(".o_progressbar")).toBe("99%", {
+    expect(queryValue(".app_progressbar_value .app_input") + queryText(".app_progressbar")).toBe("99%", {
         message: "Initial value should be correct",
     });
-    await click(".o_progressbar_value .o_input");
+    await click(".app_progressbar_value .app_input");
     // wait for apply dom change
     await animationFrame();
     await edit("69", { confirm: "enter" });
-    expect(".o_progressbar_value .o_input").toHaveValue("69", {
+    expect(".app_progressbar_value .app_input").toHaveValue("69", {
         message: "New value should be different after focusing out of the field",
     });
     // wait for apply dom change
@@ -106,7 +106,7 @@ test("ProgressBarField: value should update in edit mode when typing in input", 
     await clickSave();
     // wait for rpc
     await animationFrame();
-    expect(".o_progressbar_value .o_input").toHaveValue("69", {
+    expect(".app_progressbar_value .app_input").toHaveValue("69", {
         message: "New value is still displayed after save",
     });
 });
@@ -129,19 +129,19 @@ test("ProgressBarField: value should update in edit mode when typing in input wi
             </form>`,
         resId: 1,
     });
-    expect(".o_form_view .o_form_editable").toHaveCount(1, { message: "Form in edit mode" });
-    expect(queryValue(".o_progressbar_value .o_input") + queryText(".o_progressbar")).toBe(
+    expect(".app_form_view .app_form_editable").toHaveCount(1, { message: "Form in edit mode" });
+    expect(queryValue(".app_progressbar_value .app_input") + queryText(".app_progressbar")).toBe(
         "99/\n0",
         { message: "Initial value should be correct" }
     );
 
-    await click(".o_progressbar_value .o_input");
+    await click(".app_progressbar_value .app_input");
     await animationFrame();
     await edit("69", { confirm: "enter" });
     await animationFrame();
     await clickSave();
     await animationFrame();
-    expect(queryValue(".o_progressbar_value .o_input") + queryText(".o_progressbar")).toBe(
+    expect(queryValue(".app_progressbar_value .app_input") + queryText(".app_progressbar")).toBe(
         "69/\n0",
         { message: "New value should be different than initial after click" }
     );
@@ -165,24 +165,24 @@ test("ProgressBarField: max value should update in edit mode when typing in inpu
         resId: 1,
     });
 
-    expect(queryText(".o_progressbar") + queryValue(".o_progressbar_value .o_input")).toBe(
+    expect(queryText(".app_progressbar") + queryValue(".app_progressbar_value .app_input")).toBe(
         "99\n/0",
         { message: "Initial value should be correct" }
     );
-    expect(".o_form_view .o_form_editable").toHaveCount(1, { message: "Form in edit mode" });
-    queryOne(".o_progressbar input").focus();
+    expect(".app_form_view .app_form_editable").toHaveCount(1, { message: "Form in edit mode" });
+    queryOne(".app_progressbar input").focus();
     await animationFrame();
 
-    expect(queryText(".o_progressbar") + queryValue(".o_progressbar_value .o_input")).toBe(
+    expect(queryText(".app_progressbar") + queryValue(".app_progressbar_value .app_input")).toBe(
         "99\n/0.44",
         { message: "Initial value is not formatted when focused" }
     );
 
-    await click(".o_progressbar_value .o_input");
+    await click(".app_progressbar_value .app_input");
     await edit("69", { confirm: "enter" });
     await clickSave();
 
-    expect(queryText(".o_progressbar") + queryValue(".o_progressbar_value .o_input")).toBe(
+    expect(queryText(".app_progressbar") + queryValue(".app_progressbar_value .app_input")).toBe(
         "99\n/69",
         { message: "New value should be different than initial after click" }
     );
@@ -203,14 +203,14 @@ test("ProgressBarField: Standard readonly mode is readonly", async () => {
         resId: 1,
     });
 
-    expect(".o_progressbar").toHaveText("99\n/\n0", {
+    expect(".app_progressbar").toHaveText("99\n/\n0", {
         message: "Initial value should be correct",
     });
 
-    await click(".o_progress");
+    await click(".app_progress");
     await animationFrame();
 
-    expect(".o_progressbar_value .o_input").toHaveCount(0, {
+    expect(".app_progressbar_value .app_input").toHaveCount(0, {
         message: "no input in readonly mode",
     });
     expect.verifySteps(["get_views", "web_read"]);
@@ -237,23 +237,23 @@ test("ProgressBarField: field is editable in kanban", async () => {
         resId: 1,
     });
 
-    expect(".o_progressbar_value .o_input").toHaveValue("99", {
+    expect(".app_progressbar_value .app_input").toHaveValue("99", {
         message: "Initial input value should be correct",
     });
-    expect(".o_progressbar_value span").toHaveText("100", {
+    expect(".app_progressbar_value span").toHaveText("100", {
         message: "Initial max value should be correct",
     });
-    expect(".o_progressbar_title").toHaveText("ProgressBarTitle");
+    expect(".app_progressbar_title").toHaveText("ProgressBarTitle");
 
-    await click(".o_progressbar_value .o_input");
+    await click(".app_progressbar_value .app_input");
     await edit("69", { confirm: "enter" });
     await animationFrame();
 
-    expect(".o_progressbar_value .o_input").toHaveValue("69");
-    expect(".o_progressbar_value span").toHaveText("100", {
+    expect(".app_progressbar_value .app_input").toHaveValue("69");
+    expect(".app_progressbar_value span").toHaveText("100", {
         message: "Max value is still the same be correct",
     });
-    expect(".o_progressbar_title").toHaveText("ProgressBarTitle");
+    expect(".app_progressbar_title").toHaveText("ProgressBarTitle");
 });
 
 test("force readonly in kanban", async (assert) => {
@@ -275,8 +275,8 @@ test("force readonly in kanban", async (assert) => {
         </kanban>`,
         resId: 1,
     });
-    expect(".o_progressbar").toHaveText("99\n/\n100");
-    expect(".o_progressbar_value .o_input").toHaveCount(0);
+    expect(".app_progressbar").toHaveText("99\n/\n100");
+    expect(".app_progressbar_value .app_input").toHaveCount(0);
 });
 
 test("ProgressBarField: readonly and editable attrs/options in kanban", async () => {
@@ -301,20 +301,20 @@ test("ProgressBarField: readonly and editable attrs/options in kanban", async ()
         resId: 1,
     });
 
-    expect("[name='int_field'] .o_progressbar_value .o_input").toHaveCount(0, {
+    expect("[name='int_field'] .app_progressbar_value .app_input").toHaveCount(0, {
         message: "the field is still in readonly since there is readonly attribute",
     });
-    expect("[name='int_field2'] .o_progressbar_value .o_input").toHaveCount(0, {
+    expect("[name='int_field2'] .app_progressbar_value .app_input").toHaveCount(0, {
         message: "the field is still in readonly since there is readonly attribute",
     });
-    expect("[name='int_field3'] .o_progressbar_value .o_input").toHaveCount(1, {
+    expect("[name='int_field3'] .app_progressbar_value .app_input").toHaveCount(1, {
         message: "the field is still in readonly since there is readonly attribute",
     });
 
-    await click(".o_field_progressbar[name='int_field3'] .o_progressbar_value .o_input");
+    await click(".app_field_progressbar[name='int_field3'] .app_progressbar_value .app_input");
     await edit("69", { confirm: "enter" });
     await animationFrame();
-    expect(".o_field_progressbar[name='int_field3'] .o_progressbar_value .o_input").toHaveValue(
+    expect(".app_field_progressbar[name='int_field3'] .app_progressbar_value .app_input").toHaveValue(
         "69",
         { message: "New value should be different than initial after click" }
     );
@@ -342,19 +342,19 @@ test("ProgressBarField: write float instead of int works, in locale", async () =
         resId: 1,
     });
 
-    expect(queryValue(".o_progressbar_value .o_input") + queryText(".o_progressbar")).toBe("99%", {
+    expect(queryValue(".app_progressbar_value .app_input") + queryText(".app_progressbar")).toBe("99%", {
         message: "Initial value should be correct",
     });
 
-    expect(".o_form_view .o_form_editable").toHaveCount(1, { message: "Form in edit mode" });
+    expect(".app_form_view .app_form_editable").toHaveCount(1, { message: "Form in edit mode" });
 
-    await click(".o_field_widget input");
+    await click(".app_field_widget input");
     await animationFrame();
     await edit("1#037:9", { confirm: "enter" });
     await animationFrame();
     await clickSave();
     await animationFrame();
-    expect(".o_progressbar_value .o_input").toHaveValue("1k", {
+    expect(".app_progressbar_value .app_input").toHaveValue("1k", {
         message: "New value should be different than initial after click",
     });
 });
@@ -372,20 +372,20 @@ test("ProgressBarField: write gibberish instead of int throws warning", async ()
         resId: 1,
     });
 
-    expect(".o_progressbar_value .o_input").toHaveValue("99", {
+    expect(".app_progressbar_value .app_input").toHaveValue("99", {
         message: "Initial value in input is correct",
     });
 
-    await click(".o_progressbar_value .o_input");
+    await click(".app_progressbar_value .app_input");
     await animationFrame();
     await edit("trente sept virgule neuf", { confirm: "enter" });
     await animationFrame();
-    await click(".o_form_button_save");
+    await click(".app_form_button_save");
     await animationFrame();
-    expect(".o_form_status_indicator span.text-danger").toHaveCount(1, {
+    expect(".app_form_status_indicator span.text-danger").toHaveCount(1, {
         message: "The form has not been saved",
     });
-    expect(".o_form_button_save").toHaveProperty("disabled", true, {
+    expect(".app_form_button_save").toHaveProperty("disabled", true, {
         message: "save button is disabled",
     });
 });
@@ -401,7 +401,7 @@ test("ProgressBarField: color is correctly set when value > max value", async ()
             </form>`,
         resId: 1,
     });
-    expect(".o_progressbar .bg-warning").toHaveCount(1, {
+    expect(".app_progressbar .bg-warning").toHaveCount(1, {
         message: "As the value has excedded the max value, the color should be set to bg-warning",
     });
 });

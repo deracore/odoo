@@ -36,14 +36,14 @@ test("FloatFactorField in form view", async () => {
                 </sheet>
             </form>`,
     });
-    expect(".o_field_widget[name='qux'] input").toHaveValue("4.55", {
+    expect(".app_field_widget[name='qux'] input").toHaveValue("4.55", {
         message: "The value should be rendered correctly in the input.",
     });
 
-    await contains(".o_field_widget[name='qux'] input").edit("2.3");
+    await contains(".app_field_widget[name='qux'] input").edit("2.3");
     await clickSave();
 
-    expect(".o_field_widget input").toHaveValue("2.30", {
+    expect(".app_field_widget input").toHaveValue("2.30", {
         message: "The new value should be saved and displayed properly.",
     });
 });
@@ -75,7 +75,7 @@ test("FloatFactorField comma as decimal point", async () => {
             </form>`,
     });
 
-    await contains(".o_field_widget[name='qux'] input").edit("2,3");
+    await contains(".app_field_widget[name='qux'] input").edit("2,3");
     await clickSave();
 
     expect.verifySteps(["save"]);

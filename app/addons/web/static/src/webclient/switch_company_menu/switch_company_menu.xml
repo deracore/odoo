@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
 
 <t t-name="web.SwitchCompanyMenu">
-    <div class="o_switch_company_menu d-none d-md-block">
+    <div class="app_switch_company_menu d-none d-md-block">
         <DropdownGroup group="'web-navbar-group'">
             <Dropdown
                 position="'bottom-end'"
@@ -10,7 +10,7 @@
                 state="this.dropdown"
                 onStateChanged.bind="handleDropdownChange"
                 navigationOptions="navigationOptions"
-                menuClass="'o_switch_company_menu_dropdown'"
+                menuClass="'app_switch_company_menu_dropdown'"
                 disabled="isSingleCompany"
             >
                 <button data-hotkey="shift+u" t-att-disabled="isSingleCompany" t-att-title="user.activeCompany.name">
@@ -50,7 +50,7 @@
                     t-att-value="this.state.searchFilter"
                     t-ref="inputRef"
                     type="text"
-                    class="o_input flex-grow-1 border-0 o-navigable"
+                    class="app_input flex-grow-1 border-0 o-navigable"
                     placeholder="Search..."
                     role="searchbox"
                 />
@@ -58,13 +58,13 @@
         </div>
     </div>
 
-    <div class="o_switch_company_menu_items">
+    <div class="app_switch_company_menu_items">
         <t t-foreach="visibleCompanies" t-as="entry" t-key="entry.company.id">
             <SwitchCompanyItem company="entry.company" level="entry.level"/>
         </t>
     </div>
 
-    <div t-if="companySelector.hasSelectionChanged" class="o_switch_company_menu_buttons d-flex justify-content-end gap-2 px-2 pt-2">
+    <div t-if="companySelector.hasSelectionChanged" class="app_switch_company_menu_buttons d-flex justify-content-end gap-2 px-2 pt-2">
         <button
             class="btn btn-primary o-navigable flex-grow-1 text-center"
             t-on-click="() => this.confirm()"

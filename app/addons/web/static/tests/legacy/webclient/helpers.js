@@ -107,9 +107,9 @@ export async function createWebClient(params) {
     const target = params && params.target ? params.target : getFixture();
     const wc = await mount(WebClientClass, target, { env });
     app.__WOWL_DEBUG__ = { root: wc };
-    target.classList.add("o_web_client"); // necessary for the stylesheet
+    target.classList.add("app_web_client"); // necessary for the stylesheet
     registerCleanup(() => {
-        target.classList.remove("o_web_client");
+        target.classList.remove("app_web_client");
     });
     // Wait for visual changes caused by a potential loadState
     await nextTick();

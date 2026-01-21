@@ -5,8 +5,8 @@
             <attribute name="t-ref">setting</attribute>
             <attribute name="t-if">visible()</attribute>
         </div>
-        <span class="o_form_label" position="replace">
-            <span class="o_form_label"><HighlightText originalText="labelString"/></span>
+        <span class="app_form_label" position="replace">
+            <span class="app_form_label"><HighlightText originalText="labelString"/></span>
         </span>
         <div class="text-muted" position="replace">
             <div class="text-muted"><HighlightText originalText="props.help"/></div>

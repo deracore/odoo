@@ -1,4 +1,4 @@
-.o-dropdown {
+.app-dropdown {
     &.dropdown-toggle::after {
         content: none;
         border: none;
@@ -16,10 +16,10 @@
     }
 
     /*!rtl:begin:ignore*/
-    &.dropup>.o-dropdown--menu,
-    &.dropdown>.o-dropdown--menu,
-    &.dropstart>.o-dropdown--menu,
-    &.dropend>.o-dropdown--menu {
+    &.dropup>.app-dropdown--menu,
+    &.dropdown>.app-dropdown--menu,
+    &.dropstart>.app-dropdown--menu,
+    &.dropend>.app-dropdown--menu {
         // Also makes sure that left/right stuffs are not polluted
         // by bootstrap rules processed by rtlcss
         left: auto;
@@ -30,10 +30,10 @@
     /*!rtl:end:ignore*/
 }
 
-.o-dropdown,
-.o-dropdopwn-item,
-.o_menu_item {
-    &.o-dropdown-caret:not(.o-dropdown-no-caret) {
+.app-dropdown,
+.app-dropdopwn-item,
+.app_menu_item {
+    &.app-dropdown-caret:not(.app-dropdown-no-caret) {
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
@@ -53,21 +53,21 @@
             transform: rotate(180deg);
         }
 
-        &.o-dropdown--has-parent {
+        &.app-dropdown--has-parent {
             padding-right: 8px;
 
             &:after {
                 transform: rotate(-90deg);
             }
 
-            &.o-dropdown--open:after {
+            &.app-dropdown--open:after {
                 transform: rotate(90deg);
             }
         }
     }
 }
 
-.o-dropdown--menu {
+.app-dropdown--menu {
     font-size: $dropdown-font-size;
     margin-top: var(--Dropdown_menu-margin-y, #{map-get($spacers, 1)});
     margin-bottom: var(--Dropdown_menu-margin-y, #{map-get($spacers, 1)});
@@ -89,10 +89,10 @@
         }
     }
 
-    &.o-dropdown--menu-submenu {      // the value comes from bootstrap's ".dropdown-menu" padding and border style
-        --o-dropdown--submenu-margin: calc(-.5rem - 1px);
-        margin-top: var(--o-dropdown--submenu-margin);
-        margin-bottom: var(--o-dropdown--submenu-margin);
+    &.app-dropdown--menu-submenu {      // the value comes from bootstrap's ".dropdown-menu" padding and border style
+        --app-dropdown--submenu-margin: calc(-.5rem - 1px);
+        margin-top: var(--app-dropdown--submenu-margin);
+        margin-bottom: var(--app-dropdown--submenu-margin);
     }
 
     .dropdown-item:not(.disabled):not(:disabled) {
@@ -104,14 +104,14 @@
         }
     }
 
-    .dropdown-item.o-dropdopwn-item-indent {
+    .dropdown-item.app-dropdopwn-item-indent {
         --#{$prefix}dropdown-item-padding-x: #{$dropdown-item-padding-x * 1.5};
     }
 }
 
 // Unstyle buttons so they behave like regular dropdown-item
-.o-dropdown-item-unstyled-button {
-    &, .o_web_client.o_touch_device & {
+.app-dropdown-item-unstyled-button {
+    &, .app_web_client.app_touch_device & {
         button, button:hover, button:disabled {
             all: unset;
             display: inline-block;
@@ -120,7 +120,7 @@
     }
 }
 
-.o_bottom_sheet .o_bottom_sheet_body.dropdown-menu {
+.app_bottom_sheet .app_bottom_sheet_body.dropdown-menu {
     --dropdown-border-width: 0;
     --dropdown-box-shadow: none;
 

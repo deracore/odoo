@@ -204,7 +204,7 @@ export class PivotRenderer extends Component {
             } else {
                 this.dropdown.cellInfo = { type, groupId: cell.groupId };
                 Object.assign(this.dropdown.state, {
-                    target: ev.target.closest(".o_pivot_header_cell_closed"),
+                    target: ev.target.closest(".app_pivot_header_cell_closed"),
                     position: isXAxis ? "bottom-start" : "bottom-end",
                     isOpen: true,
                 });
@@ -239,15 +239,15 @@ export class PivotRenderer extends Component {
         }
         this.tableRef.el
             .querySelectorAll("td:nth-child(" + (index + 1) + ")")
-            .forEach((elt) => elt.classList.add("o_cell_hover"));
+            .forEach((elt) => elt.classList.add("app_cell_hover"));
     }
     /**
      * Remove the hover on the columns.
      */
     onMouseLeave() {
         this.tableRef.el
-            .querySelectorAll(".o_cell_hover")
-            .forEach((elt) => elt.classList.remove("o_cell_hover"));
+            .querySelectorAll(".app_cell_hover")
+            .forEach((elt) => elt.classList.remove("app_cell_hover"));
     }
 
     /**

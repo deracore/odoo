@@ -30,7 +30,7 @@ test("compile form with modifiers", async () => {
         type: "form",
         resId: 1,
     });
-    expect(`.o_form_editable input`).toHaveCount(2);
+    expect(`.app_form_editable input`).toHaveCount(2);
 });
 
 test("compile notebook with modifiers", async () => {
@@ -52,7 +52,7 @@ test("compile notebook with modifiers", async () => {
         type: "form",
         resId: 1,
     });
-    expect(queryAllTexts`.o_notebook_headers .nav-item`).toEqual(["p1", "p2"]);
+    expect(queryAllTexts`.app_notebook_headers .nav-item`).toEqual(["p1", "p2"]);
 });
 
 test("compile header and buttons", async () => {
@@ -71,7 +71,7 @@ test("compile header and buttons", async () => {
         type: "form",
         resId: 1,
     });
-    expect(`.o_statusbar_buttons button[name=action_button]:contains(ActionButton)`).toHaveCount(1);
+    expect(`.app_statusbar_buttons button[name=action_button]:contains(ActionButton)`).toHaveCount(1);
 });
 
 test("render field with placeholder", async () => {
@@ -144,7 +144,7 @@ test("compile a button with id on mobile", async () => {
         type: "form",
         resId: 1,
     });
-    await contains(`.o_cp_action_menus button:has(.fa-cog)`).click();
+    await contains(`.app_cp_action_menus button:has(.fa-cog)`).click();
     expect(`button[id=action_button]`).toHaveCount(1);
 });
 
@@ -187,9 +187,9 @@ test("statusbar stay visible when scrolling (sticky)", async () => {
         resId: 1,
     });
 
-    const statusBar = queryOne(".o_form_view .o_form_statusbar");
+    const statusBar = queryOne(".app_form_view .app_form_statusbar");
 
-    const scrollTarget = queryOne(".o_form_view .o_content");
+    const scrollTarget = queryOne(".app_form_view .app_content");
     const scrollRect = scrollTarget.getBoundingClientRect();
     expect(statusBar.getBoundingClientRect().top).toBeWithin(scrollRect.top, scrollRect.bottom);
     scrollTarget.scrollTop = scrollTarget.scrollHeight; // scroll to bottom
@@ -218,9 +218,9 @@ test("statusbar is non-sticky on mobile", async () => {
         resId: 1,
     });
 
-    const statusBar = queryOne(".o_form_view .o_form_statusbar");
+    const statusBar = queryOne(".app_form_view .app_form_statusbar");
 
-    const scrollTarget = queryOne(".o_form_view .o_form_view_container");
+    const scrollTarget = queryOne(".app_form_view .app_form_view_container");
     const scrollRect = scrollTarget.getBoundingClientRect();
     expect(statusBar.getBoundingClientRect().top).toBeWithin(scrollRect.top, scrollRect.bottom);
     scrollTarget.scrollTop = scrollTarget.scrollHeight; // scroll to bottom

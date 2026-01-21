@@ -158,7 +158,7 @@ export class Popover extends Component {
     }
 
     get defaultClassObj() {
-        return mergeClasses("o_popover popover mw-100 bs-popover-auto", this.props.class);
+        return mergeClasses("app_popover popover mw-100 bs-popover-auto", this.props.class);
     }
 
     get positioningOptions() {

@@ -40,31 +40,31 @@ test("basic flow in form view", async () => {
             </form>`,
     });
 
-    expect(".o_field_widget").toHaveText("0.056", {
+    expect(".app_field_widget").toHaveText("0.056", {
         message: "The formatted time value should be displayed properly.",
     });
-    expect("button.o_field_float_toggle").toHaveText("0.056", {
+    expect("button.app_field_float_toggle").toHaveText("0.056", {
         message: "The value should be rendered correctly on the button.",
     });
 
-    await contains("button.o_field_float_toggle").click();
+    await contains("button.app_field_float_toggle").click();
 
-    expect("button.o_field_float_toggle").toHaveText("0.000", {
+    expect("button.app_field_float_toggle").toHaveText("0.000", {
         message: "The value should be rendered correctly on the button.",
     });
 
     // note, 0 will not be written, it's kept in the _changes of the datapoint.
     // because save has not been clicked.
 
-    await contains("button.o_field_float_toggle").click();
+    await contains("button.app_field_float_toggle").click();
 
-    expect("button.o_field_float_toggle").toHaveText("1.000", {
+    expect("button.app_field_float_toggle").toHaveText("1.000", {
         message: "The value should be rendered correctly on the button.",
     });
 
     await clickSave();
 
-    expect(".o_field_widget").toHaveText("1.000", {
+    expect(".app_field_widget").toHaveText("1.000", {
         message: "The new value should be saved and displayed properly.",
     });
 
@@ -85,13 +85,13 @@ test("kanban view (readonly) with option force_button", async () => {
             </kanban>`,
     });
 
-    expect("button.o_field_float_toggle").toHaveCount(1, {
+    expect("button.app_field_float_toggle").toHaveCount(1, {
         message: "should have rendered toggle button",
     });
 
-    const value = queryText("button.o_field_float_toggle");
-    await contains("button.o_field_float_toggle").click();
-    expect("button.o_field_float_toggle").not.toHaveText(value, {
+    const value = queryText("button.app_field_float_toggle");
+    await contains("button.app_field_float_toggle").click();
+    expect("button.app_field_float_toggle").not.toHaveText(value, {
         message: "float_field field value should be changed",
     });
 });

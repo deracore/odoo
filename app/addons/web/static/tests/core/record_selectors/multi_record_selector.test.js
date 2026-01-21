@@ -63,8 +63,8 @@ test("Can be renderer with no values", async () => {
         resIds: [],
     });
 
-    expect(".o_multi_record_selector input").toHaveValue("");
-    expect(".o_multi_record_selector input").toHaveClass("o_input");
+    expect(".app_multi_record_selector input").toHaveValue("");
+    expect(".app_multi_record_selector input").toHaveClass("app_input");
 });
 
 test("Can be renderer with a value", async () => {
@@ -73,9 +73,9 @@ test("Can be renderer with a value", async () => {
         resIds: [1],
     });
 
-    expect(".o_multi_record_selector input").toHaveValue("");
-    expect(".o_tag").toHaveCount(1);
-    expect(".o_tag").toHaveText("Alice");
+    expect(".app_multi_record_selector input").toHaveValue("");
+    expect(".app_tag").toHaveCount(1);
+    expect(".app_tag").toHaveText("Alice");
 });
 
 test("Can be renderer with multiple values", async () => {
@@ -84,9 +84,9 @@ test("Can be renderer with multiple values", async () => {
         resIds: [1, 2],
     });
 
-    expect(".o_multi_record_selector input").toHaveValue("");
-    expect(".o_tag").toHaveCount(2);
-    expect(queryAllTexts(".o_tag")).toEqual(["Alice", "Bob"]);
+    expect(".app_multi_record_selector input").toHaveValue("");
+    expect(".app_tag").toHaveCount(2);
+    expect(queryAllTexts(".app_tag")).toEqual(["Alice", "Bob"]);
 });
 
 test("Can be updated from autocomplete", async () => {
@@ -95,16 +95,16 @@ test("Can be updated from autocomplete", async () => {
         resIds: [],
     });
 
-    expect(".o_multi_record_selector input").toHaveValue("");
-    expect(".o_tag").toHaveCount(0);
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(0);
-    await click(".o_multi_record_selector input");
+    expect(".app_multi_record_selector input").toHaveValue("");
+    expect(".app_tag").toHaveCount(0);
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(0);
+    await click(".app_multi_record_selector input");
     await animationFrame();
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(1);
-    await click("li.o-autocomplete--dropdown-item:eq(1)");
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(1);
+    await click("li.app-autocomplete--dropdown-item:eq(1)");
     await animationFrame();
-    expect(".o_tag").toHaveCount(1);
-    expect(".o_tag").toHaveText("Bob");
+    expect(".app_tag").toHaveCount(1);
+    expect(".app_tag").toHaveText("Bob");
 });
 
 test("Can display avatars with the right model", async () => {
@@ -114,23 +114,23 @@ test("Can display avatars with the right model", async () => {
         resIds: [],
     });
 
-    expect(".o_multi_record_selector input").toHaveValue("");
-    expect(".o_tag").toHaveCount(0);
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(0);
-    await click(".o_multi_record_selector input");
+    expect(".app_multi_record_selector input").toHaveValue("");
+    expect(".app_tag").toHaveCount(0);
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(0);
+    await click(".app_multi_record_selector input");
     await animationFrame();
-    expect(".o-autocomplete--dropdown-menu").toHaveCount(1);
-    expect("span.o_avatar img").toHaveCount(3);
-    expect("span.o_avatar img:eq(1)").toHaveAttribute(
+    expect(".app-autocomplete--dropdown-menu").toHaveCount(1);
+    expect("span.app_avatar img").toHaveCount(3);
+    expect("span.app_avatar img:eq(1)").toHaveAttribute(
         "data-src",
         "/web/image/res.partner/2/avatar_128"
     );
-    await click("li.o-autocomplete--dropdown-item:eq(1)");
+    await click("li.app-autocomplete--dropdown-item:eq(1)");
     await animationFrame();
-    expect(".o_tag").toHaveCount(1);
-    expect(".o_tag").toHaveText("Bob");
-    expect(".o_tag img.o_m2m_avatar").toHaveCount(1);
-    expect(".o_tag img.o_m2m_avatar").toHaveAttribute(
+    expect(".app_tag").toHaveCount(1);
+    expect(".app_tag").toHaveText("Bob");
+    expect(".app_tag img.app_m2m_avatar").toHaveCount(1);
+    expect(".app_tag img.app_m2m_avatar").toHaveAttribute(
         "data-src",
         "https://www.hoot.test/web/image/res.partner/2/avatar_128"
     );
@@ -148,8 +148,8 @@ test("Display name is correctly fetched", async () => {
         resIds: [1],
     });
 
-    expect(".o_tag").toHaveCount(1);
-    expect(".o_tag").toHaveText("Alice");
+    expect(".app_tag").toHaveCount(1);
+    expect(".app_tag").toHaveText("Alice");
     expect.verifySteps(["web_search_read"]);
 });
 
@@ -169,7 +169,7 @@ test("Can give domain and context props for the name search", async () => {
     });
 
     expect.verifySteps([]);
-    await click(".o_multi_record_selector input");
+    await click(".app_multi_record_selector input");
     await animationFrame();
     expect.verifySteps(["name_search"]);
 });
@@ -180,11 +180,11 @@ test("Support placeholder", async () => {
         resIds: [],
         placeholder: "Select a partner",
     });
-    expect(".o_multi_record_selector input").toHaveAttribute("placeholder", "Select a partner");
-    await click(".o_multi_record_selector input");
+    expect(".app_multi_record_selector input").toHaveAttribute("placeholder", "Select a partner");
+    await click(".app_multi_record_selector input");
     await animationFrame();
-    await contains("li.o-autocomplete--dropdown-item:eq(0)").click();
-    expect(".o_multi_record_selector input").toHaveAttribute("placeholder", "");
+    await contains("li.app-autocomplete--dropdown-item:eq(0)").click();
+    expect(".app_multi_record_selector input").toHaveAttribute("placeholder", "");
 });
 
 test("Placeholder is not set if values are selected", async () => {
@@ -193,7 +193,7 @@ test("Placeholder is not set if values are selected", async () => {
         resIds: [1],
         placeholder: "Select a partner",
     });
-    expect(".o_multi_record_selector input").toHaveAttribute("placeholder", "");
+    expect(".app_multi_record_selector input").toHaveAttribute("placeholder", "");
 });
 
 test("Can delete a tag with Backspace", async () => {
@@ -201,12 +201,12 @@ test("Can delete a tag with Backspace", async () => {
         resModel: "partner",
         resIds: [1, 2],
     });
-    await click(".o_multi_record_selector input");
+    await click(".app_multi_record_selector input");
     await animationFrame();
     await press("Backspace");
     await animationFrame();
-    expect(".o_tag").toHaveCount(1);
-    expect(".o_tag").toHaveText("Alice");
+    expect(".app_tag").toHaveCount(1);
+    expect(".app_tag").toHaveText("Alice");
 });
 
 test("Can focus tags with arrow right and left", async () => {
@@ -215,8 +215,8 @@ test("Can focus tags with arrow right and left", async () => {
         resIds: [1, 2],
     });
     // Click twice because to get the focus and make disappear the autocomplete popover
-    await click(".o_multi_record_selector input");
-    await click(".o_multi_record_selector input");
+    await click(".app_multi_record_selector input");
+    await click(".app_multi_record_selector input");
     await animationFrame();
     await press("arrowleft");
     await animationFrame();
@@ -244,8 +244,8 @@ test("Delete the focused element", async () => {
         resIds: [1, 2],
     });
     // Click twice because to get the focus and make disappear the autocomplete popover
-    await click(".o_multi_record_selector input");
-    await click(".o_multi_record_selector input");
+    await click(".app_multi_record_selector input");
+    await click(".app_multi_record_selector input");
     await animationFrame();
 
     await press("arrowright");
@@ -254,8 +254,8 @@ test("Delete the focused element", async () => {
 
     await press("Backspace");
     await animationFrame();
-    expect(".o_tag").toHaveCount(1);
-    expect(".o_tag").toHaveText("Bob");
+    expect(".app_tag").toHaveCount(1);
+    expect(".app_tag").toHaveText("Bob");
 });
 
 test("Backspace do nothing when the input is currently edited", async () => {
@@ -263,7 +263,7 @@ test("Backspace do nothing when the input is currently edited", async () => {
         resModel: "partner",
         resIds: [1, 2],
     });
-    await click(".o-autocomplete input");
+    await click(".app-autocomplete input");
     await animationFrame();
 
     await fill("a");
@@ -272,7 +272,7 @@ test("Backspace do nothing when the input is currently edited", async () => {
 
     await press("Backspace");
     await animationFrame();
-    expect(".o_tag").toHaveCount(2);
+    expect(".app_tag").toHaveCount(2);
 });
 
 // Desktop only because a kanban view is used instead of a list in mobile
@@ -292,11 +292,11 @@ test("Can pass domain to search more", async () => {
         resIds: [],
         domain: [["id", "not in", [1]]],
     });
-    await click(".o-autocomplete input");
+    await click(".app-autocomplete input");
     await animationFrame();
 
-    await click(".o_multi_record_selector .o_m2o_dropdown_option");
+    await click(".app_multi_record_selector .app_m2o_dropdown_option");
     await animationFrame();
 
-    expect(".o_data_row").toHaveCount(8, { message: "should contain 8 records" });
+    expect(".app_data_row").toHaveCount(8, { message: "should contain 8 records" });
 });

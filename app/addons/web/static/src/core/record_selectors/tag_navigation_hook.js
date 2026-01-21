@@ -35,7 +35,7 @@ export function useTagNavigation(refName, options = {}) {
     const canNavigateFromInput = (navigator, navNext) => {
         const el = navigator.activeItem.el;
         if (el.classList.contains("o-autocomplete--input")) {
-            const menu = tagsContainerRef.el.querySelector(".o-autocomplete--dropdown-menu");
+            const menu = tagsContainerRef.el.querySelector(".app-autocomplete--dropdown-menu");
             const index = navNext ? el.value.length : 0;
             if (el.selectionStart !== index || menu) {
                 return false;
@@ -46,7 +46,7 @@ export function useTagNavigation(refName, options = {}) {
 
     useNavigation(tagsContainerRef, {
         getItems: () =>
-            tagsContainerRef.el?.querySelectorAll(":scope .o_tag, :scope .o-autocomplete--input") ??
+            tagsContainerRef.el?.querySelectorAll(":scope .app_tag, :scope .app-autocomplete--input") ??
             [],
         isNavigationAvailable: ({ navigator, target }) =>
             isEnabled() && navigator.isFocused && navigator.contains(target),

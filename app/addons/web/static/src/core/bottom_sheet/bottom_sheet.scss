@@ -1,4 +1,4 @@
-.o_bottom_sheet {
+.app_bottom_sheet {
     // =============================================
     // Layout and inner elements
     // =============================================
@@ -36,7 +36,7 @@
     }
 
     // Main scroll container for gesture handling
-    .o_bottom_sheet_rail {
+    .app_bottom_sheet_rail {
         @include o-position-absolute(0, 0, 0, 0);
         overflow-y: auto;
         scrollbar-width: none;
@@ -47,8 +47,8 @@
             display: none;
         }
 
-        &.o_bottom_sheet_rail_prevent_overscroll,
-        &.o_bottom_sheet_rail_prevent_overscroll * {
+        &.app_bottom_sheet_rail_prevent_overscroll,
+        &.app_bottom_sheet_rail_prevent_overscroll * {
             overscroll-behavior: contain;
         }
 
@@ -60,13 +60,13 @@
     }
 
     // Set snapping behaviors
-    .o_bottom_sheet_dismiss, .o_bottom_sheet_spacer, .o_bottom_sheet_sheet {
+    .app_bottom_sheet_dismiss, .app_bottom_sheet_spacer, .app_bottom_sheet_sheet {
         scroll-snap-align: start;
         scroll-snap-stop: always;
     }
 
     // Backdrop overlay
-    .o_bottom_sheet_backdrop {
+    .app_bottom_sheet_backdrop {
         position: fixed;
         inset: 0;
         background-color: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
@@ -82,18 +82,18 @@
     }
 
     // Dismiss area
-    .o_bottom_sheet_dismiss {
+    .app_bottom_sheet_dismiss {
         height: var(--dismiss-height, 50dvh);
     }
 
     // Spacer area
-    .o_bottom_sheet_spacer {
+    .app_bottom_sheet_spacer {
         height: calc(100dvh - var(--sheet-height, 50dvh));
         pointer-events: none;
     }
 
     // The actual sheet
-    .o_bottom_sheet_sheet {
+    .app_bottom_sheet_sheet {
         --offcanvas-box-shadow: #{$box-shadow};
 
         margin: 0 auto;
@@ -109,7 +109,7 @@
         user-select: none;
         background-color: $dropdown-bg;
 
-        .o_bottom_sheet_body {
+        .app_bottom_sheet_body {
             scrollbar-width: none;
             flex: 1;
         }
@@ -129,28 +129,28 @@
     }
 
     // BottomSheet is ready to be rendered on screen
-    &.o_bottom_sheet_ready {
+    &.app_bottom_sheet_ready {
         opacity: 1;
 
-        .o_bottom_sheet_sheet {
+        .app_bottom_sheet_sheet {
             animation: var(--BottomSheet-slideIn-duration, 500ms) bottom-sheet-in var(--BottomSheet-slideIn-easing, ease-out) forwards;
             @media (prefers-reduced-motion: reduce) {
                 animation: none;
             }
         }
 
-        .o_bottom_sheet_backdrop {
+        .app_bottom_sheet_backdrop {
             opacity: MAX(var(--BottomSheet-progress, 0), 0.2);
             backdrop-filter: blur(.5px) grayscale(50%);
         }
     }
 
     // User interactions are now allowed
-    &.o_bottom_sheet_snapping .o_bottom_sheet_rail {
+    &.app_bottom_sheet_snapping .app_bottom_sheet_rail {
         // Enable snap behavior
         scroll-snap-type: y mandatory;
 
-        .o_bottom_sheet_backdrop {
+        .app_bottom_sheet_backdrop {
             transition: none;
         }
 
@@ -176,15 +176,15 @@
     }
 
     // Dismissing the sheet
-    &.o_bottom_sheet_dismissing {
-        .o_bottom_sheet_sheet {
+    &.app_bottom_sheet_dismissing {
+        .app_bottom_sheet_sheet {
             animation: var(--BottomSheet-slideOut-duration, 300ms) bottom-sheet-out var(--BottomSheet-slideOut-easing, ease-in) forwards;
             @media (prefers-reduced-motion: reduce) {
                 animation: none;
             }
         }
 
-        .o_bottom_sheet_backdrop {
+        .app_bottom_sheet_backdrop {
             opacity: 0;
             backdrop-filter: blur(0) grayscale(0%);
             transition: all var(--BottomSheet-slideOut-duration, 300ms) var(--BottomSheet-slideOut-easing, ease-in);
@@ -199,7 +199,7 @@
         overflow: hidden;
 
         // Scale down the main content
-        .o_navbar, .o_action_manager {
+        .app_navbar, .app_action_manager {
             transition: transform $o_BottomSheet_slideIn_duration ease;
             transform: scale(.95) translateZ(0);
             transform-origin: center top;
@@ -209,12 +209,12 @@
         }
 
         // Avoid blank on the side
-        &:not(.o_home_menu_background) .o_main_navbar {
+        &:not(.app_home_menu_background) .app_main_navbar {
             box-shadow: 20px 0 0 $o-navbar-background, -20px 0 0 $o-navbar-background;
         }
 
-        &:not(.bottom-sheet-open-multiple):has(.o_bottom_sheet_dismissing) {
-            .o_navbar, .o_action_manager {
+        &:not(.bottom-sheet-open-multiple):has(.app_bottom_sheet_dismissing) {
+            .app_navbar, .app_action_manager {
                 transition: transform $o_BottomSheet_slideOut_duration ease;
                 transform: scale(1) translateZ(0);
                 @media (prefers-reduced-motion: reduce) {
@@ -228,7 +228,7 @@
 // =============================================
 // Inner components design
 // =============================================
-.o_bottom_sheet .o_bottom_sheet_sheet {
+.app_bottom_sheet .app_bottom_sheet_sheet {
     --BottomSheet-Entry-paddingX: #{$list-group-item-padding-x};
 
     %BottomSheet-Entry-active {
@@ -277,11 +277,11 @@
         text-align: start !important;
     }
 
-    .dropdown-item .o_stat_value {
+    .dropdown-item .app_stat_value {
         display: flex;
     }
 
-    .o_bottom_sheet_body:not(.o_custom_bottom_sheet) {
+    .app_bottom_sheet_body:not(.app_custom_bottom_sheet) {
         // Dropdown
         .dropdown-item {
             &.active, &.selected {
@@ -290,7 +290,7 @@
         }
     }
 
-    .o_accordion_toggle {
+    .app_accordion_toggle {
         &::after {
             // Reset original style
             border: unset;
@@ -310,16 +310,16 @@
         }
     }
 
-    .o_kanban_card_manage_settings:has(.o_colorlist) {
+    .app_kanban_card_manage_settings:has(.app_colorlist) {
         &, > div:last-child {
             padding: 0;
         }
     }
-    .row.o_kanban_card_manage_settings:last-child {
-        &:has(:not(.o_field_boolean_favorite)) {
+    .row.app_kanban_card_manage_settings:last-child {
+        &:has(:not(.app_field_boolean_favorite)) {
             flex-direction: column-reverse;
 
-            .o_field_kanban_color_picker {
+            .app_field_kanban_color_picker {
                 padding: map-get($spacers, 3);
             }
         }

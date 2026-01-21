@@ -1,10 +1,10 @@
-.o_field_property_selection {
+.app_field_property_selection {
     .fa-star {
         color: $o-main-favorite-color;
     }
 }
 
-.o_field_property_selection_drag {
+.app_field_property_selection_drag {
     @include o-grab-cursor;
     color: #adb5bd;
     &:hover {

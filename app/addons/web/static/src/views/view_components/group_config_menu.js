@@ -87,7 +87,7 @@ groupConfigItems.add(
     {
         label: _t("Edit"),
         isVisible: ({ permissions }) => permissions.canEditGroup,
-        class: "o_group_edit",
+        class: "app_group_edit",
         icon: "fa-pencil",
         method: "editGroup",
     },
@@ -98,7 +98,7 @@ groupConfigItems.add(
     {
         label: _t("Delete"),
         isVisible: ({ permissions }) => permissions.canDeleteGroup,
-        class: "o_group_delete text-danger",
+        class: "app_group_delete text-danger",
         icon: "fa-trash",
         method: "deleteGroup",
     },

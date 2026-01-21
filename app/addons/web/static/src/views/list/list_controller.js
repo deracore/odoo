@@ -122,7 +122,7 @@ export class ListController extends Component {
             beforeLeave: this.beforeLeave.bind(this),
             beforeUnload: this.beforeUnload.bind(this),
             getLocalState: () => {
-                const renderer = this.rootRef.el.querySelector(".o_list_renderer");
+                const renderer = this.rootRef.el.querySelector(".app_list_renderer");
                 return {
                     modelState: this.model.exportState(),
                     rendererScrollPositions: {
@@ -142,7 +142,7 @@ export class ListController extends Component {
                     } else {
                         const { rendererScrollPositions } = this.props.state || {};
                         if (rendererScrollPositions) {
-                            const renderer = this.rootRef.el.querySelector(".o_list_renderer");
+                            const renderer = this.rootRef.el.querySelector(".app_list_renderer");
                             renderer.scrollLeft = rendererScrollPositions.left;
                             renderer.scrollTop = rendererScrollPositions.top;
                         }
@@ -410,7 +410,7 @@ export class ListController extends Component {
             if (this.env.isSmall) {
                 this.rootRef.el.scrollTop = 0;
             } else {
-                this.rootRef.el.querySelector(".o_content .o_list_renderer").scrollTop = 0;
+                this.rootRef.el.querySelector(".app_content .app_list_renderer").scrollTop = 0;
             }
         }
     }
@@ -546,7 +546,7 @@ export class ListController extends Component {
                     record,
                 };
 
-                const focusedCellBeforeDialog = document.activeElement.closest(".o_data_cell");
+                const focusedCellBeforeDialog = document.activeElement.closest(".app_data_cell");
                 this.dialogService.add(ListConfirmationDialog, dialogProps, {
                     onClose: () => {
                         if (focusedCellBeforeDialog) {

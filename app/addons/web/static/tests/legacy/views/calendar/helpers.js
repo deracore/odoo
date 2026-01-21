@@ -274,13 +274,13 @@ async function scrollTo(el, scrollParam) {
 }
 
 export function findPickedDate(target) {
-    return target.querySelector(".o_datetime_picker .o_selected");
+    return target.querySelector(".app_datetime_picker .app_selected");
 }
 
 export async function pickDate(target, date) {
     const day = date.split("-")[2];
     const iDay = parseInt(day, 10) - 1;
-    const el = target.querySelectorAll(`.o_datetime_picker .o_date_item_cell:not(.o_out_of_range)`)[
+    const el = target.querySelectorAll(`.app_datetime_picker .app_date_item_cell:not(.app_out_of_range)`)[
         iDay
     ];
     el.scrollIntoView();
@@ -293,7 +293,7 @@ export function expandCalendarView(target) {
     do {
         tmpElement = tmpElement.parentElement;
         tmpElement.classList.add("h-100");
-    } while (!tmpElement.classList.contains("o_view_controller"));
+    } while (!tmpElement.classList.contains("app_view_controller"));
 }
 
 export function findAllDaySlot(target, date) {
@@ -305,7 +305,7 @@ export function findDateCell(target, date) {
 }
 
 export function findEvent(target, eventId) {
-    return target.querySelector(`.o_event[data-event-id="${eventId}"]`);
+    return target.querySelector(`.app_event[data-event-id="${eventId}"]`);
 }
 
 export function findDateCol(target, date) {
@@ -517,28 +517,28 @@ export async function resizeEventToTime(target, eventId, dateTime) {
 }
 
 export async function changeScale(target, scale) {
-    await click(target, `.o_view_scale_selector .scale_button_selection`);
-    await click(target, `.o-dropdown--menu .o_scale_button_${scale}`);
+    await click(target, `.app_view_scale_selector .scale_button_selection`);
+    await click(target, `.app-dropdown--menu .app_scale_button_${scale}`);
     await nextTick();
 }
 
 export async function navigate(target, direction) {
-    await click(target, `.o_calendar_navigation_buttons .o_calendar_button_${direction}`);
+    await click(target, `.app_calendar_navigation_buttons .app_calendar_button_${direction}`);
 }
 
 export function findFilterPanelSection(target, sectionName) {
-    return target.querySelector(`.o_calendar_filter[data-name="${sectionName}"]`);
+    return target.querySelector(`.app_calendar_filter[data-name="${sectionName}"]`);
 }
 
 export function findFilterPanelFilter(target, sectionName, filterValue) {
     return findFilterPanelSection(target, sectionName).querySelector(
-        `.o_calendar_filter_item[data-value="${filterValue}"]`
+        `.app_calendar_filter_item[data-value="${filterValue}"]`
     );
 }
 
 export function findFilterPanelSectionFilter(target, sectionName) {
     return findFilterPanelSection(target, sectionName).querySelector(
-        `.o_calendar_filter_items_checkall`
+        `.app_calendar_filter_items_checkall`
     );
 }
 

@@ -2,35 +2,35 @@
 <templates xml:space="preserve">
     <t t-name="web.BottomSheet">
         <div
-            class="o_bottom_sheet"
+            class="app_bottom_sheet"
             t-att-class="{
-                'o_bottom_sheet_ready': state.isPositionedReady,
-                'o_bottom_sheet_dismissing': state.isDismissing,
-                'o_bottom_sheet_snapping': state.isSnappingEnabled,
+                'app_bottom_sheet_ready': state.isPositionedReady,
+                'app_bottom_sheet_dismissing': state.isDismissing,
+                'app_bottom_sheet_snapping': state.isSnappingEnabled,
             }"
             t-attf-style="--BottomSheet-progress: {{state.progress}}"
             t-ref="container"
             >
             <!-- Scroll container that handles drag gestures -->
             <div
-                class="o_bottom_sheet_rail"
+                class="app_bottom_sheet_rail"
                 t-att-class="{
-                        o_bottom_sheet_rail_prevent_overscroll : props.preventDismissOnContentScroll
+                        app_bottom_sheet_rail_prevent_overscroll : props.preventDismissOnContentScroll
                     }"
                 t-ref="scrollRail"
                 >
                 <!-- Backdrop overlay -->
-                <div class="o_bottom_sheet_backdrop" t-on-click="slideOut"/>
+                <div class="app_bottom_sheet_backdrop" t-on-click="slideOut"/>
 
                 <!-- Dismiss area - used for scroll snap -->
-                <div class="o_bottom_sheet_dismiss"/>
+                <div class="app_bottom_sheet_dismiss"/>
 
                 <!-- Spacer area - used for scroll snap -->
-                <div class="o_bottom_sheet_spacer"/>
+                <div class="app_bottom_sheet_spacer"/>
 
                 <!-- Sheet container -->
                 <div
-                    class="o_bottom_sheet_sheet offcanvas position-relative overflow-hidden"
+                    class="app_bottom_sheet_sheet offcanvas position-relative overflow-hidden"
                     role="dialog"
                     t-ref="sheet"
                     >
@@ -39,15 +39,15 @@
                     <div
                         tabindex="-1"
                         role="button"
-                        class="o_bottom_sheet_handle text-center d-flex align-items-center justify-content-center opacity-50 py-2"
+                        class="app_bottom_sheet_handle text-center d-flex align-items-center justify-content-center opacity-50 py-2"
                         t-on-click.stop="slideOut"
                         >
-                        <div class="o_bottom_sheet_handle_bar pt-1 mx-auto rounded-pill d-inline-block px-5 bg-dark"/>
+                        <div class="app_bottom_sheet_handle_bar pt-1 mx-auto rounded-pill d-inline-block px-5 bg-dark"/>
                     </div>
 
                     <!-- Body content -->
                     <div
-                        class="o_bottom_sheet_body offcanvas-body"
+                        class="app_bottom_sheet_body offcanvas-body"
                         role="menu"
                         t-att-class="props.class"
                         t-ref="ref"

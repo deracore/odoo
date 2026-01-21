@@ -65,13 +65,13 @@
                 <main>
                     <t t-out="0"/>
                 </main>
-                <footer t-if="not no_footer" id="bottom" data-anchor="true" t-attf-class="bg-light o_footer">
+                <footer t-if="not no_footer" id="bottom" data-anchor="true" t-attf-class="bg-light app_footer">
                     <div id="footer"/>
-                    <div t-if="not no_copyright" class="o_footer_copyright">
+                    <div t-if="not no_copyright" class="app_footer_copyright">
                         <div class="container py-3">
                             <div class="row row-gap-2">
                                 <div class="col-sm text-center text-sm-start text-muted">
-                                    <span class="o_footer_copyright_name me-2">Copyright &amp;copy; <span t-field="res_company.name" itemprop="name">Company name</span></span>
+                                    <span class="app_footer_copyright_name me-2">Copyright &amp;copy; <span t-field="res_company.name" itemprop="name">Company name</span></span>
                                 </div>
                                 <div class="col-sm text-center text-sm-end">
                                     <t t-call="web.brand_promotion"/>
@@ -99,7 +99,7 @@
         <t t-out="final_message % (odoo_logo, _message and ('- ' + _message) or '')"/>
     </template>
     <template id="brand_promotion" name="Brand Promotion">
-        <div class="o_brand_promotion">
+        <div class="app_brand_promotion">
             <t t-call="web.brand_promotion_message">
                 <t t-set="_message"></t>
                 <t t-set="_utm_medium" t-valuef="portal"/>
@@ -115,7 +115,7 @@
             <t t-set="no_footer" t-value="True"/>
 
             <div class="container py-5">
-                <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} app_database_list" style="max-width: 300px;">
                     <div class="card-body">
                         <div class="text-center pb-3 border-bottom mb-4">
                             <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
@@ -153,13 +153,13 @@
                     <input type="text" placeholder="Enter your email" name="login" t-att-value="login" id="login" class="form-control" required="required" autocapitalize="off" autocomplete="username"/>
                 </div>
 
-                <div class="o_caps_lock_warning">
+                <div class="app_caps_lock_warning">
                     <div class="d-flex justify-content-between align-items-start">
                         <label for="password" class="form-label">Password</label>
                     </div>
                     <div class="input-group mb-1">
                         <input type="password" placeholder="Enter your password" name="password" id="password" class="form-control" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
-                        <button type="button" class="btn btn-sm border border-start-0 o_show_password">
+                        <button type="button" class="btn btn-sm border border-start-0 app_show_password">
                             <i class="fa fa-eye"/>
                         </button>
                     </div>
@@ -204,7 +204,7 @@
         <!-- Use auth_btns to insert login options displayed under the
         login form -->
         <t t-set="auth_btns" t-value="[]"/>
-        <div t-if="auth_btns" class="o_login_auth">
+        <div t-if="auth_btns" class="app_login_auth">
             <em class="d-block my-3 small text-center text-muted">- or -</em>
             <div class="list-group">
                 <a t-foreach="auth_btns" t-as="p" t-attf-class="{{p.get('list_item_class')}} list-group-item list-group-item-action d-flex align-items-center gap-2 py-2" t-att-href="p.get('auth_link') or '#'">
@@ -221,7 +221,7 @@
             body {
                 position: relative; /* bootstrap-datepicker needs this */
             }
-            body:not(.debug) .modal-backdrop, body:not(.debug) .modal:not(.o_module_error), body:not(.debug) .ui-autocomplete {
+            body:not(.debug) .modal-backdrop, body:not(.debug) .modal:not(.app_module_error), body:not(.debug) .ui-autocomplete {
                 opacity: 0 !important;
             }
             #qunit-testrunner-toolbar label {
@@ -306,7 +306,7 @@
                 <t t-call="web.conditional_assets_tests" media="screen"/>
             </t>
             <t t-set="head" t-value="head_web + (head or '')" media="screen"/>
-            <t t-set="body_classname" t-value="'o_web_client'"/>
+            <t t-set="body_classname" t-value="'app_web_client'"/>
         </t>
     </template>
 

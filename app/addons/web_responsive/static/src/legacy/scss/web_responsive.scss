@@ -1,0 +1,221 @@
+/* Copyright 2018 Tecnativa - Jairo Llopis
+ * Copyright 2021 ITerra - Sergey Shebanin
+ * Copyright 2023 Onestein - Anjeel Haria
+ * Copyright 2023 Taras Shabaranskyi
+ * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
+
+$chatter_zone_width: 35% !important;
+
+// Allow sticky header
+.app_action_manager {
+    .app_form_view {
+        overflow: unset;
+
+        .app_form_view_container {
+            overflow: auto;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .ui-menu-item-wrapper {
+        display: inline-flex !important;
+        align-items: center;
+        height: 35px;
+    }
+    .app_calendar_view .app_calendar_widget {
+        .fc-timeGridDay-view .fc-axis,
+        .fc-timeGridWeek-view .fc-axis {
+            padding-left: 0px;
+        }
+        .fc-dayGridYear-view {
+            padding-left: 0px;
+            > .fc-month-container {
+                width: 95%;
+            }
+        }
+        .fc-timeGridDay-view {
+            .fc-day-header {
+                vertical-align: middle;
+            }
+        }
+    }
+    .app_kanban_view .app_cp_pager .btn-group {
+        top: -1px;
+    }
+    .app_kanban_renderer {
+        width: 100%;
+    }
+}
+
+// Normal views
+.app_content,
+.modal-content {
+    max-width: 100%;
+
+    // Form views
+    .app_form_editable {
+        .app_cell .app_form_label:not(.app_status):not(.app_calendar_invitation) {
+            min-height: 23px;
+            @include media-breakpoint-up(md) {
+                margin-bottom: 10px;
+            }
+        }
+
+        .app_horizontal_separator {
+            font-size: 14px;
+        }
+
+        // Some UX improvements for form in edit mode
+        @include media-breakpoint-down(sm) {
+            &.app_form_editable .app_field_widget {
+                &:not(.app_stat_info):not(.app_readonly_modifier):not(
+                        .oe_form_field_html
+                    ):not(.app_field_image) {
+                    min-height: 35px;
+                }
+
+                .app_x2m_control_panel {
+                    margin-bottom: 10px !important;
+                }
+
+                &.app_field_float_percentage,
+                &.app_field_monetary,
+                &.app_field_many2many_selection,
+                .app_field_many2one_selection {
+                    align-items: center;
+                }
+
+                .app_field_many2one_selection .app_input_dropdown,
+                &.app_datepicker,
+                &.app_partner_autocomplete_info {
+                    input {
+                        min-height: 35px;
+                    }
+                }
+
+                .app_external_button {
+                    margin-left: 5px;
+                }
+
+                .app_dropdown_button,
+                .app_datepicker_button {
+                    top: 50%;
+                    right: 6px;
+                    bottom: auto;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            min-width: auto;
+
+            // Avoid overflow on modals
+            .app_form_sheet {
+                min-width: auto;
+            }
+
+            // Render website inputs properly in phones
+            .app_group .app_field_widget.app_text_overflow {
+                // Overrides another !important
+                width: auto !important;
+            }
+        }
+    }
+
+    //No content message improvements on mobile
+    @include media-breakpoint-down(md) {
+        .app_view_nocontent {
+            top: 53px;
+        }
+        .app_nocontent_help {
+            box-shadow: none;
+        }
+        .app_sample_data_disabled {
+            display: none;
+        }
+    }
+}
+
+.app-mail-Form-chatter {
+    &.app-isInFormSheetBg:not(.app-aside) {
+        background-color: $white;
+
+        &:not(.app-aside) {
+            width: auto;
+            border-top: 1px solid $border-color;
+        }
+    }
+
+    &.app-aside {
+        flex: 0 0 $chatter_zone_width;
+        max-width: initial;
+        min-width: initial;
+        overflow: auto;
+    }
+}
+
+body:not(.app_statusbar_buttons) {
+    .oe-toolbar {
+        z-index: 0 !important;
+    }
+}
+
+.app_inner_group > .mb-sm-0 {
+    margin-bottom: 0 !important;
+}
+
+.app_searchview_autocomplete {
+    z-index: 999;
+}
+
+// Color clue to tell the difference between a note and a public message
+// HACK: has() pseudo class is broadly supported in desktop, even FF will deploy
+// full support soon (now it's available behind a config flag)
+// https://caniuse.com/css-has
+.app-mail-Chatter-top:has(.app-mail-Chatter-sendMessage.active) {
+    .app-mail-Composer {
+        background-color: lighten($o-brand-primary, 35%);
+        padding-top: 0.25rem !important;
+    }
+
+    @include media-breakpoint-up(sm) {
+        .app-mail-Composer {
+            padding-top: 0.5rem !important;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .app_settings_block > h2,
+    .app_settings_block > div > h2 {
+        @include o-position-sticky(0);
+        z-index: 10;
+    }
+}
+
+.app_list_table {
+    .app_handle_cell,
+    .app_list_record_remove {
+        vertical-align: middle;
+    }
+}
+
+.app_action_manager {
+    .dropdown-menu {
+        max-height: 70vh;
+        max-height: 70dvh;
+    }
+
+    .app_searchview_input {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .app_control_panel_main {
+        .btn {
+            white-space: nowrap;
+        }
+    }
+}

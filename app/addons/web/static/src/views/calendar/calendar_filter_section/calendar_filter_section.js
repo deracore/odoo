@@ -62,7 +62,7 @@ export class CalendarFilterSection extends Component {
     }
 
     getFilterColor(filter) {
-        return filter.colorIndex !== null ? "o_cw_filter_color_" + getColor(filter.colorIndex) : "";
+        return filter.colorIndex !== null ? "app_cw_filter_color_" + getColor(filter.colorIndex) : "";
     }
 
     getSortedFilters() {
@@ -110,7 +110,7 @@ export class CalendarFilterSection extends Component {
 
         if (records.length > 7) {
             options.push({
-                cssClass: "o_calendar_dropdown_option",
+                cssClass: "app_calendar_dropdown_option",
                 label: _t("Search More..."),
                 onSelect: () => this.onSearchMore(resModel, domain, request),
             });
@@ -118,7 +118,7 @@ export class CalendarFilterSection extends Component {
 
         if (records.length === 0) {
             options.push({
-                cssClass: "o_m2o_no_result",
+                cssClass: "app_m2o_no_result",
                 label: _t("No records"),
             });
         }

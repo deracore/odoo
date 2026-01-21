@@ -25,13 +25,13 @@ export class FormLabel extends Component {
         );
         const classes = this.props.className ? [this.props.className] : [];
         if (invalid) {
-            classes.push("o_field_invalid");
+            classes.push("app_field_invalid");
         }
         if (empty) {
-            classes.push("o_form_label_empty");
+            classes.push("app_form_label_empty");
         }
         if (readonly && !this.props.notMuttedLabel) {
-            classes.push("o_form_label_readonly");
+            classes.push("app_form_label_readonly");
         }
         return classes.join(" ");
     }

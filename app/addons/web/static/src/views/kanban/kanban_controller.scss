@@ -1,5 +1,5 @@
 // ------- Kanban Menu -------
-.o-dropdown--kanban-record-menu {
+.app-dropdown--kanban-record-menu {
     margin-top: -1px;
     margin-bottom: 0px;
     min-width: 9rem;
@@ -36,22 +36,22 @@
             padding-right: $o-kanban-dashboard-dropdown-complex-gap;
             max-width: none;
 
-            > .o_kanban_card_manage_title {
+            > .app_kanban_card_manage_title {
                 margin: (($font-size-base * $line-height-base) / 2) 0;
             }
-            > div:not(.o_kanban_card_manage_title) {
+            > div:not(.app_kanban_card_manage_title) {
                 @include o-kanban-dashboard-dropdown-link($link-padding-gap: $o-kanban-dashboard-dropdown-complex-gap);
             }
         }
 
-        .row.o_kanban_card_manage_settings {
+        .row.app_kanban_card_manage_settings {
             padding-top: $o-kanban-dashboard-dropdown-complex-gap*3;
 
             &:not(:first-child) {
                 border-top: 1px solid $dropdown-divider-bg;
             }
 
-            .o_kanban_colorpicker {
+            .app_kanban_colorpicker {
                 padding: 0;
             }
 
@@ -69,19 +69,19 @@
 }
 
 // ------- Kanban View -------
-.o_kanban_view {
+.app_kanban_view {
     @include media-breakpoint-down(md) {
         @include media-only(screen) {
             --ControlPanel-border-bottom: none;
         }
-        &.o_field_x2many_kanban .o_kanban_ghost {
+        &.app_field_x2many_kanban .app_kanban_ghost {
             display: none;
         }
     }
 }
 
 // ------- Kanban renderer -------
-.o_kanban_renderer {
+.app_kanban_renderer {
     // ----------------------------------------------------------------------------
     // Default KanbanView values
 
@@ -118,7 +118,7 @@
 
     // ----------------------------------------------------------------------------
     // Inner components contextual adaptations
-    .o_kanban_record {
+    .app_kanban_record {
         --Ribbon-font-size: #{$font-size-sm};
         --Ribbon-wrapper-width: 6.5rem;
         --Ribbon-height:  calc(var(--Ribbon-font-size) * 2);
@@ -143,32 +143,32 @@
         }
     }
 
-    &.o_kanban_ungrouped .o_kanban_record {
+    &.app_kanban_ungrouped .app_kanban_record {
         flex-grow: 1;
         @include media-breakpoint-down(md) {
             flex-shrink: 0;
         }
     }
 
-    .o_kanban_quick_create {
+    .app_kanban_quick_create {
         border: $border-width solid $border-color;
         background-color: $o-view-background-color;
     }
 
-    .o_kanban_quick_create {
+    .app_kanban_quick_create {
         margin-bottom: calc(var(--KanbanRecord-margin-h) * 2);
         margin-top: calc(var(--KanbanRecord-margin-h) * 2);
         padding: 8px;
 
-        .o_form_view .o_inner_group {
+        .app_form_view .app_inner_group {
             margin: 0;
         }
     }
 
-    .o_dragged {
+    .app_dragged {
         transition: transform 0.6s, box-shadow 0.3s;
 
-        &:not(.o_draggable_norotate) {
+        &:not(.app_draggable_norotate) {
             transform: rotate(-3deg);
         }
 
@@ -178,7 +178,7 @@
     }
 
     // Kanban Grouped Layout
-    &.o_kanban_grouped {
+    &.app_kanban_grouped {
         --KanbanGroup-width: calc(var(--KanbanRecord--small-width) + (2 * var(--KanbanGroup-padding-h)));
         --KanbanGroup-max-width: calc(1.25 * var(--KanbanGroup-width));
 
@@ -197,17 +197,17 @@
             --KanbanGroup-width: calc(var(--KanbanRecord-width) + (2 * var(--KanbanGroup-padding-h)));
         }
 
-        .o_kanban_record {
+        .app_kanban_record {
             width: 100%;
         }
 
-        .o_kanban_group {
+        .app_kanban_group {
             background: var(--KanbanGroup-background);
         }
 
-        .o_kanban_group,
-        .o_column_quick_create:not(.o_quick_create_folded) {
-            &:not(.o_column_folded) {
+        .app_kanban_group,
+        .app_column_quick_create:not(.app_quick_create_folded) {
+            &:not(.app_column_folded) {
                 flex: 1 1;
                 min-width: var(--KanbanGroup-width);
             }
@@ -216,39 +216,39 @@
     }
 
     // Kanban Grouped Layout - Column default
-    .o_kanban_group {
-        .o_kanban_header > .o_kanban_header_title {
-            &:hover .o_group_config {
+    .app_kanban_group {
+        .app_kanban_header > .app_kanban_header_title {
+            &:hover .app_group_config {
                 visibility: visible;
             }
         }
 
-        &.o_kanban_hover {
+        &.app_kanban_hover {
             background-color: var(--KanbanColumn__highlight-background) !important;
             box-shadow: -1px 0px 0px 0px var(--KanbanColumn__highlight-border) inset,
                 1px 0px 0px 0px var(--KanbanColumn__highlight-border) inset;
 
-            .o_kanban_header {
+            .app_kanban_header {
                 // hack to display correct background color
                 margin: 0 calc(-1 * var(--KanbanGroup-padding-h) + 1px);
                 padding: 0 calc(var(--KanbanGroup-padding-h) - 1px);
             }
         }
 
-        .o_kanban_counter {
+        .app_kanban_counter {
             min-height: calc(var(--body-font-size) * var(--body-line-height));
         }
     }
 
-    .o_kanban_group, .o_column_quick_create {
+    .app_kanban_group, .app_column_quick_create {
         padding: 0 var(--KanbanGroup-padding-h) var(--KanbanGroup-padding-bottom);
     }
 
-    .o_kanban_group:not(.o_column_folded) .o_kanban_header, .o_quick_create_folded {
+    .app_kanban_group:not(.app_column_folded) .app_kanban_header, .app_quick_create_folded {
         background: inherit;
     }
 
-    .o_kanban_group:not(.o_column_folded) .o_kanban_header {
+    .app_kanban_group:not(.app_column_folded) .app_kanban_header {
         .dropdown-item {
             max-width: calc(var(--KanbanRecord-width) * 0.75);
             text-overflow: ellipsis;
@@ -256,26 +256,26 @@
         }
     }
 
-    .o_quick_create_folded {
+    .app_quick_create_folded {
         @include media-breakpoint-up(md) {
             --KanbanGroup-padding-h: 0;
         }
-        &:hover .o_quick_create_title {
+        &:hover .app_quick_create_title {
             display: flex !important;
         }
-        .o_quick_create_title {
+        .app_quick_create_title {
             @include o-position-absolute(map-get($spacers, 4));
             transform-origin: left bottom 0;
             transform: rotate(90deg);
             overflow: visible;
         }
 
-        .o_quick_create_button {
+        .app_quick_create_button {
             height: map-get($font-sizes, 4) * $line-height-lg;
         }
     }
 
-    .o_group_draggable .o_column_title {
+    .app_group_draggable .app_column_title {
         cursor: grab;
 
         &:active {
@@ -284,29 +284,29 @@
     }
 
     // Kanban Grouped Layout - Column Folded
-    .o_kanban_group.o_column_folded {
+    .app_kanban_group.app_column_folded {
 
         // don't fill the width of record for a folded column
-        .o_kanban_record.o_draggable {
+        .app_kanban_record.app_draggable {
             display: none !important;
         }
         // don't visually fold on smaller screens (aka. mobile)
         @include media-breakpoint-up(md) {
             --KanbanGroup-padding-h: 0;
 
-            &, .o_column_unfold {
+            &, .app_column_unfold {
                 cursor: col-resize;
             }
 
-            & + .o_kanban_group.o_column_folded {
+            & + .app_kanban_group.app_column_folded {
                 margin-left: 1px;
             }
 
-            .o_kanban_header {
+            .app_kanban_header {
                 padding: 0 floor($o-kanban-group-padding * 0.7);
             }
 
-            button.o_column_unfold {
+            button.app_column_unfold {
                 padding: 0 .15rem;
                 height: map-get($font-sizes, 4) * $line-height-lg;
 
@@ -315,7 +315,7 @@
                 }
             }
 
-            &:hover button.o_column_unfold {
+            &:hover button.app_column_unfold {
                 padding: 0;
 
                 .fa-caret-left {
@@ -323,7 +323,7 @@
                 }
             }
 
-            .o_column_title {
+            .app_column_title {
                 @include o-position-absolute(map-get($spacers, 3));
                 transform-origin: left bottom 0;
                 transform: rotate(90deg);
@@ -333,22 +333,22 @@
     }
 
     @include media-breakpoint-down(md) {
-        .o_kanban_group,
-        .o_column_quick_create {
+        .app_kanban_group,
+        .app_column_quick_create {
             scroll-snap-align: center;
             overflow-y: scroll;
         }
     }
 
     // Kanban UN-grouped Layout
-    &.o_kanban_ungrouped {
+    &.app_kanban_ungrouped {
         min-height: 100%;
 
         @include media-breakpoint-up(md) {
             --Kanban-padding:  var(--KanbanRecord-margin-v) var(--KanbanRecord-margin-h);
         }
 
-        .o_kanban_record {
+        .app_kanban_record {
             width: var(--KanbanRecord-width);
             margin: calc(var(--KanbanRecord-margin-v) * 0.5) var(--KanbanRecord-margin-h);
 
@@ -357,38 +357,38 @@
                 flex-basis: 100%;
             }
 
-            &.o_kanban_ghost {
+            &.app_kanban_ghost {
                 max-height: 0 !important; // to prevent view writers to override this height
             }
         }
     }
 
-    .o_field_monetary {
+    .app_field_monetary {
         /*rtl:ignore*/
         direction: ltr;
     }
 }
 
-.o_kanban_mobile .o_kanban_renderer .o_kanban_record {
+.app_kanban_mobile .app_kanban_renderer .app_kanban_record {
     div.label {
         @include o-text-overflow;
     }
 }
 
-.o_kanban_small_column .o_kanban_renderer.o_kanban_grouped {
+.app_kanban_small_column .app_kanban_renderer.app_kanban_grouped {
     @include media-breakpoint-up(md) {
         --KanbanGroup-width: calc(var(--KanbanRecord--small-width) + (2 * var(--KanbanGroup-padding-h)));
     }
 }
 
 // ------- Sample mode -------
-.o_kanban_view .o_view_sample_data {
+.app_kanban_view .app_view_sample_data {
     // all records
-    .o_kanban_record,
+    .app_kanban_record,
     // load more buttons
-    .o_kanban_load_more,
+    .app_kanban_load_more,
     // progress bars and counters
-    .o_kanban_counter {
+    .app_kanban_counter {
         @include o-sample-data-disabled;
     }
 }

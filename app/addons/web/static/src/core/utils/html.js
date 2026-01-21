@@ -233,7 +233,7 @@ export function appmark(text) {
             /&#x60;(.+?)&#x60;/g,
             (_, content) =>
                 markup(
-                    `<span class="o_tag position-relative d-inline-flex align-items-center mw-100 o_badge badge rounded-pill lh-1 o_tag_color_0">${content}</span>`
+                    `<span class="app_tag position-relative d-inline-flex align-items-center mw-100 app_badge badge rounded-pill lh-1 app_tag_color_0">${content}</span>`
                 ),
         ],
     ];

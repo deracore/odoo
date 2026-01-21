@@ -7,8 +7,8 @@ export class ActionContainer extends Component {
     static props = {};
     static template = xml`
         <t t-name="web.ActionContainer">
-          <div class="o_action_manager">
-            <t t-if="info.Component" t-component="info.Component" className="'o_action'" t-props="info.componentProps" t-key="info.id"/>
+          <div class="app_action_manager">
+            <t t-if="info.Component" t-component="info.Component" className="'app_action'" t-props="info.componentProps" t-key="info.id"/>
           </div>
         </t>`;
 

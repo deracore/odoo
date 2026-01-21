@@ -13,7 +13,7 @@
                     <t t-esc="updateConfirmationText"/>
                 </p>
                 <div class="table-responsive">
-                    <table class="o_modal_changes">
+                    <table class="app_modal_changes">
                         <tbody>
                             <t t-foreach="props.fields" t-as="field" t-key="field_index">
                                 <tr>
@@ -24,14 +24,14 @@
                                     <tr t-if="props.changes[field.name].add.length">
                                         <td><span>Add</span>: </td>
                                         <td>
-                                            <div class="o_field_many2many_tags">
+                                            <div class="app_field_many2many_tags">
                                             <TagsList tags="getTagProps(props.changes[field.name].add, field)"/>                                            </div>
                                         </td>
                                     </tr>
                                     <tr t-if="props.changes[field.name].remove.length">
                                         <td><span>Remove</span>: </td>
                                         <td>
-                                            <div class="o_field_many2many_tags">
+                                            <div class="app_field_many2many_tags">
                                                 <TagsList tags="getTagProps(props.changes[field.name].remove, field)"/>
                                             </div>
                                         </td>

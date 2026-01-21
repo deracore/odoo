@@ -379,10 +379,10 @@ export class SearchPanel extends Component {
      * headers according to the state of their values.
      */
     updateGroupHeadersChecked() {
-        const groups = document.querySelectorAll(".o_search_panel_filter_group");
+        const groups = document.querySelectorAll(".app_search_panel_filter_group");
         for (const group of groups) {
-            const header = group.querySelector(":scope .o_search_panel_group_header input");
-            const vals = [...group.querySelectorAll(":scope .o_search_panel_filter_value input")];
+            const header = group.querySelector(":scope .app_search_panel_group_header input");
+            const vals = [...group.querySelectorAll(":scope .app_search_panel_filter_value input")];
             header.checked = false;
             header.indeterminate = false;
             if (vals.every((v) => v.checked)) {

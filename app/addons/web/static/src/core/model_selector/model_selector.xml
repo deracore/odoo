@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
     <t t-name="web.ModelSelector">
-        <div class="o_model_selector" t-ref="autocomplete_container">
+        <div class="app_model_selector" t-ref="autocomplete_container">
             <input t-if="env.isSmall"
                 type="text"
-                class="o_input"
+                class="app_input"
                 readonly=""
                 t-att-id="props.id"
                 t-att-value="props.value"
@@ -17,7 +17,7 @@
                 autoSelect="props.autoSelect"
                 autofocus="props.autofocus"
             />
-            <span class="o_dropdown_button" />
+            <span class="app_dropdown_button" />
         </div>
     </t>
 </templates>

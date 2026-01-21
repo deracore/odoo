@@ -5,9 +5,9 @@
             <field name="name">Document Layout</field>
             <field name="model">base.document.layout</field>
             <field name="arch" type="xml">
-                <form class="o_document_layout">
+                <form class="app_document_layout">
                     <group>
-                        <group class="o_document_layout_company">
+                        <group class="app_document_layout_company">
                             <field name="company_id" invisible="1"/>
                             <field name="external_report_layout_id" invisible="1" />
                             <field name="logo_primary_color" invisible="1" />
@@ -20,10 +20,10 @@
                             <field name="logo" string="Logo" widget="image" options="{'size': [0, 50]}"/>
 
                             <label for="primary_color" string="Colors"/>
-                            <div class="o_document_layout_colors d-flex align-items-end mb-4">
+                            <div class="app_document_layout_colors d-flex align-items-end mb-4">
                                 <field name="primary_color" widget="color" class="w-auto m-0 me-1"/>
                                 <field name="secondary_color" widget="color" class="w-auto m-0"/>
-                                <a class="o_custom_colors btn btn-secondary btn-sm position-relative ms-2" role="button" title="Reset to logo colors" invisible="not custom_colors">
+                                <a class="app_custom_colors btn btn-secondary btn-sm position-relative ms-2" role="button" title="Reset to logo colors" invisible="not custom_colors">
                                     <i class="fa fa-repeat"/> Reset
                                     <field name="custom_colors" class="position-absolute top-0 start-0 w-100 h-100 opacity-0" nolabel="1"/>
                                 </a>
@@ -34,7 +34,7 @@
                             <field name="report_footer" placeholder="Write your phone, email, bank account, tax ID, ..." string="Footer" options="{'resizable': false}"/>
                             <field name="paperformat_id" widget="selection" required="1"/>
                         </group>
-                        <div class="o_preview">
+                        <div class="app_preview">
                             <field name="preview" widget="iframe_wrapper" class="preview_document_layout d-flex justify-content-center mb-0"/>
                         </div>
                     </group>

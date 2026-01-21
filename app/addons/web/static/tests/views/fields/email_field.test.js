@@ -26,13 +26,13 @@ test("in form view", async () => {
         resId: 1,
         arch: `<form><field name="email" widget="email"/></form>`,
     });
-    expect(`.o_field_email input[type="email"]`).toHaveCount(1);
-    expect(`.o_field_email input[type="email"]`).toHaveValue("john.doe@odoo.com");
-    expect(`.o_field_email a`).toHaveCount(1);
-    expect(`.o_field_email a`).toHaveAttribute("href", "mailto:john.doe@odoo.com");
-    expect(`.o_field_email a`).toHaveAttribute("target", "_blank");
+    expect(`.app_field_email input[type="email"]`).toHaveCount(1);
+    expect(`.app_field_email input[type="email"]`).toHaveValue("john.doe@odoo.com");
+    expect(`.app_field_email a`).toHaveCount(1);
+    expect(`.app_field_email a`).toHaveAttribute("href", "mailto:john.doe@odoo.com");
+    expect(`.app_field_email a`).toHaveAttribute("target", "_blank");
     await fieldInput("email").edit("new@odoo.com");
-    expect(`.o_field_email input[type="email"]`).toHaveValue("new@odoo.com");
+    expect(`.app_field_email input[type="email"]`).toHaveValue("new@odoo.com");
 });
 
 test("in editable list view", async () => {
@@ -45,26 +45,26 @@ test("in editable list view", async () => {
         resModel: "contact",
         arch: '<list editable="bottom"><field name="email" widget="email"/></list>',
     });
-    expect(`tbody td:not(.o_list_record_selector) a`).toHaveCount(2);
-    expect(`.o_field_email a`).toHaveCount(2);
-    expect(queryAllTexts(`tbody td:not(.o_list_record_selector) a`)).toEqual([
+    expect(`tbody td:not(.app_list_record_selector) a`).toHaveCount(2);
+    expect(`.app_field_email a`).toHaveCount(2);
+    expect(queryAllTexts(`tbody td:not(.app_list_record_selector) a`)).toEqual([
         "john.doe@odoo.com",
         "jane.doe@odoo.com",
     ]);
-    expect(".o_field_email a:first").toHaveAttribute("href", "mailto:john.doe@odoo.com");
-    let cell = queryFirst("tbody td:not(.o_list_record_selector)");
+    expect(".app_field_email a:first").toHaveAttribute("href", "mailto:john.doe@odoo.com");
+    let cell = queryFirst("tbody td:not(.app_list_record_selector)");
     await contains(cell).click();
-    expect(cell.parentElement).toHaveClass("o_selected_row");
-    expect(`.o_field_email input[type="email"]`).toHaveValue("john.doe@odoo.com");
+    expect(cell.parentElement).toHaveClass("app_selected_row");
+    expect(`.app_field_email input[type="email"]`).toHaveValue("john.doe@odoo.com");
     await fieldInput("email").edit("new@odoo.com");
     await contains(getFixture()).click();
-    cell = queryFirst("tbody td:not(.o_list_record_selector)");
-    expect(cell.parentElement).not.toHaveClass("o_selected_row");
-    expect(queryAllTexts(`tbody td:not(.o_list_record_selector) a`)).toEqual([
+    cell = queryFirst("tbody td:not(.app_list_record_selector)");
+    expect(cell.parentElement).not.toHaveClass("app_selected_row");
+    expect(queryAllTexts(`tbody td:not(.app_list_record_selector) a`)).toEqual([
         "new@odoo.com",
         "jane.doe@odoo.com",
     ]);
-    expect(".o_field_email a:first").toHaveAttribute("href", "mailto:new@odoo.com");
+    expect(".app_field_email a:first").toHaveAttribute("href", "mailto:new@odoo.com");
 });
 
 test("with empty value", async () => {
@@ -73,7 +73,7 @@ test("with empty value", async () => {
         resModel: "contact",
         arch: `<form><field name="email" widget="email" placeholder="Placeholder"/></form>`,
     });
-    expect(`.o_field_email input`).toHaveValue("");
+    expect(`.app_field_email input`).toHaveValue("");
 });
 
 test("with placeholder", async () => {
@@ -82,7 +82,7 @@ test("with placeholder", async () => {
         resModel: "contact",
         arch: `<form><field name="email" widget="email" placeholder="Placeholder"/></form>`,
     });
-    expect(`.o_field_email input`).toHaveAttribute("placeholder", "Placeholder");
+    expect(`.app_field_email input`).toHaveAttribute("placeholder", "Placeholder");
 });
 
 test("placeholder_field shows as placeholder", async () => {
@@ -97,7 +97,7 @@ test("placeholder_field shows as placeholder", async () => {
             <field name="char"/>
         </form>`,
     });
-    expect(`.o_field_email input`).toHaveAttribute("placeholder", "My Placeholder");
+    expect(`.app_field_email input`).toHaveAttribute("placeholder", "My Placeholder");
 });
 
 test("trim user value", async () => {
@@ -109,7 +109,7 @@ test("trim user value", async () => {
 
     await fieldInput("email").edit("   hello@gmail.com    ");
     await contains(getFixture()).click();
-    expect(`.o_field_email input`).toHaveValue("hello@gmail.com");
+    expect(`.app_field_email input`).toHaveValue("hello@gmail.com");
 });
 
 test("onchange scenario with readonly", async () => {
@@ -125,7 +125,7 @@ test("onchange scenario with readonly", async () => {
         resId: 1,
         arch: `<form><field name="phone"/><field name="email" widget="email" readonly="1"/></form>`,
     });
-    expect(`.o_field_email`).toHaveText("default@domain.ext");
+    expect(`.app_field_email`).toHaveText("default@domain.ext");
     await fieldInput("phone").edit("047412345");
-    expect(`.o_field_email`).toHaveText("onchange@domain.ext");
+    expect(`.app_field_email`).toHaveText("onchange@domain.ext");
 });

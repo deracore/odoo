@@ -3,12 +3,12 @@
 $o-attachment-image-size: 45px;
 $o-attachment-margin: 5px;
 
-.o_attachment {
+.app_attachment {
     position: relative;
     width: 100%;
     padding: $o-attachment-margin;
 
-    .o_attachment_wrap {
+    .app_attachment_wrap {
         overflow: hidden;
         position: relative;
         border-bottom: 1px solid rgba(black, 0.1);
@@ -16,22 +16,22 @@ $o-attachment-margin: 5px;
         padding: 4px $o-attachment-image-size 0 4px;
         background-color: rgba($o-black, 0.05);
 
-        .o_attachment_delete_cross {
+        .app_attachment_delete_cross {
             float: right;
             cursor: pointer;
         }
     }
 
-    .o_preview_image {
+    .app_preview_image {
         width: $o-attachment-image-size;
         height: $o-attachment-image-size;
         image-orientation: from-image; // Only supported in Firefox
-        &.o_hover {
+        &.app_hover {
             @include o-hover-opacity($default-opacity: 1, $hover-opacity: 0.7);
         }
     }
 
-    .o_attachment_view {
+    .app_attachment_view {
         cursor: zoom-in;
     }
 
@@ -43,11 +43,11 @@ $o-attachment-margin: 5px;
         }
     }
 
-    .o_attachment_progress_bar {
+    .app_attachment_progress_bar {
         display: none;
     }
 
-    .o_attachment_uploaded, .o_attachment_delete {
+    .app_attachment_uploaded, .app_attachment_delete {
         @include o-position-absolute(0, 0, 0, $left: auto);
         display: flex;
         align-items: center;
@@ -55,7 +55,7 @@ $o-attachment-margin: 5px;
         width: 45px;
     }
 
-    .o_attachment_delete {
+    .app_attachment_delete {
         background: desaturate(map-get($theme-colors, 'primary'), 50%);
         color: white;
         cursor: pointer;
@@ -68,8 +68,8 @@ $o-attachment-margin: 5px;
         }
     }
 
-    &.o_attachment_uploading {
-        .o_attachment_progress_bar {
+    &.app_attachment_uploading {
+        .app_attachment_progress_bar {
             display: inline-block;
             margin: 0 0 0 8px;
             border-radius: 2px;
@@ -81,12 +81,12 @@ $o-attachment-margin: 5px;
             }
         }
 
-        .o_attachment_delete, .o_attachment_uploaded {
+        .app_attachment_delete, .app_attachment_uploaded {
             display: none;
         }
     }
 
-    &:hover .o_attachment_delete {
+    &:hover .app_attachment_delete {
         transition: all 0.1s ease 0s;
         transform: translateX(0);
     }

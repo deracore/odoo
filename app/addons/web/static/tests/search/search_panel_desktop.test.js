@@ -33,25 +33,25 @@ function parseCounter(text) {
 }
 
 function getCategoriesContent() {
-    return queryAllTexts`.o_search_panel_category_value header`.map(parseContent).filter(Boolean);
+    return queryAllTexts`.app_search_panel_category_value header`.map(parseContent).filter(Boolean);
 }
 
 function getCategoriesCounter() {
-    return queryAllTexts`.o_search_panel_category_value header`.map(parseCounter).filter(Boolean);
+    return queryAllTexts`.app_search_panel_category_value header`.map(parseCounter).filter(Boolean);
 }
 
 function getFiltersContent() {
-    return queryAllTexts`.o_search_panel_filter_value`.map(parseContent).filter(Boolean);
+    return queryAllTexts`.app_search_panel_filter_value`.map(parseContent).filter(Boolean);
 }
 
 function getFiltersCounter() {
-    return queryAllTexts`.o_search_panel_filter_value`.map(parseCounter).filter(Boolean);
+    return queryAllTexts`.app_search_panel_filter_value`.map(parseCounter).filter(Boolean);
 }
 
 class TestComponent extends Component {
     static components = { SearchBarMenu, SearchPanel };
     static template = xml`
-        <div class="o_test_component">
+        <div class="app_test_component">
             <SearchPanel t-if="env.searchModel.display.searchPanel" />
             <SearchBarMenu />
         </div>
@@ -223,7 +223,7 @@ test("basic rendering of a component without search panel", async () => {
         searchViewId: false,
         display: { searchPanel: false },
     });
-    expect(`.o_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel`).toHaveCount(0);
     expect(component.domain).toEqual([]); // initial domain
 });
 
@@ -239,7 +239,7 @@ test("basic rendering of a component with empty search panel", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel`).toHaveCount(0);
     expect(component.domain).toEqual([]); // initial domain
     expect.verifySteps([]);
 });
@@ -250,25 +250,25 @@ test("basic rendering of a component with search panel", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
 
-    const firstSection = `.o_search_panel_section:eq(0)`;
-    expect(`${firstSection} .o_search_panel_section_header i`).toHaveClass("fa-folder");
-    expect(`${firstSection} .o_search_panel_section_header`).toHaveText(/company/i);
-    expect(`${firstSection} .o_search_panel_category_value`).toHaveCount(3);
-    expect(`${firstSection} .o_search_panel_category_value:first .active`).toHaveCount(1);
-    expect(queryAllTexts`${firstSection} .o_search_panel_category_value`).toEqual([
+    const firstSection = `.app_search_panel_section:eq(0)`;
+    expect(`${firstSection} .app_search_panel_section_header i`).toHaveClass("fa-folder");
+    expect(`${firstSection} .app_search_panel_section_header`).toHaveText(/company/i);
+    expect(`${firstSection} .app_search_panel_category_value`).toHaveCount(3);
+    expect(`${firstSection} .app_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(queryAllTexts`${firstSection} .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n2",
         "agrolait\n2",
     ]);
 
-    const secondSection = `.o_search_panel_section:eq(1)`;
-    expect(`${secondSection} .o_search_panel_section_header i`).toHaveClass("fa-filter");
-    expect(`${secondSection} .o_search_panel_section_header`).toHaveText(/category/i);
-    expect(`${secondSection} .o_search_panel_filter_value`).toHaveCount(2);
-    expect(queryAllTexts`${secondSection} .o_search_panel_filter_value`).toEqual([
+    const secondSection = `.app_search_panel_section:eq(1)`;
+    expect(`${secondSection} .app_search_panel_section_header i`).toHaveClass("fa-filter");
+    expect(`${secondSection} .app_search_panel_section_header`).toHaveText(/category/i);
+    expect(`${secondSection} .app_search_panel_filter_value`).toHaveCount(2);
+    expect(queryAllTexts`${secondSection} .app_search_panel_filter_value`).toEqual([
         "gold\n1",
         "silver\n3",
     ]);
@@ -289,20 +289,20 @@ test("when category is empty fallback to All", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
 
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(1);
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(1);
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n2",
         "agrolait\n2",
     ]);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(4);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(4);
 
     MockServer.env["partner"].unlink([2, 4]);
 
-    await contains(queryAll`.o_search_panel_category_value header`[2]).click();
-    expect(queryAllTexts`.o_search_panel_category_value header.active`).toEqual(["All"]);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(2);
+    await contains(queryAll`.app_search_panel_category_value header`[2]).click();
+    expect(queryAllTexts`.app_search_panel_category_value header.active`).toEqual(["All"]);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(2);
 });
 
 test("cache search panel", async () => {
@@ -314,14 +314,14 @@ test("cache search panel", async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
 
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n2",
         "agrolait\n2",
     ]);
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "gold\n1",
         "silver\n3",
     ]);
@@ -331,19 +331,19 @@ test("cache search panel", async () => {
 
     // Go to a form view
     await getService("action").doAction(2);
-    expect(`.o_form_view`).toHaveCount(1);
+    expect(`.app_form_view`).toHaveCount(1);
 
     // Came back to search panel
     await getService("action").doAction(1);
     // Search Panel is rendered with cached data !
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n2",
         "agrolait\n2",
     ]);
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "gold\n1",
         "silver\n3",
     ]);
@@ -373,16 +373,16 @@ test("cache search panel", async () => {
     });
     await animationFrame();
 
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
 
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n1",
         "agrolait\n2",
         "plop\n4",
     ]);
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "gold\n1",
         "silver\n3",
     ]);
@@ -408,16 +408,16 @@ test("cache search panel", async () => {
     });
     await animationFrame();
 
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
 
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n1",
         "agrolait\n2",
         "plop\n4",
     ]);
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "gold\n5",
         "silver\n3",
         "plop\n2",
@@ -432,28 +432,28 @@ test("cache search panel (onFinish called after anoter load - Category)", async 
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
 
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n2",
         "agrolait\n2",
     ]);
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "gold\n1",
         "silver\n3",
     ]);
 
     // Go to a form view
     await getService("action").doAction(2);
-    expect(`.o_form_view`).toHaveCount(1);
+    expect(`.app_form_view`).toHaveCount(1);
 
     // Came back to search panel
     await getService("action").doAction(1);
     await animationFrame();
 
     // Click on a Filter !
-    await contains(queryAll`.o_search_panel_label`[4]).click();
+    await contains(queryAll`.app_search_panel_label`[4]).click();
     await animationFrame();
 
     // resolve RPCs (3th call) from the click
@@ -469,7 +469,7 @@ test("cache search panel (onFinish called after anoter load - Category)", async 
         ],
     });
     await animationFrame();
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "plop22\n8",
     ]);
@@ -499,7 +499,7 @@ test("cache search panel (onFinish called after anoter load - Category)", async 
         ],
     });
     await animationFrame();
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "plop22\n8",
     ]);
@@ -516,28 +516,28 @@ test("cache search panel (onFinish called after anoter load - Filters)", async (
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
 
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
-    expect(queryAllTexts`.o_search_panel_section:eq(0) .o_search_panel_category_value`).toEqual([
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
+    expect(queryAllTexts`.app_search_panel_section:eq(0) .app_search_panel_category_value`).toEqual([
         "All",
         "asustek\n2",
         "agrolait\n2",
     ]);
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "gold\n1",
         "silver\n3",
     ]);
 
     // Go to a form view
     await getService("action").doAction(2);
-    expect(`.o_form_view`).toHaveCount(1);
+    expect(`.app_form_view`).toHaveCount(1);
 
     // Came back to search panel
     await getService("action").doAction(1);
     await animationFrame();
 
     // click on a Category
-    await contains(queryAll`.o_search_panel_label`[1]).click();
+    await contains(queryAll`.app_search_panel_label`[1]).click();
     await animationFrame();
 
     // resolve RPCs (3th call) from the click
@@ -551,7 +551,7 @@ test("cache search panel (onFinish called after anoter load - Filters)", async (
         ],
     });
     await animationFrame();
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "plop22\n99",
     ]);
 
@@ -576,7 +576,7 @@ test("cache search panel (onFinish called after anoter load - Filters)", async (
         ],
     });
     await animationFrame();
-    expect(queryAllTexts`.o_search_panel_section:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(queryAllTexts`.app_search_panel_section:eq(1) .app_search_panel_filter_value`).toEqual([
         "plop22\n99",
     ]);
 });
@@ -597,10 +597,10 @@ test("sections with custom icon and color", async () => {
         searchViewId: false,
     });
 
-    expect(`.o_search_panel_section_header:eq(0) i`).toHaveClass("fa-car");
-    expect(`.o_search_panel_section_header:eq(0) i`).toHaveStyle({ color: "rgb(0, 0, 255)" });
-    expect(`.o_search_panel_section_header:eq(1) i`).toHaveClass("fa-star");
-    expect(`.o_search_panel_section_header:eq(1) i`).toHaveStyle({ color: "rgb(0, 0, 0)" });
+    expect(`.app_search_panel_section_header:eq(0) i`).toHaveClass("fa-car");
+    expect(`.app_search_panel_section_header:eq(0) i`).toHaveStyle({ color: "rgb(0, 0, 255)" });
+    expect(`.app_search_panel_section_header:eq(1) i`).toHaveClass("fa-star");
+    expect(`.app_search_panel_section_header:eq(1) i`).toHaveStyle({ color: "rgb(0, 0, 0)" });
     expect(component.domain).toEqual([]);
 });
 
@@ -623,7 +623,7 @@ test(`sections with attr invisible="1" are ignored`, async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_section`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(1);
     expect.verifySteps(["search_panel_select_range"]);
 });
 
@@ -644,8 +644,8 @@ test("categories and filters order is kept", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_section`).toHaveCount(3);
-    expect(queryAllTexts`.o_search_panel_section_header`).toEqual([
+    expect(`.app_search_panel_section`).toHaveCount(3);
+    expect(queryAllTexts`.app_search_panel_section_header`).toEqual([
         "RES.COMPANY",
         "CATEGORY",
         "STATE",
@@ -673,14 +673,14 @@ test("specify active category value in context and manually change category", as
         },
     });
     expect(
-        queryAllTexts`.o_search_panel_category_value header.active .o_search_panel_label`
+        queryAllTexts`.app_search_panel_category_value header.active .app_search_panel_label`
     ).toEqual(["All", "GHI"]);
     expect(component.domain).toEqual([["state", "=", "ghi"]]);
 
     // select 'ABC' in the category 'state'
-    await contains(queryAll`.o_search_panel_category_value header`[4]).click();
+    await contains(queryAll`.app_search_panel_category_value header`[4]).click();
     expect(
-        queryAllTexts`.o_search_panel_category_value header.active .o_search_panel_label`
+        queryAllTexts`.app_search_panel_category_value header.active .app_search_panel_label`
     ).toEqual(["All", "ABC"]);
     expect(component.domain).toEqual([["state", "=", "abc"]]);
 });
@@ -708,21 +708,21 @@ test("use category (on many2one) to refine search", async () => {
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // select "asustek"
-    await contains(queryAll`.o_search_panel_category_value header`[1]).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(1) .active`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_category_value header`[1]).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(1) .active`).toHaveCount(1);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "child_of", 3]]);
 
     // select "agrolait"
-    await contains(queryAll`.o_search_panel_category_value header`[2]).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_category_value header`[2]).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "child_of", 5]]);
 
     // select "All"
-    await contains(queryAll`.o_search_panel_category_value header`[0]).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_category_value header`[0]).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([["bar", "=", true]]);
 });
 
@@ -744,21 +744,21 @@ test("use category (on selection) to refine search", async () => {
     expect(component.domain).toEqual([]);
 
     // select 'abc'
-    await contains(`.o_search_panel_category_value:nth-of-type(2) header`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:nth-of-type(2) .active`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value:nth-of-type(2) header`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:nth-of-type(2) .active`).toHaveCount(1);
     expect(component.domain).toEqual([["state", "=", "abc"]]);
 
     // select 'ghi'
-    await contains(`.o_search_panel_category_value:nth-of-type(4) header`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:nth-of-type(4) .active`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value:nth-of-type(4) header`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:nth-of-type(4) .active`).toHaveCount(1);
     expect(component.domain).toEqual([["state", "=", "ghi"]]);
 
     // select 'All' again
-    await contains(`.o_search_panel_category_value:nth-of-type(1) header`).click();
-    expect(`.o_search_panel_category_value:nth-of-type(1) .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value:nth-of-type(1) header`).click();
+    expect(`.app_search_panel_category_value:nth-of-type(1) .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([]);
 });
 
@@ -802,8 +802,8 @@ test("category has been archived", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_category_value`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_category_value`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
 });
 
 test("use two categories to refine search", async () => {
@@ -824,17 +824,17 @@ test("use two categories to refine search", async () => {
         domain: [["bar", "=", true]],
     });
     expect(component.domain).toEqual([["bar", "=", true]]);
-    expect(`.o_search_panel_section`).toHaveCount(2);
+    expect(`.app_search_panel_section`).toHaveCount(2);
 
     // select 'asustek'
     await contains(
-        `.o_search_panel_category_value header .o_search_panel_label_title:contains(asustek)`
+        `.app_search_panel_category_value header .app_search_panel_label_title:contains(asustek)`
     ).click();
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "child_of", 3]]);
 
     // select 'abc'
     await contains(
-        `.o_search_panel_category_value header .o_search_panel_label_title:contains(abc)`
+        `.app_search_panel_category_value header .app_search_panel_label_title:contains(abc)`
     ).click();
     expect(component.domain).toEqual([
         "&",
@@ -846,7 +846,7 @@ test("use two categories to refine search", async () => {
 
     // select 'ghi'
     await contains(
-        `.o_search_panel_category_value header .o_search_panel_label_title:contains(ghi)`
+        `.app_search_panel_category_value header .app_search_panel_label_title:contains(ghi)`
     ).click();
     expect(component.domain).toEqual([
         "&",
@@ -857,11 +857,11 @@ test("use two categories to refine search", async () => {
     ]);
 
     // select 'All' in first category (company_id)
-    await contains(`.o_search_panel_section:eq(0) .o_search_panel_category_value header`).click();
+    await contains(`.app_search_panel_section:eq(0) .app_search_panel_category_value header`).click();
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["state", "=", "ghi"]]);
 
     // select 'All' in second category (state)
-    await contains(`.o_search_panel_section:eq(1) .o_search_panel_category_value header`).click();
+    await contains(`.app_search_panel_section:eq(1) .app_search_panel_category_value header`).click();
     expect(component.domain).toEqual([["bar", "=", true]]);
 });
 
@@ -887,51 +887,51 @@ test("category with parent_field", async () => {
     });
 
     // 'All' is selected by default
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_search_panel_category_value .o_toggle_fold > i`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_search_panel_category_value .app_toggle_fold > i`).toHaveCount(1);
 
     // unfold parent category and select 'All' again
-    await contains(`.o_search_panel_category_value header:eq(2)`).click();
-    await contains(`.o_search_panel_category_value header:eq(0)`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value`).toHaveCount(5);
-    expect(`.o_search_panel_category_value .o_search_panel_category_value`).toHaveCount(2);
+    await contains(`.app_search_panel_category_value header:eq(2)`).click();
+    await contains(`.app_search_panel_category_value header:eq(0)`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value`).toHaveCount(5);
+    expect(`.app_search_panel_category_value .app_search_panel_category_value`).toHaveCount(2);
     expect(component.domain).toEqual([]);
 
     // click on first child company
-    await contains(`.o_search_panel_category_value header:eq(3)`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value header:eq(3)`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
     expect(
-        `.o_search_panel_category_value .o_search_panel_category_value:first .active`
+        `.app_search_panel_category_value .app_search_panel_category_value:first .active`
     ).toHaveCount(1);
     expect(component.domain).toEqual([["company_id", "child_of", 40]]);
 
     // click on parent company
-    await contains(`.o_search_panel_category_value header:eq(2)`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value header:eq(2)`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
     expect(component.domain).toEqual([["company_id", "child_of", 5]]);
 
     // fold parent company by clicking on it
-    await contains(`.o_search_panel_category_value header:eq(2)`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value header:eq(2)`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
 
     // parent company should be folded
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value`).toHaveCount(3);
     expect(component.domain).toEqual([["company_id", "child_of", 5]]);
 
     // fold category with children
-    await contains(`.o_search_panel_category_value header:eq(2)`).click();
-    await contains(`.o_search_panel_category_value header:eq(2)`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value`).toHaveCount(3);
+    await contains(`.app_search_panel_category_value header:eq(2)`).click();
+    await contains(`.app_search_panel_category_value header:eq(2)`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value`).toHaveCount(3);
     expect(component.domain).toEqual([["company_id", "child_of", 5]]);
 });
 
@@ -953,14 +953,14 @@ test("category with no parent_field", async () => {
     expect(component.domain).toEqual([]);
 
     // 'All' is selected by default
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value`).toHaveCount(3);
 
     // click on 'gold' category
-    await contains(queryAll`.o_search_panel_category_value header`[1]).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(1) .active`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_category_value header`[1]).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(1) .active`).toHaveCount(1);
     expect(component.domain).toEqual([["category_id", "=", 6]]); // must use '=' operator (instead of 'child_of')
 });
 
@@ -984,29 +984,29 @@ test("can (un)fold parent category values", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_category_value:contains(agrolait) .o_toggle_fold > i`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:contains(agrolait) .app_toggle_fold > i`).toHaveCount(1);
     expect(
-        `.o_search_panel_category_value header:contains(agrolait) .o_toggle_fold > i`
+        `.app_search_panel_category_value header:contains(agrolait) .app_toggle_fold > i`
     ).toHaveClass("fa-caret-right");
-    expect(`.o_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_search_panel_category_value`).toHaveCount(3);
 
     // unfold agrolait
     await contains(
-        `.o_search_panel_category_value header:contains(agrolait) .o_toggle_fold > i`
+        `.app_search_panel_category_value header:contains(agrolait) .app_toggle_fold > i`
     ).click();
     expect(
-        `.o_search_panel_category_value header:contains(agrolait) .o_toggle_fold > i`
+        `.app_search_panel_category_value header:contains(agrolait) .app_toggle_fold > i`
     ).toHaveClass("fa-caret-down");
-    expect(`.o_search_panel_category_value`).toHaveCount(5);
+    expect(`.app_search_panel_category_value`).toHaveCount(5);
 
     // fold agrolait
     await contains(
-        `.o_search_panel_category_value header:contains(agrolait) .o_toggle_fold > i`
+        `.app_search_panel_category_value header:contains(agrolait) .app_toggle_fold > i`
     ).click();
     expect(
-        `.o_search_panel_category_value header:contains(agrolait) .o_toggle_fold > i`
+        `.app_search_panel_category_value header:contains(agrolait) .app_toggle_fold > i`
     ).toHaveClass("fa-caret-right");
-    expect(`.o_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_search_panel_category_value`).toHaveCount(3);
 });
 
 test("fold status is kept at reload", async () => {
@@ -1032,18 +1032,18 @@ test("fold status is kept at reload", async () => {
     });
 
     // unfold agrolait
-    await contains(queryFirst`.o_search_panel_category_value > header:contains(agrolait)`).click();
+    await contains(queryFirst`.app_search_panel_category_value > header:contains(agrolait)`).click();
     expect(
-        queryFirst`.o_search_panel_category_value > header:contains(agrolait) .o_toggle_fold > i`
+        queryFirst`.app_search_panel_category_value > header:contains(agrolait) .app_toggle_fold > i`
     ).toHaveClass("fa-caret-down");
-    expect(`.o_search_panel_category_value`).toHaveCount(5);
+    expect(`.app_search_panel_category_value`).toHaveCount(5);
 
     await toggleSearchBarMenu();
     await toggleMenuItem("True Domain");
     expect(
-        queryFirst`.o_search_panel_category_value > header:contains(agrolait) .o_toggle_fold > i`
+        queryFirst`.app_search_panel_category_value > header:contains(agrolait) .app_toggle_fold > i`
     ).toHaveClass("fa-caret-down");
-    expect(`.o_search_panel_category_value`).toHaveCount(5);
+    expect(`.app_search_panel_category_value`).toHaveCount(5);
 });
 
 test("concurrency: delayed component update", async () => {
@@ -1071,41 +1071,41 @@ test("concurrency: delayed component update", async () => {
     });
 
     // 'All' should be selected by default
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // select 'asustek' (delay the reload)
     const asustekPromise = promise;
-    await contains(`.o_search_panel_category_value:eq(1) header`).click();
+    await contains(`.app_search_panel_category_value:eq(1) header`).click();
 
     // 'asustek' should not be selected yet, and there should still be 3 records
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // select 'agrolait' (delay the reload)
     promise = new Deferred();
     const agrolaitPromise = promise;
-    await contains(`.o_search_panel_category_value:eq(2) header`).click();
+    await contains(`.app_search_panel_category_value:eq(2) header`).click();
 
     // 'agrolait' should not be selected yet, and there should still be 3 records
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // unlock asustek search (should be ignored, so there should still be 3 records)
     asustekPromise.resolve();
     await animationFrame();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "child_of", 3]]);
 
     // unlock agrolait search, there should now be 1 record
     agrolaitPromise.resolve();
     await animationFrame();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "child_of", 5]]);
 });
 
@@ -1151,7 +1151,7 @@ test("concurrency: single category", async () => {
 
     // Case 3: search domain is the same and default values do not matter anymore
     promise = new Deferred();
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
 
     // The search read is executed right away in this case
     expect.verifySteps([]);
@@ -1250,42 +1250,42 @@ test("concurrency: misordered get_filters", async () => {
         searchViewId: false,
     });
 
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([]);
 
     // select 'abc' (delay the reload)
     promise = new Deferred();
     const abcDef = promise;
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
 
     // 'All' should still be selected
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([["state", "=", "abc"]]);
 
     // select 'ghi' (delay the reload)
     promise = new Deferred();
     const ghiDef = promise;
-    await contains(`.o_search_panel_category_value header:eq(3)`).click();
+    await contains(`.app_search_panel_category_value header:eq(3)`).click();
 
     // 'All' should still be selected
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
     expect(component.domain).toEqual([["state", "=", "ghi"]]);
 
     // unlock ghi search
     ghiDef.resolve();
     await animationFrame();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(3) .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(3) .active`).toHaveCount(1);
     expect(component.domain).toEqual([["state", "=", "ghi"]]);
 
     // unlock abc search (should be ignored)
     abcDef.resolve();
     await animationFrame();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(3) .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(3) .active`).toHaveCount(1);
     expect(component.domain).toEqual([["state", "=", "ghi"]]);
 });
 
@@ -1337,32 +1337,32 @@ test("use filter (on many2one) to refine search", async () => {
         searchViewId: false,
         domain: [["bar", "=", true]],
     });
-    expect(`.o_search_panel_filter_value`).toHaveCount(2);
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
+    expect(`.app_search_panel_filter_value`).toHaveCount(2);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait: 1"]);
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // check 'asustek'
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait: 1"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "in", [3]]]);
 
     // check 'agrolait'
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(2);
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(2);
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait: 1"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "in", [3, 5]]]);
 
     // uncheck 'asustek'
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait: 1"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "in", [5]]]);
 
     // uncheck 'agrolait'
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait: 1"]);
     expect(component.domain).toEqual([["bar", "=", true]]);
 });
@@ -1384,32 +1384,32 @@ test("use filter (on selection) to refine search", async () => {
         searchViewId: false,
         domain: [["bar", "=", true]],
     });
-    expect(`.o_search_panel_filter_value`).toHaveCount(3);
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
+    expect(`.app_search_panel_filter_value`).toHaveCount(3);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
     expect(getFiltersContent()).toEqual(["ABC: 1", "DEF: 1", "GHI: 1"]);
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // check 'abc'
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
     expect(getFiltersContent()).toEqual(["ABC: 1", "DEF: 1", "GHI: 1"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["state", "in", ["abc"]]]);
 
     // check 'def'
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(2);
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(2);
     expect(getFiltersContent()).toEqual(["ABC: 1", "DEF: 1", "GHI: 1"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["state", "in", ["abc", "def"]]]);
 
     // uncheck 'abc'
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
     expect(getFiltersContent()).toEqual(["ABC: 1", "DEF: 1", "GHI: 1"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["state", "in", ["def"]]]);
 
     // uncheck 'def'
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
     expect(getFiltersContent()).toEqual(["ABC: 1", "DEF: 1", "GHI: 1"]);
     expect(component.domain).toEqual([["bar", "=", true]]);
 });
@@ -1441,7 +1441,7 @@ test("only reload categories and filters when domains change (counters disabled,
     expect.verifySteps(["search_panel_select_multi_range"]);
 
     // change category value, so the filters should be reloaded
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
     expect.verifySteps(["search_panel_select_multi_range"]);
 });
 
@@ -1471,7 +1471,7 @@ test("only reload categories and filters when domains change (counters disabled,
     expect.verifySteps(["search_panel_select_multi_range"]);
 
     // change category value, so the filters should be reloaded
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
     expect.verifySteps(["search_panel_select_multi_range"]);
 });
 
@@ -1529,7 +1529,7 @@ test("category counters", async () => {
     ]);
 
     // change category value, so the category 'state' should be reloaded
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
     expect.verifySteps(["search_panel_select_range", "state"]);
     expect(getCategoriesContent()).toEqual([
         "All",
@@ -1574,7 +1574,7 @@ test("category selection without counters", async () => {
     expect(getCategoriesContent()).toEqual(["All", "ABC", "DEF", "GHI"]);
 
     // change category value, so the category 'state' should be reloaded
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
     expect.verifySteps([]);
     expect(getCategoriesContent()).toEqual(["All", "ABC", "DEF", "GHI"]);
 });
@@ -1596,33 +1596,33 @@ test("filter with groupby", async () => {
         searchViewId: false,
         domain: [["bar", "=", true]],
     });
-    expect(`.o_search_panel_filter_group`).toHaveCount(2);
-    expect(`.o_search_panel_filter_group:first .o_search_panel_filter_value`).toHaveCount(1);
-    expect(`.o_search_panel_filter_group:eq(0) header`).toHaveText("gold");
-    expect(queryAllTexts`.o_search_panel_filter_group:eq(0) .o_search_panel_filter_value`).toEqual([
+    expect(`.app_search_panel_filter_group`).toHaveCount(2);
+    expect(`.app_search_panel_filter_group:first .app_search_panel_filter_value`).toHaveCount(1);
+    expect(`.app_search_panel_filter_group:eq(0) header`).toHaveText("gold");
+    expect(queryAllTexts`.app_search_panel_filter_group:eq(0) .app_search_panel_filter_value`).toEqual([
         "asustek\n2",
     ]);
-    expect(`.o_search_panel_filter_group:eq(1) .o_search_panel_filter_value`).toHaveCount(2);
-    expect(`.o_search_panel_filter_group:eq(1) header`).toHaveText("silver");
-    expect(queryAllTexts`.o_search_panel_filter_group:eq(1) .o_search_panel_filter_value`).toEqual([
+    expect(`.app_search_panel_filter_group:eq(1) .app_search_panel_filter_value`).toHaveCount(2);
+    expect(`.app_search_panel_filter_group:eq(1) header`).toHaveText("silver");
+    expect(queryAllTexts`.app_search_panel_filter_group:eq(1) .app_search_panel_filter_value`).toEqual([
         "agrolait\n1",
         "camptocamp",
     ]);
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
     expect(component.domain).toEqual([["bar", "=", true]]);
 
     // check 'asustek'
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
-    expect(queryFirst(`.o_search_panel_filter_group:eq(0) header > div > input`)).toBeChecked();
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
+    expect(queryFirst(`.app_search_panel_filter_group:eq(0) header > div > input`)).toBeChecked();
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait", "camptocamp"]);
     expect(component.domain).toEqual(["&", ["bar", "=", true], ["company_id", "in", [3]]]);
 
     // check 'agrolait'
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(2);
-    expect(queryFirst(`.o_search_panel_filter_group:eq(1) header > div > input`)).not.toBeChecked();
-    expect(queryFirst(`.o_search_panel_filter_group:eq(1) header > div > input`)).toBeChecked({
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(2);
+    expect(queryFirst(`.app_search_panel_filter_group:eq(1) header > div > input`)).not.toBeChecked();
+    expect(queryFirst(`.app_search_panel_filter_group:eq(1) header > div > input`)).toBeChecked({
         indeterminate: true,
     });
     expect(getFiltersContent()).toEqual(["asustek", "agrolait", "camptocamp"]);
@@ -1635,10 +1635,10 @@ test("filter with groupby", async () => {
     ]);
 
     // check 'camptocamp'
-    await contains(queryAll`.o_search_panel_filter_value:eq(2) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(3);
-    expect(queryAll`.o_search_panel_filter_value:eq(1) input`).toBeChecked();
-    expect(queryAll`.o_search_panel_filter_value:eq(1) input`).not.toBeChecked({
+    await contains(queryAll`.app_search_panel_filter_value:eq(2) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(3);
+    expect(queryAll`.app_search_panel_filter_value:eq(1) input`).toBeChecked();
+    expect(queryAll`.app_search_panel_filter_value:eq(1) input`).not.toBeChecked({
         indeterminate: true,
     });
     expect(getFiltersContent()).toEqual(["asustek", "agrolait", "camptocamp"]);
@@ -1651,10 +1651,10 @@ test("filter with groupby", async () => {
     ]);
 
     // uncheck second group
-    await contains(`.o_search_panel_filter_group:eq(1) header > div > input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
-    expect(queryAll`.o_search_panel_filter_value:eq(1) input`).not.toBeChecked();
-    expect(queryAll`.o_search_panel_filter_value:eq(1) input`).not.toBeChecked({
+    await contains(`.app_search_panel_filter_group:eq(1) header > div > input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
+    expect(queryAll`.app_search_panel_filter_value:eq(1) input`).not.toBeChecked();
+    expect(queryAll`.app_search_panel_filter_value:eq(1) input`).not.toBeChecked({
         indeterminate: true,
     });
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait", "camptocamp"]);
@@ -1692,7 +1692,7 @@ test("filter with domain", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_filter_value`).toHaveCount(2);
+    expect(`.app_search_panel_filter_value`).toHaveCount(2);
     expect(getFiltersContent()).toEqual(["asustek: 2", "agrolait: 2"]);
     expect.verifySteps(["search_panel_select_multi_range"]);
 });
@@ -1726,22 +1726,22 @@ test("filter with domain depending on category", async () => {
     });
 
     // select 'gold' category
-    await contains(`.o_search_panel_category_value:eq(1) header`).click();
-    expect(`.o_search_panel_category_value .active`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:eq(1) .active`).toHaveCount(1);
-    expect(`.o_search_panel_filter_value`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value:eq(1) header`).click();
+    expect(`.app_search_panel_category_value .active`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:eq(1) .active`).toHaveCount(1);
+    expect(`.app_search_panel_filter_value`).toHaveCount(1);
     expect(getFiltersContent()).toEqual(["asustek: 1"]);
 
     // select 'silver' category
-    await contains(`.o_search_panel_category_value:eq(2) header`).click();
-    expect(`.o_search_panel_category_value:eq(2) .active`).toHaveCount(1);
-    expect(`.o_search_panel_filter_value`).toHaveCount(1);
+    await contains(`.app_search_panel_category_value:eq(2) header`).click();
+    expect(`.app_search_panel_category_value:eq(2) .active`).toHaveCount(1);
+    expect(`.app_search_panel_filter_value`).toHaveCount(1);
     expect(getFiltersContent()).toEqual(["agrolait: 2"]);
 
     // select All
-    await contains(`.o_search_panel_category_value:eq(0) header`).click();
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
-    expect(`.o_search_panel_filter_value`).toHaveCount(0);
+    await contains(`.app_search_panel_category_value:eq(0) header`).click();
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
+    expect(`.app_search_panel_filter_value`).toHaveCount(0);
     expect.verifySteps([
         [], // category_domain (All)
         [["category_id", "=", false]], // comodel_domain (All)
@@ -1774,7 +1774,7 @@ test("specify active filter values in context", async () => {
             searchpanel_default_state: ["abc", "ghi"],
         },
     });
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(3);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(3);
     expect(component.domain).toEqual([
         "&",
         ["company_id", "in", [5]],
@@ -1782,8 +1782,8 @@ test("specify active filter values in context", async () => {
     ]);
 
     // manually untick a default value
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(2);
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(2);
     expect(component.domain).toEqual([["state", "in", ["abc", "ghi"]]]);
 });
 
@@ -1827,7 +1827,7 @@ test("filter with groupby and default values in context", async () => {
             searchpanel_default_company_id: [5],
         },
     });
-    expect(queryFirst`.o_search_panel_filter_group:eq(1) header > div > input`).toBeChecked({
+    expect(queryFirst`.app_search_panel_filter_group:eq(1) header > div > input`).toBeChecked({
         indeterminate: true,
     });
     expect(component.domain).toEqual([["company_id", "in", [5]]]);
@@ -1856,19 +1856,19 @@ test('Does not confuse false and "false" groupby values', async () => {
             searchpanel_default_company_id: [5],
         },
     });
-    expect(`.o_search_panel_section`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(1);
 
     // There should be a group 'false' displayed with only value B inside it.
-    expect(`.o_search_panel_filter_group`).toHaveCount(1);
-    expect(`.o_search_panel_filter_group header`).toHaveText("false");
-    expect(queryAllTexts`.o_search_panel_filter_group:eq(0) .o_search_panel_filter_value`).toEqual([
+    expect(`.app_search_panel_filter_group`).toHaveCount(1);
+    expect(`.app_search_panel_filter_group header`).toHaveText("false");
+    expect(queryAllTexts`.app_search_panel_filter_group:eq(0) .app_search_panel_filter_value`).toEqual([
         "B",
     ]);
-    expect(`.o_search_panel_filter_group .o_search_panel_filter_value`).toHaveCount(1);
+    expect(`.app_search_panel_filter_group .app_search_panel_filter_value`).toHaveCount(1);
 
     // Globally, there should be two values, one displayed in the group 'false', and one at the end of the section
     // (the group false is not displayed and its values are displayed at the first level)
-    expect(`.o_search_panel_filter_value`).toHaveCount(2);
+    expect(`.app_search_panel_filter_value`).toHaveCount(2);
     expect(getFiltersContent()).toEqual(["B", "A"]);
 });
 
@@ -1912,20 +1912,20 @@ test("search panel is available on list and kanban by default", async () => {
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_kanban_view .o_content.o_component_with_search_panel`).toHaveCount(1);
-    expect(`.o_content.o_component_with_search_panel .o_search_panel`).toHaveCount(1);
+    expect(`.app_kanban_view .app_content.app_component_with_search_panel`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_search_panel`).toHaveCount(1);
 
     await getService("action").switchView("pivot");
-    expect(`.o_pivot_view .o_content`).toHaveCount(1);
-    expect(`.o_pivot_view .o_content .o_search_panel`).toHaveCount(0);
+    expect(`.app_pivot_view .app_content`).toHaveCount(1);
+    expect(`.app_pivot_view .app_content .app_search_panel`).toHaveCount(0);
 
     await getService("action").switchView("list");
-    expect(`.o_list_view .o_content.o_component_with_search_panel`).toHaveCount(1);
-    expect(`.o_content.o_component_with_search_panel .o_search_panel`).toHaveCount(1);
+    expect(`.app_list_view .app_content.app_component_with_search_panel`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_search_panel`).toHaveCount(1);
 
-    await contains(`.o_data_row .o_data_cell`).click();
-    expect(`.o_form_view .o_content`).toHaveCount(1);
-    expect(`.o_form_view .o_content .o_search_panel`).toHaveCount(0);
+    await contains(`.app_data_row .app_data_cell`).click();
+    expect(`.app_form_view .app_content`).toHaveCount(1);
+    expect(`.app_form_view .app_content .app_search_panel`).toHaveCount(0);
 });
 
 test("search panel with view_types attribute", async () => {
@@ -1945,16 +1945,16 @@ test("search panel with view_types attribute", async () => {
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_kanban_view .o_content.o_component_with_search_panel`).toHaveCount(1);
-    expect(`.o_content.o_component_with_search_panel .o_search_panel`).toHaveCount(1);
+    expect(`.app_kanban_view .app_content.app_component_with_search_panel`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_search_panel`).toHaveCount(1);
 
     await getService("action").switchView("list");
-    expect(`.o_list_view .o_content`).toHaveCount(1);
-    expect(`.o_content .o_search_panel`).toHaveCount(0);
+    expect(`.app_list_view .app_content`).toHaveCount(1);
+    expect(`.app_content .app_search_panel`).toHaveCount(0);
 
     await getService("action").switchView("pivot");
-    expect(`.o_content.o_component_with_search_panel .o_pivot`).toHaveCount(1);
-    expect(`.o_content.o_component_with_search_panel .o_search_panel`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_pivot`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_search_panel`).toHaveCount(1);
 });
 
 test("search panel state is shared between views", async () => {
@@ -1964,26 +1964,26 @@ test("search panel state is shared between views", async () => {
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_search_panel_category_value header:eq(0)`).toHaveClass("active");
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(4);
+    expect(`.app_search_panel_category_value header:eq(0)`).toHaveClass("active");
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(4);
 
     // select 'asustek' company
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
-    expect(`.o_search_panel_category_value header:eq(1)`).toHaveClass("active");
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(2);
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
+    expect(`.app_search_panel_category_value header:eq(1)`).toHaveClass("active");
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(2);
 
     await getService("action").switchView("list");
-    expect(`.o_search_panel_category_value header:eq(1)`).toHaveClass("active");
-    expect(`.o_data_row`).toHaveCount(2);
+    expect(`.app_search_panel_category_value header:eq(1)`).toHaveClass("active");
+    expect(`.app_data_row`).toHaveCount(2);
 
     // select 'agrolait' company
-    await contains(`.o_search_panel_category_value header:eq(2)`).click();
-    expect(`.o_search_panel_category_value header:eq(2)`).toHaveClass("active");
-    expect(`.o_data_row`).toHaveCount(2);
+    await contains(`.app_search_panel_category_value header:eq(2)`).click();
+    expect(`.app_search_panel_category_value header:eq(2)`).toHaveClass("active");
+    expect(`.app_data_row`).toHaveCount(2);
 
     await getService("action").switchView("kanban");
-    expect(`.o_search_panel_category_value header:eq(2)`).toHaveClass("active");
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(2);
+    expect(`.app_search_panel_category_value header:eq(2)`).toHaveClass("active");
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(2);
     expect.verifySteps([
         [], // initial search_read
         [["company_id", "child_of", 3]], // kanban, after selecting the first company
@@ -2000,28 +2000,28 @@ test("search panel filters are kept between switch views", async () => {
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(4);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(4);
 
     // select gold filter
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(1);
 
     await getService("action").switchView("list");
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
-    expect(`.o_data_row`).toHaveCount(1);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
+    expect(`.app_data_row`).toHaveCount(1);
 
     // select silver filter
-    await contains(queryAll`.o_search_panel_filter_value:eq(1) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(2);
-    expect(`.o_data_row`).toHaveCount(4);
+    await contains(queryAll`.app_search_panel_filter_value:eq(1) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(2);
+    expect(`.app_data_row`).toHaveCount(4);
 
     await getService("action").switchView("kanban");
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(2);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(4);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(2);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(4);
 
-    await contains(`.o_kanban_record`).click();
+    await contains(`.app_kanban_record`).click();
     await contains(`.breadcrumb-item`).click();
     expect.verifySteps([
         [], // initial search_read
@@ -2037,37 +2037,37 @@ test("search panel filters are kept when switching to a view with no search pane
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_kanban_view .o_content.o_component_with_search_panel`).toHaveCount(1);
-    expect(`.o_content.o_component_with_search_panel .o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(0);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(4);
+    expect(`.app_kanban_view .app_content.app_component_with_search_panel`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(0);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(4);
 
     // select gold filter
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
-    expect(`.o_kanban_record:not(.o_kanban_ghost)`).toHaveCount(1);
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
+    expect(`.app_kanban_record:not(.app_kanban_ghost)`).toHaveCount(1);
 
     // switch to pivot
     await getService("action").switchView("pivot");
-    expect(`.o_pivot_view .o_content`).toHaveCount(1);
-    expect(`.o_content .o_search_panel`).toHaveCount(0);
-    expect(`.o_pivot_cell_value`).toHaveText("15");
+    expect(`.app_pivot_view .app_content`).toHaveCount(1);
+    expect(`.app_content .app_search_panel`).toHaveCount(0);
+    expect(`.app_pivot_cell_value`).toHaveText("15");
 
     // switch to list
     await getService("action").switchView("list");
-    expect(`.o_list_view .o_content.o_component_with_search_panel`).toHaveCount(1);
-    expect(`.o_content.o_component_with_search_panel .o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_filter_value input:checked`).toHaveCount(1);
-    expect(`.o_data_row`).toHaveCount(1);
+    expect(`.app_list_view .app_content.app_component_with_search_panel`).toHaveCount(1);
+    expect(`.app_content.app_component_with_search_panel .app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_filter_value input:checked`).toHaveCount(1);
+    expect(`.app_data_row`).toHaveCount(1);
 });
 
 test('after onExecuteAction, selects "All" as default category value', async () => {
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1, { viewType: "form" });
-    await contains(`.o_form_view .o_form_nosheet button`).click();
-    expect(`.o_kanban_view`).toHaveCount(1);
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_category_value:first .active`).toHaveCount(1);
+    await contains(`.app_form_view .app_form_nosheet button`).click();
+    expect(`.app_kanban_view`).toHaveCount(1);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_category_value:first .active`).toHaveCount(1);
 });
 
 test("categories and filters are not reloaded when switching between views", async () => {
@@ -2130,7 +2130,7 @@ test("scroll kanban view with searchpanel and kept scroll position", async () =>
         static props = ["*"];
         static components = { WebClient };
         static template = xml`
-            <div class="o_web_client" style="max-height: 300px"><WebClient/></div>
+            <div class="app_web_client" style="max-height: 300px"><WebClient/></div>
         `;
     }
     await mountWithCleanup(WebClientContainer);
@@ -2138,15 +2138,15 @@ test("scroll kanban view with searchpanel and kept scroll position", async () =>
     await getService("action").switchView("kanban");
 
     // simulate a scroll in the kanban view
-    queryFirst(`.o_renderer`).scrollTop = 100;
+    queryFirst(`.app_renderer`).scrollTop = 100;
     await getService("action").doAction(2);
 
     // execute a second action (in which we don't scroll)
-    expect(`.o_content`).toHaveProperty("scrollTop", 0);
+    expect(`.app_content`).toHaveProperty("scrollTop", 0);
 
     // go back using the breadcrumbs
-    await contains(`.o_control_panel .breadcrumb a`).click();
-    expect(`.o_renderer`).toHaveProperty("scrollTop", 100);
+    await contains(`.app_control_panel .breadcrumb a`).click();
+    expect(`.app_renderer`).toHaveProperty("scrollTop", 100);
 });
 
 test("scroll position is kept when switching between controllers", async () => {
@@ -2158,27 +2158,27 @@ test("scroll position is kept when switching between controllers", async () => {
         static props = ["*"];
         static components = { WebClient };
         static template = xml`
-            <div class="o_web_client" style="max-height: 300px"><WebClient/></div>
+            <div class="app_web_client" style="max-height: 300px"><WebClient/></div>
         `;
     }
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClientContainer);
     await getService("action").doAction(1);
-    expect(`.o_kanban_view .o_content`).toHaveCount(1);
-    expect(queryFirst(`.o_search_panel`).scrollTop).toBe(0);
+    expect(`.app_kanban_view .app_content`).toHaveCount(1);
+    expect(queryFirst(`.app_search_panel`).scrollTop).toBe(0);
 
     // simulate a scroll in the search panel and switch into list
-    await scroll(`.o_search_panel`, { y: 100 });
+    await scroll(`.app_search_panel`, { y: 100 });
     await animationFrame();
     await getService("action").switchView("list");
-    expect(`.o_list_view .o_content`).toHaveCount(1);
-    expect(queryFirst(`.o_search_panel`).scrollTop).toBe(100);
+    expect(`.app_list_view .app_content`).toHaveCount(1);
+    expect(queryFirst(`.app_search_panel`).scrollTop).toBe(100);
 
     // simulate another scroll and switch back to kanban
-    await scroll(`.o_search_panel`, { y: 25 });
+    await scroll(`.app_search_panel`, { y: 25 });
     await getService("action").switchView("kanban");
-    expect(`.o_kanban_view .o_content`).toHaveCount(1);
-    expect(queryFirst(`.o_search_panel`).scrollTop).toBe(25);
+    expect(`.app_kanban_view .app_content`).toHaveCount(1);
+    expect(queryFirst(`.app_search_panel`).scrollTop).toBe(25);
 });
 
 test("search panel is not instantiated in dialogs", async () => {
@@ -2201,10 +2201,10 @@ test("search panel is not instantiated in dialogs", async () => {
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1, { viewType: "form" });
-    await contains(`.o_field_widget[name="company_id"] .dropdown input`).click();
-    await contains(`.o_field_widget[name="company_id"] .o_m2o_dropdown_option_search_more`).click();
-    expect(`.modal .o_list_view`).toHaveCount(1);
-    expect(`.modal .o_search_panel`).toHaveCount(0);
+    await contains(`.app_field_widget[name="company_id"] .dropdown input`).click();
+    await contains(`.app_field_widget[name="company_id"] .app_m2o_dropdown_option_search_more`).click();
+    expect(`.modal .app_list_view`).toHaveCount(1);
+    expect(`.modal .app_search_panel`).toHaveCount(0);
 });
 
 test("Reload categories with counters when filter values are selected", async () => {
@@ -2228,7 +2228,7 @@ test("Reload categories with counters when filter values are selected", async ()
     expect(getCategoriesCounter()).toEqual([1, 3]);
     expect(getFiltersCounter()).toEqual([1, 1, 2]);
 
-    await contains(queryAll`.o_search_panel_filter_value:eq(0) input`).click();
+    await contains(queryAll`.app_search_panel_filter_value:eq(0) input`).click();
     expect(getCategoriesCounter()).toEqual([1]);
     expect(getFiltersCounter()).toEqual([1, 1, 2]);
     expect.verifySteps(["search_panel_select_range", "search_panel_select_multi_range"]);
@@ -2254,12 +2254,12 @@ test("many2one: select one, expand, hierarchize, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(1);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(1);
     expect(getCategoriesCounter()).toEqual([2, 1]);
 
-    await contains(`.o_search_panel_category_value header:contains(agrolait)`).click();
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(5);
+    await contains(`.app_search_panel_category_value header:contains(agrolait)`).click();
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(5);
     expect(getCategoriesCounter()).toEqual([2, 1, 1]);
 });
 
@@ -2283,12 +2283,12 @@ test("many2one: select one, no expand, hierarchize, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(1);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(1);
     expect(getCategoriesCounter()).toEqual([2, 1]);
 
-    await contains(`.o_search_panel_category_value header:contains(agrolait)`).click();
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(4);
+    await contains(`.app_search_panel_category_value header:contains(agrolait)`).click();
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(4);
     expect(getCategoriesCounter()).toEqual([2, 1, 1]);
 });
 
@@ -2312,8 +2312,8 @@ test("many2one: select one, expand, no hierarchize, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([2, 1, 1]);
 });
 
@@ -2337,8 +2337,8 @@ test("many2one: select one, no expand, no hierarchize, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([2, 1, 1]);
 });
 
@@ -2362,12 +2362,12 @@ test("many2one: select one, expand, hierarchize, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(1);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(1);
     expect(getCategoriesCounter()).toEqual([]);
 
-    await contains(`.o_search_panel_category_value header:contains(agrolait)`).click();
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(5);
+    await contains(`.app_search_panel_category_value header:contains(agrolait)`).click();
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(5);
     expect(getCategoriesCounter()).toEqual([]);
 });
 
@@ -2391,12 +2391,12 @@ test("many2one: select one, no expand, hierarchize, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(1);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(1);
     expect(getCategoriesCounter()).toEqual([]);
 
-    await contains(`.o_search_panel_category_value header:contains(agrolait)`).click();
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(4);
+    await contains(`.app_search_panel_category_value header:contains(agrolait)`).click();
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(4);
     expect(getCategoriesCounter()).toEqual([]);
 });
 
@@ -2420,8 +2420,8 @@ test("many2one: select one, expand, no hierarchize, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([]);
 });
 
@@ -2445,8 +2445,8 @@ test("many2one: select one, no expand, no hierarchize, no counters", async () =>
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([]);
 });
 
@@ -2466,8 +2466,8 @@ test("many2one: select multi, expand, groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 2]);
 });
 
@@ -2487,8 +2487,8 @@ test("many2one: select multi, no expand, groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 2]);
 });
 
@@ -2508,8 +2508,8 @@ test("many2one: select multi, expand, no groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 2]);
 });
 
@@ -2529,8 +2529,8 @@ test("many2one: select multi, no expand, no groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 2]);
 });
 
@@ -2550,8 +2550,8 @@ test("many2one: select multi, expand, groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2571,8 +2571,8 @@ test("many2one: select multi, no expand, groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2592,8 +2592,8 @@ test("many2one: select multi, expand, no groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2613,8 +2613,8 @@ test("many2one: select multi, no expand, no groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2634,8 +2634,8 @@ test("many2many: select multi, expand, groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 1]);
 });
 
@@ -2655,8 +2655,8 @@ test("many2many: select multi, no expand, groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 1]);
 });
 
@@ -2676,8 +2676,8 @@ test("many2many: select multi, expand, no groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 1]);
 });
 
@@ -2697,8 +2697,8 @@ test("many2many: select multi, no expand, no groupby, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([2, 1]);
 });
 
@@ -2718,8 +2718,8 @@ test("many2many: select multi, expand, groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2739,8 +2739,8 @@ test("many2many: select multi, no expand, groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2760,8 +2760,8 @@ test("many2many: select multi, expand, no groupby, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2781,8 +2781,8 @@ test("many2many: select multi, no expand, no groupby, no counters", async () => 
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2802,8 +2802,8 @@ test("selection: select one, expand, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([1, 2]);
 });
 
@@ -2823,8 +2823,8 @@ test("selection: select one, no expand, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([1, 2]);
 });
 
@@ -2844,8 +2844,8 @@ test("selection: select one, expand, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(4);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(4);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([]);
 });
 
@@ -2865,8 +2865,8 @@ test("selection: select one, no expand, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getCategoriesCounter()).toEqual([]);
 });
 
@@ -2886,8 +2886,8 @@ test("selection: select multi, expand, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([1, 2]);
 });
 
@@ -2907,8 +2907,8 @@ test("selection: select multi, no expand, counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([1, 2]);
 });
 
@@ -2928,8 +2928,8 @@ test("selection: select multi, expand, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(3);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(3);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2949,8 +2949,8 @@ test("selection: select multi, no expand, no counters", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(2);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(2);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([]);
 });
 
@@ -2975,12 +2975,12 @@ test("selection: select multi, no expand, counters, extra_domain", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_label`).toHaveCount(5);
-    expect(`.o_toggle_fold > i`).toHaveCount(0);
+    expect(`.app_search_panel_label`).toHaveCount(5);
+    expect(`.app_toggle_fold > i`).toHaveCount(0);
     expect(getFiltersCounter()).toEqual([1, 2]);
 
-    await contains(`.o_search_panel_category_value header:contains(asustek)`).click();
-    expect(`.o_search_panel_label`).toHaveCount(5);
+    await contains(`.app_search_panel_category_value header:contains(asustek)`).click();
+    expect(`.app_search_panel_label`).toHaveCount(5);
     expect(getFiltersCounter()).toEqual([1]);
 });
 
@@ -3003,12 +3003,12 @@ test("reached limit for a category", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_section`).toHaveCount(1);
-    expect(`.o_search_panel_section_header`).toHaveCount(1);
-    expect(`.o_search_panel_section_header`).toHaveText("RES.COMPANY");
+    expect(`.app_search_panel_section`).toHaveCount(1);
+    expect(`.app_search_panel_section_header`).toHaveCount(1);
+    expect(`.app_search_panel_section_header`).toHaveText("RES.COMPANY");
     expect(`section div.alert.alert-warning`).toHaveCount(1);
     expect(`section div.alert.alert-warning`).toHaveText("Too many items to display.");
-    expect(`.o_search_panel_category_value`).toHaveCount(0);
+    expect(`.app_search_panel_category_value`).toHaveCount(0);
 });
 
 test("reached limit for a filter", async () => {
@@ -3026,12 +3026,12 @@ test("reached limit for a filter", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_section`).toHaveCount(1);
-    expect(`.o_search_panel_section_header`).toHaveCount(1);
-    expect(`.o_search_panel_section_header`).toHaveText("RES.COMPANY");
+    expect(`.app_search_panel_section`).toHaveCount(1);
+    expect(`.app_search_panel_section_header`).toHaveCount(1);
+    expect(`.app_search_panel_section_header`).toHaveText("RES.COMPANY");
     expect(`section div.alert.alert-warning`).toHaveCount(1);
     expect(`section div.alert.alert-warning`).toHaveText("Too many items to display.");
-    expect(`.o_search_panel_filter_value`).toHaveCount(0);
+    expect(`.app_search_panel_filter_value`).toHaveCount(0);
 });
 
 test("a selected value becomming invalid should no more impact the view", async () => {
@@ -3054,15 +3054,15 @@ test("a selected value becomming invalid should no more impact the view", async 
     expect.verifySteps(["search_panel_select_range"]);
 
     // select 'ABC' in search panel
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
     expect.verifySteps(["search_panel_select_range"]);
 
     // select DEF in filter menu
     await toggleSearchBarMenu();
     await toggleMenuItem("DEF");
     expect.verifySteps(["search_panel_select_range"]);
-    expect(`.o_search_panel_category_value header:eq(0)`).toHaveText("All");
-    expect(`.o_search_panel_category_value header:eq(0)`).toHaveClass("active");
+    expect(`.app_search_panel_category_value header:eq(0)`).toHaveText("All");
+    expect(`.app_search_panel_category_value header:eq(0)`).toHaveClass("active");
 });
 
 test("Categories with default attributes should be udpated when external domain changes", async () => {
@@ -3086,7 +3086,7 @@ test("Categories with default attributes should be udpated when external domain 
     expect(getCategoriesContent()).toEqual(["All", "ABC", "DEF", "GHI"]);
 
     // select 'ABC' in search panel --> no need to update the category value
-    await contains(`.o_search_panel_category_value header:eq(1)`).click();
+    await contains(`.app_search_panel_category_value header:eq(1)`).click();
     expect.verifySteps([]);
     expect(getCategoriesContent()).toEqual(["All", "ABC", "DEF", "GHI"]);
 
@@ -3151,9 +3151,9 @@ test("Display message when no filter availible", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    await contains(`.o_search_panel_sidebar button`).click();
-    expect(`.o_search_panel_empty_state`).toHaveCount(1);
-    expect(`.o_search_panel_empty_state button`).toHaveCount(1);
+    await contains(`.app_search_panel_sidebar button`).click();
+    expect(`.app_search_panel_empty_state`).toHaveCount(1);
+    expect(`.app_search_panel_empty_state button`).toHaveCount(1);
 });
 
 test("Don't display empty state message when some filters are available", async () => {
@@ -3161,7 +3161,7 @@ test("Don't display empty state message when some filters are available", async 
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_empty_state`).toHaveCount(0);
+    expect(`.app_search_panel_empty_state`).toHaveCount(0);
 });
 
 test("search panel can be collapsed/expanded", async () => {
@@ -3175,35 +3175,35 @@ test("search panel can be collapsed/expanded", async () => {
     });
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(2);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(2);
 
-    await contains(`.o_search_panel button`).click();
+    await contains(`.app_search_panel button`).click();
     expect.verifySteps([["setItem", "search_panel_expanded,false,1", false]]);
-    expect(`.o_search_panel`).toHaveCount(0);
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
-    expect(`.o_search_panel_sidebar`).toHaveText("All");
+    expect(`.app_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
+    expect(`.app_search_panel_sidebar`).toHaveText("All");
 
-    await contains(`.o_search_panel_sidebar button`).click();
+    await contains(`.app_search_panel_sidebar button`).click();
     expect.verifySteps([["setItem", "search_panel_expanded,false,1", true]]);
-    expect(`.o_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel`).toHaveCount(1);
 
-    await contains(queryAll`.o_search_panel_category_value header`[1]).click();
-    await contains(queryAll`.o_search_panel_filter_value input`[1]).click();
-    await contains(`.o_search_panel button`).click();
+    await contains(queryAll`.app_search_panel_category_value header`[1]).click();
+    await contains(queryAll`.app_search_panel_filter_value input`[1]).click();
+    await contains(`.app_search_panel button`).click();
     expect.verifySteps([["setItem", "search_panel_expanded,false,1", false]]);
-    expect(`.o_search_panel`).toHaveCount(0);
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
-    expect(`.o_search_panel_sidebar`).toHaveText("asusteksilver");
+    expect(`.app_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
+    expect(`.app_search_panel_sidebar`).toHaveText("asusteksilver");
 });
 
 test("search panel can be collapsed by default if it was set in local storage beforehand", async () => {
     localStorage.setItem("search_panel_expanded,false,1", false);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    expect(`.o_search_panel`).toHaveCount(0);
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
-    expect(`.o_search_panel_sidebar`).toHaveText("All");
+    expect(`.app_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
+    expect(`.app_search_panel_sidebar`).toHaveText("All");
 });
 
 test("search panel collapse with multiple filter categories selected", async () => {
@@ -3223,34 +3223,34 @@ test("search panel collapse with multiple filter categories selected", async () 
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_section`).toHaveCount(3);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_section`).toHaveCount(3);
 
-    await contains(queryAll`.o_search_panel_category_value header`[1]).click();
-    await contains(queryAll`.o_search_panel_filter_value input`[1]).click();
-    await contains(queryAll`.o_search_panel_filter_value input`[2]).click();
-    await contains(`.o_search_panel button`).click();
-    expect(`.o_search_panel`).toHaveCount(0);
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
-    expect(`.o_search_panel_sidebar`).toHaveText("asusteksilverABC");
+    await contains(queryAll`.app_search_panel_category_value header`[1]).click();
+    await contains(queryAll`.app_search_panel_filter_value input`[1]).click();
+    await contains(queryAll`.app_search_panel_filter_value input`[2]).click();
+    await contains(`.app_search_panel button`).click();
+    expect(`.app_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
+    expect(`.app_search_panel_sidebar`).toHaveText("asusteksilverABC");
 });
 
 test("expand/collapse state is kept when switching between controllers", async () => {
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    await contains(`.o_search_panel button`).click();
-    expect(`.o_search_panel`).toHaveCount(0);
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
+    await contains(`.app_search_panel button`).click();
+    expect(`.app_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
     await getService("action").switchView("list");
-    expect(`.o_search_panel`).toHaveCount(0);
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
-    await contains(`.o_search_panel_sidebar button`).click();
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_sidebar`).toHaveCount(0);
+    expect(`.app_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
+    await contains(`.app_search_panel_sidebar button`).click();
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_sidebar`).toHaveCount(0);
     await getService("action").switchView("kanban");
-    expect(`.o_search_panel`).toHaveCount(1);
-    expect(`.o_search_panel_sidebar`).toHaveCount(0);
+    expect(`.app_search_panel`).toHaveCount(1);
+    expect(`.app_search_panel_sidebar`).toHaveCount(0);
 });
 
 test("search panel should be resizable", async () => {
@@ -3259,8 +3259,8 @@ test("search panel should be resizable", async () => {
         searchViewId: false,
     });
 
-    const searchPanel = queryFirst(".o_search_panel");
-    const resizeHandle = queryFirst(".o_search_panel_resize");
+    const searchPanel = queryFirst(".app_search_panel");
+    const resizeHandle = queryFirst(".app_search_panel_resize");
     const originalWidth = searchPanel.offsetWidth;
 
     const { drop } = await drag(resizeHandle);
@@ -3272,8 +3272,8 @@ test("search panel width is kept when switching between controllers", async () =
     onRpc("has_group", () => true);
     await mountWithCleanup(WebClient);
     await getService("action").doAction(1);
-    const searchPanel = queryFirst(".o_search_panel");
-    const resizeHandle = queryFirst(".o_search_panel_resize");
+    const searchPanel = queryFirst(".app_search_panel");
+    const resizeHandle = queryFirst(".app_search_panel_resize");
     const originalWidth = searchPanel.offsetWidth;
 
     const { drop } = await drag(resizeHandle);
@@ -3282,9 +3282,9 @@ test("search panel width is kept when switching between controllers", async () =
     const newWidth = searchPanel.offsetWidth;
     expect(newWidth).toBeGreaterThan(originalWidth);
     await getService("action").switchView("list");
-    expect(queryFirst(".o_search_panel").offsetWidth).toBe(newWidth);
+    expect(queryFirst(".app_search_panel").offsetWidth).toBe(newWidth);
     await getService("action").switchView("kanban");
-    expect(queryFirst(".o_search_panel").offsetWidth).toBe(newWidth);
+    expect(queryFirst(".app_search_panel").offsetWidth).toBe(newWidth);
 });
 
 test("hide search panel if there is no records", async () => {
@@ -3304,8 +3304,8 @@ test("hide search panel if there is no records", async () => {
         searchViewId: false,
     });
 
-    expect(`.o_search_panel_sidebar`).toHaveCount(1);
-    expect(`.o_search_panel`).toHaveCount(0);
+    expect(`.app_search_panel_sidebar`).toHaveCount(1);
+    expect(`.app_search_panel`).toHaveCount(0);
 });
 
 test("many2one: select one, hierarchize and depth", async () => {
@@ -3334,12 +3334,12 @@ test("many2one: select one, hierarchize and depth", async () => {
         resModel: "partner",
         searchViewId: false,
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(6);
-    expect(`.o_toggle_fold > i`).toHaveCount(5);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(6);
+    expect(`.app_toggle_fold > i`).toHaveCount(5);
 
-    await contains(`.o_search_panel_category_value header:contains(L3_2)`).click();
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(7);
-    expect(`.o_toggle_fold > i`).toHaveCount(5);
+    await contains(`.app_search_panel_category_value header:contains(L3_2)`).click();
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(7);
+    expect(`.app_toggle_fold > i`).toHaveCount(5);
 });
 
 test("many2one: select one, hierarchize and depth and search_default", async () => {
@@ -3371,8 +3371,8 @@ test("many2one: select one, hierarchize and depth and search_default", async () 
             searchpanel_default_company_id: 6,
         },
     });
-    expect(`.o_search_panel_field .o_search_panel_category_value`).toHaveCount(7);
-    expect(`.o_toggle_fold > i`).toHaveCount(5);
+    expect(`.app_search_panel_field .app_search_panel_category_value`).toHaveCount(7);
+    expect(`.app_toggle_fold > i`).toHaveCount(5);
 });
 
 test("search panel with sample data", async () => {
@@ -3395,8 +3395,8 @@ test("search panel with sample data", async () => {
     await getService("action").doAction(1);
 
     await getService("action").switchView("kanban");
-    expect(`.o_search_panel_filter_value:eq(0) input`).toHaveStyle({ "pointer-events": "auto" });
+    expect(`.app_search_panel_filter_value:eq(0) input`).toHaveStyle({ "pointer-events": "auto" });
 
     await getService("action").switchView("list");
-    expect(`.o_search_panel_filter_value:eq(0) input`).toHaveStyle({ "pointer-events": "auto" });
+    expect(`.app_search_panel_filter_value:eq(0) input`).toHaveStyle({ "pointer-events": "auto" });
 });

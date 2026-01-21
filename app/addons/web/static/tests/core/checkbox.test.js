@@ -8,8 +8,8 @@ import { CheckBox } from "@web/core/checkbox/checkbox";
 test("can be rendered", async () => {
     await mountWithCleanup(CheckBox);
 
-    expect(`.o-checkbox input[type=checkbox]`).toHaveCount(1);
-    expect(`.o-checkbox input[type=checkbox]`).toBeEnabled();
+    expect(`.app-checkbox input[type=checkbox]`).toHaveCount(1);
+    expect(`.app-checkbox input[type=checkbox]`).toBeEnabled();
 });
 
 test("has a slot for translatable text", async () => {
@@ -40,7 +40,7 @@ test("call onChange prop when some change occurs", async () => {
 
     await mountWithCleanup(Parent);
 
-    expect(`.o-checkbox input`).toHaveCount(1);
+    expect(`.app-checkbox input`).toHaveCount(1);
 
     await check("input");
 
@@ -60,8 +60,8 @@ test("checkbox with props disabled", async () => {
 
     await mountWithCleanup(Parent);
 
-    expect(`.o-checkbox input`).toHaveCount(1);
-    expect(`.o-checkbox input`).not.toBeEnabled();
+    expect(`.app-checkbox input`).toHaveCount(1);
+    expect(`.app-checkbox input`).not.toBeEnabled();
 });
 
 test.tags("desktop");
@@ -82,16 +82,16 @@ test("can toggle value by pressing ENTER", async () => {
 
     await mountWithCleanup(Parent);
 
-    expect(`.o-checkbox input`).toHaveCount(1);
-    expect(`.o-checkbox input`).not.toBeChecked();
+    expect(`.app-checkbox input`).toHaveCount(1);
+    expect(`.app-checkbox input`).not.toBeChecked();
 
-    await contains(".o-checkbox input").press("Enter");
+    await contains(".app-checkbox input").press("Enter");
 
-    expect(`.o-checkbox input`).toBeChecked();
+    expect(`.app-checkbox input`).toBeChecked();
 
-    await contains(".o-checkbox input").press("Enter");
+    await contains(".app-checkbox input").press("Enter");
 
-    expect(`.o-checkbox input`).not.toBeChecked();
+    expect(`.app-checkbox input`).not.toBeChecked();
 });
 
 test.tags("desktop");
@@ -113,24 +113,24 @@ test("toggling through multiple ways", async () => {
 
     await mountWithCleanup(Parent);
 
-    expect(`.o-checkbox input`).toHaveCount(1);
-    expect(`.o-checkbox input`).not.toBeChecked();
+    expect(`.app-checkbox input`).toHaveCount(1);
+    expect(`.app-checkbox input`).not.toBeChecked();
 
-    await contains(".o-checkbox").click();
+    await contains(".app-checkbox").click();
 
-    expect(`.o-checkbox input`).toBeChecked();
+    expect(`.app-checkbox input`).toBeChecked();
 
-    await contains(".o-checkbox > .form-check-label", { visible: false }).uncheck();
+    await contains(".app-checkbox > .form-check-label", { visible: false }).uncheck();
 
-    expect(`.o-checkbox input`).not.toBeChecked();
+    expect(`.app-checkbox input`).not.toBeChecked();
 
-    await contains(".o-checkbox input").press("Enter");
+    await contains(".app-checkbox input").press("Enter");
 
-    expect(`.o-checkbox input`).toBeChecked();
+    expect(`.app-checkbox input`).toBeChecked();
 
-    await contains(".o-checkbox input").press(" ");
+    await contains(".app-checkbox input").press(" ");
 
-    expect(`.o-checkbox input`).not.toBeChecked();
+    expect(`.app-checkbox input`).not.toBeChecked();
     expect.verifySteps(["true", "false", "true", "false"]);
 });
 
@@ -143,6 +143,6 @@ test("checkbox with props indeterminate", async () => {
 
     await mountWithCleanup(Parent);
 
-    expect(`.o-checkbox input`).toHaveCount(1);
-    expect(`.o-checkbox input`).toBeChecked({ indeterminate: true });
+    expect(`.app-checkbox input`).toHaveCount(1);
+    expect(`.app-checkbox input`).toBeChecked({ indeterminate: true });
 });

@@ -99,7 +99,7 @@ test("Simple sorting in single group", async () => {
                     expect(group).toBe(undefined);
                     expect(element).toHaveText("1");
                     expect(".item").toHaveCount(4);
-                    expect(".item.o_dragged").toHaveCount(1);
+                    expect(".item.app_dragged").toHaveCount(1);
                 },
                 onDrop({ element, group, previous, next, parent }) {
                     expect.step("drop");
@@ -116,14 +116,14 @@ test("Simple sorting in single group", async () => {
     await mountWithCleanup(List);
 
     expect(".item").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps([]);
 
     // First item after 2nd item
     await contains(".item:first-child").dragAndDrop(".item:nth-child(2)");
 
     expect(".item").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps(["start", "elemententer", "drop", "end"]);
 });
 
@@ -260,7 +260,7 @@ test("Sorting in groups with distinct per-axis scrolling", async () => {
         });
     });
 
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
 
     // Positive horizontal scrolling
 
@@ -281,7 +281,7 @@ test("Sorting in groups with distinct per-axis scrolling", async () => {
         });
     });
 
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
 
     // Negative vertical scrolling
 
@@ -303,7 +303,7 @@ test("Sorting in groups with distinct per-axis scrolling", async () => {
         });
     });
 
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
 
     // Positive vertical scrolling
 
@@ -325,7 +325,7 @@ test("Sorting in groups with distinct per-axis scrolling", async () => {
         });
     });
 
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
 });
 
 test("draggable area contains overflowing visible elements", async () => {
@@ -365,7 +365,7 @@ test("draggable area contains overflowing visible elements", async () => {
     expect(content.getBoundingClientRect().width).toBe(600);
     expect(renderer.getBoundingClientRect().width).toBe(600);
     expect(renderer).toHaveProperty("scrollWidth", 900);
-    expect(".item.o_dragged").toHaveCount(0);
+    expect(".item.app_dragged").toHaveCount(0);
 
     const { cancel, moveTo } = await contains(".item11").drag();
 
@@ -374,17 +374,17 @@ test("draggable area contains overflowing visible elements", async () => {
 
     // Verify that there is no scrolling
     expect(content).toHaveProperty("scrollLeft", 0);
-    expect(".item.o_dragged").toHaveCount(1);
+    expect(".item.app_dragged").toHaveCount(1);
 
     // Verify that the dragged element is allowed to go inside the
     // overflowing part of the draggable container.
-    expect(".item.o_dragged").toHaveRect({ right: 900 });
+    expect(".item.app_dragged").toHaveRect({ right: 900 });
     expect(".list3 .item:first").toHaveRect({ right: 900 });
 
     // Cancel drag
     await cancel();
 
-    expect(".item.o_dragged").toHaveCount(0);
+    expect(".item.app_dragged").toHaveCount(0);
 });
 
 test("Dynamically disable sortable feature", async () => {
@@ -661,20 +661,20 @@ test("dragged element is removed from the DOM while being dragged", async () => 
     const list = await mountWithCleanup(List);
 
     expect(".item:visible").toHaveCount(3);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     expect.verifySteps([]);
 
     const { drop, moveTo } = await contains(".item:first-child").drag();
-    expect(".o_dragged").toHaveCount(1);
+    expect(".app_dragged").toHaveCount(1);
     expect.verifySteps(["start"]);
 
     await moveTo(".item:nth-child(2)");
-    expect(".o_dragged").toHaveCount(1);
+    expect(".app_dragged").toHaveCount(1);
 
     list.state.items = [3, 4];
     await animationFrame();
     expect(".item:visible").toHaveCount(2);
-    expect(".o_dragged").toHaveCount(0);
+    expect(".app_dragged").toHaveCount(0);
     await drop();
     expect.verifySteps(["end"]);
 });

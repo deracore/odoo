@@ -14,7 +14,7 @@ import { getActiveHotkey, hotkeyService } from "@web/core/hotkeys/hotkey_service
 import { useActiveElement } from "@web/core/ui/ui_service";
 import { Deferred } from "@web/core/utils/concurrency";
 
-const getOverlays = () => queryAllTexts(".o_web_hotkey_overlay");
+const getOverlays = () => queryAllTexts(".app_web_hotkey_overlay");
 
 test("register / unregister", async () => {
     await makeMockEnv();
@@ -364,23 +364,23 @@ test("overlays can be toggled multiple times in a row", async () => {
     }
 
     await mountWithCleanup(MyComponent);
-    expect(".o_web_hotkey_overlay").toHaveCount(0);
+    expect(".app_web_hotkey_overlay").toHaveCount(0);
 
     // Display overlays
     await keyDown("alt");
-    expect(".o_web_hotkey_overlay").toHaveCount(1);
+    expect(".app_web_hotkey_overlay").toHaveCount(1);
 
     // Hide overlays
     await keyUp("alt");
-    expect(".o_web_hotkey_overlay").toHaveCount(0);
+    expect(".app_web_hotkey_overlay").toHaveCount(0);
 
     // Display overlays
     await keyDown("alt");
-    expect(".o_web_hotkey_overlay").toHaveCount(1);
+    expect(".app_web_hotkey_overlay").toHaveCount(1);
 
     // Hide overlays
     await keyUp("alt");
-    expect(".o_web_hotkey_overlay").toHaveCount(0);
+    expect(".app_web_hotkey_overlay").toHaveCount(0);
 });
 
 test("MacOS usability", async () => {

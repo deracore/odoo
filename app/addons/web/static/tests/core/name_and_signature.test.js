@@ -19,21 +19,21 @@ test("test name_and_signature widget", async () => {
     };
     await mountWithCleanup(NameAndSignature, { props });
     expect(getNameAndSignatureButtonNames()).toEqual(["Auto", "Draw", "Load"]);
-    expect(".o_web_sign_auto_select_style").toHaveCount(1);
+    expect(".app_web_sign_auto_select_style").toHaveCount(1);
     expect(".card-header .active").toHaveCount(1);
     expect(".card-header .active").toHaveText("Auto");
-    expect(".o_web_sign_name_group input").toHaveCount(1);
-    expect(".o_web_sign_name_group input").toHaveValue("Don Toliver");
+    expect(".app_web_sign_name_group input").toHaveCount(1);
+    expect(".app_web_sign_name_group input").toHaveValue("Don Toliver");
 
-    await contains(".o_web_sign_draw_button").click();
+    await contains(".app_web_sign_draw_button").click();
     expect(getNameAndSignatureButtonNames()).toEqual(["Auto", "Draw", "Load"]);
-    expect(".o_web_sign_draw_clear").toHaveCount(1);
+    expect(".app_web_sign_draw_clear").toHaveCount(1);
     expect(".card-header .active").toHaveCount(1);
     expect(".card-header .active").toHaveText("Draw");
 
-    await contains(".o_web_sign_load_button").click();
+    await contains(".app_web_sign_load_button").click();
     expect(getNameAndSignatureButtonNames()).toEqual(["Auto", "Draw", "Load"]);
-    expect(".o_web_sign_load_file").toHaveCount(1);
+    expect(".app_web_sign_load_file").toHaveCount(1);
     expect(".card-header .active").toHaveCount(1);
     expect(".card-header .active").toHaveText("Load");
 });
@@ -41,17 +41,17 @@ test("test name_and_signature widget", async () => {
 test("test name_and_signature widget without name", async () => {
     await mountWithCleanup(NameAndSignature, { props: { signature: {} } });
     expect(".card-header").toHaveCount(0);
-    expect(".o_web_sign_name_group input").toHaveCount(1);
-    expect(".o_web_sign_name_group input").toHaveValue("");
+    expect(".app_web_sign_name_group input").toHaveCount(1);
+    expect(".app_web_sign_name_group input").toHaveValue("");
 
-    await contains(".o_web_sign_name_group input").fill("plop", { instantly: true });
+    await contains(".app_web_sign_name_group input").fill("plop", { instantly: true });
     expect(getNameAndSignatureButtonNames()).toEqual(["Auto", "Draw", "Load"]);
-    expect(".o_web_sign_auto_select_style").toHaveCount(1);
+    expect(".app_web_sign_auto_select_style").toHaveCount(1);
     expect(".card-header .active").toHaveText("Auto");
-    expect(".o_web_sign_name_group input").toHaveCount(1);
-    expect(".o_web_sign_name_group input").toHaveValue("plop");
+    expect(".app_web_sign_name_group input").toHaveCount(1);
+    expect(".app_web_sign_name_group input").toHaveValue("plop");
 
-    await contains(".o_web_sign_draw_button").click();
+    await contains(".app_web_sign_draw_button").click();
     expect(".card-header .active").toHaveCount(1);
     expect(".card-header .active").toHaveText("Draw");
 });
@@ -65,7 +65,7 @@ test("test name_and_signature widget with noInputName and default name", async f
     };
     await mountWithCleanup(NameAndSignature, { props });
     expect(getNameAndSignatureButtonNames()).toEqual(["Auto", "Draw", "Load"]);
-    expect(".o_web_sign_auto_select_style").toHaveCount(1);
+    expect(".app_web_sign_auto_select_style").toHaveCount(1);
     expect(".card-header .active").toHaveCount(1);
     expect(".card-header .active").toHaveText("Auto");
 });
@@ -77,7 +77,7 @@ test("test name_and_signature widget with noInputName and without name", async f
     };
     await mountWithCleanup(NameAndSignature, { props });
     expect(getNameAndSignatureButtonNames()).toEqual(["Draw", "Load"]);
-    expect(".o_web_sign_draw_clear").toHaveCount(1);
+    expect(".app_web_sign_draw_clear").toHaveCount(1);
     expect(".card-header .active").toHaveCount(1);
     expect(".card-header .active").toHaveText("Draw");
 });
@@ -109,7 +109,7 @@ test("test name_and_signature widget update signmode with onSignatureChange prop
         },
     };
     await mountWithCleanup(NameAndSignature, { props });
-    await contains(".o_web_sign_draw_button").click();
+    await contains(".app_web_sign_draw_button").click();
     expect(currentSignMode).toBe("draw");
 });
 

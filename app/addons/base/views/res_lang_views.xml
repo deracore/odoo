@@ -44,8 +44,8 @@
                                 type="action"
                                 class="oe_stat_button"
                                 icon="fa-refresh">
-                                <div class="o_field_widget o_stat_info">
-                                    <span class="o_stat_text">Activate and Translate</span>
+                                <div class="app_field_widget app_stat_info">
+                                    <span class="app_stat_text">Activate and Translate</span>
                                 </div>
                             </button>
                         </div>

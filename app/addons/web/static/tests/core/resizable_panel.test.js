@@ -21,13 +21,13 @@ test("Width cannot exceed viewport width", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_resizable_panel").toHaveCount(1);
-    expect(".o_resizable_panel_handle").toHaveCount(1);
+    expect(".app_resizable_panel").toHaveCount(1);
+    expect(".app_resizable_panel_handle").toHaveCount(1);
 
     const vw = window.innerWidth;
-    queryOne(".o_resizable_panel").style.width = `${vw + 100}px`;
+    queryOne(".app_resizable_panel").style.width = `${vw + 100}px`;
 
-    expect(queryRect(".o_resizable_panel").width).toBeWithin(vw * 0.95, vw);
+    expect(queryRect(".app_resizable_panel").width).toBeWithin(vw * 0.95, vw);
 });
 
 test("handles right-to-left", async () => {
@@ -47,16 +47,16 @@ test("handles right-to-left", async () => {
     }
 
     await mountWithCleanup(Parent);
-    expect(".o_resizable_panel").toHaveRect({ width: 30 });
+    expect(".app_resizable_panel").toHaveRect({ width: 30 });
     await (
-        await drag(".o_resizable_panel_handle")
-    ).drop(".o_resizable_panel_handle", {
+        await drag(".app_resizable_panel_handle")
+    ).drop(".app_resizable_panel_handle", {
         position: {
             x: 10,
         },
     });
 
-    expect(queryRect(".o_resizable_panel").width).toBeGreaterThan(
+    expect(queryRect(".app_resizable_panel").width).toBeGreaterThan(
         queryOne(".parent-el").offsetWidth - 10 - 50
     );
 });
@@ -77,18 +77,18 @@ test("handles resize handle at start in fixed position", async () => {
     }
 
     await mountWithCleanup(Parent);
-    const resizablePanelEl = queryOne(".o_resizable_panel");
+    const resizablePanelEl = queryOne(".app_resizable_panel");
     resizablePanelEl.style.setProperty("right", "100px");
     expect(resizablePanelEl).toHaveRect({ width: 30 });
 
     await (
-        await drag(".o_resizable_panel_handle")
-    ).drop(".o_resizable_panel_handle", {
+        await drag(".app_resizable_panel_handle")
+    ).drop(".app_resizable_panel_handle", {
         position: {
             x: window.innerWidth - 200,
         },
     });
-    const panelExpectedWidth = 100 + queryRect(".o_resizable_panel_handle").width / 2;
+    const panelExpectedWidth = 100 + queryRect(".app_resizable_panel_handle").width / 2;
     expect(queryRect(resizablePanelEl).width).toBeWithin(
         panelExpectedWidth,
         panelExpectedWidth + 1
@@ -112,17 +112,17 @@ test("resizing the window adapts the panel", async () => {
 
     await mountWithCleanup(Parent);
     await (
-        await drag(".o_resizable_panel_handle")
-    ).drop(".o_resizable_panel_handle", {
+        await drag(".app_resizable_panel_handle")
+    ).drop(".app_resizable_panel_handle", {
         position: {
             x: 99999,
         },
     });
 
-    expect(queryOne(".o_resizable_panel").offsetWidth).toBe(398);
+    expect(queryOne(".app_resizable_panel").offsetWidth).toBe(398);
     queryOne(".parent-el").style.width = "200px";
     await resize();
-    expect(queryOne(".o_resizable_panel").offsetWidth).toBe(198);
+    expect(queryOne(".app_resizable_panel").offsetWidth).toBe(198);
 });
 
 test("minWidth props can be updated", async () => {
@@ -144,22 +144,22 @@ test("minWidth props can be updated", async () => {
         props: { state },
     });
     await (
-        await drag(".o_resizable_panel_handle")
-    ).drop(".o_resizable_panel_handle", {
+        await drag(".app_resizable_panel_handle")
+    ).drop(".app_resizable_panel_handle", {
         position: {
             x: 15,
         },
     });
 
-    expect(".o_resizable_panel").toHaveRect({ width: 20 });
+    expect(".app_resizable_panel").toHaveRect({ width: 20 });
     state.minWidth = 40;
     await animationFrame();
     await (
-        await drag(".o_resizable_panel_handle")
-    ).drop(".o_resizable_panel_handle", {
+        await drag(".app_resizable_panel_handle")
+    ).drop(".app_resizable_panel_handle", {
         position: {
             x: 15,
         },
     });
-    expect(".o_resizable_panel").toHaveRect({ width: 40 });
+    expect(".app_resizable_panel").toHaveRect({ width: 40 });
 });

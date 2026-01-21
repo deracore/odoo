@@ -166,7 +166,7 @@ export class PropertyTags extends Component {
                         return [
                             {
                                 label: _t('Create "%s"', request),
-                                cssClass: "o_field_property_dropdown_add",
+                                cssClass: "app_field_property_dropdown_add",
                                 onSelect: () => this.onTagCreate(request),
                             },
                         ];

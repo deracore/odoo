@@ -43,20 +43,20 @@ defineModels([Animal]);
 test("simple rendering", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
     }
 
     await mountWithSearch(TestComponent, {
         resModel: "animal",
     });
-    expect(".o_test_component").toHaveCount(1);
-    expect(".o_test_component").toHaveText("Test component content");
+    expect(".app_test_component").toHaveCount(1);
+    expect(".app_test_component").toHaveText("Test component content");
 });
 
 test("search model in sub env", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
     }
 
     const component = await mountWithSearch(TestComponent, {
@@ -68,7 +68,7 @@ test("search model in sub env", async () => {
 test("search query props are passed as props to concrete component", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
 
         setup() {
             expect.step("setup");
@@ -99,7 +99,7 @@ test("search query props are passed as props to concrete component", async () =>
 test("do not load search view description by default", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
     }
 
     onRpc("get_views", ({ method }) => {
@@ -115,7 +115,7 @@ test("do not load search view description by default", async () => {
 test("load search view description if not provided and loadSearchView=true", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
     }
 
     onRpc("get_views", ({ method, kwargs }) => {
@@ -142,7 +142,7 @@ test("load search view description if not provided and loadSearchView=true", asy
 test("do not load the search view description if provided even if loadSearchView=true", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
     }
 
     onRpc("get_views", ({ method }) => {
@@ -161,7 +161,7 @@ test("do not load the search view description if provided even if loadSearchView
 test("load view description if it is not complete and loadSearchView=true", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
     }
 
     onRpc("get_views", ({ method, kwargs }) => {
@@ -189,7 +189,7 @@ test("load view description with given id if it is not provided and loadSearchVi
     class TestComponent extends Component {
         static props = ["*"];
         static components = { SearchBarMenu };
-        static template = xml`<div class="o_test_component"><SearchBarMenu/></div>`;
+        static template = xml`<div class="app_test_component"><SearchBarMenu/></div>`;
     }
 
     onRpc("get_views", ({ method, kwargs }) => {
@@ -216,7 +216,7 @@ test("toggle a filter render the underlying component with an updated domain", a
     class TestComponent extends Component {
         static props = ["*"];
         static components = { SearchBarMenu };
-        static template = xml`<div class="o_test_component"><SearchBarMenu/></div>`;
+        static template = xml`<div class="app_test_component"><SearchBarMenu/></div>`;
 
         setup() {
             onWillStart(() => {
@@ -244,7 +244,7 @@ test("toggle a filter render the underlying component with an updated domain", a
 test("react to prop 'domain' changes", async () => {
     class TestComponent extends Component {
         static props = ["*"];
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
 
         setup() {
             onWillStart(() => {
@@ -290,7 +290,7 @@ test("search defaults are removed from context at reload", async function () {
     };
 
     class TestComponent extends Component {
-        static template = xml`<div class="o_test_component">Test component content</div>`;
+        static template = xml`<div class="app_test_component">Test component content</div>`;
         static props = { context: Object };
         setup() {
             onWillStart(() => {

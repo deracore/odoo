@@ -2,10 +2,10 @@
 <templates xml:space="preserve">
 
     <t t-name="web.Dialog">
-        <div class="o_dialog" t-att-id="id" t-att-class="{ o_inactive_modal: !data.isActive }">
+        <div class="app_dialog" t-att-id="id" t-att-class="{ app_inactive_modal: !data.isActive }">
             <div role="dialog" class="modal d-block"
                 tabindex="-1"
-                t-att-class="{ o_technical_modal: props.technical, o_modal_full: isFullscreen, o_inactive_modal: !data.isActive }"
+                t-att-class="{ app_technical_modal: props.technical, app_modal_full: isFullscreen, app_inactive_modal: !data.isActive }"
                 t-ref="modalRef"
                 >
                 <div class="modal-dialog modal-dialog-centered" t-attf-class="modal-{{props.size}}">
@@ -38,7 +38,7 @@
             <t t-esc="props.title"/>
         </h4>
         <t t-if="onExpand">
-            <button type="button" class="fa fa-expand btn opacity-75 opacity-100-hover o_expand_button" aria-label="Expand" tabindex="-1" t-on-click="onExpand"/>
+            <button type="button" class="fa fa-expand btn opacity-75 opacity-100-hover app_expand_button" aria-label="Expand" tabindex="-1" t-on-click="onExpand"/>
         </t>
         <t t-if="!fullscreen">
             <button type="button" class="btn-close" aria-label="Close" tabindex="-1" t-on-click="dismiss"></button>

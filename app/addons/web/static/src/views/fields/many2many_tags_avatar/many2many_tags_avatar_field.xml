@@ -3,12 +3,12 @@
 
     <t t-name="web.Many2ManyTagsAvatarField">
         <div
-            class="many2many_tags_avatar_field_container o_field_tags d-inline-flex flex-wrap mw-100 gap-1"
-            t-att-class="{'o_tags_input o_input': !props.readonly}"
+            class="many2many_tags_avatar_field_container app_field_tags d-inline-flex flex-wrap mw-100 gap-1"
+            t-att-class="{'app_tags_input app_input': !props.readonly}"
             t-ref="many2ManyTagsField"
         >
             <TagsList tags="tags" visibleItemsLimit="visibleItemsLimit"/>
-            <div t-if="showM2OSelectionField" class="o_field_many2many_selection d-inline-flex w-100" t-ref="autoComplete">
+            <div t-if="showM2OSelectionField" class="app_field_many2many_selection d-inline-flex w-100" t-ref="autoComplete">
                 <Many2XAutocomplete
                     id="props.id"
                     placeholder="tags.length ? '' : props.placeholder"
@@ -32,7 +32,7 @@
     </t>
 
     <t t-name="web.Many2ManyTagsAvatarField.option">
-        <span class="o_avatar_many2x_autocomplete o_avatar d-flex align-items-center">
+        <span class="app_avatar_many2x_autocomplete app_avatar d-flex align-items-center">
             <img t-if="autoCompleteItemScope.record.id" class="rounded me-1"
                 t-attf-src="/web/image/{{relation}}/{{autoCompleteItemScope.record.id}}/avatar_128"/>
             <span t-att-class="{ 'fw-bold': isSelected(autoCompleteItemScope.record) }" t-out="autoCompleteItemScope.label"/>
@@ -43,7 +43,7 @@
         <xpath expr="//t[@t-foreach='visibleTags']" position="before">
             <t t-if="canDisplayQuickAssignAvatar">
                 <a t-on-click.stop.prevent="openPopover" tabIndex="-1" href="#" data-tooltip="Assign"
-                   aria-label="Assign" class="o_quick_assign fa o_m2m_avatar btn-link d-flex align-items-center text-dark" t-attf-class="{{ props.tags.length ? 'fa-pencil' : 'fa-user-plus' }}" role="button"/>
+                   aria-label="Assign" class="app_quick_assign fa app_m2m_avatar btn-link d-flex align-items-center text-dark" t-attf-class="{{ props.tags.length ? 'fa-pencil' : 'fa-user-plus' }}" role="button"/>
             </t>
         </xpath>
     </t>
@@ -56,10 +56,10 @@
         </xpath>
     </t>
     <t t-name="web.Many2ManyTagsAvatarFieldPopover" t-inherit="web.Many2ManyTagsAvatarField" t-inherit-mode="primary">
-        <xpath expr="//div[hasclass('o_field_tags')]" position="attributes">
-            <attribute name="class" add="p-2 o_m2m_tags_avatar_field_popover o_field_widget o_field_many2many_tags_avatar" remove="d-inline-flex mw-100" separator=" " />
+        <xpath expr="//div[hasclass('app_field_tags')]" position="attributes">
+            <attribute name="class" add="p-2 app_m2m_tags_avatar_field_popover app_field_widget app_field_many2many_tags_avatar" remove="d-inline-flex mw-100" separator=" " />
         </xpath>
-        <xpath expr="//div[hasclass('o_field_many2many_selection')]" position="attributes">
+        <xpath expr="//div[hasclass('app_field_many2many_selection')]" position="attributes">
             <attribute name="class" add="w-100" separator=" " />
         </xpath>
         <Many2XAutocomplete position="attributes">

@@ -70,13 +70,13 @@ test("BinaryField is correctly rendered (readonly)", async () => {
         `,
     });
 
-    expect(`.o_field_widget[name="document"] a > .fa-download`).toHaveCount(1, {
+    expect(`.app_field_widget[name="document"] a > .fa-download`).toHaveCount(1, {
         message: "the binary field should be rendered as a downloadable link in readonly",
     });
-    expect(`.o_field_widget[name="document"]`).toHaveText("coucou.txt", {
+    expect(`.app_field_widget[name="document"]`).toHaveText("coucou.txt", {
         message: "the binary field should display the name of the file in the link",
     });
-    expect(`.o_field_char`).toHaveText("coucou.txt", {
+    expect(`.app_field_char`).toHaveText("coucou.txt", {
         message: "the filename field should have the file name as value",
     });
 
@@ -94,7 +94,7 @@ test("BinaryField is correctly rendered (readonly)", async () => {
     document.addEventListener("click", downloadOnClick);
     after(() => document.removeEventListener("click", downloadOnClick));
 
-    await contains(`.o_field_widget[name="document"] a`).click();
+    await contains(`.app_field_widget[name="document"] a`).click();
     await deferred;
     expect.verifySteps(["/web/content"]);
 });
@@ -127,16 +127,16 @@ test("BinaryField is correctly rendered", async () => {
         `,
     });
 
-    expect(`.o_field_widget[name="document"] a > .fa-download`).toHaveCount(0, {
+    expect(`.app_field_widget[name="document"] a > .fa-download`).toHaveCount(0, {
         message: "the binary field should not be rendered as a downloadable link in edit",
     });
-    expect(`.o_field_widget[name="document"].o_field_binary .o_input`).toHaveValue("coucou.txt", {
+    expect(`.app_field_widget[name="document"].app_field_binary .app_input`).toHaveValue("coucou.txt", {
         message: "the binary field should display the file name in the input edit mode",
     });
-    expect(`.o_field_binary .o_clear_file_button`).toHaveCount(1, {
+    expect(`.app_field_binary .app_clear_file_button`).toHaveCount(1, {
         message: "there shoud be a button to clear the file",
     });
-    expect(`.o_field_char input`).toHaveValue("coucou.txt", {
+    expect(`.app_field_char input`).toHaveValue("coucou.txt", {
         message: "the filename field should have the file name as value",
     });
 
@@ -158,18 +158,18 @@ test("BinaryField is correctly rendered", async () => {
     await deferred;
     expect.verifySteps(["/web/content"]);
 
-    await click(`.o_field_binary .o_clear_file_button`);
+    await click(`.app_field_binary .app_clear_file_button`);
     await animationFrame();
-    expect(`.o_field_binary input`).not.toBeVisible({ message: "the input should be hidden" });
-    expect(`.o_field_binary .o_select_file_button`).toHaveCount(1, {
+    expect(`.app_field_binary input`).not.toBeVisible({ message: "the input should be hidden" });
+    expect(`.app_field_binary .app_select_file_button`).toHaveCount(1, {
         message: "there should be a button to upload the file",
     });
-    expect(`.o_field_char input`).toHaveValue("", {
+    expect(`.app_field_char input`).toHaveValue("", {
         message: "the filename field should be empty since we removed the file",
     });
 
     await clickSave();
-    expect(`.o_field_widget[name="document"] a > .fa-download`).toHaveCount(0, {
+    expect(`.app_field_widget[name="document"] a > .fa-download`).toHaveCount(0, {
         message:
             "the binary field should not render as a downloadable link since we removed the file",
     });
@@ -193,18 +193,18 @@ test("BinaryField is correctly rendered (isDirty)", async () => {
     });
 
     // Simulate a file upload
-    await click(`.o_select_file_button`);
+    await click(`.app_select_file_button`);
     await animationFrame();
     const file = new File(["test"], "fake_file.txt", { type: "text/plain" });
     await setInputFiles([file]);
-    await waitFor(`.o_form_button_save:visible`);
-    expect(`.o_field_widget[name="document"] .fa-download`).toHaveCount(0, {
+    await waitFor(`.app_form_button_save:visible`);
+    expect(`.app_field_widget[name="document"] .fa-download`).toHaveCount(0, {
         message:
             "the binary field should not be rendered as a downloadable since the record is dirty",
     });
 
     await clickSave();
-    expect(`.o_field_widget[name="document"] .fa-download`).toHaveCount(1, {
+    expect(`.app_field_widget[name="document"] .fa-download`).toHaveCount(1, {
         message:
             "the binary field should render as a downloadable link since the record is not dirty",
     });
@@ -217,10 +217,10 @@ test("file name field is not defined", async () => {
         type: "form",
         arch: `<form><field name="document" filename="foo"/></form>`,
     });
-    expect(`.o_field_binary`).toHaveText("", {
+    expect(`.app_field_binary`).toHaveText("", {
         message: "there should be no text since the name field is not in the view",
     });
-    expect(`.o_field_binary .fa-download`).toBeVisible({
+    expect(`.app_field_binary .fa-download`).toBeVisible({
         message: "download icon should be visible",
     });
 });
@@ -232,13 +232,13 @@ test("icons are displayed exactly once", async () => {
         type: "form",
         arch: `<form><field name="document" filename="foo"/></form>`,
     });
-    expect(queryOne`.o_field_binary .o_select_file_button`).toBeVisible({
+    expect(queryOne`.app_field_binary .app_select_file_button`).toBeVisible({
         message: "only one select file icon should be visible",
     });
-    expect(queryOne`.o_field_binary .o_download_file_button`).toBeVisible({
+    expect(queryOne`.app_field_binary .app_download_file_button`).toBeVisible({
         message: "only one download file icon should be visible",
     });
-    expect(queryOne`.o_field_binary .o_clear_file_button`).toBeVisible({
+    expect(queryOne`.app_field_binary .app_clear_file_button`).toBeVisible({
         message: "only one clear file icon should be visible",
     });
 });
@@ -256,19 +256,19 @@ test("input value is empty when clearing after uploading", async () => {
         `,
     });
 
-    await click(`.o_select_file_button`);
+    await click(`.app_select_file_button`);
     await animationFrame();
     const file = new File(["test"], "fake_file.txt", { type: "text/plain" });
     await setInputFiles([file]);
-    await waitFor(`.o_form_button_save:visible`);
-    expect(`.o_field_binary input[type=text]`).toHaveAttribute("readonly");
-    expect(`.o_field_binary input[type=text]`).toHaveValue("fake_file.txt");
-    expect(`.o_field_char input[type=text]`).toHaveValue("fake_file.txt");
+    await waitFor(`.app_form_button_save:visible`);
+    expect(`.app_field_binary input[type=text]`).toHaveAttribute("readonly");
+    expect(`.app_field_binary input[type=text]`).toHaveValue("fake_file.txt");
+    expect(`.app_field_char input[type=text]`).toHaveValue("fake_file.txt");
 
-    await click(`.o_clear_file_button`);
+    await click(`.app_clear_file_button`);
     await animationFrame();
-    expect(`.o_field_binary .o_input_file`).toHaveValue("");
-    expect(`.o_field_char input`).toHaveValue("");
+    expect(`.app_field_binary .app_input_file`).toHaveValue("");
+    expect(`.app_field_char input`).toHaveValue("");
 });
 
 test("option accepted_file_extensions", async () => {
@@ -281,7 +281,7 @@ test("option accepted_file_extensions", async () => {
             </form>
         `,
     });
-    expect(`input.o_input_file`).toHaveAttribute("accept", ".dat,.bin", {
+    expect(`input.app_input_file`).toHaveAttribute("accept", ".dat,.bin", {
         message: "the input should have the correct ``accept`` attribute",
     });
 });
@@ -308,14 +308,14 @@ test("readonly in create mode does not download", async () => {
         `,
     });
 
-    await click(`.o_field_many2one[name='product_id'] input`);
+    await click(`.app_field_many2one[name='product_id'] input`);
     await animationFrame();
-    await click(`.o_field_many2one[name='product_id'] .dropdown-item`);
+    await click(`.app_field_many2one[name='product_id'] .dropdown-item`);
     await animationFrame();
-    expect(`.o_field_widget[name="document"] a`).toHaveCount(0, {
+    expect(`.app_field_widget[name="document"] a`).toHaveCount(0, {
         message: "The link to download the binary should not be present",
     });
-    expect(`.o_field_widget[name="document"] a > .fa-download`).toHaveCount(0, {
+    expect(`.app_field_widget[name="document"] a > .fa-download`).toHaveCount(0, {
         message: "The download icon should not be present",
     });
     expect.verifySteps([]);
@@ -328,7 +328,7 @@ test("BinaryField in list view (formatter)", async () => {
         type: "list",
         arch: `<list><field name="document"/></list>`,
     });
-    expect(`.o_data_row .o_data_cell`).toHaveText("93.43 Bytes");
+    expect(`.app_data_row .app_data_cell`).toHaveText("93.43 Bytes");
 });
 
 test("BinaryField in list view with filename", async () => {
@@ -343,7 +343,7 @@ test("BinaryField in list view with filename", async () => {
             </list>
         `,
     });
-    expect(`.o_data_row .o_data_cell`).toHaveText("coucou.txt");
+    expect(`.app_data_row .app_data_cell`).toHaveText("coucou.txt");
 });
 
 test("new record has no download button", async () => {
@@ -369,7 +369,7 @@ test("filename doesn't exceed 255 bytes", async () => {
         type: "form",
         arch: `<form><field name="document"/></form>`,
     });
-    expect(queryValue(`.o_field_binary input[type=text]`)).toHaveLength(
+    expect(queryValue(`.app_field_binary input[type=text]`)).toHaveLength(
         toBase64Length(MAX_FILENAME_SIZE_BYTES),
         {
             message: "The filename shouldn't exceed the maximum size in bytes in base64",
@@ -394,12 +394,12 @@ test("filename is updated when using the pager", async () => {
             </form>
         `,
     });
-    expect(`.o_field_binary input[type=text]`).toHaveValue("abc.txt", {
+    expect(`.app_field_binary input[type=text]`).toHaveValue("abc.txt", {
         message: `displayed value should be "abc.txt"`,
     });
 
     await pagerNext();
-    expect(`.o_field_binary input[type=text]`).toHaveValue("def.txt", {
+    expect(`.app_field_binary input[type=text]`).toHaveValue("def.txt", {
         message: `displayed value should be "def.txt"`,
     });
 });
@@ -420,14 +420,14 @@ test("isUploading state should be set to false after upload", async () => {
         arch: `<form><field name="document"/></form>`,
     });
 
-    await click(`.o_select_file_button`);
+    await click(`.app_select_file_button`);
     await animationFrame();
     const file = new File(["test"], "fake_file.txt", { type: "text/plain" });
     await setInputFiles([file]);
-    await waitFor(`.o_form_button_save:visible`);
+    await waitFor(`.app_form_button_save:visible`);
     await animationFrame();
     expect.verifyErrors([/RPC_ERROR/]);
-    expect(`.o_select_file_button`).toHaveText("Upload your file");
+    expect(`.app_select_file_button`).toHaveText("Upload your file");
 });
 
 test("should accept file with allowed MIME type and reject others", async () => {
@@ -442,29 +442,29 @@ test("should accept file with allowed MIME type and reject others", async () => 
         `,
     });
 
-    await click(`.o_select_file_button`);
+    await click(`.app_select_file_button`);
     await animationFrame();
     const pdfFile = new File(["test"], "fake_pdf.pdf", { type: "application/pdf" });
     await setInputFiles([pdfFile]);
 
-    await waitFor(`.o_form_button_save:visible`);
-    expect(`.o_field_binary input[type=text]`).toHaveAttribute("readonly");
-    expect(`.o_field_binary input[type=text]`).toHaveValue("fake_pdf.pdf");
+    await waitFor(`.app_form_button_save:visible`);
+    expect(`.app_field_binary input[type=text]`).toHaveAttribute("readonly");
+    expect(`.app_field_binary input[type=text]`).toHaveValue("fake_pdf.pdf");
 
-    await click(`.o_clear_file_button`);
+    await click(`.app_clear_file_button`);
     await animationFrame();
 
-    await click(`.o_select_file_button`);
+    await click(`.app_select_file_button`);
     await animationFrame();
     const textFile = new File(["test"], "text_file.txt", { type: "text/plain" });
     await setInputFiles([textFile]);
     await animationFrame();
 
-    expect(".o_notification").toHaveCount(1);
-    expect(".o_notification_content").toHaveText(
+    expect(".app_notification").toHaveCount(1);
+    expect(".app_notification_content").toHaveText(
         "Oops! 'text_file.txt' didn’t upload since its format isn’t allowed."
     );
-    expect(".o_notification_bar").toHaveClass("bg-danger");
+    expect(".app_notification_bar").toHaveClass("bg-danger");
 });
 
 test("doesn't crash if value is not a string", async () => {
@@ -483,5 +483,5 @@ test("doesn't crash if value is not a string", async () => {
                 <field name="document"/>
             </form>`,
     });
-    expect(".o_field_binary input").toHaveValue("");
+    expect(".app_field_binary input").toHaveValue("");
 });

@@ -25,9 +25,9 @@ test("documentation_link: default label and icon", async () => {
             <widget name="documentation_link" path="/this_is_a_test.html"/>
         </form>`,
     });
-    expect(".o_doc_link").toHaveText("View Documentation");
+    expect(".app_doc_link").toHaveText("View Documentation");
     expect("a.alert-link").toHaveCount(0);
-    expect(".o_doc_link .fa-external-link").toHaveCount(1);
+    expect(".app_doc_link .fa-external-link").toHaveCount(1);
 });
 
 test("documentationLink: alert-link", async () => {
@@ -64,8 +64,8 @@ test("documentation_link: given label", async () => {
             <widget name="documentation_link" path="/this_is_a_test.html" label="docdoc"/>
         </form>`,
     });
-    expect(".o_doc_link").toHaveText("docdoc");
-    expect(".o_doc_link .fa").toHaveCount(0);
+    expect(".app_doc_link").toHaveText("docdoc");
+    expect(".app_doc_link .fa").toHaveCount(0);
 });
 
 test("documentation_link: given icon", async () => {
@@ -78,8 +78,8 @@ test("documentation_link: given icon", async () => {
             <widget name="documentation_link" path="/this_is_a_test.html" icon="fa-question-circle"/>
         </form>`,
     });
-    expect(".o_doc_link").toHaveText("");
-    expect(".o_doc_link .fa-question-circle").toHaveCount(1);
+    expect(".app_doc_link").toHaveText("");
+    expect(".app_doc_link .fa-question-circle").toHaveCount(1);
 });
 
 test("documentation_link: given label and icon", async () => {
@@ -92,8 +92,8 @@ test("documentation_link: given label and icon", async () => {
             <widget name="documentation_link" path="/this_is_a_test.html" label="docdoc" icon="fa-question-circle"/>
         </form>`,
     });
-    expect(".o_doc_link").toHaveText("docdoc");
-    expect(".o_doc_link .fa-question-circle").toHaveCount(1);
+    expect(".app_doc_link").toHaveText("docdoc");
+    expect(".app_doc_link .fa-question-circle").toHaveCount(1);
 });
 
 test("documentation_link: relative path", async () => {
@@ -106,7 +106,7 @@ test("documentation_link: relative path", async () => {
             <widget name="documentation_link" path="/applications/technical/web/settings/this_is_a_test.html"/>
         </form>`,
     });
-    expect(".o_doc_link").toHaveAttribute(
+    expect(".app_doc_link").toHaveAttribute(
         "href",
         "https://www.odoo.com/documentation/1.0/applications/technical/web/settings/this_is_a_test.html"
     );
@@ -122,7 +122,7 @@ test("documentation_link: absolute path (http)", async () => {
                 <widget name="documentation_link" path="http://www.odoo.com/"/>
             </form>`,
     });
-    expect(".o_doc_link").toHaveAttribute("href", "http://www.odoo.com/");
+    expect(".app_doc_link").toHaveAttribute("href", "http://www.odoo.com/");
 });
 
 test("documentation_link: absolute path (https)", async () => {
@@ -136,5 +136,5 @@ test("documentation_link: absolute path (https)", async () => {
         </form>`,
     });
 
-    expect(".o_doc_link").toHaveAttribute("href", "https://www.odoo.com/");
+    expect(".app_doc_link").toHaveAttribute("href", "https://www.odoo.com/");
 });

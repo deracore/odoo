@@ -3,7 +3,7 @@
 
 <t t-name="web.SwitchCompanyItem">
     <span
-        class="d-flex o_switch_company_item dropdown-item p-0 w-100"
+        class="d-flex app_switch_company_item dropdown-item p-0 w-100"
         t-att-class="{
             'disabled': !isCompanyAllowed,
             'o-navigable': isCompanyAllowed,

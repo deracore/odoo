@@ -1,7 +1,7 @@
 // = Search Bar
 // ============================================================================
 
-.o_searchview_facet {
+.app_searchview_facet {
     @keyframes animate {
         from {
             opacity: .5;
@@ -17,7 +17,7 @@
         z-index: 0;
     }
 
-    .o_facet_value {
+    .app_facet_value {
         max-width: $o-search-bar-facet-value-width;
 
         @include media-breakpoint-down(md) {
@@ -26,20 +26,20 @@
     }
 }
 
-.o_searchview_autocomplete {
-    .o-dropdown-item {
+.app_searchview_autocomplete {
+    .app-dropdown-item {
         align-items: center;
         display: flex;
         padding-left: 25px;
 
-        &.o_indent {
+        &.app_indent {
             padding-left: 50px;
         }
 
         a {
             color: inherit;
 
-            &.o_expand {
+            &.app_expand {
                 display: flex;
                 justify-content: center;
                 width: 25px;

@@ -1,4 +1,4 @@
-.o_notebook {
+.app_notebook {
     --Notebook-margin-x: 0;
     --Notebook-padding-x: 0;
     --Notebook__link-border-color: transparent;
@@ -6,7 +6,7 @@
     --Notebook__link-border-color--hover: #{$gray-200};
     --Notebook__link-border-top-color--active: #{$border-color};
 
-    .o_notebook_headers {
+    .app_notebook_headers {
         margin: 0 var(--Notebook-margin-x, 0);
         overflow-x: auto;
         overflow-y: hidden;
@@ -58,7 +58,7 @@
             border-color: var(--Notebook__link-border-color--hover);
         }
 
-        &.o_page_invalid {
+        &.app_page_invalid {
             color: o-text-color('danger') !important;
             background-color: #{$o-input-invalid-bg} !important;
         }
@@ -69,7 +69,7 @@
     }
 
     &.vertical {
-        .o_notebook_headers {
+        .app_notebook_headers {
             overflow-x: visible;
         }
 
@@ -100,7 +100,7 @@
     }
 
     @include media-breakpoint-down(lg) {
-        .o_notebook_content .oe-toolbar {
+        .app_notebook_content .oe-toolbar {
             @include o-position-sticky($top: 0px);
             margin-left: var(--Notebook-margin-x, $o-horizontal-padding);
             margin-right: var(--Notebook-margin-x, $o-horizontal-padding);
